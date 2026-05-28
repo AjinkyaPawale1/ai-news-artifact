@@ -32,6 +32,7 @@ DEFAULT_OPENAI_MODEL = "gpt-5.4-mini"
 _LAST_DIAGNOSTICS: dict[str, Any] | None = None
 _OPENAI_CLASSIFY_ATTEMPTS = 0
 _OPENAI_CLASSIFY_FAILURES = 0
+_OPENAI_CLASSIFY_DISABLED_FOR_RUN = False
 
 ReleaseKind = Literal["model", "tool_service"]
 
@@ -267,10 +268,21 @@ def _normalize_llm_tag(kind: str, value: str) -> str:
     return tag if tag in allowed else ("MODEL" if kind == "model" else "PLATFORM")
 
 
-def _openai_classify_entry(entry: dict[str, Any], deterministic: dict[str, Any]) -> dict[str, Any] | None:
-    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES  # noqa: PLW0603
+def _openai_classify_entry(
+    entry: dict[str, Any],
+    deterministic: dict[str, Any],
+    *,
+    llm_available: bool,
+) -> dict[str, Any] | None:
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN  # noqa: PLW0603
     api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key or not MODEL_TOOL_LLM_CLASSIFY or _OPENAI_CLASSIFY_ATTEMPTS >= MODEL_TOOL_LLM_CLASSIFY_LIMIT:
+    if (
+        not api_key
+        or not llm_available
+        or not MODEL_TOOL_LLM_CLASSIFY
+        or _OPENAI_CLASSIFY_DISABLED_FOR_RUN
+        or _OPENAI_CLASSIFY_ATTEMPTS >= MODEL_TOOL_LLM_CLASSIFY_LIMIT
+    ):
         return deterministic
     _OPENAI_CLASSIFY_ATTEMPTS += 1
 
@@ -322,6 +334,20 @@ def _openai_classify_entry(entry: dict[str, Any], deterministic: dict[str, Any])
                         chunks.append(content.get("text", ""))
             text = "".join(chunks)
         parsed = json.loads(text)
+    except requests.HTTPError as exc:
+        _OPENAI_CLASSIFY_FAILURES += 1
+        error_payload = {}
+        if exc.response is not None:
+            try:
+                error_payload = exc.response.json().get("error") or {}
+            except (ValueError, TypeError):
+                error_payload = {}
+        if error_payload.get("code") in {"insufficient_quota", "invalid_api_key"} or (
+            exc.response is not None and exc.response.status_code in {401, 403}
+        ):
+            _OPENAI_CLASSIFY_DISABLED_FOR_RUN = True
+        LOGGER.warning("OpenAI model/tool classification failed for %s: %s", entry.get("url"), exc)
+        return deterministic
     except (requests.RequestException, json.JSONDecodeError, TypeError, KeyError) as exc:
         _OPENAI_CLASSIFY_FAILURES += 1
         LOGGER.warning("OpenAI model/tool classification failed for %s: %s", entry.get("url"), exc)
@@ -376,6 +402,8 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
     seen: set[str] = set()
     model_terms = MODEL_TERMS + state.get("model_terms", [])
     tool_terms = TOOL_SERVICE_TERMS + state.get("tool_terms", [])
+    llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
+    llm_available = llm_error_code not in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
     for entry in state.get("entries", []):
         url = entry["url"]
         if url in seen:
@@ -383,7 +411,7 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
         seen.add(url)
         release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
         if release:
-            release = _openai_classify_entry(entry, release)
+            release = _openai_classify_entry(entry, release, llm_available=llm_available)
         if release:
             classified.append(release)
     return {**state, "classified": classified}
@@ -438,6 +466,8 @@ def _run_sequential_graph(state: ModelToolsState) -> ModelToolsState:
 
 
 def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
+    llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
+    disabled_by_dynamic_error = llm_error_code in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
     return {
         "feeds_requested": len(state.get("feeds", [])),
         "entries_fetched": len(state.get("entries", [])),
@@ -445,6 +475,8 @@ def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
         "selected": len(state.get("selected", [])),
         "llm_classification_attempts": _OPENAI_CLASSIFY_ATTEMPTS,
         "llm_classification_failures": _OPENAI_CLASSIFY_FAILURES,
+        "llm_classification_disabled": _OPENAI_CLASSIFY_DISABLED_FOR_RUN or disabled_by_dynamic_error,
+        "llm_classification_skip_reason": llm_error_code if disabled_by_dynamic_error else "",
         "dynamic_config": state.get("dynamic_config", {}),
     }
 
@@ -499,7 +531,8 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
 
 def fetch_model_tools() -> list[Item]:
     """Fetch dashboard-ready model releases and AI tool/service announcements."""
-    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES  # noqa: PLW0603
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN  # noqa: PLW0603
     _OPENAI_CLASSIFY_ATTEMPTS = 0
     _OPENAI_CLASSIFY_FAILURES = 0
+    _OPENAI_CLASSIFY_DISABLED_FOR_RUN = False
     return fetch_model_tools_with_graph()

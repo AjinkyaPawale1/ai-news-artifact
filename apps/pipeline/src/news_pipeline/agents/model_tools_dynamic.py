@@ -28,6 +28,7 @@ LOGGER = logging.getLogger(__name__)
 _OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 _DYNAMIC_CONFIG_PATH = Path(__file__).resolve().parents[5] / "data" / "model_tools_dynamic_config.json"
 _TERM_PATTERN = re.compile(r"^[A-Za-z0-9][A-Za-z0-9 ._+:/-]{1,39}$")
+_LAST_LLM_ERROR: dict[str, Any] | None = None
 
 
 def _utc_now_iso() -> str:
@@ -169,8 +170,11 @@ def _call_llm_for_proposal(
     current_model_terms: list[str],
     current_tool_terms: list[str],
 ) -> dict[str, Any] | None:
+    global _LAST_LLM_ERROR  # noqa: PLW0603
+    _LAST_LLM_ERROR = None
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:
+        _LAST_LLM_ERROR = {"code": "missing_api_key", "type": "configuration"}
         return None
 
     model = os.getenv("OPENAI_MODEL", "gpt-5.4-mini")
@@ -225,7 +229,22 @@ def _call_llm_for_proposal(
             text = "".join(chunks)
         parsed = json.loads(text)
         return parsed if isinstance(parsed, dict) else None
+    except requests.HTTPError as exc:
+        error_payload = {}
+        if exc.response is not None:
+            try:
+                error_payload = exc.response.json().get("error") or {}
+            except (ValueError, TypeError):
+                error_payload = {}
+        _LAST_LLM_ERROR = {
+            "code": error_payload.get("code") or "http_error",
+            "type": error_payload.get("type") or "http_error",
+            "status": exc.response.status_code if exc.response is not None else None,
+        }
+        LOGGER.warning("Dynamic model/tools proposal call failed: %s", exc)
+        return None
     except (requests.RequestException, json.JSONDecodeError, TypeError, KeyError) as exc:
+        _LAST_LLM_ERROR = {"code": "request_failed", "type": type(exc).__name__}
         LOGGER.warning("Dynamic model/tools proposal call failed: %s", exc)
         return None
 
@@ -324,6 +343,10 @@ def resolve_dynamic_model_tool_inputs() -> dict[str, Any]:
         )
     elif MODEL_TOOL_DYNAMIC_AUTO_UPDATE:
         refresh_meta["llm_status"] = "unavailable_or_invalid"
+        if _LAST_LLM_ERROR:
+            refresh_meta["llm_error_code"] = _LAST_LLM_ERROR.get("code")
+            refresh_meta["llm_error_type"] = _LAST_LLM_ERROR.get("type")
+            refresh_meta["llm_error_status"] = _LAST_LLM_ERROR.get("status")
 
     payload = {
         "version": 1,

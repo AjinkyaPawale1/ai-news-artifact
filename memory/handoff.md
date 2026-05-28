@@ -28,6 +28,7 @@ Owner: AI agent (Codex)
 - Wired `model` and `tool_service` items through the pipeline artifact into `models` and `toolsServices`.
 - Adjusted exact-URL dedupe to prefer model/tool classifications over duplicate generic RSS entries.
 - Added bounded dynamic model/tool discovery: protected core feeds, rotating emerging feeds/terms, and optional LLM classification for candidate releases.
+- Added model/tools OpenAI quota diagnostics and a guard that skips later LLM classifier calls after quota/auth failures.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -57,6 +58,7 @@ Owner: AI agent (Codex)
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
 - Model/tool extraction is deterministic and intentionally conservative; empty `models` is valid when current feeds have no model release matches.
 - Optional model/tool LLM behavior is bounded: it proposes emerging feed/keyword rotations from a candidate catalog and classifies only limited candidate entries.
+- `429 insufficient_quota` from OpenAI is an API billing/quota issue, not a normal transient rate limit; see `memory/errors.md` before retry loops.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
