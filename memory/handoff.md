@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 Owner: AI agent (Codex)
 
 ## Completed
@@ -24,11 +24,16 @@ Owner: AI agent (Codex)
 - Added richer repo metadata, bullets, traction scores, release links, and expandable frontend repo cards.
 - Renamed `agent.md` to `AGENTS.md` and expanded it with Karpathy-style coding rules, X-thread memory practices, approval gates, and repo-specific permanent facts.
 - Added `memory/errors.md` for repeated failures and troubleshooting lessons.
+- Added deterministic paper action extraction with LangGraph fallback semantics.
+- Wired paper metadata into dashboard paper cards and top action items.
+- Added focused unittest coverage for paper action metadata and artifact mapping.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
 - Python pipeline fetches real arXiv, GitHub, and RSS items and writes `data/output.json`.
 - GitHub repo bullets are generated deterministically by default and can use OpenAI when `OPENAI_API_KEY` is set.
+- arXiv paper items carry deterministic `metadata` for priority, takeaways, action items,
+  relevance, verticals, and code availability.
 - Dashboard reads generated JSON data and builds successfully.
 - Generated health log is written to `data/health.json`.
 - Agent operating guidance is now centralized in `AGENTS.md`.
@@ -41,6 +46,8 @@ Owner: AI agent (Codex)
 4. Day 3: Implement stronger quality gate and final dashboard section mapping.
 5. Add screenshots to README when the dashboard UI stabilizes.
 6. Use `memory/errors.md` when repeated failed approaches or useful debugging lessons appear.
+7. Consider extracting GitHub/code links from arXiv abstracts or paper pages so `has_code`
+   can be based on explicit links instead of text signals.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
@@ -49,6 +56,8 @@ Owner: AI agent (Codex)
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
+- Paper action metadata is deterministic keyword logic; adjust keyword groups carefully if
+  dashboard labels start feeling too broad or too narrow.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
 

@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -19,6 +19,8 @@ Last updated: 2026-05-20
 - [x] Add richer GitHub repo artifact fields and expandable frontend repo cards.
 - [x] Rename `agent.md` to `AGENTS.md` and expand agent operating guidance.
 - [x] Add `memory/errors.md` for repeated failures and troubleshooting lessons.
+- [x] Add deterministic arXiv paper action metadata and artifact mapping.
+- [x] Add focused tests for paper action extraction.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -29,6 +31,7 @@ Last updated: 2026-05-20
 - [ ] Add CI for build validation.
 - [ ] Consider migrating from Tailwind CDN to local Tailwind pipeline.
 - [ ] Add cross-source repo mention extraction from RSS and arXiv links.
+- [ ] Improve paper `has_code` by extracting explicit repository/code links from arXiv metadata or paper pages.
 
 ## In Progress
 - [ ] None

@@ -86,3 +86,16 @@ Impact:
 - Added approval rules for major, destructive, deployment, publishing, and other side-effectful actions.
 - Added `memory/errors.md` for repeated failures and troubleshooting lessons.
 - Updated repo memory files to reference the expanded protocol.
+
+## 2026-05-28 - Use deterministic paper action metadata
+Status: accepted
+
+Reason:
+- arXiv papers need dashboard-ready takeaways and action items without depending on an LLM call.
+- The repo already prefers deterministic labels where UI output should remain stable.
+- Paper enrichment is a small workflow step and should align with the LangGraph/LangChain pattern used for agent flows.
+
+Impact:
+- Added `news_pipeline.agents.paper_graph` to enrich paper `Item.metadata`.
+- `fetch_papers` now returns papers with priority, takeaways, action items, relevance, verticals, and code signals.
+- `push_to_artifact` maps those fields into dashboard paper cards and top action items.

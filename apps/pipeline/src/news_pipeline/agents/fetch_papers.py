@@ -12,6 +12,7 @@ import requests
 
 from ..config import ARXIV_CATEGORIES, ARXIV_MAX_RESULTS_PER_CATEGORY, window_start
 from ..schema import Item, utc_now_iso
+from .paper_graph import enrich_papers_with_graph
 
 LOGGER = logging.getLogger(__name__)
 ARXIV_API_URL = "https://export.arxiv.org/api/query"
@@ -99,7 +100,7 @@ def fetch_papers() -> list[Item]:
             if item:
                 items.append(item)
 
-    return items
+    return enrich_papers_with_graph(items)
 
 
 if __name__ == "__main__":

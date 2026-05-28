@@ -1,6 +1,6 @@
 # Error Log
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 
 Use this file for repeated failures, failed approaches, and final working fixes.
 Before proposing a solution for a similar issue later, check this file.
@@ -21,5 +21,15 @@ Notes for next time:
 
 ## Entries
 
-- No repeated failures recorded yet.
+### 2026-05-28 - Python compileall cache permission on macOS
+Status: resolved
 
+What failed:
+- `python3 -m compileall ...` tried to write bytecode under
+  `/Users/ajinkyapawale/Library/Caches/com.apple.python/...` and failed in the sandbox.
+
+What worked:
+- Rerun compile/test commands with `PYTHONPYCACHEPREFIX=/private/tmp/llm-news-paper-actions-pycache`.
+
+Notes for next time:
+- Use a writable `PYTHONPYCACHEPREFIX` for Python validation commands in sandboxed worktrees.

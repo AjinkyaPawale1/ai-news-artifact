@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 
 ## Purpose
 A single-page dashboard UI for a weekly AI intelligence brief tailored to financial services stakeholders.
@@ -15,6 +15,7 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Python pipeline entry point: `news_pipeline.supervisor`.
 - Fetch agents:
   - `news_pipeline.agents.fetch_papers` for arXiv.
+  - `news_pipeline.agents.paper_graph` for deterministic paper action metadata.
   - `news_pipeline.agents.fetch_github` for GitHub search and releases.
   - `news_pipeline.agents.fetch_rss` for RSS/Atom feeds.
 - Entry wiring:
@@ -35,6 +36,8 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Architecture details live in `docs/architecture.md`.
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
+- arXiv papers now carry deterministic action metadata in `Item.metadata`, including
+  `priority`, `takeaways`, `action_items`, `verticals`, `relevance`, and `has_code`.
 
 ## Operational Commands
 - npm install

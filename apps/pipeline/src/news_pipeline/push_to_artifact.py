@@ -32,13 +32,20 @@ def _format_count(value: int | str | None) -> str:
 
 
 def _to_action_item(item: dict, priority: str) -> dict:
+    metadata = item.get("metadata") or {}
+    action_items = metadata.get("action_items") or []
+    takeaways = metadata.get("takeaways") or []
     return {
-        "priority": priority,
-        "title": item.get("title", "Untitled"),
+        "priority": metadata.get("priority") or priority,
+        "title": action_items[0] if action_items else item.get("title", "Untitled"),
         "source": item.get("source", "Unknown"),
         "sourceMeta": item.get("source_type", "source").upper(),
         "date": _format_date(item.get("published_date", "")),
-        "why": item.get("summary") or item.get("raw_content") or "No summary available yet.",
+        "why": (
+            takeaways[0]
+            if takeaways
+            else item.get("summary") or item.get("raw_content") or "No summary available yet."
+        ),
         "tags": item.get("tags") or [item.get("source_type", "AI")],
         "score": item.get("score", 50),
         "fsoRelevant": True,
@@ -47,19 +54,23 @@ def _to_action_item(item: dict, priority: str) -> dict:
 
 
 def _to_paper(item: dict) -> dict:
+    metadata = item.get("metadata") or {}
     return {
         "title": item.get("title", "Untitled"),
         "authors": ", ".join(item.get("authors") or ["Unknown"]),
         "org": item.get("source", "arXiv"),
         "date": _format_date(item.get("published_date", "")),
-        "hasCode": False,
+        "hasCode": bool(metadata.get("has_code")),
         "stars": 0,
         "score": item.get("score", 50),
-        "verticals": ["AI", "Research"],
+        "verticals": metadata.get("verticals") or ["AI", "Research"],
         "fsoRelevant": True,
         "abstract": item.get("raw_content") or item.get("summary") or "No abstract available.",
-        "takeaways": [item.get("summary") or "Review this paper for potential relevance."],
-        "relevance": {"wam": "Medium", "cm": "Medium", "ins": "Low", "risk": "Medium"},
+        "takeaways": metadata.get("takeaways")
+        or [item.get("summary") or "Review this paper for potential relevance."],
+        "actionItems": metadata.get("action_items") or [],
+        "relevance": metadata.get("relevance")
+        or {"wam": "Medium", "cm": "Medium", "ins": "Low", "risk": "Medium"},
         "url": item.get("url", ""),
     }
 
