@@ -860,6 +860,12 @@ function RepoList() {
 }
 
 function ReleaseCard({ item, accentColor }) {
+  const links = item.links?.length
+    ? item.links
+    : item.url
+      ? [{ label: "Read release", url: item.url }]
+      : [];
+
   return (
     <div
       className="border p-4"
@@ -891,6 +897,23 @@ function ReleaseCard({ item, accentColor }) {
         </span>
       </div>
       <div style={{ fontSize: 12, color: "#94a3b8" }}>{item.note}</div>
+      {links.length > 0 && (
+        <div className="flex flex-wrap gap-3 mt-3">
+          {links.map((link) => (
+            <a
+              key={`${item.name}-${link.label}-${link.url}`}
+              href={link.url}
+              target="_blank"
+              rel="noreferrer"
+              className="ai-mono inline-flex items-center gap-1"
+              style={{ fontSize: 10, color: accentColor }}
+            >
+              {link.label.toUpperCase()}
+              <ExternalLink size={11} />
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

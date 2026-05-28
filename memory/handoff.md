@@ -29,6 +29,8 @@ Owner: AI agent (Codex)
 - Adjusted exact-URL dedupe to prefer model/tool classifications over duplicate generic RSS entries.
 - Added bounded dynamic model/tool discovery: protected core feeds, rotating emerging feeds/terms, and optional LLM classification for candidate releases.
 - Added model/tools OpenAI quota diagnostics and a guard that skips later LLM classifier calls after quota/auth failures.
+- Expanded model/tool provider coverage with official OpenAI, Google, Microsoft, NVIDIA, AWS, Hugging Face, GitHub, Anthropic, Meta, Mistral, and Cohere sources.
+- Added official source-page extraction for providers without reliable RSS, enriched source-page candidates with article excerpts, and added dashboard release/source links for model and tool cards.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -38,8 +40,9 @@ Owner: AI agent (Codex)
 - Generated health log is written to `data/health.json`.
 - Agent operating guidance is now centralized in `AGENTS.md`.
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
-- The dashboard can now receive generated model release and AI tool/service cards when current feed entries match the deterministic classifier.
+- The dashboard can now receive generated model release and AI tool/service cards with longer notes plus release/source links when current feed entries match deterministic and/or LLM classification.
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
+- Latest model/tools-only refresh produced 8 model cards and 8 tool/service cards with 24 OpenAI classification attempts and 0 classification failures.
 
 ## Next Recommended Actions
 1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
@@ -49,6 +52,7 @@ Owner: AI agent (Codex)
 5. Add screenshots to README when the dashboard UI stabilizes.
 6. Use `memory/errors.md` when repeated failed approaches or useful debugging lessons appear.
 7. Review `data/model_tools_dynamic_config.json` after live weekly runs and tune candidate feeds if the LLM proposal repeatedly keeps low-yield sources.
+8. Watch source-page cards for sparse/generic vendor site copy; if this recurs, add provider-specific content extraction rules before increasing card count.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
@@ -56,7 +60,7 @@ Owner: AI agent (Codex)
 - LangGraph is now a pipeline dependency; run `pip install -r apps/pipeline/requirements.txt` after pulling.
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
-- Model/tool extraction is deterministic and intentionally conservative; empty `models` is valid when current feeds have no model release matches.
+- Model/tool extraction remains deterministic-first, but official source pages can pass release-signal checks and may rely on LLM classification for final card naming and notes.
 - Optional model/tool LLM behavior is bounded: it proposes emerging feed/keyword rotations from a candidate catalog and classifies only limited candidate entries.
 - `429 insufficient_quota` from OpenAI is an API billing/quota issue, not a normal transient rate limit; see `memory/errors.md` before retry loops.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.

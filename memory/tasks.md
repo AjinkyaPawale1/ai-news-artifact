@@ -23,6 +23,8 @@ Last updated: 2026-05-28
 - [x] Wire generated model/tool release cards into `data/output.json`.
 - [x] Add bounded LLM-assisted emerging feed and keyword refresh for model/tool releases.
 - [x] Add optional LLM classification for bounded model/tool release candidates.
+- [x] Expand official model/tool provider feeds and source pages.
+- [x] Add richer model/tool card summaries and release/source links.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -34,6 +36,7 @@ Last updated: 2026-05-28
 - [ ] Consider migrating from Tailwind CDN to local Tailwind pipeline.
 - [ ] Add cross-source repo mention extraction from RSS and arXiv links.
 - [ ] Review model/tool dynamic config after weekly runs and adjust candidate feeds if needed.
+- [ ] Add provider-specific article extraction rules if source-page cards show repeated generic vendor copy.
 
 ## In Progress
 - [ ] None

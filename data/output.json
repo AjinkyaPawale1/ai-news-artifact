@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T01:34:22.221373+00:00",
+  "generatedAt": "2026-05-28T18:11:48.925558+00:00",
   "stats": [
     {
       "label": "PAPERS SCANNED",
@@ -437,8 +437,330 @@
       "license": "MIT"
     }
   ],
-  "models": [],
-  "toolsServices": [],
+  "models": [
+    {
+      "name": "Claude Opus 4.8",
+      "org": "Anthropic",
+      "date": "May 28, 2026",
+      "note": "Anthropic released Claude Opus 4.8, an upgraded Opus-class model with stronger coding, agentic, and professional-work performance plus better long-running task reliability.",
+      "tag": "API",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "sourceUrl": "https://www.anthropic.com/news",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://www.anthropic.com/news/claude-opus-4-8"
+        },
+        {
+          "label": "Source page",
+          "url": "https://www.anthropic.com/news"
+        }
+      ]
+    },
+    {
+      "name": "Mistral 3",
+      "org": "Mistral AI",
+      "date": "Unknown",
+      "note": "Today, we announce Mistral 3, the next generation of Mistral models. Mistral 3 includes three state-of-the-art small, dense models (14B, 8B, and 3B) and Mistral Large 3 \u2013 our most capable model to date \u2013 a sparse mixture-of-experts trained with 41B active and",
+      "tag": "OPEN",
+      "url": "https://mistral.ai/news/mistral-3/",
+      "sourceUrl": "https://mistral.ai/news/",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://mistral.ai/news/mistral-3/"
+        },
+        {
+          "label": "Source page",
+          "url": "https://mistral.ai/news/"
+        }
+      ]
+    },
+    {
+      "name": "Mistral Small 4",
+      "org": "Mistral AI",
+      "date": "Unknown",
+      "note": "Today, we are announcing Mistral Small 4. This model is the next major release in the Mistral Small family.",
+      "tag": "OPEN",
+      "url": "https://mistral.ai/news/mistral-small-4/",
+      "sourceUrl": "https://mistral.ai/news/",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://mistral.ai/news/mistral-small-4/"
+        },
+        {
+          "label": "Source page",
+          "url": "https://mistral.ai/news/"
+        }
+      ]
+    },
+    {
+      "name": "Mistral Medium 3.5",
+      "org": "Mistral AI",
+      "date": "Unknown",
+      "note": "Coding agents have mostly lived on your laptop. Today we're moving them to the cloud, where they run on their own, in parallel, and notify you when they're done.",
+      "tag": "OPEN",
+      "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/",
+      "sourceUrl": "https://mistral.ai/news/",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/"
+        },
+        {
+          "label": "Source page",
+          "url": "https://mistral.ai/news/"
+        }
+      ]
+    },
+    {
+      "name": "Gemini Embedding 2",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Google announced general availability of Gemini Embedding 2, a unified multimodal embedding model that maps text, images, video, audio, and documents into one semantic space for stronger agentic RAG, visual search, and moderation workflows.",
+      "tag": "EMBED",
+      "url": "https://developers.googleblog.com/building-with-gemini-embedding-2/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/building-with-gemini-embedding-2/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developers.googleblog.com/feeds/posts/default"
+        }
+      ]
+    },
+    {
+      "name": "Gemini 3.5 Flash",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Gemini 3.5 Flash is now generally available, offering stable production use with stronger agentic execution, coding, and long-horizon task performance at scale.",
+      "tag": "API",
+      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
+        },
+        {
+          "label": "Source page",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog"
+        }
+      ]
+    },
+    {
+      "name": "Voxtral TTS",
+      "org": "Mistral AI",
+      "date": "Unknown",
+      "note": "Today we\u2019re releasing Voxtral TTS, our first text-to-speech model with state-of-the-art performance in multilingual voice generation. The model is lightweight at 4B parameters, making Voxtral-powered agents natural, reliable, and cost-effective at scale.",
+      "tag": "MODEL",
+      "url": "https://mistral.ai/news/voxtral-tts/",
+      "sourceUrl": "https://mistral.ai/news/",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://mistral.ai/news/voxtral-tts/"
+        },
+        {
+          "label": "Source page",
+          "url": "https://mistral.ai/news/"
+        }
+      ]
+    },
+    {
+      "name": "Aya A family of multilingual research models covering 70+ languages",
+      "org": "Cohere",
+      "date": "Unknown",
+      "note": "High-performance models for agentic, multimodal, multilingual AI A family of multilingual research models covering 70+ languages Cohere's research lab that seeks to solve complex ML problems Explore and compare our open source models Cohere's research lab, Coh",
+      "tag": "OPEN",
+      "url": "https://cohere.com/research/aya",
+      "sourceUrl": "https://cohere.com/blog/",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://cohere.com/research/aya"
+        },
+        {
+          "label": "Source page",
+          "url": "https://cohere.com/blog/"
+        }
+      ]
+    }
+  ],
+  "toolsServices": [
+    {
+      "name": "Amazon Bedrock AgentCore",
+      "org": "AWS",
+      "date": "May 27, 2026",
+      "note": "AWS says it built Field Advisor on Amazon Bedrock AgentCore to orchestrate more than 20 internal sales agents, reducing context switching and adding enterprise-grade memory, identity, observability, and evaluation for production agentic AI.",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Amazon Bedrock AgentCore and Strands Agents SDK",
+      "org": "AWS",
+      "date": "May 21, 2026",
+      "note": "AWS describes building an intelligent radiology workflow optimization workflow on Amazon Bedrock AgentCore and Strands Agents SDK, showing how agentic tooling can reduce diagnostic delays by using contextual case assignment instead of rigid rules.",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/intelligent-radiology-workflow-optimization-with-ai-agents-2/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/intelligent-radiology-workflow-optimization-with-ai-agents-2/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Agents CLI",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Google Cloud introduced Agents CLI, a specialized CLI for moving AI agents from local development to production by streamlining evaluation, infrastructure provisioning, and deployment in one workflow.",
+      "tag": "CLI",
+      "url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developers.googleblog.com/feeds/posts/default"
+        }
+      ]
+    },
+    {
+      "name": "Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore",
+      "org": "AWS",
+      "date": "May 26, 2026",
+      "note": "AWS published a guide showing how to build production-grade multi-agent systems by combining Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore for faster inference, shared memory, and observability.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-high-performance-generative-ai-systems-with-strands-agents-nvidia-nim-and-amazon-bedrock-agentcore/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/build-high-performance-generative-ai-systems-with-strands-agents-nvidia-nim-and-amazon-bedrock-agentcore/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "AgentWatch",
+      "org": "AWS",
+      "date": "May 26, 2026",
+      "note": "AgentWatch introduces an ambient AWS monitoring agent that helps DevOps teams proactively detect issues across accounts instead of relying on reactive CloudWatch alarms.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/agentwatch-proactive-aws-monitoring-with-ambient-agents/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/agentwatch-proactive-aws-monitoring-with-ambient-agents/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Antigravity CLI",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Google is transitioning Gemini CLI into Antigravity CLI, a new agent-first terminal tool for complex multi-agent workflows with faster execution, async processing, and a unified architecture that connects to Antigravity 2.0.",
+      "tag": "CLI",
+      "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developers.googleblog.com/feeds/posts/default"
+        }
+      ]
+    },
+    {
+      "name": "Agent Development Kit (ADK)",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Google introduced the Agent Development Kit (ADK) for building long-running agents with durable state, persistent sessions, and event-driven resume flows, which matters for production workflows that need to survive idle time and server restarts.",
+      "tag": "PLATFORM",
+      "url": "https://developers.googleblog.com/build-long-running-ai-agents-that-pause-resume-and-never-lose-context-with-adk/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/build-long-running-ai-agents-that-pause-resume-and-never-lose-context-with-adk/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developers.googleblog.com/feeds/posts/default"
+        }
+      ]
+    },
+    {
+      "name": "ADK for Kotlin and ADK for Android 0.1.0",
+      "org": "Google",
+      "date": "Unknown",
+      "note": "Google released ADK for Kotlin and ADK for Android 0.1.0, bringing agentic workflows to backend projects and Android apps for building AI agents across platforms.",
+      "tag": "PLATFORM",
+      "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developers.googleblog.com/feeds/posts/default"
+        }
+      ]
+    }
+  ],
   "papers": [],
   "blogs": [
     {
@@ -744,6 +1066,77 @@
           "updated": false,
           "source": "persisted",
           "llm_status": "unavailable_or_invalid"
+        }
+      }
+    },
+    {
+      "source": "model_tools",
+      "status": "ok",
+      "item_count": 16,
+      "duration_ms": null,
+      "dynamic_config": {
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+        "active_core_feeds": 14,
+        "active_emerging_feeds": 4,
+        "active_source_pages": 6,
+        "active_emerging_model_terms": 4,
+        "active_emerging_tool_terms": 1,
+        "auto_update_enabled": true,
+        "used_persisted_state": true,
+        "updated": true,
+        "source": "llm",
+        "feed_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        },
+        "model_term_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        },
+        "tool_term_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        }
+      },
+      "extraction_diagnostics": {
+        "feeds_requested": 15,
+        "source_pages_requested": 6,
+        "entries_fetched": 109,
+        "classified": 21,
+        "selected": 16,
+        "llm_classification_attempts": 24,
+        "llm_classification_failures": 0,
+        "llm_classification_disabled": false,
+        "llm_classification_skip_reason": "",
+        "dynamic_config": {
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+          "active_core_feeds": 14,
+          "active_emerging_feeds": 4,
+          "active_source_pages": 6,
+          "active_emerging_model_terms": 4,
+          "active_emerging_tool_terms": 1,
+          "auto_update_enabled": true,
+          "used_persisted_state": true,
+          "updated": true,
+          "source": "llm",
+          "feed_rotation": {
+            "replacements": 0,
+            "added": [],
+            "removed": []
+          },
+          "model_term_rotation": {
+            "replacements": 0,
+            "added": [],
+            "removed": []
+          },
+          "tool_term_rotation": {
+            "replacements": 0,
+            "added": [],
+            "removed": []
+          }
         }
       }
     }

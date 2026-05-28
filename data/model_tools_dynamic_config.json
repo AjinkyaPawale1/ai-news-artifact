@@ -1,27 +1,65 @@
 {
   "version": 1,
-  "updated_at": "2026-05-28T00:00:00+00:00",
-  "source": "static",
+  "updated_at": "2026-05-28T18:10:45.761727+00:00",
+  "source": "llm",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
-    "https://www.anthropic.com/news/rss.xml",
+    "https://developers.openai.com/rss.xml",
     "https://huggingface.co/blog/feed.xml",
     "https://research.google/blog/rss/",
-    "https://www.microsoft.com/en-us/research/feed/"
-  ],
-  "emerging_feeds": [
-    "https://developers.openai.com/rss.xml",
+    "https://developers.googleblog.com/feeds/posts/default",
+    "https://blog.google/technology/ai/rss/",
+    "https://blog.google/technology/developers/rss/",
+    "https://www.microsoft.com/en-us/research/feed/",
+    "https://blogs.microsoft.com/ai/feed/",
+    "https://azure.microsoft.com/en-us/blog/feed/",
     "https://developer.nvidia.com/blog/feed/",
     "https://feeds.feedburner.com/nvidiablog",
-    "https://nvidianews.nvidia.com/rss",
-    "https://www.planet-ai.net/rss.xml"
+    "https://aws.amazon.com/blogs/machine-learning/feed/",
+    "https://github.blog/ai-and-ml/feed/"
   ],
-  "emerging_model_terms": [],
-  "emerging_tool_terms": [],
+  "source_pages": [
+    "https://www.anthropic.com/news",
+    "https://www.anthropic.com/engineering",
+    "https://ai.google.dev/gemini-api/docs/changelog",
+    "https://ai.meta.com/blog/",
+    "https://mistral.ai/news/",
+    "https://cohere.com/blog/"
+  ],
+  "emerging_feeds": [
+    "https://developers.googleblog.com/feeds/posts/default",
+    "https://blog.google/technology/ai/rss/",
+    "https://github.blog/category/ai-and-ml/feed/",
+    "https://aws.amazon.com/blogs/machine-learning/feed/"
+  ],
+  "emerging_model_terms": [
+    "mistral 3",
+    "mistral small 4",
+    "mistral medium 3.5",
+    "gemini 3.5 flash"
+  ],
+  "emerging_tool_terms": [
+    "agents cli"
+  ],
   "refresh": {
     "auto_update_enabled": true,
-    "used_persisted_state": false,
-    "updated": false,
-    "source": "static"
+    "used_persisted_state": true,
+    "updated": true,
+    "source": "llm",
+    "feed_rotation": {
+      "replacements": 0,
+      "added": [],
+      "removed": []
+    },
+    "model_term_rotation": {
+      "replacements": 0,
+      "added": [],
+      "removed": []
+    },
+    "tool_term_rotation": {
+      "replacements": 0,
+      "added": [],
+      "removed": []
+    }
   }
 }

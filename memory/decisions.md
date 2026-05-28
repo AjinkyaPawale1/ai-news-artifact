@@ -112,3 +112,16 @@ Impact:
 - Added protected core model/tool feeds plus a rotating emerging feed and keyword layer.
 - OpenAI can propose emerging feed/keyword updates from a candidate catalog when configured.
 - OpenAI can classify a limited number of candidate model/tool entries, while deterministic classification remains the fallback.
+
+## 2026-05-28 - Use official source pages when provider RSS is unavailable
+Status: accepted
+
+Reason:
+- Several important providers do not expose reliable parseable RSS for model and tool launches.
+- Official source pages are still more trustworthy than broad web search for release-card candidates.
+- Source-page links can be noisy, so deterministic URL/title filtering and bounded LLM classification are still required.
+
+Impact:
+- Added source-page extraction for Anthropic, Gemini API changelog, Meta AI, Mistral, and Cohere.
+- Source-page candidates are enriched with article excerpts when possible before final classification.
+- Model/tool cards now expose both the release URL and the originating source feed/page URL.

@@ -96,17 +96,45 @@ RSS_FEEDS = [
     "https://www.microsoft.com/en-us/research/feed/",
 ]
 
-MODEL_TOOL_CORE_FEEDS = [
-    feed.strip()
-    for feed in os.getenv("MODEL_TOOL_CORE_FEEDS", ",".join(RSS_FEEDS)).split(",")
-    if feed.strip()
-]
-MODEL_TOOL_EMERGING_FEEDS = [
+MODEL_TOOL_CORE_FEEDS_DEFAULT = [
+    "https://openai.com/news/rss.xml",
     "https://developers.openai.com/rss.xml",
+    "https://huggingface.co/blog/feed.xml",
+    "https://research.google/blog/rss/",
+    "https://developers.googleblog.com/feeds/posts/default",
+    "https://blog.google/technology/ai/rss/",
+    "https://blog.google/technology/developers/rss/",
+    "https://www.microsoft.com/en-us/research/feed/",
+    "https://blogs.microsoft.com/ai/feed/",
+    "https://azure.microsoft.com/en-us/blog/feed/",
     "https://developer.nvidia.com/blog/feed/",
     "https://feeds.feedburner.com/nvidiablog",
-    "https://nvidianews.nvidia.com/rss",
-    "https://www.planet-ai.net/rss.xml",
+    "https://aws.amazon.com/blogs/machine-learning/feed/",
+    "https://github.blog/ai-and-ml/feed/",
+]
+MODEL_TOOL_CORE_FEEDS = [
+    feed.strip()
+    for feed in os.getenv("MODEL_TOOL_CORE_FEEDS", ",".join(MODEL_TOOL_CORE_FEEDS_DEFAULT)).split(",")
+    if feed.strip()
+]
+MODEL_TOOL_SOURCE_PAGES = [
+    "https://www.anthropic.com/news",
+    "https://www.anthropic.com/engineering",
+    "https://ai.google.dev/gemini-api/docs/changelog",
+    "https://ai.meta.com/blog/",
+    "https://mistral.ai/news/",
+    "https://cohere.com/blog/",
+]
+MODEL_TOOL_SOURCE_PAGES += [
+    page.strip()
+    for page in os.getenv("MODEL_TOOL_SOURCE_PAGES_EXTRA", "").split(",")
+    if page.strip()
+]
+MODEL_TOOL_EMERGING_FEEDS = [
+    "https://blog.google/rss/",
+    "https://github.blog/category/ai-and-ml/feed/",
+    "https://cloud.google.com/blog/feed/",
+    "https://openrss.org/openai.com/news/rss.xml",
 ]
 MODEL_TOOL_EMERGING_FEEDS += [
     feed.strip()
@@ -114,8 +142,11 @@ MODEL_TOOL_EMERGING_FEEDS += [
     if feed.strip()
 ]
 MODEL_TOOL_FEED_CANDIDATES = sorted(set(MODEL_TOOL_EMERGING_FEEDS + [
-    "https://planet-ai.net/rss.xml",
-    "https://openrss.org/openai.com/news/rss.xml",
+    "https://blog.google/technology/ai/rss/",
+    "https://developers.googleblog.com/feeds/posts/default",
+    "https://developer.nvidia.com/blog/feed/",
+    "https://blogs.microsoft.com/ai/feed/",
+    "https://aws.amazon.com/blogs/machine-learning/feed/",
 ]))
 MODEL_TOOL_FEEDS = [
     feed.strip()
@@ -139,7 +170,7 @@ MODEL_TOOL_LLM_CLASSIFY = os.getenv("MODEL_TOOL_LLM_CLASSIFY", "1").lower() in {
     "yes",
     "on",
 }
-MODEL_TOOL_LLM_CLASSIFY_LIMIT = int(os.getenv("MODEL_TOOL_LLM_CLASSIFY_LIMIT", "8"))
+MODEL_TOOL_LLM_CLASSIFY_LIMIT = int(os.getenv("MODEL_TOOL_LLM_CLASSIFY_LIMIT", "24"))
 
 DOMAIN_KEYWORDS = [
     "financial services",

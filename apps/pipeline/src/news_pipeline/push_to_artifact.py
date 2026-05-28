@@ -99,13 +99,23 @@ def _to_repo(item: dict) -> dict:
 
 def _to_release(item: dict) -> dict:
     metadata = item.get("metadata") or {}
+    release_url = item.get("url", "")
+    source_url = metadata.get("source_url", "")
+    links = []
+    if release_url:
+        links.append({"label": "Read release", "url": release_url})
+    if source_url and source_url != release_url:
+        links.append({"label": metadata.get("source_label", "Source"), "url": source_url})
     return {
         "name": metadata.get("name") or item.get("title", "Untitled"),
         "org": metadata.get("org") or item.get("source", "AI"),
         "date": _format_date(item.get("published_date", "")),
         "note": metadata.get("note") or item.get("summary") or item.get("raw_content") or "Review this release.",
         "tag": metadata.get("tag") or ((item.get("tags") or ["AI"])[0][:10].upper()),
-        "url": item.get("url", ""),
+        "url": release_url,
+        "sourceUrl": source_url,
+        "sourceLabel": metadata.get("source_label", "Source"),
+        "links": links,
     }
 
 

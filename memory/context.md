@@ -38,7 +38,8 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
 - `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
-- Model/tool release discovery uses protected core feeds plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
+- Model/tool release discovery uses protected official core feeds, official source pages for providers without reliable RSS, plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
+- Model/tool dashboard cards include release links plus source feed/page links, and source-page candidates are enriched from official article excerpts before LLM classification where possible.
 
 ## Operational Commands
 - npm install

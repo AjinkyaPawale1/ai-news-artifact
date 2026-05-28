@@ -8,8 +8,10 @@ import logging
 import os
 import re
 from datetime import datetime
+from html.parser import HTMLParser
 from html import unescape
 from typing import Any, Literal, TypedDict
+from urllib.parse import urljoin
 
 import feedparser
 import requests
@@ -19,6 +21,7 @@ from ..config import (
     MODEL_TOOL_LLM_CLASSIFY,
     MODEL_TOOL_LLM_CLASSIFY_LIMIT,
     MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_SOURCE_PAGES,
     window_start,
 )
 from ..schema import Item, utc_now_iso
@@ -39,6 +42,7 @@ ReleaseKind = Literal["model", "tool_service"]
 
 class ModelToolsState(TypedDict, total=False):
     feeds: list[str]
+    source_pages: list[str]
     model_terms: list[str]
     tool_terms: list[str]
     dynamic_config: dict[str, Any]
@@ -50,11 +54,19 @@ class ModelToolsState(TypedDict, total=False):
 
 MODEL_TERMS = [
     "model",
+    "models",
+    "frontier model",
+    "foundation model",
     "gpt",
+    "o3",
+    "o4",
+    "o4-mini",
     "claude",
     "gemini",
+    "gemini api",
     "llama",
     "mistral",
+    "mixtral",
     "command",
     "cohere",
     "grok",
@@ -66,26 +78,54 @@ MODEL_TERMS = [
     "opus",
     "haiku",
     "embedding",
+    "embeddings",
     "reasoning",
+    "multimodal",
+    "vision-language",
+    "speech",
+    "tts",
+    "video model",
+    "image model",
+    "veo",
+    "imagen",
+    "sora",
+    "whisper",
+    "voxtral",
+    "sam",
 ]
 
 TOOL_SERVICE_TERMS = [
     "agent",
     "agents",
+    "agentic",
     "codex",
     "claude code",
+    "gemini cli",
+    "antigravity",
     "copilot",
     "jules",
+    "ai studio",
     "studio",
     "sdk",
     "api",
+    "responses api",
+    "gemini api",
+    "adk",
+    "agent development kit",
     "service",
     "platform",
     "connector",
     "tool",
+    "tools",
     "workflow",
     "terminal",
     "ide",
+    "inference",
+    "serving",
+    "deployment",
+    "benchmark",
+    "eval",
+    "evaluation",
 ]
 
 RELEASE_TERMS = [
@@ -102,6 +142,12 @@ RELEASE_TERMS = [
     "preview",
     "beta",
     "new",
+    "upgrade",
+    "updated",
+    "updates",
+    "rollout",
+    "rolling out",
+    "changelog",
 ]
 
 ORG_HINTS = {
@@ -113,7 +159,66 @@ ORG_HINTS = {
     "meta": "Meta",
     "mistral": "Mistral AI",
     "cohere": "Cohere",
+    "nvidia": "NVIDIA",
+    "aws": "AWS",
+    "github": "GitHub",
 }
+
+
+class LinkParser(HTMLParser):
+    """Small HTML collector for official source pages without RSS."""
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: list[tuple[str, str]] = []
+        self.meta_descriptions: list[str] = []
+        self.paragraphs: list[str] = []
+        self.title = ""
+        self._href = ""
+        self._text: list[str] = []
+        self._in_title = False
+        self._in_paragraph = False
+        self._paragraph_text: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attrs_dict = dict(attrs)
+        if tag == "title":
+            self._in_title = True
+        if tag == "meta":
+            name = (attrs_dict.get("name") or attrs_dict.get("property") or "").lower()
+            content = attrs_dict.get("content") or ""
+            if name in {"description", "og:description", "twitter:description"} and content:
+                self.meta_descriptions.append(" ".join(content.split()))
+        if tag == "p":
+            self._in_paragraph = True
+            self._paragraph_text = []
+        if tag == "a":
+            self._href = attrs_dict.get("href") or ""
+            self._text = []
+
+    def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title += data
+        if self._in_paragraph:
+            self._paragraph_text.append(data)
+        if self._href:
+            self._text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
+        if tag == "p":
+            text = " ".join(" ".join(self._paragraph_text).split())
+            if len(text) > 40:
+                self.paragraphs.append(text)
+            self._in_paragraph = False
+            self._paragraph_text = []
+        if tag == "a" and self._href:
+            text = " ".join(" ".join(self._text).split())
+            if text:
+                self.links.append((self._href, text))
+            self._href = ""
+            self._text = []
 
 
 def _stable_id(value: str) -> str:
@@ -144,6 +249,144 @@ def _entry_content(entry) -> str:
     return _strip_html(getattr(entry, "summary", "") or getattr(entry, "description", ""))
 
 
+def _source_name(url: str) -> str:
+    host = re.sub(r"^www\.", "", url.split("//", 1)[-1].split("/", 1)[0])
+    if "openai" in host:
+        return "OpenAI"
+    if "anthropic" in host:
+        return "Anthropic"
+    if "huggingface" in host:
+        return "Hugging Face"
+    if "mistral" in host:
+        return "Mistral AI"
+    if "cohere" in host:
+        return "Cohere"
+    if "meta" in host:
+        return "Meta"
+    if "microsoft" in host or "azure" in host:
+        return "Microsoft"
+    if "nvidia" in host:
+        return "NVIDIA"
+    if "amazon" in host or "aws" in host:
+        return "AWS"
+    if "github" in host:
+        return "GitHub"
+    if "google" in host:
+        return "Google"
+    return host or url
+
+
+def _date_from_text(value: str) -> str:
+    match = re.search(
+        r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s+20\d{2}\b",
+        value,
+        flags=re.IGNORECASE,
+    )
+    if not match:
+        return ""
+    for fmt in ("%b %d, %Y", "%B %d, %Y"):
+        try:
+            return datetime.strptime(match.group(0).replace(".", ""), fmt).isoformat()
+        except ValueError:
+            continue
+    return ""
+
+
+def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
+    if "#" in url or len(title) < 8:
+        return False
+    title_lower = title.lower()
+    if title_lower in {"news", "research", "blog", "products", "learn more", "read all news"}:
+        return False
+    source_host = source_page.split("//", 1)[-1].split("/", 1)[0].replace("www.", "")
+    url_host = url.split("//", 1)[-1].split("/", 1)[0].replace("www.", "")
+    if source_host and url_host and source_host not in url_host and url_host not in source_host:
+        return False
+    if "ai.google.dev" in source_host and "/docs/" in url:
+        return "whats-new" in url or "changelog" in url
+    if "cohere.com" in source_host and url.rstrip("/") == "https://cohere.com/research":
+        return False
+    if "research lab" in title_lower and "model" not in title_lower:
+        return False
+    return any(part in url for part in ("/news", "/engineering", "/blog", "/research", "/docs", "/gemini"))
+
+
+def _article_excerpt(url: str, title: str) -> str:
+    try:
+        response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        LOGGER.debug("Article excerpt fetch failed for %s: %s", url, exc)
+        return ""
+
+    parser = LinkParser()
+    parser.feed(response.text[:500000])
+    title_terms = [term for term in re.split(r"[^a-z0-9]+", title.lower()) if len(term) > 3]
+    signal_terms = ["announc", "introduc", "release", "available", "model", "agent", "api", "sdk", "tool"]
+    generic_terms = ["the most powerful ai platform", "build, test, and run", "train, align, and evaluate"]
+    focused = []
+    for paragraph in parser.paragraphs:
+        lower = paragraph.lower()
+        if any(term in lower for term in generic_terms):
+            continue
+        if title_terms and any(term in lower for term in title_terms[:5]):
+            focused.append(paragraph)
+        elif not title_terms and any(term in lower for term in signal_terms):
+            focused.append(paragraph)
+    parts = [*focused[:4], *parser.meta_descriptions[:1]]
+    return " ".join(parts)[:1800].strip()
+
+
+def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    for page_url in source_pages:
+        try:
+            response = requests.get(page_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
+            response.raise_for_status()
+        except requests.RequestException as exc:
+            LOGGER.warning("Source page fetch failed for %s: %s", page_url, exc)
+            continue
+
+        parser = LinkParser()
+        parser.feed(response.text[:500000])
+        source = _source_name(page_url)
+        page_title = " ".join((parser.title or page_url).split())
+        page_content = _strip_html(response.text)[:4000]
+        if "ai.google.dev" not in page_url and any(term in page_url.lower() for term in ("changelog", "release-notes", "releases")):
+            entries.append(
+                {
+                    "source": source,
+                    "title": page_title,
+                    "url": page_url,
+                    "published_date": "",
+                    "content": page_content,
+                    "source_page": True,
+                    "source_url": page_url,
+                    "source_label": "Source page",
+                }
+            )
+
+        seen: set[str] = {page_url}
+        for href, title in parser.links[:80]:
+            url = urljoin(page_url, href)
+            if url in seen or not _link_is_relevant(page_url, url, title):
+                continue
+            seen.add(url)
+            entries.append(
+                {
+                    "source": source,
+                    "title": title,
+                    "url": url,
+                    "published_date": _date_from_text(title),
+                    "content": title,
+                    "source_page": True,
+                    "source_url": page_url,
+                    "source_label": "Source page",
+                }
+            )
+    return entries
+
+
 def _contains_any(text: str, terms: list[str]) -> bool:
     return any(_term_in_text(text, term) for term in terms)
 
@@ -161,6 +404,21 @@ def _term_in_text(text: str, term: str) -> bool:
 
 
 def _org_from_source(source: str, text: str) -> str:
+    known_sources = {
+        "OpenAI",
+        "Anthropic",
+        "Hugging Face",
+        "Google",
+        "Microsoft",
+        "Meta",
+        "Mistral AI",
+        "Cohere",
+        "NVIDIA",
+        "AWS",
+        "GitHub",
+    }
+    if source in known_sources:
+        return source
     haystack = f"{source} {text}".lower()
     for key, org in ORG_HINTS.items():
         if key in haystack:
@@ -205,8 +463,9 @@ def _tool_tag(text: str) -> str:
 
 def _note(title: str, content: str) -> str:
     text = content or title
-    sentence = re.split(r"(?<=[.!?])\s+", text.strip(), maxsplit=1)[0]
-    return (sentence or title)[:150].rstrip()
+    sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+    note = " ".join(sentence for sentence in sentences[:2] if sentence).strip()
+    return (note or title)[:260].rstrip()
 
 
 def _release_score(text: str, kind: ReleaseKind) -> int:
@@ -231,7 +490,11 @@ def _classify_entry(
     if title_model_score == 0 and title_tool_score == 0:
         return None
 
-    has_release_signal = _contains_any(title_text, RELEASE_TERMS) or _contains_any(text, RELEASE_TERMS)
+    has_release_signal = (
+        _contains_any(title_text, RELEASE_TERMS)
+        or _contains_any(text, RELEASE_TERMS)
+        or bool(entry.get("source_page"))
+    )
     if not has_release_signal and max(title_model_score, title_tool_score) < 2:
         return None
 
@@ -291,7 +554,7 @@ def _openai_classify_entry(
         "source": entry.get("source", ""),
         "url": entry.get("url", ""),
         "published_date": entry.get("published_date", ""),
-        "content_excerpt": (entry.get("content") or "")[:1200],
+        "content_excerpt": (entry.get("content") or "")[:1800],
         "deterministic_classification": {
             "kind": deterministic.get("kind"),
             "name": deterministic.get("name"),
@@ -309,7 +572,8 @@ def _openai_classify_entry(
                     "Classify RSS entries for a weekly AI model/tool release dashboard. "
                     "Use only the supplied title, source, URL, and excerpt. Return JSON only with keys "
                     "include, kind, name, org, note, tag, confidence. include is true only for concrete "
-                    "model releases, API releases, coding agents, agent platforms, SDKs, or AI tools/services."
+                    "model releases, API releases, coding agents, agent platforms, SDKs, or AI tools/services. "
+                    "The note should be one specific, dashboard-ready sentence about what shipped and why it matters."
                 ),
             },
             {"role": "user", "content": json.dumps(prompt, ensure_ascii=True)},
@@ -363,7 +627,7 @@ def _openai_classify_entry(
         "kind": kind,
         "name": str(parsed.get("name") or deterministic["name"]).strip()[:80],
         "org": str(parsed.get("org") or deterministic["org"]).strip()[:80],
-        "note": str(parsed.get("note") or deterministic["note"]).strip()[:150],
+        "note": str(parsed.get("note") or deterministic["note"]).strip()[:260],
         "tag": _normalize_llm_tag(kind, str(parsed.get("tag") or deterministic["tag"])),
         "llm_confidence": confidence,
         "classifier": "llm",
@@ -376,7 +640,8 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
     for feed_url in state.get("feeds", MODEL_TOOL_FEEDS):
         LOGGER.info("Fetching model/tool feed %s", feed_url)
         feed = feedparser.parse(feed_url)
-        source = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
+        feed_title = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
+        source = _source_name(feed_url) or feed_title
         for entry in feed.entries[:MODEL_TOOL_MAX_ITEMS * 3]:
             published_dt = _entry_datetime(entry)
             if published_dt and published_dt < cutoff:
@@ -392,8 +657,20 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
                     "url": url,
                     "published_date": _entry_date(entry),
                     "content": _entry_content(entry),
+                    "source_url": feed_url,
+                    "source_label": "RSS feed",
                 }
             )
+    for entry in _fetch_source_page_entries(state.get("source_pages", MODEL_TOOL_SOURCE_PAGES)):
+        published_dt = None
+        if entry.get("published_date"):
+            try:
+                published_dt = datetime.fromisoformat(entry["published_date"])
+            except ValueError:
+                published_dt = None
+        if published_dt and published_dt.replace(tzinfo=window_start().tzinfo) < cutoff:
+            continue
+        entries.append(entry)
     return {**state, "entries": entries}
 
 
@@ -410,6 +687,11 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
             continue
         seen.add(url)
         release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
+        if release and entry.get("source_page") and len(entry.get("content") or "") <= len(entry.get("title", "")) + 20:
+            excerpt = _article_excerpt(url, entry.get("title", ""))
+            if excerpt:
+                entry = {**entry, "content": excerpt}
+                release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
         if release:
             release = _openai_classify_entry(entry, release, llm_available=llm_available)
         if release:
@@ -422,13 +704,23 @@ def _select_entries(state: ModelToolsState) -> ModelToolsState:
     for kind in ("model", "tool_service"):
         entries = [entry for entry in state.get("classified", []) if entry.get("kind") == kind]
         entries.sort(key=lambda entry: entry.get("release_score", 0), reverse=True)
-        selected.extend(entries[:MODEL_TOOL_MAX_ITEMS])
+        seen_names: set[str] = set()
+        for entry in entries:
+            key = re.sub(r"[^a-z0-9]+", " ", entry.get("name", "").lower()).strip()
+            if key and key in seen_names:
+                continue
+            if key:
+                seen_names.add(key)
+            selected.append(entry)
+            if len([item for item in selected if item.get("kind") == kind]) >= MODEL_TOOL_MAX_ITEMS:
+                break
     return {**state, "selected": selected}
 
 
 def _entry_to_item(entry: dict[str, Any]) -> Item:
     kind = entry["kind"]
     url = entry["url"]
+    source_url = entry.get("source_url") or ""
     tags = [entry["tag"].lower(), kind.replace("_", "-")]
     return Item(
         id=f"{kind}-{_stable_id(url)}",
@@ -441,6 +733,7 @@ def _entry_to_item(entry: dict[str, Any]) -> Item:
         fetched_date=utc_now_iso(),
         raw_content=entry.get("note", ""),
         tags=tags,
+        related_links=[link for link in [source_url] if link and link != url],
         metadata={
             "item_kind": kind,
             "name": entry["name"],
@@ -448,6 +741,8 @@ def _entry_to_item(entry: dict[str, Any]) -> Item:
             "note": entry.get("note", ""),
             "tag": entry["tag"],
             "source_feed": entry.get("source", ""),
+            "source_url": source_url,
+            "source_label": entry.get("source_label", "Source"),
             "release_score": entry.get("release_score", 0),
             "classifier": entry.get("classifier", "deterministic"),
             "llm_confidence": entry.get("llm_confidence"),
@@ -470,6 +765,7 @@ def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
     disabled_by_dynamic_error = llm_error_code in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
     return {
         "feeds_requested": len(state.get("feeds", [])),
+        "source_pages_requested": len(state.get("source_pages", [])),
         "entries_fetched": len(state.get("entries", [])),
         "classified": len(state.get("classified", [])),
         "selected": len(state.get("selected", [])),
@@ -492,6 +788,7 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
     resolved = (
         {
             "feeds": feeds,
+            "source_pages": [],
             "emerging_model_terms": [],
             "emerging_tool_terms": [],
             "dynamic_config": {"source": "manual", "active_core_feeds": len(feeds)},
@@ -501,6 +798,7 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
     )
     initial_state: ModelToolsState = {
         "feeds": resolved.get("feeds") or MODEL_TOOL_FEEDS,
+        "source_pages": resolved.get("source_pages") or MODEL_TOOL_SOURCE_PAGES,
         "model_terms": resolved.get("emerging_model_terms") or [],
         "tool_terms": resolved.get("emerging_tool_terms") or [],
         "dynamic_config": resolved.get("dynamic_config") or {},

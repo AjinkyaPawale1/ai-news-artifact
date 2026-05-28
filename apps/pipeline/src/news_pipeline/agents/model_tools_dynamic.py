@@ -22,6 +22,7 @@ from ..config import (
     MODEL_TOOL_DYNAMIC_MAX_TERM_REPLACEMENTS,
     MODEL_TOOL_EMERGING_FEEDS,
     MODEL_TOOL_FEED_CANDIDATES,
+    MODEL_TOOL_SOURCE_PAGES,
 )
 
 LOGGER = logging.getLogger(__name__)
@@ -353,6 +354,7 @@ def resolve_dynamic_model_tool_inputs() -> dict[str, Any]:
         "updated_at": _utc_now_iso(),
         "source": refresh_meta.get("source", "static"),
         "core_feeds": MODEL_TOOL_CORE_FEEDS,
+        "source_pages": MODEL_TOOL_SOURCE_PAGES,
         "emerging_feeds": active_feeds,
         "emerging_model_terms": active_model_terms,
         "emerging_tool_terms": active_tool_terms,
@@ -362,12 +364,14 @@ def resolve_dynamic_model_tool_inputs() -> dict[str, Any]:
 
     return {
         "feeds": _dedupe_keep_order([*MODEL_TOOL_CORE_FEEDS, *active_feeds]),
+        "source_pages": list(MODEL_TOOL_SOURCE_PAGES),
         "emerging_model_terms": active_model_terms,
         "emerging_tool_terms": active_tool_terms,
         "dynamic_config": {
             "state_path": str(_DYNAMIC_CONFIG_PATH),
             "active_core_feeds": len(MODEL_TOOL_CORE_FEEDS),
             "active_emerging_feeds": len(active_feeds),
+            "active_source_pages": len(MODEL_TOOL_SOURCE_PAGES),
             "active_emerging_model_terms": len(active_model_terms),
             "active_emerging_tool_terms": len(active_tool_terms),
             **refresh_meta,

@@ -190,5 +190,76 @@
         "llm_status": "unavailable_or_invalid"
       }
     }
+  },
+  {
+    "source": "model_tools",
+    "status": "ok",
+    "item_count": 16,
+    "duration_ms": null,
+    "dynamic_config": {
+      "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+      "active_core_feeds": 14,
+      "active_emerging_feeds": 4,
+      "active_source_pages": 6,
+      "active_emerging_model_terms": 4,
+      "active_emerging_tool_terms": 1,
+      "auto_update_enabled": true,
+      "used_persisted_state": true,
+      "updated": true,
+      "source": "llm",
+      "feed_rotation": {
+        "replacements": 0,
+        "added": [],
+        "removed": []
+      },
+      "model_term_rotation": {
+        "replacements": 0,
+        "added": [],
+        "removed": []
+      },
+      "tool_term_rotation": {
+        "replacements": 0,
+        "added": [],
+        "removed": []
+      }
+    },
+    "extraction_diagnostics": {
+      "feeds_requested": 15,
+      "source_pages_requested": 6,
+      "entries_fetched": 109,
+      "classified": 21,
+      "selected": 16,
+      "llm_classification_attempts": 24,
+      "llm_classification_failures": 0,
+      "llm_classification_disabled": false,
+      "llm_classification_skip_reason": "",
+      "dynamic_config": {
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+        "active_core_feeds": 14,
+        "active_emerging_feeds": 4,
+        "active_source_pages": 6,
+        "active_emerging_model_terms": 4,
+        "active_emerging_tool_terms": 1,
+        "auto_update_enabled": true,
+        "used_persisted_state": true,
+        "updated": true,
+        "source": "llm",
+        "feed_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        },
+        "model_term_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        },
+        "tool_term_rotation": {
+          "replacements": 0,
+          "added": [],
+          "removed": []
+        }
+      }
+    }
   }
 ]
