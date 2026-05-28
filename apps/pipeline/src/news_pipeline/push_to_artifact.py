@@ -97,6 +97,18 @@ def _to_repo(item: dict) -> dict:
     }
 
 
+def _to_release(item: dict) -> dict:
+    metadata = item.get("metadata") or {}
+    return {
+        "name": metadata.get("name") or item.get("title", "Untitled"),
+        "org": metadata.get("org") or item.get("source", "AI"),
+        "date": _format_date(item.get("published_date", "")),
+        "note": metadata.get("note") or item.get("summary") or item.get("raw_content") or "Review this release.",
+        "tag": metadata.get("tag") or ((item.get("tags") or ["AI"])[0][:10].upper()),
+        "url": item.get("url", ""),
+    }
+
+
 def build_dashboard_payload(items: list[dict], health: list[dict] | None = None) -> dict:
     """Build the JSON shape consumed by the React dashboard."""
     papers = [item for item in items if item.get("source_type") == "paper"]
@@ -114,6 +126,8 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
         reverse=True,
     )
     rss = [item for item in items if item.get("source_type") == "rss"]
+    models = [item for item in items if item.get("source_type") == "model"]
+    tools_services = [item for item in items if item.get("source_type") == "tool_service"]
     top = items[:5]
     priorities = ["READ", "EXPERIMENT", "SHARE", "WATCH", "READ"]
 
@@ -127,8 +141,8 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
         ],
         "actionItems": [_to_action_item(item, priorities[index % len(priorities)]) for index, item in enumerate(top)],
         "repos": [_to_repo(item) for item in github[:8]],
-        "models": [],
-        "toolsServices": [],
+        "models": [_to_release(item) for item in models[:8]],
+        "toolsServices": [_to_release(item) for item in tools_services[:8]],
         "papers": [_to_paper(item) for item in papers[:10]],
         "blogs": [_to_blog(item) for item in rss[:10]],
         "socialPosts": [],

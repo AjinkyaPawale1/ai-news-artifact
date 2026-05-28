@@ -86,3 +86,16 @@ Impact:
 - Added approval rules for major, destructive, deployment, publishing, and other side-effectful actions.
 - Added `memory/errors.md` for repeated failures and troubleshooting lessons.
 - Updated repo memory files to reference the expanded protocol.
+
+## 2026-05-28 - Extract model releases and tools/services as classified RSS items
+Status: accepted
+
+Reason:
+- The dashboard already had compact `models` and `toolsServices` card contracts.
+- RSS-style vendor feeds are the lowest-friction source for launch and service announcements.
+- A deterministic classifier keeps user-facing copy clean and avoids model-dependent labels for weekly runs.
+
+Impact:
+- Added `news_pipeline.agents.model_tools_graph` with a LangGraph workflow and sequential fallback.
+- Added `model` and `tool_service` source types and artifact mapping for generated release cards.
+- Exact-URL dedupe now preserves specific model/tool classifications over duplicate generic RSS entries.

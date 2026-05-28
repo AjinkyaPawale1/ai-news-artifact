@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -19,6 +19,8 @@ Last updated: 2026-05-20
 - [x] Add richer GitHub repo artifact fields and expandable frontend repo cards.
 - [x] Rename `agent.md` to `AGENTS.md` and expand agent operating guidance.
 - [x] Add `memory/errors.md` for repeated failures and troubleshooting lessons.
+- [x] Add model release and AI tool/service extraction from RSS-style sources.
+- [x] Wire generated model/tool release cards into `data/output.json`.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -29,6 +31,7 @@ Last updated: 2026-05-20
 - [ ] Add CI for build validation.
 - [ ] Consider migrating from Tailwind CDN to local Tailwind pipeline.
 - [ ] Add cross-source repo mention extraction from RSS and arXiv links.
+- [ ] Tune model/tool feeds and release classifier based on future weekly output quality.
 
 ## In Progress
 - [ ] None

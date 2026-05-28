@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 Owner: AI agent (Codex)
 
 ## Completed
@@ -24,6 +24,9 @@ Owner: AI agent (Codex)
 - Added richer repo metadata, bullets, traction scores, release links, and expandable frontend repo cards.
 - Renamed `agent.md` to `AGENTS.md` and expanded it with Karpathy-style coding rules, X-thread memory practices, approval gates, and repo-specific permanent facts.
 - Added `memory/errors.md` for repeated failures and troubleshooting lessons.
+- Added a LangGraph-style model/tool release extraction workflow for RSS-style sources.
+- Wired `model` and `tool_service` items through the pipeline artifact into `models` and `toolsServices`.
+- Adjusted exact-URL dedupe to prefer model/tool classifications over duplicate generic RSS entries.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -33,6 +36,7 @@ Owner: AI agent (Codex)
 - Generated health log is written to `data/health.json`.
 - Agent operating guidance is now centralized in `AGENTS.md`.
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
+- The dashboard can now receive generated model release and AI tool/service cards when current feed entries match the deterministic classifier.
 
 ## Next Recommended Actions
 1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
@@ -41,6 +45,7 @@ Owner: AI agent (Codex)
 4. Day 3: Implement stronger quality gate and final dashboard section mapping.
 5. Add screenshots to README when the dashboard UI stabilizes.
 6. Use `memory/errors.md` when repeated failed approaches or useful debugging lessons appear.
+7. Tune model/tool source feeds and classifier keywords if future weekly runs miss important launch posts or include broad thought-leadership posts.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
@@ -48,6 +53,7 @@ Owner: AI agent (Codex)
 - LangGraph is now a pipeline dependency; run `pip install -r apps/pipeline/requirements.txt` after pulling.
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
+- Model/tool extraction is deterministic and intentionally conservative; empty `models` is valid when current feeds have no model release matches.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.

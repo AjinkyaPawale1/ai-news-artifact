@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-05-20
+Last updated: 2026-05-28
 
 ## Purpose
 A single-page dashboard UI for a weekly AI intelligence brief tailored to financial services stakeholders.
@@ -17,6 +17,7 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
   - `news_pipeline.agents.fetch_papers` for arXiv.
   - `news_pipeline.agents.fetch_github` for GitHub search and releases.
   - `news_pipeline.agents.fetch_rss` for RSS/Atom feeds.
+  - `news_pipeline.agents.model_tools_graph` for model release and AI tool/service extraction from RSS-style sources.
 - Entry wiring:
   - `apps/web/src/App.jsx` imports Dashboard.
   - `apps/web/src/main.jsx` mounts App to `#root`.
@@ -35,6 +36,7 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Architecture details live in `docs/architecture.md`.
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
+- `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
 
 ## Operational Commands
 - npm install

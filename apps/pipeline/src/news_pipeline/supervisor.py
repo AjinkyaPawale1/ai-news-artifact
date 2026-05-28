@@ -10,6 +10,7 @@ from typing import Callable
 from .agents.fetch_github import fetch_github, get_last_diagnostics
 from .agents.fetch_papers import fetch_papers
 from .agents.fetch_rss import fetch_rss
+from .agents.model_tools_graph import fetch_model_tools
 from .dedup import deduplicate_items
 from .health_log import write_health_log
 from .normalize import normalize_items
@@ -27,6 +28,7 @@ FETCH_AGENTS: dict[str, FetchAgent] = {
     "papers": fetch_papers,
     "github": fetch_github,
     "rss": fetch_rss,
+    "model_tools": fetch_model_tools,
 }
 
 

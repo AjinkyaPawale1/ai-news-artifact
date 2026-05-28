@@ -96,6 +96,13 @@ RSS_FEEDS = [
     "https://www.microsoft.com/en-us/research/feed/",
 ]
 
+MODEL_TOOL_FEEDS = [
+    feed.strip()
+    for feed in os.getenv("MODEL_TOOL_FEEDS", ",".join(RSS_FEEDS)).split(",")
+    if feed.strip()
+]
+MODEL_TOOL_MAX_ITEMS = int(os.getenv("MODEL_TOOL_MAX_ITEMS", "8"))
+
 DOMAIN_KEYWORDS = [
     "financial services",
     "banking",
