@@ -18,6 +18,7 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
   - `news_pipeline.agents.fetch_github` for GitHub search and releases.
   - `news_pipeline.agents.fetch_rss` for RSS/Atom feeds.
   - `news_pipeline.agents.model_tools_graph` for model release and AI tool/service extraction from RSS-style sources.
+  - `news_pipeline.agents.model_tools_dynamic` for bounded LLM-assisted emerging feed and keyword refresh.
 - Entry wiring:
   - `apps/web/src/App.jsx` imports Dashboard.
   - `apps/web/src/main.jsx` mounts App to `#root`.
@@ -37,6 +38,7 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
 - `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
+- Model/tool release discovery uses protected core feeds plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
 
 ## Operational Commands
 - npm install

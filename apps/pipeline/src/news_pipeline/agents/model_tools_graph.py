@@ -3,26 +3,44 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import logging
+import os
 import re
 from datetime import datetime
 from html import unescape
 from typing import Any, Literal, TypedDict
 
 import feedparser
+import requests
 
-from ..config import MODEL_TOOL_FEEDS, MODEL_TOOL_MAX_ITEMS, window_start
+from ..config import (
+    MODEL_TOOL_FEEDS,
+    MODEL_TOOL_LLM_CLASSIFY,
+    MODEL_TOOL_LLM_CLASSIFY_LIMIT,
+    MODEL_TOOL_MAX_ITEMS,
+    window_start,
+)
 from ..schema import Item, utc_now_iso
+from .model_tools_dynamic import resolve_dynamic_model_tool_inputs
 
 LOGGER = logging.getLogger(__name__)
 HTML_TAG_RE = re.compile(r"<[^>]+>")
 WHITESPACE_RE = re.compile(r"\s+")
+OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
+DEFAULT_OPENAI_MODEL = "gpt-5.4-mini"
+_LAST_DIAGNOSTICS: dict[str, Any] | None = None
+_OPENAI_CLASSIFY_ATTEMPTS = 0
+_OPENAI_CLASSIFY_FAILURES = 0
 
 ReleaseKind = Literal["model", "tool_service"]
 
 
 class ModelToolsState(TypedDict, total=False):
     feeds: list[str]
+    model_terms: list[str]
+    tool_terms: list[str]
+    dynamic_config: dict[str, Any]
     entries: list[dict[str, Any]]
     classified: list[dict[str, Any]]
     selected: list[dict[str, Any]]
@@ -197,13 +215,18 @@ def _release_score(text: str, kind: ReleaseKind) -> int:
     return release_score + focus_score
 
 
-def _classify_entry(entry: dict[str, Any]) -> dict[str, Any] | None:
+def _classify_entry(
+    entry: dict[str, Any],
+    *,
+    model_terms: list[str],
+    tool_terms: list[str],
+) -> dict[str, Any] | None:
     title = entry["title"]
     content = entry["content"]
     title_text = title.lower()
     text = f"{title} {content}".lower()
-    title_model_score = _term_count(title_text, MODEL_TERMS)
-    title_tool_score = _term_count(title_text, TOOL_SERVICE_TERMS)
+    title_model_score = _term_count(title_text, model_terms)
+    title_tool_score = _term_count(title_text, tool_terms)
     if title_model_score == 0 and title_tool_score == 0:
         return None
 
@@ -211,8 +234,9 @@ def _classify_entry(entry: dict[str, Any]) -> dict[str, Any] | None:
     if not has_release_signal and max(title_model_score, title_tool_score) < 2:
         return None
 
-    model_score = _release_score(text, "model") + title_model_score * 8
-    tool_score = _release_score(text, "tool_service") + title_tool_score * 8
+    release_score = _term_count(text, RELEASE_TERMS) * 3
+    model_score = release_score + _term_count(text, model_terms) * 4 + title_model_score * 8
+    tool_score = release_score + _term_count(text, tool_terms) * 4 + title_tool_score * 8
     if model_score < 7 and tool_score < 7:
         return None
 
@@ -226,6 +250,97 @@ def _classify_entry(entry: dict[str, Any]) -> dict[str, Any] | None:
         "note": _note(title, content),
         "tag": _model_tag(text) if kind == "model" else _tool_tag(text),
         "release_score": max(model_score, tool_score),
+        "classifier": "deterministic",
+    }
+
+
+def _normalize_llm_tag(kind: str, value: str) -> str:
+    tag = " ".join(str(value or "").upper().split())[:12]
+    allowed = {"API", "OPEN", "EMBED", "MODEL"} if kind == "model" else {
+        "CLI",
+        "IDE",
+        "CLOUD",
+        "SDK",
+        "API",
+        "PLATFORM",
+    }
+    return tag if tag in allowed else ("MODEL" if kind == "model" else "PLATFORM")
+
+
+def _openai_classify_entry(entry: dict[str, Any], deterministic: dict[str, Any]) -> dict[str, Any] | None:
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES  # noqa: PLW0603
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key or not MODEL_TOOL_LLM_CLASSIFY or _OPENAI_CLASSIFY_ATTEMPTS >= MODEL_TOOL_LLM_CLASSIFY_LIMIT:
+        return deterministic
+    _OPENAI_CLASSIFY_ATTEMPTS += 1
+
+    prompt = {
+        "title": entry.get("title", ""),
+        "source": entry.get("source", ""),
+        "url": entry.get("url", ""),
+        "published_date": entry.get("published_date", ""),
+        "content_excerpt": (entry.get("content") or "")[:1200],
+        "deterministic_classification": {
+            "kind": deterministic.get("kind"),
+            "name": deterministic.get("name"),
+            "org": deterministic.get("org"),
+            "tag": deterministic.get("tag"),
+            "note": deterministic.get("note"),
+        },
+    }
+    body = {
+        "model": os.getenv("OPENAI_MODEL", DEFAULT_OPENAI_MODEL),
+        "input": [
+            {
+                "role": "system",
+                "content": (
+                    "Classify RSS entries for a weekly AI model/tool release dashboard. "
+                    "Use only the supplied title, source, URL, and excerpt. Return JSON only with keys "
+                    "include, kind, name, org, note, tag, confidence. include is true only for concrete "
+                    "model releases, API releases, coding agents, agent platforms, SDKs, or AI tools/services."
+                ),
+            },
+            {"role": "user", "content": json.dumps(prompt, ensure_ascii=True)},
+        ],
+        "text": {"format": {"type": "json_object"}},
+    }
+    try:
+        response = requests.post(
+            OPENAI_RESPONSES_URL,
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json=body,
+            timeout=45,
+        )
+        response.raise_for_status()
+        payload = response.json()
+        text = payload.get("output_text") or ""
+        if not text:
+            chunks: list[str] = []
+            for output in payload.get("output", []):
+                for content in output.get("content", []):
+                    if content.get("type") in {"output_text", "text"}:
+                        chunks.append(content.get("text", ""))
+            text = "".join(chunks)
+        parsed = json.loads(text)
+    except (requests.RequestException, json.JSONDecodeError, TypeError, KeyError) as exc:
+        _OPENAI_CLASSIFY_FAILURES += 1
+        LOGGER.warning("OpenAI model/tool classification failed for %s: %s", entry.get("url"), exc)
+        return deterministic
+
+    confidence = float(parsed.get("confidence") or 0)
+    kind = parsed.get("kind")
+    if not parsed.get("include") or confidence < 0.7 or kind not in {"model", "tool_service"}:
+        return None
+
+    return {
+        **deterministic,
+        "kind": kind,
+        "name": str(parsed.get("name") or deterministic["name"]).strip()[:80],
+        "org": str(parsed.get("org") or deterministic["org"]).strip()[:80],
+        "note": str(parsed.get("note") or deterministic["note"]).strip()[:150],
+        "tag": _normalize_llm_tag(kind, str(parsed.get("tag") or deterministic["tag"])),
+        "llm_confidence": confidence,
+        "classifier": "llm",
     }
 
 
@@ -259,12 +374,16 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
 def _classify_entries(state: ModelToolsState) -> ModelToolsState:
     classified = []
     seen: set[str] = set()
+    model_terms = MODEL_TERMS + state.get("model_terms", [])
+    tool_terms = TOOL_SERVICE_TERMS + state.get("tool_terms", [])
     for entry in state.get("entries", []):
         url = entry["url"]
         if url in seen:
             continue
         seen.add(url)
-        release = _classify_entry(entry)
+        release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
+        if release:
+            release = _openai_classify_entry(entry, release)
         if release:
             classified.append(release)
     return {**state, "classified": classified}
@@ -302,6 +421,8 @@ def _entry_to_item(entry: dict[str, Any]) -> Item:
             "tag": entry["tag"],
             "source_feed": entry.get("source", ""),
             "release_score": entry.get("release_score", 0),
+            "classifier": entry.get("classifier", "deterministic"),
+            "llm_confidence": entry.get("llm_confidence"),
         },
     )
 
@@ -316,14 +437,49 @@ def _run_sequential_graph(state: ModelToolsState) -> ModelToolsState:
     return state
 
 
+def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
+    return {
+        "feeds_requested": len(state.get("feeds", [])),
+        "entries_fetched": len(state.get("entries", [])),
+        "classified": len(state.get("classified", [])),
+        "selected": len(state.get("selected", [])),
+        "llm_classification_attempts": _OPENAI_CLASSIFY_ATTEMPTS,
+        "llm_classification_failures": _OPENAI_CLASSIFY_FAILURES,
+        "dynamic_config": state.get("dynamic_config", {}),
+    }
+
+
+def get_last_diagnostics() -> dict[str, Any] | None:
+    """Return diagnostics from the most recent fetch_model_tools() call."""
+    return _LAST_DIAGNOSTICS
+
+
 def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
     """Fetch and classify model releases plus AI tools/services from RSS-style feeds."""
-    initial_state: ModelToolsState = {"feeds": feeds or MODEL_TOOL_FEEDS}
+    global _LAST_DIAGNOSTICS  # noqa: PLW0603
+    resolved = (
+        {
+            "feeds": feeds,
+            "emerging_model_terms": [],
+            "emerging_tool_terms": [],
+            "dynamic_config": {"source": "manual", "active_core_feeds": len(feeds)},
+        }
+        if feeds is not None
+        else resolve_dynamic_model_tool_inputs()
+    )
+    initial_state: ModelToolsState = {
+        "feeds": resolved.get("feeds") or MODEL_TOOL_FEEDS,
+        "model_terms": resolved.get("emerging_model_terms") or [],
+        "tool_terms": resolved.get("emerging_tool_terms") or [],
+        "dynamic_config": resolved.get("dynamic_config") or {},
+    }
     try:
         from langgraph.graph import END, StateGraph
     except ImportError:
         LOGGER.warning("langgraph is not installed; running model/tool workflow sequentially")
-        return _run_sequential_graph(initial_state).get("items", [])
+        result = _run_sequential_graph(initial_state)
+        _LAST_DIAGNOSTICS = _diagnostics_from_state(result)
+        return result.get("items", [])
 
     graph = StateGraph(ModelToolsState)
     graph.add_node("fetch_feed_entries", _fetch_feed_entries)
@@ -337,9 +493,13 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
     graph.add_edge("build_items", END)
 
     result = graph.compile().invoke(initial_state)
+    _LAST_DIAGNOSTICS = _diagnostics_from_state(result)
     return result.get("items", [])
 
 
 def fetch_model_tools() -> list[Item]:
     """Fetch dashboard-ready model releases and AI tool/service announcements."""
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES  # noqa: PLW0603
+    _OPENAI_CLASSIFY_ATTEMPTS = 0
+    _OPENAI_CLASSIFY_FAILURES = 0
     return fetch_model_tools_with_graph()

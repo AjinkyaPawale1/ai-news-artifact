@@ -99,3 +99,16 @@ Impact:
 - Added `news_pipeline.agents.model_tools_graph` with a LangGraph workflow and sequential fallback.
 - Added `model` and `tool_service` source types and artifact mapping for generated release cards.
 - Exact-URL dedupe now preserves specific model/tool classifications over duplicate generic RSS entries.
+
+## 2026-05-28 - Use bounded LLM assistance for model/tool discovery freshness
+Status: accepted
+
+Reason:
+- Static feeds and keywords are too brittle for fast-moving model/tool launches.
+- A fully LLM-owned feed and relevance system would be harder to debug and could drift.
+- The GitHub dynamic workflow already provides a bounded proposal pattern.
+
+Impact:
+- Added protected core model/tool feeds plus a rotating emerging feed and keyword layer.
+- OpenAI can propose emerging feed/keyword updates from a candidate catalog when configured.
+- OpenAI can classify a limited number of candidate model/tool entries, while deterministic classification remains the fallback.

@@ -10,7 +10,7 @@ from typing import Callable
 from .agents.fetch_github import fetch_github, get_last_diagnostics
 from .agents.fetch_papers import fetch_papers
 from .agents.fetch_rss import fetch_rss
-from .agents.model_tools_graph import fetch_model_tools
+from .agents.model_tools_graph import fetch_model_tools, get_last_diagnostics as get_model_tools_diagnostics
 from .dedup import deduplicate_items
 from .health_log import write_health_log
 from .normalize import normalize_items
@@ -75,6 +75,11 @@ def run_pipeline() -> dict:
                 diag = get_last_diagnostics()
                 if diag:
                     entry["search_diagnostics"] = diag
+            if name == "model_tools":
+                diag = get_model_tools_diagnostics()
+                if diag:
+                    entry["dynamic_config"] = diag.get("dynamic_config", {})
+                    entry["extraction_diagnostics"] = diag
             health.append(entry)
 
     deduped = deduplicate_items(all_items)

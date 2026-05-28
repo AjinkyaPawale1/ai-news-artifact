@@ -21,6 +21,8 @@ Last updated: 2026-05-28
 - [x] Add `memory/errors.md` for repeated failures and troubleshooting lessons.
 - [x] Add model release and AI tool/service extraction from RSS-style sources.
 - [x] Wire generated model/tool release cards into `data/output.json`.
+- [x] Add bounded LLM-assisted emerging feed and keyword refresh for model/tool releases.
+- [x] Add optional LLM classification for bounded model/tool release candidates.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -31,7 +33,7 @@ Last updated: 2026-05-28
 - [ ] Add CI for build validation.
 - [ ] Consider migrating from Tailwind CDN to local Tailwind pipeline.
 - [ ] Add cross-source repo mention extraction from RSS and arXiv links.
-- [ ] Tune model/tool feeds and release classifier based on future weekly output quality.
+- [ ] Review model/tool dynamic config after weekly runs and adjust candidate feeds if needed.
 
 ## In Progress
 - [ ] None

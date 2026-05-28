@@ -96,12 +96,50 @@ RSS_FEEDS = [
     "https://www.microsoft.com/en-us/research/feed/",
 ]
 
+MODEL_TOOL_CORE_FEEDS = [
+    feed.strip()
+    for feed in os.getenv("MODEL_TOOL_CORE_FEEDS", ",".join(RSS_FEEDS)).split(",")
+    if feed.strip()
+]
+MODEL_TOOL_EMERGING_FEEDS = [
+    "https://developers.openai.com/rss.xml",
+    "https://developer.nvidia.com/blog/feed/",
+    "https://feeds.feedburner.com/nvidiablog",
+    "https://nvidianews.nvidia.com/rss",
+    "https://www.planet-ai.net/rss.xml",
+]
+MODEL_TOOL_EMERGING_FEEDS += [
+    feed.strip()
+    for feed in os.getenv("MODEL_TOOL_EMERGING_FEEDS_EXTRA", "").split(",")
+    if feed.strip()
+]
+MODEL_TOOL_FEED_CANDIDATES = sorted(set(MODEL_TOOL_EMERGING_FEEDS + [
+    "https://planet-ai.net/rss.xml",
+    "https://openrss.org/openai.com/news/rss.xml",
+]))
 MODEL_TOOL_FEEDS = [
     feed.strip()
-    for feed in os.getenv("MODEL_TOOL_FEEDS", ",".join(RSS_FEEDS)).split(",")
+    for feed in os.getenv("MODEL_TOOL_FEEDS", ",".join(MODEL_TOOL_CORE_FEEDS)).split(",")
     if feed.strip()
 ]
 MODEL_TOOL_MAX_ITEMS = int(os.getenv("MODEL_TOOL_MAX_ITEMS", "8"))
+MODEL_TOOL_DYNAMIC_AUTO_UPDATE = os.getenv("MODEL_TOOL_DYNAMIC_AUTO_UPDATE", "1").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS = int(os.getenv("MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS", "5"))
+MODEL_TOOL_DYNAMIC_MAX_FEED_REPLACEMENTS = int(os.getenv("MODEL_TOOL_DYNAMIC_MAX_FEED_REPLACEMENTS", "2"))
+MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS = int(os.getenv("MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS", "12"))
+MODEL_TOOL_DYNAMIC_MAX_TERM_REPLACEMENTS = int(os.getenv("MODEL_TOOL_DYNAMIC_MAX_TERM_REPLACEMENTS", "4"))
+MODEL_TOOL_LLM_CLASSIFY = os.getenv("MODEL_TOOL_LLM_CLASSIFY", "1").lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
+MODEL_TOOL_LLM_CLASSIFY_LIMIT = int(os.getenv("MODEL_TOOL_LLM_CLASSIFY_LIMIT", "8"))
 
 DOMAIN_KEYWORDS = [
     "financial services",

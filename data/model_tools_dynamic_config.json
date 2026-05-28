@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-28T00:00:00+00:00",
+  "source": "static",
+  "core_feeds": [
+    "https://openai.com/news/rss.xml",
+    "https://www.anthropic.com/news/rss.xml",
+    "https://huggingface.co/blog/feed.xml",
+    "https://research.google/blog/rss/",
+    "https://www.microsoft.com/en-us/research/feed/"
+  ],
+  "emerging_feeds": [
+    "https://developers.openai.com/rss.xml",
+    "https://developer.nvidia.com/blog/feed/",
+    "https://feeds.feedburner.com/nvidiablog",
+    "https://nvidianews.nvidia.com/rss",
+    "https://www.planet-ai.net/rss.xml"
+  ],
+  "emerging_model_terms": [],
+  "emerging_tool_terms": [],
+  "refresh": {
+    "auto_update_enabled": true,
+    "used_persisted_state": false,
+    "updated": false,
+    "source": "static"
+  }
+}

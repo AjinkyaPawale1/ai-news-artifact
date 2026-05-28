@@ -27,6 +27,7 @@ Owner: AI agent (Codex)
 - Added a LangGraph-style model/tool release extraction workflow for RSS-style sources.
 - Wired `model` and `tool_service` items through the pipeline artifact into `models` and `toolsServices`.
 - Adjusted exact-URL dedupe to prefer model/tool classifications over duplicate generic RSS entries.
+- Added bounded dynamic model/tool discovery: protected core feeds, rotating emerging feeds/terms, and optional LLM classification for candidate releases.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -37,6 +38,7 @@ Owner: AI agent (Codex)
 - Agent operating guidance is now centralized in `AGENTS.md`.
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
 - The dashboard can now receive generated model release and AI tool/service cards when current feed entries match the deterministic classifier.
+- Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
 
 ## Next Recommended Actions
 1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
@@ -45,7 +47,7 @@ Owner: AI agent (Codex)
 4. Day 3: Implement stronger quality gate and final dashboard section mapping.
 5. Add screenshots to README when the dashboard UI stabilizes.
 6. Use `memory/errors.md` when repeated failed approaches or useful debugging lessons appear.
-7. Tune model/tool source feeds and classifier keywords if future weekly runs miss important launch posts or include broad thought-leadership posts.
+7. Review `data/model_tools_dynamic_config.json` after live weekly runs and tune candidate feeds if the LLM proposal repeatedly keeps low-yield sources.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
@@ -54,6 +56,7 @@ Owner: AI agent (Codex)
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
 - Model/tool extraction is deterministic and intentionally conservative; empty `models` is valid when current feeds have no model release matches.
+- Optional model/tool LLM behavior is bounded: it proposes emerging feed/keyword rotations from a candidate catalog and classifies only limited candidate entries.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
