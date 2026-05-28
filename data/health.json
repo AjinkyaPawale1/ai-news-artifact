@@ -1,0 +1,194 @@
+[
+  {
+    "source": "papers",
+    "status": "error",
+    "item_count": 0,
+    "duration_ms": 478,
+    "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+  },
+  {
+    "source": "rss",
+    "status": "ok",
+    "item_count": 18,
+    "duration_ms": 3547
+  },
+  {
+    "source": "github",
+    "status": "ok",
+    "item_count": 20,
+    "duration_ms": 64924,
+    "query_mode": "core+emerging",
+    "search_diagnostics": {
+      "queries": [
+        {
+          "query": "topic:llm language:python",
+          "fetched": 8,
+          "added": 8,
+          "failed": false
+        },
+        {
+          "query": "topic:agents language:python",
+          "fetched": 8,
+          "added": 6,
+          "failed": false
+        },
+        {
+          "query": "topic:rag language:python",
+          "fetched": 8,
+          "added": 6,
+          "failed": false
+        },
+        {
+          "query": "topic:generative-ai language:python",
+          "fetched": 8,
+          "added": 8,
+          "failed": false
+        },
+        {
+          "query": "reasoning language:python stars:>30",
+          "fetched": 8,
+          "added": 8,
+          "failed": false
+        },
+        {
+          "query": "memory llm language:python stars:>20",
+          "fetched": 8,
+          "added": 2,
+          "failed": false
+        },
+        {
+          "query": "\"recursive language model\" OR rlm language:python stars:>10",
+          "fetched": 1,
+          "added": 1,
+          "failed": false
+        },
+        {
+          "query": "\"llm wiki\" OR \"ai wiki\" stars:>5",
+          "fetched": 8,
+          "added": 8,
+          "failed": false
+        },
+        {
+          "query": "topic:model-context-protocol stars:>10",
+          "fetched": 8,
+          "added": 6,
+          "failed": false
+        },
+        {
+          "query": "topic:mcp language:python stars:>10",
+          "fetched": 8,
+          "added": 1,
+          "failed": false
+        },
+        {
+          "query": "language:typescript topic:ai stars:>20",
+          "fetched": 8,
+          "added": 8,
+          "failed": false
+        }
+      ],
+      "watch_repos": [
+        {
+          "repo": "openai/openai-python",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "anthropics/anthropic-sdk-python",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "anthropics/anthropic-cookbook",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "langchain-ai/langchain",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "run-llama/llama_index",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "microsoft/autogen",
+          "added": 0,
+          "failed": false,
+          "skipped_old": true,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "crewAIInc/crewAI",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "evergreen"
+        },
+        {
+          "repo": "anthropics/anthropic-cookbook",
+          "added": 0,
+          "failed": false,
+          "skipped_old": true,
+          "kind": "emerging"
+        },
+        {
+          "repo": "anthropics/anthropic-sdk-python",
+          "added": 0,
+          "failed": false,
+          "skipped_old": true,
+          "kind": "emerging"
+        },
+        {
+          "repo": "MemPalace/mempalace",
+          "added": 0,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "emerging"
+        },
+        {
+          "repo": "swarmclawai/swarmvault",
+          "added": 1,
+          "failed": false,
+          "skipped_old": false,
+          "kind": "emerging"
+        }
+      ],
+      "pushed_cutoff": "2026-05-21",
+      "created_cutoff": "2026-03-29",
+      "dynamic_config": {
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+        "active_emerging_queries": 7,
+        "active_emerging_watch_repos": 4,
+        "auto_update_enabled": true,
+        "used_persisted_state": true,
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid"
+      },
+      "total_unique_candidates": 69,
+      "dynamic_refresh": {
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+        "active_emerging_queries": 7,
+        "active_emerging_watch_repos": 4,
+        "auto_update_enabled": true,
+        "used_persisted_state": true,
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid"
+      }
+    }
+  }
+]

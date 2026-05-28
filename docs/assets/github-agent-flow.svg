@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="980" viewBox="0 0 1560 980" role="img" aria-labelledby="title desc">
+  <title id="title">GitHub Agent LangGraph Flow</title>
+  <desc id="desc">A boxed flowchart showing the GitHub agent LangGraph workflow from configuration inputs through repository search, enrichment, scoring, selection, item building, artifact mapping, and React repo cards.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6b7280"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#020617" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .bg { fill: #f8fafc; }
+      .lane { fill: #eef2ff; stroke: #c7d2fe; stroke-width: 1.5; }
+      .lane2 { fill: #ecfeff; stroke: #a5f3fc; stroke-width: 1.5; }
+      .lane3 { fill: #fef9c3; stroke: #fde68a; stroke-width: 1.5; }
+      .lane4 { fill: #f0fdf4; stroke: #bbf7d0; stroke-width: 1.5; }
+      .box { fill: #ffffff; stroke: #334155; stroke-width: 1.5; rx: 12; filter: url(#shadow); }
+      .state { fill: #111827; stroke: #f59e0b; stroke-width: 1.5; rx: 12; filter: url(#shadow); }
+      .api { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; rx: 12; filter: url(#shadow); }
+      .score { fill: #fff7ed; stroke: #ea580c; stroke-width: 1.5; rx: 12; filter: url(#shadow); }
+      .output { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; rx: 12; filter: url(#shadow); }
+      .title { font-family: Inter, Arial, sans-serif; font-size: 30px; font-weight: 800; fill: #0f172a; }
+      .subtitle { font-family: Inter, Arial, sans-serif; font-size: 15px; fill: #475569; }
+      .laneTitle { font-family: Inter, Arial, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 1.3px; fill: #334155; }
+      .h { font-family: Inter, Arial, sans-serif; font-size: 16px; font-weight: 800; fill: #0f172a; }
+      .stateH { font-family: Inter, Arial, sans-serif; font-size: 15px; font-weight: 800; fill: #f8fafc; }
+      .t { font-family: Inter, Arial, sans-serif; font-size: 12px; fill: #334155; }
+      .stateT { font-family: Inter, Arial, sans-serif; font-size: 12px; fill: #d1d5db; }
+      .tiny { font-family: Inter, Arial, sans-serif; font-size: 10.5px; fill: #64748b; }
+      .arrow { stroke: #6b7280; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+      .dash { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 6 6; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1560" height="980"/>
+  <text x="50" y="54" class="title">GitHub Agent LangGraph Flow</text>
+  <text x="50" y="82" class="subtitle">Weekly repo discovery: dynamic resolver + persisted state + core/emerging tiers + diagnostics + enrichment + tiered scoring.</text>
+
+  <rect x="40" y="120" width="270" height="790" rx="18" class="lane"/>
+  <text x="60" y="148" class="laneTitle">CONFIGURATION</text>
+
+  <rect x="340" y="120" width="360" height="790" rx="18" class="lane2"/>
+  <text x="360" y="148" class="laneTitle">LANGGRAPH NODES</text>
+
+  <rect x="730" y="120" width="340" height="790" rx="18" class="lane3"/>
+  <text x="750" y="148" class="laneTitle">SCORING + CLASSIFICATION</text>
+
+  <rect x="1100" y="120" width="420" height="790" rx="18" class="lane4"/>
+  <text x="1120" y="148" class="laneTitle">ARTIFACT + FRONTEND</text>
+
+  <rect x="70" y="180" width="210" height="130" class="box"/>
+  <text x="92" y="210" class="h">Search Seeds</text>
+  <text x="92" y="236" class="t">Core + Emerging tiers (dynamic)</text>
+  <text x="92" y="256" class="t">core: llm / agents / rag</text>
+  <text x="92" y="276" class="t">emerging: reasoning / memory</text>
+  <text x="92" y="296" class="t">wiki / mcp / ts-ai coverage</text>
+
+  <rect x="70" y="345" width="210" height="110" class="box"/>
+  <text x="92" y="375" class="h">Freshness Windows</text>
+  <text x="92" y="402" class="t">pushed &gt;= now - 7 days</text>
+  <text x="92" y="424" class="t">created &gt;= now - 60 days</text>
+
+  <rect x="70" y="490" width="210" height="105" class="box"/>
+  <text x="92" y="520" class="h">Credentials</text>
+  <text x="92" y="548" class="t">GITHUB_TOKEN</text>
+  <text x="92" y="570" class="t">OPENAI_API_KEY optional</text>
+
+  <rect x="70" y="630" width="210" height="130" class="box"/>
+  <text x="92" y="660" class="h">Tuning Knobs</text>
+  <text x="92" y="686" class="t">MAX_ITEMS_PER_SOURCE</text>
+  <text x="92" y="708" class="t">dynamic churn budgets (4/4)</text>
+  <text x="92" y="730" class="t">TRACTION thresholds (35/25)</text>
+
+  <rect x="380" y="175" width="270" height="120" class="box"/>
+  <text x="405" y="206" class="h">1. search_repositories</text>
+  <text x="405" y="232" class="t">GitHub Search API</text>
+  <text x="405" y="252" class="t">resolved query/watch inputs</text>
+  <text x="405" y="272" class="t">pushed/created filters + dedupe</text>
+
+  <rect x="392" y="325" width="246" height="82" class="state"/>
+  <text x="415" y="354" class="stateH">state.candidates</text>
+  <text x="415" y="379" class="stateT">fresh repo dictionaries</text>
+
+  <rect x="380" y="440" width="270" height="135" class="box"/>
+  <text x="405" y="471" class="h">2. enrich_repositories</text>
+  <text x="405" y="497" class="t">README API: decode excerpt</text>
+  <text x="405" y="517" class="t">Releases API: latest release</text>
+  <text x="405" y="537" class="t">compute traction_score</text>
+
+  <rect x="392" y="605" width="246" height="82" class="state"/>
+  <text x="415" y="634" class="stateH">state.enriched</text>
+  <text x="415" y="659" class="stateT">metadata + README + release</text>
+
+  <rect x="380" y="720" width="270" height="120" class="box"/>
+  <text x="405" y="751" class="h">3. select_repositories</text>
+  <text x="405" y="777" class="t">threshold: default 35 / emerging 25</text>
+  <text x="405" y="797" class="t">exclude archived + old repos</text>
+  <text x="405" y="817" class="t">sort by score, then stars</text>
+
+  <rect x="760" y="175" width="280" height="145" class="api"/>
+  <text x="785" y="207" class="h">GitHub API Calls</text>
+  <text x="785" y="235" class="t">/search/repositories</text>
+  <text x="785" y="256" class="t">/repos/{owner}/{repo}</text>
+  <text x="785" y="277" class="t">/readme</text>
+  <text x="785" y="298" class="t">/releases/latest</text>
+
+  <rect x="760" y="355" width="280" height="170" class="score"/>
+  <text x="785" y="386" class="h">Traction Score</text>
+  <text x="785" y="413" class="t">stars + forks + recency</text>
+  <text x="785" y="434" class="t">novelty + tiered relevance</text>
+  <text x="785" y="455" class="t">emerging bonus + activity</text>
+  <text x="785" y="476" class="t">archived/fork penalties</text>
+  <text x="785" y="503" class="tiny">Internal only; used for filter/sort.</text>
+
+  <rect x="760" y="560" width="280" height="160" class="score"/>
+  <text x="785" y="591" class="h">bestFor Classifier</text>
+  <text x="785" y="618" class="t">keyword category scoring</text>
+  <text x="785" y="639" class="t">Agent Security, RAG Infra,</text>
+  <text x="785" y="660" class="t">Coding Workflow, MCP Tooling,</text>
+  <text x="785" y="681" class="t">AI Agent Apps, Research...</text>
+
+  <rect x="760" y="755" width="280" height="105" class="api"/>
+  <text x="785" y="785" class="h">Optional OpenAI Brief</text>
+  <text x="785" y="812" class="t">model: OPENAI_MODEL</text>
+  <text x="785" y="833" class="t">fallback on 401/403/429</text>
+
+  <rect x="1135" y="175" width="330" height="125" class="box"/>
+  <text x="1160" y="206" class="h">4. build_items</text>
+  <text x="1160" y="232" class="t">create Item(source_type=&quot;github&quot;)</text>
+  <text x="1160" y="252" class="t">attach metadata.best_for</text>
+  <text x="1160" y="272" class="t">attach bullets + release link</text>
+
+  <rect x="1176" y="330" width="248" height="82" class="state"/>
+  <text x="1200" y="359" class="stateH">state.items</text>
+  <text x="1200" y="384" class="stateT">list[Item]</text>
+
+  <rect x="1135" y="450" width="330" height="130" class="output"/>
+  <text x="1160" y="481" class="h">push_to_artifact._to_repo</text>
+  <text x="1160" y="507" class="t">maps Item metadata to repos[]</text>
+  <text x="1160" y="528" class="t">stars, dates, bestFor, bullets</text>
+  <text x="1160" y="549" class="t">health logs dynamic diagnostics</text>
+
+  <rect x="1176" y="610" width="248" height="82" class="state"/>
+  <text x="1200" y="639" class="stateH">data/output.json</text>
+  <text x="1200" y="664" class="stateT">repos[] artifact</text>
+
+  <rect x="1135" y="730" width="330" height="125" class="output"/>
+  <text x="1160" y="761" class="h">React Repo Card</text>
+  <text x="1160" y="787" class="t">expandable snapshot</text>
+  <text x="1160" y="808" class="t">BEST FOR label</text>
+  <text x="1160" y="829" class="t">Open repo + release links</text>
+
+  <path class="arrow" d="M280 245 C320 245 335 235 380 235"/>
+  <path class="arrow" d="M280 400 C315 400 335 235 380 235"/>
+  <path class="dash" d="M280 542 C325 542 350 245 380 245"/>
+  <path class="arrow" d="M515 295 L515 325"/>
+  <path class="arrow" d="M515 407 L515 440"/>
+  <path class="arrow" d="M515 575 L515 605"/>
+  <path class="arrow" d="M515 687 L515 720"/>
+  <path class="arrow" d="M650 235 C690 235 710 235 760 235"/>
+  <path class="arrow" d="M650 505 C705 505 720 440 760 440"/>
+  <path class="arrow" d="M650 780 C700 780 720 640 760 640"/>
+  <path class="arrow" d="M1040 440 C1090 440 1100 235 1135 235"/>
+  <path class="arrow" d="M1040 640 C1090 640 1100 250 1135 250"/>
+  <path class="dash" d="M1040 807 C1090 807 1100 265 1135 265"/>
+  <path class="arrow" d="M1300 300 L1300 330"/>
+  <path class="arrow" d="M1300 412 L1300 450"/>
+  <path class="arrow" d="M1300 580 L1300 610"/>
+  <path class="arrow" d="M1300 692 L1300 730"/>
+</svg>

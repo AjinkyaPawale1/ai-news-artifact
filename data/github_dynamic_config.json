@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-28T01:33:19.252503+00:00",
+  "source": "persisted",
+  "emerging_queries": [
+    "reasoning language:python stars:>30",
+    "memory llm language:python stars:>20",
+    "\"recursive language model\" OR rlm language:python stars:>10",
+    "\"llm wiki\" OR \"ai wiki\" stars:>5",
+    "topic:model-context-protocol stars:>10",
+    "topic:mcp language:python stars:>10",
+    "language:typescript topic:ai stars:>20"
+  ],
+  "emerging_watch_repos": [
+    "anthropics/anthropic-cookbook",
+    "anthropics/anthropic-sdk-python",
+    "MemPalace/mempalace",
+    "swarmclawai/swarmvault"
+  ],
+  "refresh": {
+    "auto_update_enabled": true,
+    "used_persisted_state": true,
+    "updated": false,
+    "source": "persisted",
+    "llm_status": "unavailable_or_invalid"
+  }
+}

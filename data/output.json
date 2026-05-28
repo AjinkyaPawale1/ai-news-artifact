@@ -1,0 +1,751 @@
+{
+  "generatedAt": "2026-05-28T01:34:22.221373+00:00",
+  "stats": [
+    {
+      "label": "PAPERS SCANNED",
+      "value": "0",
+      "sub": "arXiv"
+    },
+    {
+      "label": "REPOS INDEXED",
+      "value": "20",
+      "sub": "8 shown"
+    },
+    {
+      "label": "ARTICLES",
+      "value": "18",
+      "sub": "RSS feeds"
+    },
+    {
+      "label": "FSO-RELEVANT",
+      "value": "38",
+      "sub": "score \u2265 40",
+      "accent": true
+    }
+  ],
+  "actionItems": [
+    {
+      "priority": "READ",
+      "title": "VectifyAI/OpenKB",
+      "source": "GitHub",
+      "sourceMeta": "GITHUB",
+      "date": "May 25, 2026",
+      "why": "OpenKB: Open LLM Knowledge Base",
+      "tags": [
+        "agents",
+        "ai",
+        "knowledge-base",
+        "llm",
+        "rag",
+        "retrieval"
+      ],
+      "score": 60,
+      "fsoRelevant": true,
+      "url": "https://github.com/VectifyAI/OpenKB"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "swarmclawai/swarmvault",
+      "source": "GitHub",
+      "sourceMeta": "GITHUB",
+      "date": "May 20, 2026",
+      "why": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Co",
+      "tags": [
+        "agent-memory",
+        "ai-agents",
+        "claude-code",
+        "claude-code-memory",
+        "codex",
+        "karpathy",
+        "knowledge-graph",
+        "llm",
+        "llm-wiki",
+        "local-first",
+        "mcp",
+        "mcp-server",
+        "obsidian",
+        "obsidian-alternative",
+        "openclaw",
+        "opencode",
+        "personal-knowledge-management",
+        "pkm",
+        "rag",
+        "wiki"
+      ],
+      "score": 60,
+      "fsoRelevant": true,
+      "url": "https://github.com/swarmclawai/swarmvault"
+    },
+    {
+      "priority": "SHARE",
+      "title": "Beever-AI/beever-atlas",
+      "source": "GitHub",
+      "sourceMeta": "GITHUB",
+      "date": "May 25, 2026",
+      "why": "Your First LLM-Wiki Conversation Knowledge Base",
+      "tags": [
+        "adk-google",
+        "agents",
+        "discord-bot",
+        "fastapi",
+        "gemini",
+        "google-adk",
+        "knowledge-base",
+        "large-language-models",
+        "llm",
+        "mattermost",
+        "mcp",
+        "mcp-server",
+        "microsoft-teams",
+        "open-source",
+        "python",
+        "rag",
+        "react",
+        "slack-bot",
+        "wiki"
+      ],
+      "score": 60,
+      "fsoRelevant": true,
+      "url": "https://github.com/Beever-AI/beever-atlas"
+    },
+    {
+      "priority": "WATCH",
+      "title": "syncable-dev/memtrace-public",
+      "source": "GitHub",
+      "sourceMeta": "GITHUB",
+      "date": "May 27, 2026",
+      "why": "Structural memory for AI coding agents. Bi-temporal graph, MCP-native, zero LLM calls. Cursor \u00b7 Claude Code \u00b7 Codex \u00b7 Hermes \u00b7 VS Code \u00b7 Windsurf.",
+      "tags": [
+        "agent-memory",
+        "ai-agents",
+        "bi-temporal-graph",
+        "claude-code",
+        "code-intelligence",
+        "code-search",
+        "coding-agents",
+        "cursor",
+        "developer-tools",
+        "knowledge-graph",
+        "llm",
+        "local-first",
+        "mcp",
+        "mcp-server",
+        "rag",
+        "rust",
+        "semantic-search",
+        "structural-memory",
+        "temporal-analysis",
+        "tree-sitter"
+      ],
+      "score": 48,
+      "fsoRelevant": true,
+      "url": "https://github.com/syncable-dev/memtrace-public"
+    },
+    {
+      "priority": "READ",
+      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
+      "source": "OpenAI News",
+      "sourceMeta": "RSS",
+      "date": "May 27, 2026",
+      "why": "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation.",
+      "tags": [
+        "rss"
+      ],
+      "score": 40,
+      "fsoRelevant": true,
+      "url": "https://openai.com/index/cisco"
+    }
+  ],
+  "repos": [
+    {
+      "name": "safishamsi/graphify",
+      "stars": "55.0k",
+      "desc": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
+      "url": "https://github.com/safishamsi/graphify",
+      "language": "Python",
+      "topics": [
+        "antigravity",
+        "claude-code",
+        "codex",
+        "gemini",
+        "graphrag",
+        "knowledge-graph",
+        "leiden",
+        "openclaw",
+        "rag",
+        "skills",
+        "tree-sitter"
+      ],
+      "createdAt": "Apr 3, 2026",
+      "lastUpdated": "May 27, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "Coding Workflow",
+      "bullets": [
+        "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
+        "Primarily Python, with topics such as antigravity, claude-code, codex.",
+        "Latest release v0.8.22 signals active maintenance."
+      ],
+      "latestRelease": "v0.8.22",
+      "latestReleaseUrl": "https://github.com/safishamsi/graphify/releases/tag/v0.8.22",
+      "homepage": "https://graphifylabs.ai/",
+      "license": "MIT"
+    },
+    {
+      "name": "nashsu/llm_wiki",
+      "stars": "9.6k",
+      "desc": "LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base \u2014 automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources\u3002",
+      "url": "https://github.com/nashsu/llm_wiki",
+      "language": "TypeScript",
+      "topics": [],
+      "createdAt": "Apr 8, 2026",
+      "lastUpdated": "May 26, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base \u2014 automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources\u3002.",
+        "Primarily TypeScript, with topics such as AI engineering.",
+        "Latest release v0.4.14 signals active maintenance."
+      ],
+      "latestRelease": "v0.4.14",
+      "latestReleaseUrl": "https://github.com/nashsu/llm_wiki/releases/tag/v0.4.14",
+      "homepage": "",
+      "license": "NOASSERTION"
+    },
+    {
+      "name": "AgriciDaniel/claude-obsidian",
+      "stars": "5.6k",
+      "desc": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+      "url": "https://github.com/AgriciDaniel/claude-obsidian",
+      "language": "Python",
+      "topics": [
+        "agent-skills",
+        "ai-note-taking",
+        "ai-second-brain",
+        "claude-code",
+        "claude-code-skill",
+        "claude-memory",
+        "claude-plugin",
+        "karpathy-llm-wiki",
+        "knowledge-graph",
+        "knowledge-management",
+        "note-taking",
+        "notion-alternative",
+        "obsidian",
+        "obsidian-ai",
+        "obsidian-plugin",
+        "obsidian-second-brain",
+        "open-source",
+        "personal-knowledge-management",
+        "pkm",
+        "second-brain"
+      ],
+      "createdAt": "Apr 7, 2026",
+      "lastUpdated": "May 28, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+        "Primarily Python, with topics such as agent-skills, ai-note-taking, ai-second-brain.",
+        "Latest release v1.9.2 signals active maintenance."
+      ],
+      "latestRelease": "v1.9.2",
+      "latestReleaseUrl": "https://github.com/AgriciDaniel/claude-obsidian/releases/tag/v1.9.2",
+      "homepage": "https://agricidaniel.com/blog/claude-obsidian-ai-second-brain",
+      "license": "MIT"
+    },
+    {
+      "name": "VectifyAI/OpenKB",
+      "stars": "1.9k",
+      "desc": "OpenKB: Open LLM Knowledge Base",
+      "url": "https://github.com/VectifyAI/OpenKB",
+      "language": "Python",
+      "topics": [
+        "agents",
+        "ai",
+        "knowledge-base",
+        "llm",
+        "rag",
+        "retrieval"
+      ],
+      "createdAt": "Apr 4, 2026",
+      "lastUpdated": "May 25, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "OpenKB: Open LLM Knowledge Base.",
+        "Primarily Python, with topics such as agents, ai, knowledge-base.",
+        "Latest release v0.2.0 signals active maintenance."
+      ],
+      "latestRelease": "v0.2.0",
+      "latestReleaseUrl": "https://github.com/VectifyAI/OpenKB/releases/tag/v0.2.0",
+      "homepage": "https://pageindex.ai",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "nduckmink/arkon",
+      "stars": "904",
+      "desc": "Arkon: Enterprise AI Knowledge Hub & MCP Server. Self-hosted knowledge base for teams to manage RAG contexts, access policies, and AI skills. Connect Claude and other LLMs via Model Context Protocol (MCP) for automated, secure organizational knowledge integration.",
+      "url": "https://github.com/nduckmink/arkon",
+      "language": "Python",
+      "topics": [
+        "enterprise-ai",
+        "knowledge-base-embeddings",
+        "knowledge-based-systems",
+        "knowledge-bases",
+        "llm-wiki-personal-knowledge-base",
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "organizational-knowledge",
+        "rag",
+        "self-hosted",
+        "wiki"
+      ],
+      "createdAt": "Apr 30, 2026",
+      "lastUpdated": "May 21, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Arkon: Enterprise AI Knowledge Hub & MCP Server. Self-hosted knowledge base for teams to manage RAG contexts, access policies, and AI skills. Connect Claude and other LLMs via Model Context Protocol (MCP) for automated, secure organizational knowledge integration.",
+        "Primarily Python, with topics such as enterprise-ai, knowledge-base-embeddings, knowledge-based-systems.",
+        "Latest release v0.7.4 signals active maintenance."
+      ],
+      "latestRelease": "v0.7.4",
+      "latestReleaseUrl": "https://github.com/nduckmink/arkon/releases/tag/v0.7.4",
+      "homepage": "",
+      "license": "NOASSERTION"
+    },
+    {
+      "name": "Ontos-AI/knowhere",
+      "stars": "629",
+      "desc": "Knowhere extracts, parses, and outputs structured chunks ready for AI Agents and RAG.",
+      "url": "https://github.com/Ontos-AI/knowhere",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "ai-agents",
+        "chromadb",
+        "claude",
+        "claude-code",
+        "cursor",
+        "elasticsearch",
+        "gemini",
+        "gpt",
+        "langchain",
+        "milvus",
+        "qdrant",
+        "rag",
+        "rag-pipeline",
+        "skills"
+      ],
+      "createdAt": "Apr 30, 2026",
+      "lastUpdated": "May 27, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Knowhere extracts, parses, and outputs structured chunks ready for AI Agents and RAG.",
+        "Primarily Python, with topics such as agent, ai-agents, chromadb.",
+        "Latest release 2026.05.27.1 signals active maintenance."
+      ],
+      "latestRelease": "2026.05.27.1",
+      "latestReleaseUrl": "https://github.com/Ontos-AI/knowhere/releases/tag/2026.05.27.1",
+      "homepage": "https://knowhereto.ai",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "swarmclawai/swarmvault",
+      "stars": "501",
+      "desc": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Code / Codex / OpenClaw memory.",
+      "url": "https://github.com/swarmclawai/swarmvault",
+      "language": "TypeScript",
+      "topics": [
+        "agent-memory",
+        "ai-agents",
+        "claude-code",
+        "claude-code-memory",
+        "codex",
+        "karpathy",
+        "knowledge-graph",
+        "llm",
+        "llm-wiki",
+        "local-first",
+        "mcp",
+        "mcp-server",
+        "obsidian",
+        "obsidian-alternative",
+        "openclaw",
+        "opencode",
+        "personal-knowledge-management",
+        "pkm",
+        "rag",
+        "wiki"
+      ],
+      "createdAt": "Apr 6, 2026",
+      "lastUpdated": "May 20, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Code / Codex / OpenClaw memory.",
+        "Primarily TypeScript, with topics such as agent-memory, ai-agents, claude-code.",
+        "Latest release v3.15.0 signals active maintenance."
+      ],
+      "latestRelease": "v3.15.0",
+      "latestReleaseUrl": "https://github.com/swarmclawai/swarmvault/releases/tag/v3.15.0",
+      "homepage": "https://www.swarmvault.ai",
+      "license": "MIT"
+    },
+    {
+      "name": "stevesolun/ctx",
+      "stars": "371",
+      "desc": "Skill, agent, MCP, and harness recommendations for Claude Code/custom LLMs: 102,696-node LLM-wiki graph, 91,432 skills, 10,787 MCPs, 13 harnesses, and capped execution recommendations.",
+      "url": "https://github.com/stevesolun/ctx",
+      "language": "Python",
+      "topics": [
+        "agents",
+        "ai-agents",
+        "anthropic",
+        "automation",
+        "claude",
+        "claude-code",
+        "context-management",
+        "developer-tools",
+        "harness",
+        "knowledge-graph",
+        "llm",
+        "llm-wiki",
+        "mcp",
+        "micro-skills",
+        "obsidian",
+        "real-time",
+        "recommendation-engine",
+        "skill-management",
+        "skills",
+        "wiki"
+      ],
+      "createdAt": "Apr 8, 2026",
+      "lastUpdated": "May 28, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "Coding Workflow",
+      "bullets": [
+        "Skill, agent, MCP, and harness recommendations for Claude Code/custom LLMs: 102,696-node LLM-wiki graph, 91,432 skills, 10,787 MCPs, 13 harnesses, and capped execution recommendations.",
+        "Primarily Python, with topics such as agents, ai-agents, anthropic.",
+        "Latest release v1.0.9 signals active maintenance."
+      ],
+      "latestRelease": "v1.0.9",
+      "latestReleaseUrl": "https://github.com/stevesolun/ctx/releases/tag/v1.0.9",
+      "homepage": "https://stevesolun.github.io/ctx/",
+      "license": "MIT"
+    }
+  ],
+  "models": [],
+  "toolsServices": [],
+  "papers": [],
+  "blogs": [
+    {
+      "source": "OpenAI News",
+      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
+      "tag": "AI",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation."
+      ],
+      "url": "https://openai.com/index/cisco"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Building self-improving tax agents with Codex",
+      "tag": "ENGINEERING",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows."
+      ],
+      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Warp\u2019s big bet on building open source with GPT-5.5",
+      "tag": "STARTUP",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Warp uses GPT-5.5 and OpenAI models to coordinate coding agents across local, cloud, and open-source development workflows."
+      ],
+      "url": "https://openai.com/index/warp"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Election information and safeguards in 2026",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Ahead of global elections, we\u2019re helping people access information, supporting cyber defenders, and increasing AI transparency"
+      ],
+      "url": "https://openai.com/index/election-safeguards-2026"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "May 25, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI partners with Grupo Folha and Grupo UOL to bring trusted Brazilian journalism to ChatGPT, expanding access to news with attribution and transparency."
+      ],
+      "url": "https://openai.com/index/grupo-folha-grupo-uol-partnership"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
+      "tag": "AI ADOPTION",
+      "date": "May 22, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI is named a leader in the 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents, with Codex recognized for innovation and enterprise-scale deployment."
+      ],
+      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "How Virgin Atlantic ships faster with Codex",
+      "tag": "AI",
+      "date": "May 22, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "How Virgin Atlantic used Codex to ship its revamped mobile app on a fixed holiday travel deadline, reaching near-total unit test coverage and zero P1 defects."
+      ],
+      "url": "https://openai.com/index/virgin-atlantic"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "AdventHealth advances whole-person care with OpenAI",
+      "tag": "AI",
+      "date": "May 21, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "AdventHealth is using ChatGPT for Healthcare to streamline workflows, reduce administrative burden, and return more time to patient care."
+      ],
+      "url": "https://openai.com/index/adventhealth"
+    },
+    {
+      "source": "Hugging Face - Blog",
+      "title": "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks \u2014 by Artificial Analysis and IBM",
+      "tag": "AI",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks \u2014 by Artificial Analysis and IBM"
+      ],
+      "url": "https://huggingface.co/blog/ibm-research/itbench-aa"
+    },
+    {
+      "source": "Hugging Face - Blog",
+      "title": "Reachy Mini goes fully local",
+      "tag": "AI",
+      "date": "May 27, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Reachy Mini goes fully local"
+      ],
+      "url": "https://huggingface.co/blog/local-reachy-mini-conversation"
+    }
+  ],
+  "socialPosts": [],
+  "trending": [],
+  "health": [
+    {
+      "source": "papers",
+      "status": "error",
+      "item_count": 0,
+      "duration_ms": 478,
+      "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+    },
+    {
+      "source": "rss",
+      "status": "ok",
+      "item_count": 18,
+      "duration_ms": 3547
+    },
+    {
+      "source": "github",
+      "status": "ok",
+      "item_count": 20,
+      "duration_ms": 64924,
+      "query_mode": "core+emerging",
+      "search_diagnostics": {
+        "queries": [
+          {
+            "query": "topic:llm language:python",
+            "fetched": 8,
+            "added": 8,
+            "failed": false
+          },
+          {
+            "query": "topic:agents language:python",
+            "fetched": 8,
+            "added": 6,
+            "failed": false
+          },
+          {
+            "query": "topic:rag language:python",
+            "fetched": 8,
+            "added": 6,
+            "failed": false
+          },
+          {
+            "query": "topic:generative-ai language:python",
+            "fetched": 8,
+            "added": 8,
+            "failed": false
+          },
+          {
+            "query": "reasoning language:python stars:>30",
+            "fetched": 8,
+            "added": 8,
+            "failed": false
+          },
+          {
+            "query": "memory llm language:python stars:>20",
+            "fetched": 8,
+            "added": 2,
+            "failed": false
+          },
+          {
+            "query": "\"recursive language model\" OR rlm language:python stars:>10",
+            "fetched": 1,
+            "added": 1,
+            "failed": false
+          },
+          {
+            "query": "\"llm wiki\" OR \"ai wiki\" stars:>5",
+            "fetched": 8,
+            "added": 8,
+            "failed": false
+          },
+          {
+            "query": "topic:model-context-protocol stars:>10",
+            "fetched": 8,
+            "added": 6,
+            "failed": false
+          },
+          {
+            "query": "topic:mcp language:python stars:>10",
+            "fetched": 8,
+            "added": 1,
+            "failed": false
+          },
+          {
+            "query": "language:typescript topic:ai stars:>20",
+            "fetched": 8,
+            "added": 8,
+            "failed": false
+          }
+        ],
+        "watch_repos": [
+          {
+            "repo": "openai/openai-python",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "anthropics/anthropic-sdk-python",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "anthropics/anthropic-cookbook",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "langchain-ai/langchain",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "run-llama/llama_index",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "microsoft/autogen",
+            "added": 0,
+            "failed": false,
+            "skipped_old": true,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "crewAIInc/crewAI",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "evergreen"
+          },
+          {
+            "repo": "anthropics/anthropic-cookbook",
+            "added": 0,
+            "failed": false,
+            "skipped_old": true,
+            "kind": "emerging"
+          },
+          {
+            "repo": "anthropics/anthropic-sdk-python",
+            "added": 0,
+            "failed": false,
+            "skipped_old": true,
+            "kind": "emerging"
+          },
+          {
+            "repo": "MemPalace/mempalace",
+            "added": 0,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "emerging"
+          },
+          {
+            "repo": "swarmclawai/swarmvault",
+            "added": 1,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "emerging"
+          }
+        ],
+        "pushed_cutoff": "2026-05-21",
+        "created_cutoff": "2026-03-29",
+        "dynamic_config": {
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+          "active_emerging_queries": 7,
+          "active_emerging_watch_repos": 4,
+          "auto_update_enabled": true,
+          "used_persisted_state": true,
+          "updated": false,
+          "source": "persisted",
+          "llm_status": "unavailable_or_invalid"
+        },
+        "total_unique_candidates": 69,
+        "dynamic_refresh": {
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+          "active_emerging_queries": 7,
+          "active_emerging_watch_repos": 4,
+          "auto_update_enabled": true,
+          "used_persisted_state": true,
+          "updated": false,
+          "source": "persisted",
+          "llm_status": "unavailable_or_invalid"
+        }
+      }
+    }
+  ]
+}
