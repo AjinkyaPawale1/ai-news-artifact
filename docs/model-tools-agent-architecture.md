@@ -84,7 +84,7 @@ flowchart TD
     R --> S[supervisor.py]
     S --> T[dedup -> normalize -> score -> quality_gate -> summarize]
     T --> U[push_to_artifact.py]
-    U --> V[data/output.json\nmodels[] + toolsServices[]]
+    U --> V[data/output.json\nmodel and tool release payloads]
     S --> W[data/health.json\nmodel_tools diagnostics]
     V --> X[apps/web/src/ey-fso-ai-brief.jsx\nReleaseList UI]
 ```
