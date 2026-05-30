@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-05-28
+Last updated: 2026-05-29
 Owner: AI agent (Codex)
 
 ## Completed
@@ -34,6 +34,7 @@ Owner: AI agent (Codex)
 - Tightened model/tool release date resolution by extracting article publish dates from HTML metadata, URL patterns, and fallback headers, then dropping undated or stale entries outside the active weekly window.
 - Changed model and tool sections from always-expanded cards to repo-style collapsed rows that expand on click to show the full summary and release/source links.
 - Added `docs/model-tools-agent-architecture.md` documenting the end-to-end model/tools workflow: dynamic input resolution, LangGraph stages, date gating, artifact mapping, supervisor integration, diagnostics, and frontend rendering.
+- Created a new private GitHub remote at `https://github.com/AjinkyaPawale1/llm-news-artifact`, committed the current local workspace state, pushed the active and existing local branches, and reset the remote default branch to `main`.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -47,6 +48,8 @@ Owner: AI agent (Codex)
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
 - Latest refresh produced 1 model card and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
 - The docs folder now includes separate architecture pages for GitHub discovery and model/tool release discovery.
+- `origin` now points to `https://github.com/AjinkyaPawale1/llm-news-artifact.git`.
+- Remote branches currently published: `main`, `feature/model-tools-releases-workflow`, and `feature/paper-actions-workflow`.
 
 ## Next Recommended Actions
 1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
@@ -72,6 +75,7 @@ Owner: AI agent (Codex)
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
+- This checkout is a git worktree; GitHub CLI repository creation works more reliably by creating the remote first, then adding `origin`, rather than using `gh repo create --source=.`.
 
 ## Quick Resume Steps
 - npm install

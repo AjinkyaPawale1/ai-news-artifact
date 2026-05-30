@@ -138,3 +138,16 @@ Impact:
 - Model/tool extraction now resolves publish dates from feed timestamps, HTML metadata, date-like URL paths, visible article text, and fallback response headers.
 - Entries without a resolved in-window date are excluded from `models` and `toolsServices`.
 - The dashboard model/tool sections now behave like the repo list: collapsed rows by default with clickable expansion for the full summary and links.
+
+## 2026-05-29 - Publish this worktree to a new private GitHub repository
+Status: accepted
+
+Reason:
+- The current local project needed a live private remote under the user's GitHub account.
+- This checkout is a git worktree, so `gh repo create --source=.` was not a reliable creation path.
+- The first pushed branch became the GitHub default branch automatically, which needed normalization back to `main`.
+
+Impact:
+- Created the private repository `AjinkyaPawale1/llm-news-artifact`.
+- Added `origin` pointing at the new repository and pushed `main`, `feature/model-tools-releases-workflow`, and `feature/paper-actions-workflow`.
+- Set the repository default branch to `main` after the initial push.
