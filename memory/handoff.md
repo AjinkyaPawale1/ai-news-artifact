@@ -38,6 +38,7 @@ Owner: AI agent (Codex)
 - Removed the redundant model/tools feed fallback layer and made normal runs resolve deduplicated core plus emerging feeds.
 - Reused `MODEL_TOOL_MAX_ITEMS` for both graph selection and dashboard release-card rendering.
 - Added focused model/tools tests for bounded rotation, feed composition, and the shared output cap.
+- Clarified the model/tools architecture document with the two distinct optional OpenAI paths: one emerging-source proposal call per run and up to 24 per-candidate classification refinement calls.
 - Created a new private GitHub remote at `https://github.com/AjinkyaPawale1/llm-news-artifact`, committed the current local workspace state, pushed the active and existing local branches, and reset the remote default branch to `main`.
 
 ## Current State

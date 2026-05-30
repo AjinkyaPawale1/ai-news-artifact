@@ -60,10 +60,10 @@ class ModelToolsState(TypedDict, total=False):
 
 ```mermaid
 flowchart TD
-    A[config.py\ncore feeds, source pages, limits] --> B[resolve_dynamic_model_tool_inputs]
+    A[model_tools_config.py\ncore feeds, source pages, terms, limits] --> B[resolve_dynamic_model_tool_inputs]
     H[data/model_tools_dynamic_config.json\npersisted dynamic state] --> B
     I[data/output.json + data/health.json\nprior run signals] --> B
-    J[OpenAI proposal call\noptional bounded refresh] --> B
+    J[OpenAI proposal call\n0 or 1 call per run\nsuggest emerging feeds and terms] --> B
 
     B --> C[fetch_model_tools_with_graph]
     C --> D[fetch_feed_entries]
@@ -73,7 +73,7 @@ flowchart TD
     D --> E[classify_entries]
     E --> M[deterministic keyword scoring]
     E --> N[date resolution and weekly cutoff]
-    E --> O[OpenAI classifier\noptional bounded override]
+    E --> O[OpenAI classifier\n0 to 24 calls per run\nrefine deterministic candidates]
 
     E --> F[select_entries]
     F --> P[dedupe by normalized release name]
@@ -155,6 +155,89 @@ Source groups in `model_tools_config.py`:
 - `MODEL_TOOL_EMERGING_FEEDS`: rotating feed layer controlled by bounded refresh logic.
 - `MODEL_TOOL_SOURCE_PAGES`: official vendor pages used when RSS is unavailable or too sparse.
 - `MODEL_TOOL_FEED_CANDIDATES`: allow-list from which LLM proposals must choose.
+
+## Where OpenAI Is Used
+
+OpenAI is optional and appears at two separate points. The deterministic
+pipeline continues when no API key is configured or when an OpenAI call fails.
+
+| LLM path | When it runs | Calls per pipeline run | What it does | What limits it |
+| --- | --- | ---: | --- | --- |
+| Emerging-source proposal | before feed fetching | `0` or `1` | suggests the next bounded emerging feed and term rotation | rotation caps, not the `24` classification cap |
+| Candidate classification refinement | after deterministic classification | `0` to `24` | reviews individual release candidates and may suppress, reclassify, or improve card fields | `MODEL_TOOL_LLM_CLASSIFY_LIMIT=24` |
+
+### 1. Emerging-source proposal
+
+`resolve_dynamic_model_tool_inputs()` makes at most one proposal call through
+`_call_llm_for_proposal(...)` when `MODEL_TOOL_DYNAMIC_AUTO_UPDATE=1`.
+
+The prompt includes:
+
+- protected core feeds
+- the candidate-feed allow-list
+- currently active emerging feeds
+- currently active emerging model and tool/service terms
+- recent model/tools cards and health signals from the prior run
+- maximum active items and maximum replacements per run
+
+The response must be JSON with:
+
+```json
+{
+  "emerging_feeds": [],
+  "emerging_model_terms": [],
+  "emerging_tool_terms": []
+}
+```
+
+The LLM cannot remove protected core feeds. Proposed feeds must exactly match
+the candidate allow-list. The resolver sanitizes and deduplicates the response,
+then applies the configured rotation bounds:
+
+- at most `5` active emerging feeds
+- at most `2` emerging-feed swaps per run
+- at most `12` active emerging model terms
+- at most `12` active emerging tool/service terms
+- at most `4` term swaps per set per run
+
+This proposal path is one pipeline-tuning call. It is not limited by
+`MODEL_TOOL_LLM_CLASSIFY_LIMIT`.
+
+### 2. Candidate classification refinement
+
+After date resolution and deterministic keyword scoring, `_classify_entries()`
+calls `_openai_classify_entry(...)` only for candidates that already passed the
+deterministic classifier. Each call receives one candidate:
+
+- title, source, URL, and resolved publish date
+- up to `1800` characters of article content
+- the deterministic `kind`, `name`, `org`, `tag`, and `note`
+
+The response must be JSON with:
+
+```json
+{
+  "include": true,
+  "kind": "model",
+  "name": "Example Model",
+  "org": "Example Org",
+  "note": "One dashboard-ready sentence.",
+  "tag": "MODEL",
+  "confidence": 0.9
+}
+```
+
+This is where the `24` default applies. `MODEL_TOOL_LLM_CLASSIFY_LIMIT=24`
+means the pipeline may make at most `24` per-candidate classification calls in
+one model/tools run. It does not mean `24` proposals, feeds, terms, or output
+cards. After the cap is reached, remaining deterministic candidates continue
+without LLM refinement.
+
+The LLM result replaces the deterministic result only when `include=true`,
+`confidence >= 0.7`, and `kind` is `model` or `tool_service`. Otherwise the
+candidate is suppressed. If the API key is missing or a call fails,
+deterministic classification remains the fallback. Quota or authentication
+failures disable further classifier calls for the rest of that run.
 
 ## Node 1: `fetch_feed_entries`
 
@@ -294,7 +377,7 @@ Guardrails:
 
 - disabled entirely when `OPENAI_API_KEY` is absent
 - disabled for the rest of the run after quota/auth failures
-- bounded by `MODEL_TOOL_LLM_CLASSIFY_LIMIT`
+- bounded by `MODEL_TOOL_LLM_CLASSIFY_LIMIT`, which applies only to per-entry classification calls
 - deterministic classification remains the fallback when the call fails
 - LLM output must meet confidence and schema checks before it replaces the deterministic version
 
@@ -303,7 +386,7 @@ Control:
 | Parameter | Default | Env var | Meaning |
 | --- | ---: | --- | --- |
 | `MODEL_TOOL_LLM_CLASSIFY` | `1` | `MODEL_TOOL_LLM_CLASSIFY` | enable LLM classification refinement |
-| `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | `24` | `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | cap LLM candidate classifications per run |
+| `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | `24` | `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | cap per-entry LLM classification calls per run; does not limit the proposal call |
 | `OPENAI_MODEL` | `gpt-5.4-mini` | `OPENAI_MODEL` | model used for dynamic proposals and release classification |
 
 ## Node 3: `select_entries`
