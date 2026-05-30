@@ -1,0 +1,468 @@
+# Model and Tools Agent Architecture
+
+This page focuses only on the model release and AI tool/service discovery agent.
+
+The agent answers one question for each weekly run:
+
+> Which model launches and AI tool/service announcements are recent enough, specific enough, and structured enough to show as weekly dashboard cards?
+
+It uses a two-step runtime flow:
+
+```text
+resolve_dynamic_model_tool_inputs -> LangGraph(fetch_feed_entries -> classify_entries -> select_entries -> build_items)
+```
+
+LangGraph still runs as a fixed line graph:
+
+```text
+fetch_feed_entries -> classify_entries -> select_entries -> build_items
+```
+
+The result is a compact `models[]` and `toolsServices[]` payload for the frontend cards.
+
+## LangGraph Line Graph
+
+```mermaid
+flowchart LR
+    Start([invoke ModelToolsState]) --> Fetch[fetch_feed_entries]
+    Fetch --> Classify[classify_entries]
+    Classify --> Select[select_entries]
+    Select --> Build[build_items]
+    Build --> End([list of Item])
+
+    Fetch --> Entries[(state.entries)]
+    Classify --> Classified[(state.classified)]
+    Select --> Selected[(state.selected)]
+    Build --> Items[(state.items)]
+
+    classDef node fill:#0e1130,stroke:#67e8f9,color:#f1f5f9;
+    classDef store fill:#111827,stroke:#f8c74e,color:#f1f5f9;
+    class Fetch,Classify,Select,Build node;
+    class Entries,Classified,Selected,Items store;
+```
+
+The graph state is a typed dictionary:
+
+```python
+class ModelToolsState(TypedDict, total=False):
+    feeds: list[str]
+    source_pages: list[str]
+    model_terms: list[str]
+    tool_terms: list[str]
+    dynamic_config: dict[str, Any]
+    entries: list[dict[str, Any]]
+    classified: list[dict[str, Any]]
+    selected: list[dict[str, Any]]
+    items: list[Item]
+```
+
+## End-to-End Data Flow
+
+```mermaid
+flowchart TD
+    A[config.py\ncore feeds, source pages, limits] --> B[resolve_dynamic_model_tool_inputs]
+    H[data/model_tools_dynamic_config.json\npersisted dynamic state] --> B
+    I[data/output.json + data/health.json\nprior run signals] --> B
+    J[OpenAI proposal call\noptional bounded refresh] --> B
+
+    B --> C[fetch_model_tools_with_graph]
+    C --> D[fetch_feed_entries]
+    D --> K[RSS and Atom feeds via feedparser]
+    D --> L[Official source pages via requests + LinkParser]
+
+    D --> E[classify_entries]
+    E --> M[deterministic keyword scoring]
+    E --> N[date resolution and weekly cutoff]
+    E --> O[OpenAI classifier\noptional bounded override]
+
+    E --> F[select_entries]
+    F --> P[dedupe by normalized release name]
+    F --> Q[sort by recency then release_score]
+
+    F --> G[build_items]
+    G --> R[Item source_type=model|tool_service]
+    R --> S[supervisor.py]
+    S --> T[dedup -> normalize -> score -> quality_gate -> summarize]
+    T --> U[push_to_artifact.py]
+    U --> V[data/output.json\nmodels[] + toolsServices[]]
+    S --> W[data/health.json\nmodel_tools diagnostics]
+    V --> X[apps/web/src/ey-fso-ai-brief.jsx\nReleaseList UI]
+```
+
+## Dynamic Refresh Layer
+
+Before the graph starts, `resolve_dynamic_model_tool_inputs()` performs runtime resolution:
+
+1. Loads persisted state from `data/model_tools_dynamic_config.json` when available.
+2. Builds the active source set from protected core feeds, bounded emerging feeds, and official source pages.
+3. Optionally asks OpenAI for refreshed emerging feeds and keyword terms.
+4. Applies guardrails: feed allow-list validation, term sanitization, dedupe, and bounded replacements.
+5. Persists the last-known-good active state for the next run.
+6. Returns resolved inputs plus diagnostic metadata consumed by `fetch_model_tools_with_graph(...)`.
+
+This keeps discovery fresh without letting the LLM fully own the source list or classification rules.
+
+Key dynamic controls:
+
+| Parameter | Default | Env var | Meaning |
+| --- | ---: | --- | --- |
+| `MODEL_TOOL_DYNAMIC_AUTO_UPDATE` | `1` | `MODEL_TOOL_DYNAMIC_AUTO_UPDATE` | enable bounded LLM proposals for emerging feeds and terms |
+| `MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS` | `5` | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS` | maximum rotating emerging feeds |
+| `MODEL_TOOL_DYNAMIC_MAX_FEED_REPLACEMENTS` | `2` | `MODEL_TOOL_DYNAMIC_MAX_FEED_REPLACEMENTS` | max emerging feed swaps per run |
+| `MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS` | `12` | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS` | maximum emerging model/tool terms |
+| `MODEL_TOOL_DYNAMIC_MAX_TERM_REPLACEMENTS` | `4` | `MODEL_TOOL_DYNAMIC_MAX_TERM_REPLACEMENTS` | max keyword swaps per run |
+
+Protected source groups:
+
+- `MODEL_TOOL_CORE_FEEDS`: stable RSS sources that always stay active.
+- `MODEL_TOOL_EMERGING_FEEDS`: rotating feed layer controlled by bounded refresh logic.
+- `MODEL_TOOL_SOURCE_PAGES`: official vendor pages used when RSS is unavailable or too sparse.
+- `MODEL_TOOL_FEED_CANDIDATES`: allow-list from which LLM proposals must choose.
+
+## Node 1: `fetch_feed_entries`
+
+Purpose: collect raw release candidates from RSS/Atom feeds and official source pages.
+
+Input state:
+
+```python
+{
+    "feeds": resolved_feeds,
+    "source_pages": resolved_source_pages,
+    "model_terms": resolved_emerging_model_terms,
+    "tool_terms": resolved_emerging_tool_terms,
+    "dynamic_config": dynamic_refresh_metadata,
+}
+```
+
+Current source families:
+
+- OpenAI news and developer feeds
+- Hugging Face blog
+- Google research, developer, AI, and cloud feeds
+- Microsoft research, AI, and Azure feeds
+- NVIDIA and AWS ML feeds
+- Official source pages for Anthropic, Gemini changelog, Meta AI, Mistral, and Cohere
+
+RSS handling:
+
+- Parsed with `feedparser`
+- Reads `published_parsed` or `updated_parsed` when present
+- Drops feed entries older than `window_start()` when a structured date exists
+- Normalizes entry content via HTML stripping and whitespace collapse
+
+Source-page handling:
+
+- Fetched with `requests`
+- Parsed with a small `LinkParser`
+- Collects candidate links, title text, page descriptions, and paragraph text
+- Filters links by host match, path relevance, and title quality
+- Seeds initial `published_date` from title text when a visible date exists
+
+Output state:
+
+```python
+state["entries"] = [
+    {
+        "source": str,
+        "title": str,
+        "url": str,
+        "published_date": str,
+        "content": str,
+        "source_url": str,
+        "source_label": "RSS feed" | "Source page",
+        "source_page": bool,
+    }
+]
+```
+
+## Date Resolution and Weekly Boundary
+
+The model/tools workflow is stricter than generic RSS ingestion because card filtering depends on trustworthy release dates.
+
+Structured date resolution order:
+
+1. Feed timestamps from `published_parsed` or `updated_parsed`
+2. Existing `published_date` already attached to the candidate
+3. HTML metadata on article pages such as `article:published_time`, `datePublished`, `dateModified`, or `<time datetime=...>`
+4. Visible text dates such as `May 28, 2026`
+5. Date-like URL paths such as `/2026/05/28/...`
+6. Fallback `Last-Modified` response header
+
+Rules:
+
+- If the agent resolves a publish date and it is older than `window_start()`, the candidate is dropped.
+- If the agent cannot resolve a recent publish date at all, the candidate is dropped.
+- This intentionally favors fewer correct weekly cards over more noisy cards with `Unknown` or stale dates.
+
+Current weekly window control:
+
+| Parameter | Default | Env var | Meaning |
+| --- | ---: | --- | --- |
+| `DATE_WINDOW_DAYS` | `7` | `DATE_WINDOW_DAYS` | publish-date lower bound for eligible model/tool cards |
+
+## Node 2: `classify_entries`
+
+Purpose: turn raw candidates into release-specific model or tool/service records.
+
+The classifier is deterministic-first.
+
+Signal groups:
+
+- `MODEL_TERMS`: vendor/model-family words such as `claude`, `gemini`, `llama`, `mistral`, `embedding`, `tts`
+- `TOOL_SERVICE_TERMS`: agent/tool/platform words such as `codex`, `sdk`, `agent development kit`, `cli`, `copilot`, `platform`
+- `RELEASE_TERMS`: launch cues such as `announcing`, `released`, `available`, `preview`, `beta`, `changelog`
+
+High-level logic:
+
+1. Score title matches more heavily than body text.
+2. Require either a release signal or enough term density to justify a release card.
+3. Choose `kind = model` or `kind = tool_service` based on the stronger score.
+4. Derive presentation fields:
+   - `name`: cleaned title without generic prefixes
+   - `org`: inferred from source host and content hints
+   - `note`: first one to two specific sentences from the article content
+   - `tag`: normalized model/tool display tag such as `API`, `OPEN`, `CLI`, `PLATFORM`
+5. For source-page candidates with thin content, fetch the article page again and enrich the excerpt before reclassifying.
+
+Output state:
+
+```python
+state["classified"] = [
+    {
+        ...entry,
+        "kind": "model" | "tool_service",
+        "name": str,
+        "org": str,
+        "note": str,
+        "tag": str,
+        "release_score": int,
+        "classifier": "deterministic" | "llm",
+        "llm_confidence": float | None,
+    }
+]
+```
+
+## Optional LLM Classification
+
+OpenAI can refine candidate classification when enabled.
+
+Purpose:
+
+- suppress false positives that deterministic keyword rules still admit
+- improve card naming and note quality for ambiguous release pages
+- keep output within a narrow schema instead of producing free-form summaries
+
+Guardrails:
+
+- disabled entirely when `OPENAI_API_KEY` is absent
+- disabled for the rest of the run after quota/auth failures
+- bounded by `MODEL_TOOL_LLM_CLASSIFY_LIMIT`
+- deterministic classification remains the fallback when the call fails
+- LLM output must meet confidence and schema checks before it replaces the deterministic version
+
+Control:
+
+| Parameter | Default | Env var | Meaning |
+| --- | ---: | --- | --- |
+| `MODEL_TOOL_LLM_CLASSIFY` | `1` | `MODEL_TOOL_LLM_CLASSIFY` | enable LLM classification refinement |
+| `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | `24` | `MODEL_TOOL_LLM_CLASSIFY_LIMIT` | cap LLM candidate classifications per run |
+| `OPENAI_MODEL` | `gpt-5.4-mini` | `OPENAI_MODEL` | model used for dynamic proposals and release classification |
+
+## Node 3: `select_entries`
+
+Purpose: keep only the most useful weekly cards per category.
+
+Selection rules:
+
+1. Split classified entries into `model` and `tool_service`.
+2. Sort each group by:
+   - resolved `published_date` descending
+   - `release_score` descending
+3. Deduplicate by normalized release name.
+4. Keep up to `MODEL_TOOL_MAX_ITEMS` per category.
+
+This means recency is the primary weekly ranking signal once the item is trusted enough to classify.
+
+Control:
+
+| Parameter | Default | Env var | Meaning |
+| --- | ---: | --- | --- |
+| `MODEL_TOOL_MAX_ITEMS` | `8` | `MODEL_TOOL_MAX_ITEMS` | max selected cards per category |
+
+Output state:
+
+```python
+state["selected"] = [classified_entry, ...]
+```
+
+## Node 4: `build_items`
+
+Purpose: convert selected release entries into pipeline `Item` objects.
+
+Generated item shape:
+
+```python
+Item(
+    id=f"{kind}-{stable_hash(url)}",
+    source=org,
+    source_type="model" | "tool_service",
+    title=name,
+    url=url,
+    authors=[org],
+    published_date=resolved_iso_date,
+    fetched_date=utc_now_iso(),
+    raw_content=note,
+    tags=[tag.lower(), kind.replace("_", "-")],
+    related_links=[source_url] if source_url and source_url != url else [],
+    metadata={
+        "item_kind": kind,
+        "name": name,
+        "org": org,
+        "note": note,
+        "tag": tag,
+        "source_feed": source,
+        "source_url": source_url,
+        "source_label": source_label,
+        "release_score": release_score,
+        "classifier": classifier,
+        "llm_confidence": llm_confidence,
+    },
+)
+```
+
+These items then re-enter the shared pipeline with the other source types.
+
+## Supervisor Integration
+
+The model/tools workflow is one fetch agent inside the main supervisor fan-out.
+
+```python
+FETCH_AGENTS = {
+    "papers": fetch_papers,
+    "github": fetch_github,
+    "rss": fetch_rss,
+    "model_tools": fetch_model_tools,
+}
+```
+
+Runtime sequence:
+
+1. `supervisor.py` runs all fetch agents in parallel.
+2. `fetch_model_tools()` returns `Item` objects from the graph.
+3. Supervisor appends model/tools diagnostics into the `health` entry for `source = model_tools`.
+4. The shared pipeline continues through:
+   - `deduplicate_items(...)`
+   - `normalize_items(...)`
+   - `score_items(...)`
+   - `apply_quality_gate(...)`
+   - `summarize_items(...)`
+5. `push_to_artifact(...)` writes the final dashboard payload.
+
+## Artifact Mapping
+
+The frontend does not read raw `Item` objects. It reads the release-card shape emitted by `push_to_artifact.py`.
+
+Mapping function:
+
+```python
+def _to_release(item: dict) -> dict:
+    return {
+        "name": metadata.get("name") or item.get("title", "Untitled"),
+        "org": metadata.get("org") or item.get("source", "AI"),
+        "date": _format_date(item.get("published_date", "")),
+        "note": metadata.get("note") or ...,
+        "tag": metadata.get("tag") or ...,
+        "url": release_url,
+        "sourceUrl": source_url,
+        "sourceLabel": metadata.get("source_label", "Source"),
+        "links": [
+            {"label": "Read release", "url": release_url},
+            {"label": source_label, "url": source_url},
+        ],
+    }
+```
+
+Final artifact fields:
+
+- `models`: first 8 `source_type == "model"` items mapped through `_to_release(...)`
+- `toolsServices`: first 8 `source_type == "tool_service"` items mapped through `_to_release(...)`
+
+Because stale or undated entries are filtered before artifact generation, the dashboard cards should not require frontend-side date repair.
+
+## Frontend Rendering
+
+The dashboard consumes `pipelineData.models` and `pipelineData.toolsServices` in `apps/web/src/ey-fso-ai-brief.jsx`.
+
+Current UI behavior:
+
+- both sections use the shared `ReleaseList` component
+- rows are collapsed by default, matching the repo-list interaction style
+- clicking a row expands it to show:
+  - organization tag
+  - resolved date tag
+  - type tag
+  - longer summary note
+  - release/source links
+
+This keeps the weekly briefing compact while preserving access to the underlying source material.
+
+## Diagnostics and Health Output
+
+After each run, supervisor stores model/tools diagnostics in `data/health.json` under `source = "model_tools"`.
+
+Current diagnostic shape:
+
+```python
+{
+    "feeds_requested": int,
+    "source_pages_requested": int,
+    "entries_fetched": int,
+    "classified": int,
+    "selected": int,
+    "llm_classification_attempts": int,
+    "llm_classification_failures": int,
+    "llm_classification_disabled": bool,
+    "llm_classification_skip_reason": str,
+    "dynamic_config": {...},
+}
+```
+
+Health entries also include:
+
+- `status`
+- `item_count`
+- `duration_ms`
+- `dynamic_config`
+- `extraction_diagnostics`
+
+This is the main place to inspect why the weekly model/tool count changed across runs.
+
+## Failure Modes and Guardrails
+
+Common failure cases and how the workflow handles them:
+
+| Failure mode | Handling |
+| --- | --- |
+| RSS feed missing timestamps | fallback date extraction from article/page content |
+| Official source page is noisy | URL/title filters and article excerpt re-fetch before classification |
+| OpenAI unavailable or over quota | deterministic behavior continues; diagnostics capture the reason |
+| Candidate has no trustworthy recent date | card is dropped before selection |
+| Duplicate vendor announcements across feeds/pages | dedupe by normalized release name during selection |
+| Generic vendor marketing pages | release-term and focus-term thresholds reduce false positives |
+
+## Weekly Run Summary
+
+In practice, the weekly runtime looks like this:
+
+1. Resolve active feeds, source pages, and emerging terms.
+2. Fetch RSS items and official source-page candidates.
+3. Resolve publish dates and reject stale or undated candidates.
+4. Classify each surviving candidate as `model` or `tool_service`.
+5. Optionally refine classification with bounded LLM calls.
+6. Select the most recent, highest-signal releases per category.
+7. Convert them into shared `Item` objects.
+8. Push them through the shared pipeline and write `data/output.json`.
+9. Render collapsed expandable cards in the dashboard.
+
+That is the full path from vendor announcement source to visible weekly model/tool card.

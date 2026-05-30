@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-28T18:11:48.925558+00:00",
+  "generatedAt": "2026-05-28T18:30:46.939675+00:00",
   "stats": [
     {
       "label": "PAPERS SCANNED",
-      "value": "0",
+      "value": "55",
       "sub": "arXiv"
     },
     {
@@ -13,12 +13,12 @@
     },
     {
       "label": "ARTICLES",
-      "value": "18",
+      "value": "16",
       "sub": "RSS feeds"
     },
     {
       "label": "FSO-RELEVANT",
-      "value": "38",
+      "value": "98",
       "sub": "score \u2265 40",
       "accent": true
     }
@@ -26,141 +26,87 @@
   "actionItems": [
     {
       "priority": "READ",
-      "title": "VectifyAI/OpenKB",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 25, 2026",
-      "why": "OpenKB: Open LLM Knowledge Base",
+      "title": "Do Agents Need Semantic Metadata? A Comparative Study in Agentic Data Retrieval",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 27, 2026",
+      "why": "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) f",
       "tags": [
-        "agents",
-        "ai",
-        "knowledge-base",
-        "llm",
-        "rag",
-        "retrieval"
+        "cs.IR",
+        "cs.AI"
       ],
       "score": 60,
       "fsoRelevant": true,
-      "url": "https://github.com/VectifyAI/OpenKB"
+      "url": "https://arxiv.org/pdf/2605.28787v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "swarmclawai/swarmvault",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 20, 2026",
-      "why": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Co",
+      "title": "Rethinking Memory as Continuously Evolving Connectivity",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 27, 2026",
+      "why": "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneou",
       "tags": [
-        "agent-memory",
-        "ai-agents",
-        "claude-code",
-        "claude-code-memory",
-        "codex",
-        "karpathy",
-        "knowledge-graph",
-        "llm",
-        "llm-wiki",
-        "local-first",
-        "mcp",
-        "mcp-server",
-        "obsidian",
-        "obsidian-alternative",
-        "openclaw",
-        "opencode",
-        "personal-knowledge-management",
-        "pkm",
-        "rag",
-        "wiki"
+        "cs.CL",
+        "cs.AI",
+        "cs.LG",
+        "cs.MA",
+        "cs.MM"
       ],
       "score": 60,
       "fsoRelevant": true,
-      "url": "https://github.com/swarmclawai/swarmvault"
+      "url": "https://arxiv.org/pdf/2605.28773v1"
     },
     {
       "priority": "SHARE",
-      "title": "Beever-AI/beever-atlas",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 25, 2026",
-      "why": "Your First LLM-Wiki Conversation Knowledge Base",
+      "title": "MemTrace: Tracing and Attributing Errors in Large Language Model Memory Systems",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 27, 2026",
+      "why": "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is s",
       "tags": [
-        "adk-google",
-        "agents",
-        "discord-bot",
-        "fastapi",
-        "gemini",
-        "google-adk",
-        "knowledge-base",
-        "large-language-models",
-        "llm",
-        "mattermost",
-        "mcp",
-        "mcp-server",
-        "microsoft-teams",
-        "open-source",
-        "python",
-        "rag",
-        "react",
-        "slack-bot",
-        "wiki"
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
       ],
       "score": 60,
       "fsoRelevant": true,
-      "url": "https://github.com/Beever-AI/beever-atlas"
+      "url": "https://arxiv.org/pdf/2605.28732v1"
     },
     {
       "priority": "WATCH",
-      "title": "syncable-dev/memtrace-public",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
+      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
       "date": "May 27, 2026",
-      "why": "Structural memory for AI coding agents. Bi-temporal graph, MCP-native, zero LLM calls. Cursor \u00b7 Claude Code \u00b7 Codex \u00b7 Hermes \u00b7 VS Code \u00b7 Windsurf.",
+      "why": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool acces",
       "tags": [
-        "agent-memory",
-        "ai-agents",
-        "bi-temporal-graph",
-        "claude-code",
-        "code-intelligence",
-        "code-search",
-        "coding-agents",
-        "cursor",
-        "developer-tools",
-        "knowledge-graph",
-        "llm",
-        "local-first",
-        "mcp",
-        "mcp-server",
-        "rag",
-        "rust",
-        "semantic-search",
-        "structural-memory",
-        "temporal-analysis",
-        "tree-sitter"
+        "cs.AI"
       ],
-      "score": 48,
+      "score": 60,
       "fsoRelevant": true,
-      "url": "https://github.com/syncable-dev/memtrace-public"
+      "url": "https://arxiv.org/pdf/2605.28721v1"
     },
     {
       "priority": "READ",
-      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
-      "source": "OpenAI News",
-      "sourceMeta": "RSS",
+      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
       "date": "May 27, 2026",
-      "why": "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation.",
+      "why": "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a",
       "tags": [
-        "rss"
+        "cs.CL"
       ],
-      "score": 40,
+      "score": 60,
       "fsoRelevant": true,
-      "url": "https://openai.com/index/cisco"
+      "url": "https://arxiv.org/pdf/2605.28774v1"
     }
   ],
   "repos": [
     {
       "name": "safishamsi/graphify",
-      "stars": "55.0k",
-      "desc": "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
+      "stars": "55.5k",
+      "desc": "AI coding assistant skill that turns mixed project assets into a queryable knowledge graph for Claude Code, Codex, Cursor, Gemini CLI, and other agents.",
       "url": "https://github.com/safishamsi/graphify",
       "language": "Python",
       "topics": [
@@ -177,13 +123,13 @@
         "tree-sitter"
       ],
       "createdAt": "Apr 3, 2026",
-      "lastUpdated": "May 27, 2026",
+      "lastUpdated": "May 28, 2026",
       "fetchedAt": "May 28, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "AI coding assistant skill (Claude Code, Codex, OpenCode, Cursor, Gemini CLI, and more). Turn any folder of code, SQL schemas, R scripts, shell scripts, docs, papers, images, or videos into a queryable knowledge graph. App code + database schema + infrastructure in one graph.",
-        "Primarily Python, with topics such as antigravity, claude-code, codex.",
-        "Latest release v0.8.22 signals active maintenance."
+        "Builds graphs from code, SQL, docs, images, and videos",
+        "Combines app code, schema, and infra in one graph",
+        "Uses RAG, tree-sitter, and graph clustering"
       ],
       "latestRelease": "v0.8.22",
       "latestReleaseUrl": "https://github.com/safishamsi/graphify/releases/tag/v0.8.22",
@@ -192,29 +138,29 @@
     },
     {
       "name": "nashsu/llm_wiki",
-      "stars": "9.6k",
-      "desc": "LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base \u2014 automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources\u3002",
+      "stars": "9.7k",
+      "desc": "Cross-platform desktop app that incrementally turns documents into a persistent, interlinked wiki/knowledge base with graph search and multimodal ingest.",
       "url": "https://github.com/nashsu/llm_wiki",
       "language": "TypeScript",
       "topics": [],
       "createdAt": "Apr 8, 2026",
-      "lastUpdated": "May 26, 2026",
+      "lastUpdated": "May 28, 2026",
       "fetchedAt": "May 28, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base \u2014 automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources\u3002.",
-        "Primarily TypeScript, with topics such as AI engineering.",
-        "Latest release v0.4.14 signals active maintenance."
+        "Incremental wiki generation with source traceability",
+        "Graph, vector, and community-search workflows",
+        "Local API, web clipper, and auto-watch ingest"
       ],
-      "latestRelease": "v0.4.14",
-      "latestReleaseUrl": "https://github.com/nashsu/llm_wiki/releases/tag/v0.4.14",
+      "latestRelease": "v0.4.15",
+      "latestReleaseUrl": "https://github.com/nashsu/llm_wiki/releases/tag/v0.4.15",
       "homepage": "",
       "license": "NOASSERTION"
     },
     {
       "name": "AgriciDaniel/claude-obsidian",
-      "stars": "5.6k",
-      "desc": "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
+      "stars": "5.7k",
+      "desc": "Open-source Obsidian + Claude Code plugin for a self-organizing AI second brain that ingests sources, builds a linked Markdown knowledge graph, and supports PKM/Notion-alternative workflows.",
       "url": "https://github.com/AgriciDaniel/claude-obsidian",
       "language": "Python",
       "topics": [
@@ -244,9 +190,9 @@
       "fetchedAt": "May 28, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Self-organizing AI second brain for Obsidian + Claude Code. Drop any source and Claude reads, links, and files it into one connected knowledge graph of plain Markdown you own. AI note-taking, personal knowledge management (PKM), and an open-source Notion alternative. Based on Karpathy's LLM Wiki pattern.",
-        "Primarily Python, with topics such as agent-skills, ai-note-taking, ai-second-brain.",
-        "Latest release v1.9.2 signals active maintenance."
+        "15 Claude Code skills; multi-agent support",
+        "Obsidian AI note-taking with compounding wiki vault",
+        "Based on Karpathy LLM Wiki pattern"
       ],
       "latestRelease": "v1.9.2",
       "latestReleaseUrl": "https://github.com/AgriciDaniel/claude-obsidian/releases/tag/v1.9.2",
@@ -256,7 +202,7 @@
     {
       "name": "VectifyAI/OpenKB",
       "stars": "1.9k",
-      "desc": "OpenKB: Open LLM Knowledge Base",
+      "desc": "Open-source Python CLI for building a persistent, wiki-style LLM knowledge base from documents using reasoning-based retrieval and no vector DB.",
       "url": "https://github.com/VectifyAI/OpenKB",
       "language": "Python",
       "topics": [
@@ -268,13 +214,13 @@
         "retrieval"
       ],
       "createdAt": "Apr 4, 2026",
-      "lastUpdated": "May 25, 2026",
+      "lastUpdated": "May 28, 2026",
       "fetchedAt": "May 28, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "OpenKB: Open LLM Knowledge Base.",
-        "Primarily Python, with topics such as agents, ai, knowledge-base.",
-        "Latest release v0.2.0 signals active maintenance."
+        "Compiles docs into interlinked knowledge pages",
+        "Supports query, chat, and skill generation",
+        "Uses long-doc retrieval with multi-modal LLMs"
       ],
       "latestRelease": "v0.2.0",
       "latestReleaseUrl": "https://github.com/VectifyAI/OpenKB/releases/tag/v0.2.0",
@@ -283,8 +229,8 @@
     },
     {
       "name": "nduckmink/arkon",
-      "stars": "904",
-      "desc": "Arkon: Enterprise AI Knowledge Hub & MCP Server. Self-hosted knowledge base for teams to manage RAG contexts, access policies, and AI skills. Connect Claude and other LLMs via Model Context Protocol (MCP) for automated, secure organizational knowledge integration.",
+      "stars": "908",
+      "desc": "Open-source self-hosted enterprise AI knowledge hub and MCP server for turning internal docs into permission-scoped, traceable RAG context for LLMs.",
       "url": "https://github.com/nduckmink/arkon",
       "language": "Python",
       "topics": [
@@ -302,13 +248,13 @@
         "wiki"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "May 21, 2026",
+      "lastUpdated": "May 28, 2026",
       "fetchedAt": "May 28, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Arkon: Enterprise AI Knowledge Hub & MCP Server. Self-hosted knowledge base for teams to manage RAG contexts, access policies, and AI skills. Connect Claude and other LLMs via Model Context Protocol (MCP) for automated, secure organizational knowledge integration.",
-        "Primarily Python, with topics such as enterprise-ai, knowledge-base-embeddings, knowledge-based-systems.",
-        "Latest release v0.7.4 signals active maintenance."
+        "Self-hosted MCP server for Claude and other LLMs",
+        "Compiles SOPs and docs into an interlinked knowledge wiki",
+        "Role-aware access control for secure organizational context"
       ],
       "latestRelease": "v0.7.4",
       "latestReleaseUrl": "https://github.com/nduckmink/arkon/releases/tag/v0.7.4",
@@ -316,9 +262,37 @@
       "license": "NOASSERTION"
     },
     {
+      "name": "AxDSan/mnemosyne",
+      "stars": "705",
+      "desc": "Zero-dependency, SQLite-backed memory layer for AI agents, designed for sub-millisecond local persistence and broad framework/MCP compatibility.",
+      "url": "https://github.com/AxDSan/mnemosyne",
+      "language": "Python",
+      "topics": [
+        "agents",
+        "ai",
+        "hermes",
+        "hermes-agent",
+        "ml",
+        "nousresearch"
+      ],
+      "createdAt": "Apr 5, 2026",
+      "lastUpdated": "May 28, 2026",
+      "fetchedAt": "May 28, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Works with Hermes, Cursor, Claude Code, Codex, OpenWebUI",
+        "One pip install; zero cloud dependencies; fully private",
+        "MCP, native tools, and Python SDK integrations"
+      ],
+      "latestRelease": "v3.1.0",
+      "latestReleaseUrl": "https://github.com/AxDSan/mnemosyne/releases/tag/v3.1.0",
+      "homepage": "https://mnemosyne.site",
+      "license": "MIT"
+    },
+    {
       "name": "Ontos-AI/knowhere",
-      "stars": "629",
-      "desc": "Knowhere extracts, parses, and outputs structured chunks ready for AI Agents and RAG.",
+      "stars": "657",
+      "desc": "Open-source Python pipeline that turns messy documents into structured, semantic chunks for AI agents and RAG.",
       "url": "https://github.com/Ontos-AI/knowhere",
       "language": "Python",
       "topics": [
@@ -339,13 +313,13 @@
         "skills"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "May 27, 2026",
+      "lastUpdated": "May 28, 2026",
       "fetchedAt": "May 28, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Knowhere extracts, parses, and outputs structured chunks ready for AI Agents and RAG.",
-        "Primarily Python, with topics such as agent, ai-agents, chromadb.",
-        "Latest release 2026.05.27.1 signals active maintenance."
+        "Parses unstructured docs into navigable memory",
+        "Supports agentic RAG and vector stores",
+        "Built for cloud, self-hosted, and APIs"
       ],
       "latestRelease": "2026.05.27.1",
       "latestReleaseUrl": "https://github.com/Ontos-AI/knowhere/releases/tag/2026.05.27.1",
@@ -353,51 +327,9 @@
       "license": "Apache-2.0"
     },
     {
-      "name": "swarmclawai/swarmvault",
-      "stars": "501",
-      "desc": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Code / Codex / OpenClaw memory.",
-      "url": "https://github.com/swarmclawai/swarmvault",
-      "language": "TypeScript",
-      "topics": [
-        "agent-memory",
-        "ai-agents",
-        "claude-code",
-        "claude-code-memory",
-        "codex",
-        "karpathy",
-        "knowledge-graph",
-        "llm",
-        "llm-wiki",
-        "local-first",
-        "mcp",
-        "mcp-server",
-        "obsidian",
-        "obsidian-alternative",
-        "openclaw",
-        "opencode",
-        "personal-knowledge-management",
-        "pkm",
-        "rag",
-        "wiki"
-      ],
-      "createdAt": "Apr 6, 2026",
-      "lastUpdated": "May 20, 2026",
-      "fetchedAt": "May 28, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Code / Codex / OpenClaw memory.",
-        "Primarily TypeScript, with topics such as agent-memory, ai-agents, claude-code.",
-        "Latest release v3.15.0 signals active maintenance."
-      ],
-      "latestRelease": "v3.15.0",
-      "latestReleaseUrl": "https://github.com/swarmclawai/swarmvault/releases/tag/v3.15.0",
-      "homepage": "https://www.swarmvault.ai",
-      "license": "MIT"
-    },
-    {
       "name": "stevesolun/ctx",
       "stars": "371",
-      "desc": "Skill, agent, MCP, and harness recommendations for Claude Code/custom LLMs: 102,696-node LLM-wiki graph, 91,432 skills, 10,787 MCPs, 13 harnesses, and capped execution recommendations.",
+      "desc": "Python tool that recommends the best small set of skills, agents, MCP servers, and harnesses for Claude Code or other LLM workflows using a large LLM-wiki graph.",
       "url": "https://github.com/stevesolun/ctx",
       "language": "Python",
       "topics": [
@@ -427,12 +359,12 @@
       "fetchedAt": "May 28, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Skill, agent, MCP, and harness recommendations for Claude Code/custom LLMs: 102,696-node LLM-wiki graph, 91,432 skills, 10,787 MCPs, 13 harnesses, and capped execution recommendations.",
-        "Primarily Python, with topics such as agents, ai-agents, anthropic.",
-        "Latest release v1.0.9 signals active maintenance."
+        "102k-node graph with 2.9M edges",
+        "91k skills, 10k MCPs, 200+ harnesses",
+        "Supports custom-model harness install flows"
       ],
-      "latestRelease": "v1.0.9",
-      "latestReleaseUrl": "https://github.com/stevesolun/ctx/releases/tag/v1.0.9",
+      "latestRelease": "v1.0.11",
+      "latestReleaseUrl": "https://github.com/stevesolun/ctx/releases/tag/v1.0.11",
       "homepage": "https://stevesolun.github.io/ctx/",
       "license": "MIT"
     }
@@ -442,197 +374,57 @@
       "name": "Claude Opus 4.8",
       "org": "Anthropic",
       "date": "May 28, 2026",
-      "note": "Anthropic released Claude Opus 4.8, an upgraded Opus-class model with stronger coding, agentic, and professional-work performance plus better long-running task reliability.",
+      "note": "Anthropic\u2019s Claude Opus 4.8 is now available on Amazon Bedrock and Claude Platform on AWS, bringing stronger agentic coding, deep knowledge work, and long-running autonomous task performance to enterprise AWS deployments.",
       "tag": "API",
-      "url": "https://www.anthropic.com/news/claude-opus-4-8",
-      "sourceUrl": "https://www.anthropic.com/news",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://www.anthropic.com/news/claude-opus-4-8"
-        },
-        {
-          "label": "Source page",
-          "url": "https://www.anthropic.com/news"
-        }
-      ]
-    },
-    {
-      "name": "Mistral 3",
-      "org": "Mistral AI",
-      "date": "Unknown",
-      "note": "Today, we announce Mistral 3, the next generation of Mistral models. Mistral 3 includes three state-of-the-art small, dense models (14B, 8B, and 3B) and Mistral Large 3 \u2013 our most capable model to date \u2013 a sparse mixture-of-experts trained with 41B active and",
-      "tag": "OPEN",
-      "url": "https://mistral.ai/news/mistral-3/",
-      "sourceUrl": "https://mistral.ai/news/",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://mistral.ai/news/mistral-3/"
-        },
-        {
-          "label": "Source page",
-          "url": "https://mistral.ai/news/"
-        }
-      ]
-    },
-    {
-      "name": "Mistral Small 4",
-      "org": "Mistral AI",
-      "date": "Unknown",
-      "note": "Today, we are announcing Mistral Small 4. This model is the next major release in the Mistral Small family.",
-      "tag": "OPEN",
-      "url": "https://mistral.ai/news/mistral-small-4/",
-      "sourceUrl": "https://mistral.ai/news/",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://mistral.ai/news/mistral-small-4/"
-        },
-        {
-          "label": "Source page",
-          "url": "https://mistral.ai/news/"
-        }
-      ]
-    },
-    {
-      "name": "Mistral Medium 3.5",
-      "org": "Mistral AI",
-      "date": "Unknown",
-      "note": "Coding agents have mostly lived on your laptop. Today we're moving them to the cloud, where they run on their own, in parallel, and notify you when they're done.",
-      "tag": "OPEN",
-      "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/",
-      "sourceUrl": "https://mistral.ai/news/",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/"
-        },
-        {
-          "label": "Source page",
-          "url": "https://mistral.ai/news/"
-        }
-      ]
-    },
-    {
-      "name": "Gemini Embedding 2",
-      "org": "Google",
-      "date": "Unknown",
-      "note": "Google announced general availability of Gemini Embedding 2, a unified multimodal embedding model that maps text, images, video, audio, and documents into one semantic space for stronger agentic RAG, visual search, and moderation workflows.",
-      "tag": "EMBED",
-      "url": "https://developers.googleblog.com/building-with-gemini-embedding-2/",
-      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "url": "https://aws.amazon.com/blogs/machine-learning/claude-opus-4-8-is-now-available-on-aws/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://developers.googleblog.com/building-with-gemini-embedding-2/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/claude-opus-4-8-is-now-available-on-aws/"
         },
         {
           "label": "RSS feed",
-          "url": "https://developers.googleblog.com/feeds/posts/default"
-        }
-      ]
-    },
-    {
-      "name": "Gemini 3.5 Flash",
-      "org": "Google",
-      "date": "Unknown",
-      "note": "Gemini 3.5 Flash is now generally available, offering stable production use with stronger agentic execution, coding, and long-horizon task performance at scale.",
-      "tag": "API",
-      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
-      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
-        },
-        {
-          "label": "Source page",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog"
-        }
-      ]
-    },
-    {
-      "name": "Voxtral TTS",
-      "org": "Mistral AI",
-      "date": "Unknown",
-      "note": "Today we\u2019re releasing Voxtral TTS, our first text-to-speech model with state-of-the-art performance in multilingual voice generation. The model is lightweight at 4B parameters, making Voxtral-powered agents natural, reliable, and cost-effective at scale.",
-      "tag": "MODEL",
-      "url": "https://mistral.ai/news/voxtral-tts/",
-      "sourceUrl": "https://mistral.ai/news/",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://mistral.ai/news/voxtral-tts/"
-        },
-        {
-          "label": "Source page",
-          "url": "https://mistral.ai/news/"
-        }
-      ]
-    },
-    {
-      "name": "Aya A family of multilingual research models covering 70+ languages",
-      "org": "Cohere",
-      "date": "Unknown",
-      "note": "High-performance models for agentic, multimodal, multilingual AI A family of multilingual research models covering 70+ languages Cohere's research lab that seeks to solve complex ML problems Explore and compare our open source models Cohere's research lab, Coh",
-      "tag": "OPEN",
-      "url": "https://cohere.com/research/aya",
-      "sourceUrl": "https://cohere.com/blog/",
-      "sourceLabel": "Source page",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://cohere.com/research/aya"
-        },
-        {
-          "label": "Source page",
-          "url": "https://cohere.com/blog/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
         }
       ]
     }
   ],
   "toolsServices": [
     {
-      "name": "Amazon Bedrock AgentCore",
-      "org": "AWS",
+      "name": "Codex",
+      "org": "OpenAI",
       "date": "May 27, 2026",
-      "note": "AWS says it built Field Advisor on Amazon Bedrock AgentCore to orchestrate more than 20 internal sales agents, reducing context switching and adding enterprise-grade memory, identity, observability, and evaluation for production agentic AI.",
-      "tag": "CLOUD",
-      "url": "https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "note": "OpenAI showed how Codex can be used to build self-improving tax agents that automate filings, improve accuracy, and speed up workflows.",
+      "tag": "PLATFORM",
+      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
+      "sourceUrl": "https://openai.com/news/rss.xml",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/powering-agentic-ai-sales-strategy-with-amazon-bedrock-agentcore/"
+          "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex"
         },
         {
           "label": "RSS feed",
-          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+          "url": "https://openai.com/news/rss.xml"
         }
       ]
     },
     {
-      "name": "Amazon Bedrock AgentCore and Strands Agents SDK",
+      "name": "Amazon Bedrock AgentCore dataset management",
       "org": "AWS",
-      "date": "May 21, 2026",
-      "note": "AWS describes building an intelligent radiology workflow optimization workflow on Amazon Bedrock AgentCore and Strands Agents SDK, showing how agentic tooling can reduce diagnostic delays by using contextual case assignment instead of rigid rules.",
-      "tag": "CLOUD",
-      "url": "https://aws.amazon.com/blogs/machine-learning/intelligent-radiology-workflow-optimization-with-ai-agents-2/",
+      "date": "May 28, 2026",
+      "note": "AWS added dataset management in Amazon Bedrock AgentCore to version agent evaluation test cases as immutable baselines, making it easier to track real improvements and catch regressions over time.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/build-a-test-suite-that-grows-with-your-agent-with-dataset-management-in-amazon-bedrock-agentcore/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/intelligent-radiology-workflow-optimization-with-ai-agents-2/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/build-a-test-suite-that-grows-with-your-agent-with-dataset-management-in-amazon-bedrock-agentcore/"
         },
         {
           "label": "RSS feed",
@@ -641,18 +433,18 @@
       ]
     },
     {
-      "name": "Agents CLI",
+      "name": "Google Pay & Wallet Developer MCP server",
       "org": "Google",
-      "date": "Unknown",
-      "note": "Google Cloud introduced Agents CLI, a specialized CLI for moving AI agents from local development to production by streamlining evaluation, infrastructure provisioning, and deployment in one workflow.",
-      "tag": "CLI",
-      "url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/",
+      "date": "May 28, 2026",
+      "note": "Google released a Model Context Protocol server that lets AI assistants and IDEs access real-time Google Pay and Wallet API docs, account details, and validation tools, reducing friction in payment and wallet integrations.",
+      "tag": "PLATFORM",
+      "url": "https://developers.googleblog.com/supercharge-your-integration-workflow-with-the-google-pay-wallet-developer-mcp-server/",
       "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://developers.googleblog.com/agents-cli-in-agent-platform-create-to-production-in-one-cli/"
+          "url": "https://developers.googleblog.com/supercharge-your-integration-workflow-with-the-google-pay-wallet-developer-mcp-server/"
         },
         {
           "label": "RSS feed",
@@ -661,10 +453,30 @@
       ]
     },
     {
-      "name": "Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore",
+      "name": "NarrateAI",
+      "org": "AWS",
+      "date": "May 27, 2026",
+      "note": "AWS built NarrateAI on Amazon Bedrock AgentCore to provide a conversational business-intelligence assistant for leaders, enabling faster natural-language access to context-rich operational insights.",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Strands Agents + NVIDIA NIM + Amazon Bedrock AgentCore",
       "org": "AWS",
       "date": "May 26, 2026",
-      "note": "AWS published a guide showing how to build production-grade multi-agent systems by combining Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore for faster inference, shared memory, and observability.",
+      "note": "AWS published a reference architecture for building production AI agents with Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore, showing how to combine fast inference, shared memory, and observability for scalable multi-agent workflows.",
       "tag": "PLATFORM",
       "url": "https://aws.amazon.com/blogs/machine-learning/build-high-performance-generative-ai-systems-with-strands-agents-nvidia-nim-and-amazon-bedrock-agentcore/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
@@ -684,7 +496,7 @@
       "name": "AgentWatch",
       "org": "AWS",
       "date": "May 26, 2026",
-      "note": "AgentWatch introduces an ambient AWS monitoring agent that helps DevOps teams proactively detect issues across accounts instead of relying on reactive CloudWatch alarms.",
+      "note": "AWS introduced AgentWatch, an ambient monitoring agent for AWS resources that helps DevOps teams detect issues proactively instead of relying on delayed CloudWatch alarms and reactive triage.",
       "tag": "PLATFORM",
       "url": "https://aws.amazon.com/blogs/machine-learning/agentwatch-proactive-aws-monitoring-with-ambient-agents/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
@@ -699,70 +511,283 @@
           "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
         }
       ]
-    },
-    {
-      "name": "Antigravity CLI",
-      "org": "Google",
-      "date": "Unknown",
-      "note": "Google is transitioning Gemini CLI into Antigravity CLI, a new agent-first terminal tool for complex multi-agent workflows with faster execution, async processing, and a unified architecture that connects to Antigravity 2.0.",
-      "tag": "CLI",
-      "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/",
-      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://developers.googleblog.com/feeds/posts/default"
-        }
-      ]
-    },
-    {
-      "name": "Agent Development Kit (ADK)",
-      "org": "Google",
-      "date": "Unknown",
-      "note": "Google introduced the Agent Development Kit (ADK) for building long-running agents with durable state, persistent sessions, and event-driven resume flows, which matters for production workflows that need to survive idle time and server restarts.",
-      "tag": "PLATFORM",
-      "url": "https://developers.googleblog.com/build-long-running-ai-agents-that-pause-resume-and-never-lose-context-with-adk/",
-      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://developers.googleblog.com/build-long-running-ai-agents-that-pause-resume-and-never-lose-context-with-adk/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://developers.googleblog.com/feeds/posts/default"
-        }
-      ]
-    },
-    {
-      "name": "ADK for Kotlin and ADK for Android 0.1.0",
-      "org": "Google",
-      "date": "Unknown",
-      "note": "Google released ADK for Kotlin and ADK for Android 0.1.0, bringing agentic workflows to backend projects and Android apps for building AI agents across platforms.",
-      "tag": "PLATFORM",
-      "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/",
-      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://developers.googleblog.com/adk-kotlin-android-building-ai-agents/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://developers.googleblog.com/feeds/posts/default"
-        }
-      ]
     }
   ],
-  "papers": [],
+  "papers": [
+    {
+      "title": "Do Agents Need Semantic Metadata? A Comparative Study in Agentic Data Retrieval",
+      "authors": "Shiyu Chen, Tarfah Alrashed, Alon Halevy, Natasha Noy",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 60,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) for machine-actionable data and enabled discovery tools like Google Dataset Search. However, the rise of Large Language Models (LLMs) capable of navigating the unstructured web raises a fundamental question: Is semantic metadata still necessary for agentic data discovery, or can agents reliably retrieve actionable data directly from the web? We present a comparative analysis of agentic data retrieval across two distinct environments: a Baseline Agent searching billions of open-web documents, and a Semantic Agent leveraging a corpus of 90 million datasets using schema.org. We deploy an \"LLM-as-a-judge\" evaluation pipeline, mapped directly to the FAIR principles, to assess the semantic relevance, data accessibility, and computational utility of the retrieved data. Our results reveal a clear divergence. The Semantic Agent excels at retrieving actionable data, achieving a 44.9% higher precision for metadata-rich registries and a 46.6% higher precision for pages with machine-readable downloads among its returned results. Conversely, the Baseline Agent frequently suffers \"Last-Mile Utility\" failures, retrieving prose-heavy pages (20.1% of results) and portal landing pages (8.5%) rather than actual data pages. While the Baseline Agent achieves higher coverage by answering 40% more questions, the Semantic Agent delivers greater accuracy, achieving 65.7% higher overall precision in retrieving FAIR-compliant datasets. We conclude that while unstructured retrieval supports broad exploratory tasks, structured ecosystems remain the indispensable foundation for reliable, execution-oriented autonomous workflows.",
+      "takeaways": [
+        "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) f"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28787v1"
+    },
+    {
+      "title": "Rethinking Memory as Continuously Evolving Connectivity",
+      "authors": "Jizhan Fang, Buqiang Xu, Zhixian Wang, Haoliang Cao, Xinle Deng, Baohua Dong, Hangcheng Zhu, Ruohui Huang, Gang Yu, Ying Wei, Guozhou Zheng, Feiyu Xiong, Haofen Wang, Huajun Chen, Ningyu Zhang",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 60,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneous signals continuously reshape what should be remembered and how it should be connected. To address this, we propose FluxMem, a connectivity-evolving memory framework that models memory as a heterogeneous graph and progressively refines its topology through three stages: initial connection formation, feedback-driven refinement, and long-term consolidation. During execution, FluxMem repairs missing links, prunes interference, aligns abstraction granularity, and distills recurrent successful trajectories into reusable procedural circuits, guided by one metric for memory generalizability and evolutionary maturity. Across three fundamentally distinct benchmarks including LoCoMo, Mind2Web, and GAIA, FluxMem achieves consistent state-of-the-art performance, demonstrating strong adaptation and generalization in complex agentic environments. The code will be open-sourced in https://github.com/zjunlp/LightMem.",
+      "takeaways": [
+        "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneou"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28773v1"
+    },
+    {
+      "title": "MemTrace: Tracing and Attributing Errors in Large Language Model Memory Systems",
+      "authors": "Xinle Deng, Ruobin Zhong, Hujin Peng, Xiaoben Lu, Yanzhe Wu, Guang Li, Buqiang Xu, Yunzhi Yao, Jizhan Fang, Haoliang Cao, Junjie Guo, Yuan Yuan, Ziqing Ma, Yuanqiang Yu, Rui Hu, Baohua Dong, Hangcheng Zhu, Ningyu Zhang",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 60,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is synthesized, propagated, or corrupted over time. In this work, we study the new problem of error tracing and attribution in LLM memory systems. We propose a novel framework that transforms memory pipelines into executable memory evolution graphs, enabling fine-grained tracing of operational information flow. We then construct MemTraceBench, a benchmark collected from representative memory systems such as Long-Context, RAG, Mem0, and EverMemOS, to systematically study memory failure modes. We further introduce an automatic attribution method that iteratively traces operation subgraphs to pinpoint the root cause of any failed case. Our analysis reveals that memory failures are systematic, stemming from operation-level issues like information loss and retrieval misalignment. Crucially, we leverage these fine-grained attribution signals to guide downstream prompt optimization, establishing a closed-loop system that automatically corrects faults and boosts end-task performance by up to 7.62%. Code will be released at https://github.com/zjunlp/MemTrace.",
+      "takeaways": [
+        "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is s"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28732v1"
+    },
+    {
+      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
+      "authors": "HuiMing Fan, Xiao Wang, Zheng Chu, Qianyu Wang, Zhuoyao Wang, Ming Liu, Bing Qin, XingYu",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 60,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool access, agents often rely on intrinsic knowledge -- information encoded in the model before retrieval -- rather than on external evidence. Agents answer up to 44.5% of BrowseComp questions without tools, generate more than half of their search queries from internally produced hypotheses rather than retrieved leads, and perform worse than closed-book baselines when answer-supporting evidence is removed. These results suggest that static search benchmarks can reward memory-backed verification rather than evidence-driven discovery, conflating what agents already know with what they can find. We then introduce LiveBrowseComp, a deep-search benchmark designed to evaluate agents beyond intrinsic coverage. It contains 335 human-authored questions whose answers depend on facts published within the 90 days preceding benchmark construction, drawn from six updated sources and filtered to exclude globally salient events. On LiveBrowseComp, all evaluated agents fall below 2% closed-book accuracy, search-augmented scores drop by 25-40 points relative to BrowseComp, and prior model rankings no longer reliably predict performance. LiveBrowseComp is available at https://huggingface.co/datasets/Forival/LiveBrowseComp.",
+      "takeaways": [
+        "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool acces"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28721v1"
+    },
+    {
+      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+      "authors": "Minki Kang, Shizhe Diao, Ryo Hachiuma, Sung Ju Hwang, Pavlo Molchanov, Yu-Chiang Frank Wang, Byung-Kwan Lee",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 60,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a structural asymmetry: thinking (the self-contained default) and tool use (a high-variance auxiliary acting). We refer to this asymmetry as the Thinking-Acting Gap. Under standard RL recipes like GRPO, the gap manifests as two diagnostic symptoms during training: tool use is attempted on only ~30% of rollouts, and when attempted, the tool-using rollouts within a group are all-wrong on ~40% of questions, suppressing the learning signal at the tool calls that needed it. We propose AXPO (Agent eXplorative Policy Optimization): for each all-wrong tool-using subgroup, AXPO fixes the thinking prefix and resamples the tool call and its continuation, paired with uncertainty-based prefix selection. Across nine multimodal benchmarks and three scales of Qwen3-VL-Thinking, SFT+AXPO outperforms SFT+GRPO at average (+1.8pp Pass@1 and +1.8pp Pass@4 at 8B on average) and 8B with SFT+AXPO surpasses the 32B Base on Pass@4 with 4 times fewer parameters.",
+      "takeaways": [
+        "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28774v1"
+    },
+    {
+      "title": "OmniVerifier-M1: Multimodal Meta-Verifier with Explicit Structured Recalibration",
+      "authors": "Xinchen Zhang, Bowei Liu, Jiale Liu, Chufan Shi, Yizhen Zhang, Junhong Liu, Youliang Zhang, Zhiheng Li, Yujiu Yang, Ling Yang",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 48,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Visual outcomes are increasingly central to multimodal large language models, making reliable and fine-grained verification essential for scaling generalist foundation models. In this work, we investigate multimodal meta-verification, which leverages verifier-generated rationales rather than decision-only signals, and explore how to effectively incorporate meta-verification feedback into multimodal verifier training. We identify two key findings. First, symbolic verifier outputs (e.g., bounding boxes) outperform textual explanations as meta-verification rationales, enabling efficient rule-based reinforcement learning rewards while avoiding reliance on model-based rewards from auxiliary judge models. Second, decoupling reinforcement learning objectives for binary judgment and meta-verification substantially outperforms joint reward optimization, due to intrinsic differences in output structure and learning dynamics. Based on these insights, we train OmniVerifier-M1, a generalist visual verifier leveraging symbolic meta-verification and decoupled reinforcement learning. OmniVerifier-M1 provides robust verification and fine-grained error localization, and further enables M1-TTS, a verifier-driven agentic generation system achieving dynamic region-level self-correction. This approach paves the way for more reliable, interpretable, and fine-grained multimodal verification, supporting safer and more controllable foundation model deployment.",
+      "takeaways": [
+        "Visual outcomes are increasingly central to multimodal large language models, making reliable and fine-grained verification essential for scaling generalist foundation models. In this work, we investigate multimodal meta-verification, which"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28805v1"
+    },
+    {
+      "title": "Self-Improving Language Models with Bidirectional Evolutionary Search",
+      "authors": "Guowei Xu, Zhenting Qi, Huangyuan Su, Weirui Ye, Himabindu Lakkaraju, Sham M. Kakade, Yilun Du",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 48,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Search has been proposed as an effective method for self-improving language models and agentic systems, both for post-training sample generation and for inference. However, widely used methods such as best-of-N sampling and tree search face two fundamental limitations: they are guided by sparse verification signals, and they construct candidates primarily through autoregressive expansion, restricting exploration to regions with substantial model probability mass. To address these, we propose Bidirectional Evolutionary Search (BES), a search framework that couples forward candidate evolution with backward goal decomposition. In the forward search, BES augments standard expansion with evolution operators that recombine partial trajectories to generate candidates that are difficult to obtain from a single model rollout. In the backward search, BES recursively decomposes the original task into checkable subgoals, producing dense intermediate feedback that guides forward search. We provide theoretical motivation showing that candidates generated by expansion-only search are confined to a narrow entropy shell while evolutionary operators can escape it, and that backward search can exponentially reduce the number of required samples to find a correct answer. Experiments show that on challenging post-training tasks where mainstream post-training algorithms fail to improve, BES enables consistent gains, and on three open problem solving benchmarks at inference time, BES outperforms existing open-source frameworks in both average and best-case performance. Code and trained models are available at https://github.com/Embodied-Minds-Lab/BES.",
+      "takeaways": [
+        "Search has been proposed as an effective method for self-improving language models and agentic systems, both for post-training sample generation and for inference. However, widely used methods such as best-of-N sampling and tree search face"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28814v1"
+    },
+    {
+      "title": "Human Label Variation as Stable Signal: Learning Annotator-Specific Explanation Behavior via Cross-Annotator Preference Optimization",
+      "authors": "Beiduo Chen, Pingjun Hong, Ziyun Zhang, Benjamin Roth, Anna Korhonen, Barbara Plank",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 48,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Free-text explanations extend human label variation (HLV) beyond label disagreement by revealing the reasoning and preferences behind annotators' decisions. We study whether large language models (LLMs) can learn and reproduce such annotator-specific label-explanation behavior. Using two sentence-pair tasks with four annotators each -- natural language inference and paraphrase judgment -- we first analyze whether annotators exhibit stable individual patterns. We find that such patterns are weak at the single-annotation level due to strong input-content effects, but become detectable after input-content reduction and annotator-level aggregation. We then compare prompting and supervised fine-tuning (SFT) baselines and propose cross-annotator preference optimization (CAPO), which contrasts a target annotator's response with other valid but less target-specific annotations for the same input. Experiments show that prompting is limited and unstable, SFT better captures annotator-specific behavior, and CAPO further improves aggregation-aware imitation and judge-based attribution while preserving target-specific reasoning patterns under human validation. Overall, our results show that HLV can be learned as annotator-specific label-explanation behavior, suggesting a path toward scalable explanation-based annotation grounded in annotator histories rather than labels alone.",
+      "takeaways": [
+        "Free-text explanations extend human label variation (HLV) beyond label disagreement by revealing the reasoning and preferences behind annotators' decisions. We study whether large language models (LLMs) can learn and reproduce such annotato"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28802v1"
+    },
+    {
+      "title": "The Importance of Being Statistically Earnest: A Critical Re-evaluation of GSM-Symbolic",
+      "authors": "Dominika Agnieszka D\u0142ugosz, Arlindo Oliveira, Natalia D\u00edaz Rodr\u00edguez",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 48,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "The GSM-Symbolic benchmark (Mirzadeh et al., 2025) reported consistent performance drops across 25 Large Language Models (LLMs) when tested on template-generated variants of GSM8K problems, concluding that the models lack genuine reasoning capabilities. We argue that this conclusion rests on shaky statistical ground. Re-evaluating 20 open-weight models using Generalised Linear Mixed Models with per-question random effects, we find that only half exhibit statistically significant performance changes under the original prompt format. Moreover, we identify a previously unacknowledged factor: the main GSM-Symbolic dataset contains a systematically shifted distribution of larger integers in problem texts relative to GSM-Base (K-S statistic = 0.12, p < 0.001), contradicting the original authors' claims. Controlling for this large number effect accounts for significance in roughly half the remaining cases. Among models with statistically significant performance deltas, we identify distinct, model-specific failure profiles - including fragility of variable binding, arithmetic limitations, and dual-task interference - underscoring that blanket claims about LLM reasoning are both statistically premature and mechanistically misleading.",
+      "takeaways": [
+        "The GSM-Symbolic benchmark (Mirzadeh et al., 2025) reported consistent performance drops across 25 Large Language Models (LLMs) when tested on template-generated variants of GSM8K problems, concluding that the models lack genuine reasoning "
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28700v1"
+    },
+    {
+      "title": "Multi-Mixer Models: Flexible Sequence Modeling with Shared Representations",
+      "authors": "Kevin Y. Li, Asher Trockman, Ananda Theertha Suresh, Ziteng Sun",
+      "org": "arXiv",
+      "date": "May 27, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "score": 48,
+      "verticals": [
+        "AI",
+        "Research"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Softmax attention is the cornerstone of modern large language models, but its memory scales linearly and compute quadratically with sequence length. Linear recurrent models, such as linear attention and state space models, have become widely studied as alternatives to attention due to their linear compute and constant memory. While these sub-quadratic token mixing methods, or mixers, achieve promising efficiency gains and competitive results on a wide range of benchmarks, current linear recurrent models still lag behind on tasks that require long-context retrieval or in-context learning. A growing body of work studies hybrid architectures that attempt to mitigate these trade-offs by statically interleaving or merging attention and recurrent blocks. In this work, we explore a new axis of developing hybrid models: across the token sequence. We propose Oryx, a hybrid model that can, throughout a sequence, flexibly switch between different mixers, for example quadratic attention for rich context utilization and linear recurrences for efficient generation. Oryx ties at least 90% of its parameters across mixers, enabling attention and recurrent modes to operate over shared internal representations. We validate our design with Mamba-2 and Gated DeltaNet variants, up to 1.4B models. Under fixed token budgets and a mixed-training strategy, Oryx achieves comparable or better performance than its single-mixer baselines. At the 1.4B scale, all instances of Oryx outperform their respective baselines by at least 0.7 percentage points on averaged language modeling tasks. On retrieval tasks, Oryx achieves performance comparable to the Transformer baseline even when processing only a tiny fraction (<10%) of the tokens in attention mode. These results suggest that attention and linear recurrent models can share internal representations, and motivate sequence-axis hybridization as a promising direction.",
+      "takeaways": [
+        "Softmax attention is the cornerstone of modern large language models, but its memory scales linearly and compute quadratically with sequence length. Linear recurrent models, such as linear attention and state space models, have become widel"
+      ],
+      "relevance": {
+        "wam": "Medium",
+        "cm": "Medium",
+        "ins": "Low",
+        "risk": "Medium"
+      },
+      "url": "https://arxiv.org/pdf/2605.28769v1"
+    }
+  ],
   "blogs": [
+    {
+      "source": "Microsoft Research",
+      "title": "Data Formulator 0.7: AI-powered data analytics for enterprise data",
+      "tag": "RESEARCH BLOG",
+      "date": "May 28, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "At a glance Data Formulator 0.7 is an open-source AI-powered system for enterprise data analytics that combines data connectivity, agent-guided exploration, and visualization refinement in a shared workspace. It includes a Data Connectors f"
+      ],
+      "url": "https://www.microsoft.com/en-us/research/blog/data-formulator-0-7-ai-powered-data-analytics-for-enterprise-data/"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "OpenAI\u2019s Frontier Governance Framework",
+      "tag": "SAFETY",
+      "date": "May 28, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Explore OpenAI\u2019s Frontier Governance Framework and how our AI safety, security, and risk practices align with emerging EU and California regulations."
+      ],
+      "url": "https://openai.com/index/openai-frontier-governance-framework"
+    },
     {
       "source": "OpenAI News",
       "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
@@ -776,14 +801,14 @@
     },
     {
       "source": "OpenAI News",
-      "title": "Building self-improving tax agents with Codex",
-      "tag": "ENGINEERING",
+      "title": "Election information and safeguards in 2026",
+      "tag": "GLOBAL AFFAIRS",
       "date": "May 27, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows."
+        "Ahead of global elections, we\u2019re helping people access information, supporting cyber defenders, and increasing AI transparency"
       ],
-      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex"
+      "url": "https://openai.com/index/election-safeguards-2026"
     },
     {
       "source": "OpenAI News",
@@ -795,17 +820,6 @@
         "Warp uses GPT-5.5 and OpenAI models to coordinate coding agents across local, cloud, and open-source development workflows."
       ],
       "url": "https://openai.com/index/warp"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Election information and safeguards in 2026",
-      "tag": "GLOBAL AFFAIRS",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Ahead of global elections, we\u2019re helping people access information, supporting cyber defenders, and increasing AI transparency"
-      ],
-      "url": "https://openai.com/index/election-safeguards-2026"
     },
     {
       "source": "OpenAI News",
@@ -841,17 +855,6 @@
       "url": "https://openai.com/index/virgin-atlantic"
     },
     {
-      "source": "OpenAI News",
-      "title": "AdventHealth advances whole-person care with OpenAI",
-      "tag": "AI",
-      "date": "May 21, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "AdventHealth is using ChatGPT for Healthcare to streamline workflows, reduce administrative burden, and return more time to patient care."
-      ],
-      "url": "https://openai.com/index/adventhealth"
-    },
-    {
       "source": "Hugging Face - Blog",
       "title": "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks \u2014 by Artificial Analysis and IBM",
       "tag": "AI",
@@ -879,22 +882,21 @@
   "health": [
     {
       "source": "papers",
-      "status": "error",
-      "item_count": 0,
-      "duration_ms": 478,
-      "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+      "status": "ok",
+      "item_count": 75,
+      "duration_ms": 1548
     },
     {
       "source": "rss",
       "status": "ok",
-      "item_count": 18,
-      "duration_ms": 3547
+      "item_count": 17,
+      "duration_ms": 4181
     },
     {
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 64924,
+      "duration_ms": 68560,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -941,27 +943,27 @@
             "failed": false
           },
           {
-            "query": "\"llm wiki\" OR \"ai wiki\" stars:>5",
-            "fetched": 8,
-            "added": 8,
+            "query": "\"mcp server\" knowledge base language:python stars:>10",
+            "fetched": 1,
+            "added": 0,
             "failed": false
           },
           {
-            "query": "topic:model-context-protocol stars:>10",
-            "fetched": 8,
-            "added": 6,
+            "query": "\"personal knowledge base\" rag language:python stars:>10",
+            "fetched": 0,
+            "added": 0,
             "failed": false
           },
           {
-            "query": "topic:mcp language:python stars:>10",
-            "fetched": 8,
+            "query": "\"knowledge graph\" \"llm wiki\" stars:>10",
+            "fetched": 1,
             "added": 1,
             "failed": false
           },
           {
-            "query": "language:typescript topic:ai stars:>20",
-            "fetched": 8,
-            "added": 8,
+            "query": "\"claude memory\" language:python stars:>10",
+            "fetched": 0,
+            "added": 0,
             "failed": false
           }
         ],
@@ -1016,28 +1018,28 @@
             "kind": "evergreen"
           },
           {
-            "repo": "anthropics/anthropic-cookbook",
-            "added": 0,
-            "failed": false,
-            "skipped_old": true,
-            "kind": "emerging"
-          },
-          {
-            "repo": "anthropics/anthropic-sdk-python",
-            "added": 0,
-            "failed": false,
-            "skipped_old": true,
-            "kind": "emerging"
-          },
-          {
-            "repo": "MemPalace/mempalace",
+            "repo": "nduckmink/arkon",
             "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "swarmclawai/swarmvault",
+            "repo": "VectifyAI/OpenKB",
+            "added": 0,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "emerging"
+          },
+          {
+            "repo": "AgriciDaniel/claude-obsidian",
+            "added": 0,
+            "failed": false,
+            "skipped_old": false,
+            "kind": "emerging"
+          },
+          {
+            "repo": "nashsu/llm_wiki",
             "added": 1,
             "failed": false,
             "skipped_old": false,
@@ -1047,33 +1049,91 @@
         "pushed_cutoff": "2026-05-21",
         "created_cutoff": "2026-03-29",
         "dynamic_config": {
-          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
           "used_persisted_state": true,
-          "updated": false,
-          "source": "persisted",
-          "llm_status": "unavailable_or_invalid"
+          "updated": true,
+          "source": "llm",
+          "query_rotation": {
+            "replacements": 4,
+            "added": [
+              "\"claude memory\" language:python stars:>10",
+              "\"knowledge graph\" \"llm wiki\" stars:>10",
+              "\"personal knowledge base\" rag language:python stars:>10",
+              "\"mcp server\" knowledge base language:python stars:>10"
+            ],
+            "removed": [
+              "language:typescript topic:ai stars:>20",
+              "topic:mcp language:python stars:>10",
+              "topic:model-context-protocol stars:>10",
+              "\"llm wiki\" OR \"ai wiki\" stars:>5"
+            ]
+          },
+          "watch_rotation": {
+            "replacements": 4,
+            "added": [
+              "nashsu/llm_wiki",
+              "AgriciDaniel/claude-obsidian",
+              "VectifyAI/OpenKB",
+              "nduckmink/arkon"
+            ],
+            "removed": [
+              "swarmclawai/swarmvault",
+              "MemPalace/mempalace",
+              "anthropics/anthropic-sdk-python",
+              "anthropics/anthropic-cookbook"
+            ]
+          }
         },
-        "total_unique_candidates": 69,
+        "total_unique_candidates": 47,
         "dynamic_refresh": {
-          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
           "used_persisted_state": true,
-          "updated": false,
-          "source": "persisted",
-          "llm_status": "unavailable_or_invalid"
+          "updated": true,
+          "source": "llm",
+          "query_rotation": {
+            "replacements": 4,
+            "added": [
+              "\"claude memory\" language:python stars:>10",
+              "\"knowledge graph\" \"llm wiki\" stars:>10",
+              "\"personal knowledge base\" rag language:python stars:>10",
+              "\"mcp server\" knowledge base language:python stars:>10"
+            ],
+            "removed": [
+              "language:typescript topic:ai stars:>20",
+              "topic:mcp language:python stars:>10",
+              "topic:model-context-protocol stars:>10",
+              "\"llm wiki\" OR \"ai wiki\" stars:>5"
+            ]
+          },
+          "watch_rotation": {
+            "replacements": 4,
+            "added": [
+              "nashsu/llm_wiki",
+              "AgriciDaniel/claude-obsidian",
+              "VectifyAI/OpenKB",
+              "nduckmink/arkon"
+            ],
+            "removed": [
+              "swarmclawai/swarmvault",
+              "MemPalace/mempalace",
+              "anthropics/anthropic-sdk-python",
+              "anthropics/anthropic-cookbook"
+            ]
+          }
         }
       }
     },
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 16,
-      "duration_ms": null,
+      "item_count": 7,
+      "duration_ms": 107674,
       "dynamic_config": {
         "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
@@ -1086,28 +1146,52 @@
         "updated": true,
         "source": "llm",
         "feed_rotation": {
-          "replacements": 0,
-          "added": [],
-          "removed": []
+          "replacements": 2,
+          "added": [
+            "https://blog.google/rss/",
+            "https://cloud.google.com/blog/feed/"
+          ],
+          "removed": [
+            "https://aws.amazon.com/blogs/machine-learning/feed/",
+            "https://github.blog/category/ai-and-ml/feed/"
+          ]
         },
         "model_term_rotation": {
-          "replacements": 0,
-          "added": [],
-          "removed": []
+          "replacements": 4,
+          "added": [
+            "claude opus 4.8",
+            "gemini embedding 2",
+            "aya multilingual",
+            "voxtral tts"
+          ],
+          "removed": [
+            "gemini 3.5 flash",
+            "mistral medium 3.5",
+            "mistral small 4",
+            "mistral 3"
+          ]
         },
         "tool_term_rotation": {
-          "replacements": 0,
-          "added": [],
-          "removed": []
+          "replacements": 3,
+          "added": [
+            "antigravity cli",
+            "agentwatch",
+            "agentcore"
+          ],
+          "removed": [
+            "agents cli",
+            "antigravity cli",
+            "agentwatch"
+          ]
         }
       },
       "extraction_diagnostics": {
-        "feeds_requested": 15,
+        "feeds_requested": 16,
         "source_pages_requested": 6,
-        "entries_fetched": 109,
-        "classified": 21,
-        "selected": 16,
-        "llm_classification_attempts": 24,
+        "entries_fetched": 118,
+        "classified": 8,
+        "selected": 7,
+        "llm_classification_attempts": 19,
         "llm_classification_failures": 0,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
@@ -1123,19 +1207,43 @@
           "updated": true,
           "source": "llm",
           "feed_rotation": {
-            "replacements": 0,
-            "added": [],
-            "removed": []
+            "replacements": 2,
+            "added": [
+              "https://blog.google/rss/",
+              "https://cloud.google.com/blog/feed/"
+            ],
+            "removed": [
+              "https://aws.amazon.com/blogs/machine-learning/feed/",
+              "https://github.blog/category/ai-and-ml/feed/"
+            ]
           },
           "model_term_rotation": {
-            "replacements": 0,
-            "added": [],
-            "removed": []
+            "replacements": 4,
+            "added": [
+              "claude opus 4.8",
+              "gemini embedding 2",
+              "aya multilingual",
+              "voxtral tts"
+            ],
+            "removed": [
+              "gemini 3.5 flash",
+              "mistral medium 3.5",
+              "mistral small 4",
+              "mistral 3"
+            ]
           },
           "tool_term_rotation": {
-            "replacements": 0,
-            "added": [],
-            "removed": []
+            "replacements": 3,
+            "added": [
+              "antigravity cli",
+              "agentwatch",
+              "agentcore"
+            ],
+            "removed": [
+              "agents cli",
+              "antigravity cli",
+              "agentwatch"
+            ]
           }
         }
       }

@@ -1,27 +1,56 @@
 {
   "version": 1,
-  "updated_at": "2026-05-28T01:33:19.252503+00:00",
-  "source": "persisted",
+  "updated_at": "2026-05-28T18:29:01.685739+00:00",
+  "source": "llm",
   "emerging_queries": [
     "reasoning language:python stars:>30",
     "memory llm language:python stars:>20",
     "\"recursive language model\" OR rlm language:python stars:>10",
-    "\"llm wiki\" OR \"ai wiki\" stars:>5",
-    "topic:model-context-protocol stars:>10",
-    "topic:mcp language:python stars:>10",
-    "language:typescript topic:ai stars:>20"
+    "\"mcp server\" knowledge base language:python stars:>10",
+    "\"personal knowledge base\" rag language:python stars:>10",
+    "\"knowledge graph\" \"llm wiki\" stars:>10",
+    "\"claude memory\" language:python stars:>10"
   ],
   "emerging_watch_repos": [
-    "anthropics/anthropic-cookbook",
-    "anthropics/anthropic-sdk-python",
-    "MemPalace/mempalace",
-    "swarmclawai/swarmvault"
+    "nduckmink/arkon",
+    "VectifyAI/OpenKB",
+    "AgriciDaniel/claude-obsidian",
+    "nashsu/llm_wiki"
   ],
   "refresh": {
     "auto_update_enabled": true,
     "used_persisted_state": true,
-    "updated": false,
-    "source": "persisted",
-    "llm_status": "unavailable_or_invalid"
+    "updated": true,
+    "source": "llm",
+    "query_rotation": {
+      "replacements": 4,
+      "added": [
+        "\"claude memory\" language:python stars:>10",
+        "\"knowledge graph\" \"llm wiki\" stars:>10",
+        "\"personal knowledge base\" rag language:python stars:>10",
+        "\"mcp server\" knowledge base language:python stars:>10"
+      ],
+      "removed": [
+        "language:typescript topic:ai stars:>20",
+        "topic:mcp language:python stars:>10",
+        "topic:model-context-protocol stars:>10",
+        "\"llm wiki\" OR \"ai wiki\" stars:>5"
+      ]
+    },
+    "watch_rotation": {
+      "replacements": 4,
+      "added": [
+        "nashsu/llm_wiki",
+        "AgriciDaniel/claude-obsidian",
+        "VectifyAI/OpenKB",
+        "nduckmink/arkon"
+      ],
+      "removed": [
+        "swarmclawai/swarmvault",
+        "MemPalace/mempalace",
+        "anthropics/anthropic-sdk-python",
+        "anthropics/anthropic-cookbook"
+      ]
+    }
   }
 }

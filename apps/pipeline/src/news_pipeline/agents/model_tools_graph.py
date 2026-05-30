@@ -7,7 +7,8 @@ import json
 import logging
 import os
 import re
-from datetime import datetime
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from html import unescape
 from typing import Any, Literal, TypedDict
@@ -30,6 +31,12 @@ from .model_tools_dynamic import resolve_dynamic_model_tool_inputs
 LOGGER = logging.getLogger(__name__)
 HTML_TAG_RE = re.compile(r"<[^>]+>")
 WHITESPACE_RE = re.compile(r"\s+")
+MONTH_DATE_RE = re.compile(
+    r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s+20\d{2}\b",
+    flags=re.IGNORECASE,
+)
+ISO_DATE_RE = re.compile(r"\b20\d{2}-\d{2}-\d{2}(?:[T ][0-2]\d:\d{2}:\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?\b")
+URL_DATE_RE = re.compile(r"/(20\d{2})/(\d{2})/(\d{2})(?:/|$)")
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 DEFAULT_OPENAI_MODEL = "gpt-5.4-mini"
 _LAST_DIAGNOSTICS: dict[str, Any] | None = None
@@ -277,19 +284,81 @@ def _source_name(url: str) -> str:
 
 
 def _date_from_text(value: str) -> str:
-    match = re.search(
-        r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s+20\d{2}\b",
-        value,
-        flags=re.IGNORECASE,
-    )
-    if not match:
-        return ""
-    for fmt in ("%b %d, %Y", "%B %d, %Y"):
+    match = MONTH_DATE_RE.search(value or "")
+    if match:
+        for fmt in ("%b %d, %Y", "%B %d, %Y"):
+            try:
+                return datetime.strptime(match.group(0).replace(".", ""), fmt).replace(tzinfo=timezone.utc).isoformat()
+            except ValueError:
+                continue
+
+    iso_match = ISO_DATE_RE.search(value or "")
+    if iso_match:
+        parsed = _parse_datetime_value(iso_match.group(0))
+        if parsed:
+            return parsed.isoformat()
+
+    return ""
+
+
+def _parse_datetime_value(value: str) -> datetime | None:
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+
+    normalized = raw.replace("Z", "+00:00")
+    for candidate in (normalized, normalized.replace(" ", "T", 1)):
         try:
-            return datetime.strptime(match.group(0).replace(".", ""), fmt).isoformat()
+            parsed = datetime.fromisoformat(candidate)
+            if parsed.tzinfo is None:
+                parsed = parsed.replace(tzinfo=timezone.utc)
+            return parsed.astimezone(timezone.utc)
         except ValueError:
             continue
-    return ""
+
+    for fmt in ("%Y-%m-%d", "%b %d, %Y", "%B %d, %Y"):
+        try:
+            return datetime.strptime(raw.replace(".", ""), fmt).replace(tzinfo=timezone.utc)
+        except ValueError:
+            continue
+
+    try:
+        parsed = parsedate_to_datetime(raw)
+        if parsed.tzinfo is None:
+            parsed = parsed.replace(tzinfo=timezone.utc)
+        return parsed.astimezone(timezone.utc)
+    except (TypeError, ValueError, IndexError):
+        return None
+
+
+def _date_from_url(url: str) -> str:
+    match = URL_DATE_RE.search(url or "")
+    if not match:
+        return ""
+    return f"{match.group(1)}-{match.group(2)}-{match.group(3)}T00:00:00+00:00"
+
+
+def _published_date_from_html(html: str, headers: Any) -> str:
+    candidates = [
+        r'(?:property|name|itemprop)="(?:article:published_time|og:published_time|publishdate|pubdate|datePublished|dateModified)"[^>]*content="([^"]+)"',
+        r'"datePublished"\s*:\s*"([^"]+)"',
+        r'"dateModified"\s*:\s*"([^"]+)"',
+        r'<time[^>]*datetime="([^"]+)"',
+    ]
+    for pattern in candidates:
+        match = re.search(pattern, html, flags=re.IGNORECASE)
+        if match:
+            parsed = _parse_datetime_value(match.group(1))
+            if parsed:
+                return parsed.isoformat()
+
+    text_match = _date_from_text(_strip_html(html)[:6000])
+    if text_match:
+        return text_match
+
+    last_modified = headers.get("Last-Modified") if headers else ""
+    parsed = _parse_datetime_value(last_modified)
+    return parsed.isoformat() if parsed else ""
 
 
 def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
@@ -311,13 +380,13 @@ def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
     return any(part in url for part in ("/news", "/engineering", "/blog", "/research", "/docs", "/gemini"))
 
 
-def _article_excerpt(url: str, title: str) -> str:
+def _article_metadata(url: str, title: str) -> dict[str, str]:
     try:
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
         response.raise_for_status()
     except requests.RequestException as exc:
         LOGGER.debug("Article excerpt fetch failed for %s: %s", url, exc)
-        return ""
+        return {"excerpt": "", "published_date": _date_from_url(url)}
 
     parser = LinkParser()
     parser.feed(response.text[:500000])
@@ -334,7 +403,31 @@ def _article_excerpt(url: str, title: str) -> str:
         elif not title_terms and any(term in lower for term in signal_terms):
             focused.append(paragraph)
     parts = [*focused[:4], *parser.meta_descriptions[:1]]
-    return " ".join(parts)[:1800].strip()
+    published_date = _published_date_from_html(response.text[:500000], response.headers) or _date_from_url(url)
+    return {
+        "excerpt": " ".join(parts)[:1800].strip(),
+        "published_date": published_date,
+    }
+
+
+def _resolve_entry_date(entry: dict[str, Any], cutoff: datetime) -> dict[str, Any] | None:
+    parsed = _parse_datetime_value(entry.get("published_date", ""))
+    if parsed:
+        if parsed < cutoff:
+            return None
+        return {**entry, "published_date": parsed.isoformat()}
+
+    metadata = _article_metadata(entry.get("url", ""), entry.get("title", ""))
+    resolved = _parse_datetime_value(metadata.get("published_date", ""))
+    if not resolved or resolved < cutoff:
+        return None
+
+    content = metadata.get("excerpt") or entry.get("content", "")
+    return {
+        **entry,
+        "published_date": resolved.isoformat(),
+        "content": content,
+    }
 
 
 def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
@@ -681,16 +774,25 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
     tool_terms = TOOL_SERVICE_TERMS + state.get("tool_terms", [])
     llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
     llm_available = llm_error_code not in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
+    cutoff = window_start()
     for entry in state.get("entries", []):
         url = entry["url"]
         if url in seen:
             continue
         seen.add(url)
+        entry = _resolve_entry_date(entry, cutoff)
+        if not entry:
+            continue
         release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
         if release and entry.get("source_page") and len(entry.get("content") or "") <= len(entry.get("title", "")) + 20:
-            excerpt = _article_excerpt(url, entry.get("title", ""))
+            metadata = _article_metadata(url, entry.get("title", ""))
+            excerpt = metadata.get("excerpt", "")
             if excerpt:
-                entry = {**entry, "content": excerpt}
+                entry = {
+                    **entry,
+                    "content": excerpt,
+                    "published_date": metadata.get("published_date") or entry.get("published_date", ""),
+                }
                 release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
         if release:
             release = _openai_classify_entry(entry, release, llm_available=llm_available)
@@ -703,7 +805,13 @@ def _select_entries(state: ModelToolsState) -> ModelToolsState:
     selected: list[dict[str, Any]] = []
     for kind in ("model", "tool_service"):
         entries = [entry for entry in state.get("classified", []) if entry.get("kind") == kind]
-        entries.sort(key=lambda entry: entry.get("release_score", 0), reverse=True)
+        entries.sort(
+            key=lambda entry: (
+                _parse_datetime_value(entry.get("published_date", "")) or datetime.min.replace(tzinfo=timezone.utc),
+                entry.get("release_score", 0),
+            ),
+            reverse=True,
+        )
         seen_names: set[str] = set()
         for entry in entries:
             key = re.sub(r"[^a-z0-9]+", " ", entry.get("name", "").lower()).strip()

@@ -125,3 +125,16 @@ Impact:
 - Added source-page extraction for Anthropic, Gemini API changelog, Meta AI, Mistral, and Cohere.
 - Source-page candidates are enriched with article excerpts when possible before final classification.
 - Model/tool cards now expose both the release URL and the originating source feed/page URL.
+
+## 2026-05-28 - Require recent resolved dates for model/tool release cards
+Status: accepted
+
+Reason:
+- Weekly model/tool filtering breaks when cards keep `Unknown` dates or inherit stale source-page links.
+- Vendor feeds and source pages vary widely, so date resolution needs multiple fallbacks before an item is trusted.
+- If a recent publish date still cannot be resolved, dropping the card is safer than showing a misleading weekly release.
+
+Impact:
+- Model/tool extraction now resolves publish dates from feed timestamps, HTML metadata, date-like URL paths, visible article text, and fallback response headers.
+- Entries without a resolved in-window date are excluded from `models` and `toolsServices`.
+- The dashboard model/tool sections now behave like the repo list: collapsed rows by default with clickable expansion for the full summary and links.

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-28T18:10:45.761727+00:00",
+  "updated_at": "2026-05-28T18:29:01.195129+00:00",
   "source": "llm",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
@@ -27,19 +27,19 @@
     "https://cohere.com/blog/"
   ],
   "emerging_feeds": [
+    "https://cloud.google.com/blog/feed/",
+    "https://blog.google/rss/",
     "https://developers.googleblog.com/feeds/posts/default",
-    "https://blog.google/technology/ai/rss/",
-    "https://github.blog/category/ai-and-ml/feed/",
-    "https://aws.amazon.com/blogs/machine-learning/feed/"
+    "https://blog.google/technology/ai/rss/"
   ],
   "emerging_model_terms": [
-    "mistral 3",
-    "mistral small 4",
-    "mistral medium 3.5",
-    "gemini 3.5 flash"
+    "voxtral tts",
+    "aya multilingual",
+    "gemini embedding 2",
+    "claude opus 4.8"
   ],
   "emerging_tool_terms": [
-    "agents cli"
+    "agentcore"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -47,19 +47,43 @@
     "updated": true,
     "source": "llm",
     "feed_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 2,
+      "added": [
+        "https://blog.google/rss/",
+        "https://cloud.google.com/blog/feed/"
+      ],
+      "removed": [
+        "https://aws.amazon.com/blogs/machine-learning/feed/",
+        "https://github.blog/category/ai-and-ml/feed/"
+      ]
     },
     "model_term_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 4,
+      "added": [
+        "claude opus 4.8",
+        "gemini embedding 2",
+        "aya multilingual",
+        "voxtral tts"
+      ],
+      "removed": [
+        "gemini 3.5 flash",
+        "mistral medium 3.5",
+        "mistral small 4",
+        "mistral 3"
+      ]
     },
     "tool_term_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 3,
+      "added": [
+        "antigravity cli",
+        "agentwatch",
+        "agentcore"
+      ],
+      "removed": [
+        "agents cli",
+        "antigravity cli",
+        "agentwatch"
+      ]
     }
   }
 }

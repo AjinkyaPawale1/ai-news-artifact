@@ -859,82 +859,110 @@ function RepoList() {
   );
 }
 
-function ReleaseCard({ item, accentColor }) {
-  const links = item.links?.length
-    ? item.links
-    : item.url
-      ? [{ label: "Read release", url: item.url }]
-      : [];
+function ReleaseList({ items, accentColor, emptyLabel }) {
+  const [openItem, setOpenItem] = useState(items[0]?.name ?? "");
+
+  if (!items.length) {
+    return (
+      <div className="border px-4 py-3" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+        <div className="ai-mono" style={{ fontSize: 11, color: "#64748b" }}>
+          {emptyLabel}
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div
-      className="border p-4"
-      style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}
-    >
-      <div className="flex items-start justify-between mb-2">
-        <div>
-          <div style={{ fontSize: 14, color: "#f1f5f9", fontWeight: 500 }}>
-            {item.name}
-          </div>
+    <div style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }} className="border">
+      {items.map((item, index) => {
+        const links = item.links?.length
+          ? item.links
+          : item.url
+            ? [{ label: "Read release", url: item.url }]
+            : [];
+
+        return (
           <div
-            className="ai-mono"
-            style={{ fontSize: 11, color: "#64748b" }}
+            key={item.name}
+            className="px-4 py-3"
+            style={{
+              borderBottom: index < items.length - 1 ? "1px solid #1c1f3f" : "none",
+            }}
           >
-            {item.org} · {item.date}
-          </div>
-        </div>
-        <span
-          className="ai-mono px-1.5 py-0.5 border"
-          style={{
-            fontSize: 9,
-            letterSpacing: "0.16em",
-            color: accentColor,
-            backgroundColor: `${accentColor}14`,
-            borderColor: `${accentColor}4d`,
-          }}
-        >
-          {item.tag}
-        </span>
-      </div>
-      <div style={{ fontSize: 12, color: "#94a3b8" }}>{item.note}</div>
-      {links.length > 0 && (
-        <div className="flex flex-wrap gap-3 mt-3">
-          {links.map((link) => (
-            <a
-              key={`${item.name}-${link.label}-${link.url}`}
-              href={link.url}
-              target="_blank"
-              rel="noreferrer"
-              className="ai-mono inline-flex items-center gap-1"
-              style={{ fontSize: 10, color: accentColor }}
+            <button
+              type="button"
+              onClick={() => setOpenItem(openItem === item.name ? "" : item.name)}
+              className="w-full text-left"
             >
-              {link.label.toUpperCase()}
-              <ExternalLink size={11} />
-            </a>
-          ))}
-        </div>
-      )}
+              <div className="flex items-center justify-between mb-1 gap-3">
+                <div className="truncate" style={{ fontSize: 13, color: "#f1f5f9", fontWeight: 500 }}>
+                  {item.name}
+                </div>
+                <div className="ai-mono shrink-0" style={{ fontSize: 10, color: "#64748b" }}>
+                  {item.date}
+                </div>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <div className="truncate" style={{ fontSize: 11, color: "#64748b" }}>
+                  {item.note}
+                </div>
+                <span
+                  className="ai-mono px-1.5 py-0.5 border shrink-0"
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.16em",
+                    color: accentColor,
+                    backgroundColor: `${accentColor}14`,
+                    borderColor: `${accentColor}4d`,
+                  }}
+                >
+                  {item.tag}
+                </span>
+              </div>
+            </button>
+            {openItem === item.name && (
+              <div className="mt-3 pt-3 border-t" style={{ borderColor: "rgba(28,31,63,0.7)" }}>
+                <div className="flex items-center gap-2 flex-wrap mb-3">
+                  <Tag>{item.org.toUpperCase()}</Tag>
+                  {item.date && <Tag>{item.date.toUpperCase()}</Tag>}
+                  <Tag>{item.tag}</Tag>
+                </div>
+                <div style={{ fontSize: 12, color: "#94a3b8" }}>{item.note}</div>
+                {links.length > 0 && (
+                  <div className="flex flex-wrap gap-3 mt-3">
+                    {links.map((link) => (
+                      <a
+                        key={`${item.name}-${link.label}-${link.url}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="ai-mono inline-flex items-center gap-1"
+                        style={{ fontSize: 10, color: accentColor }}
+                      >
+                        {link.label.toUpperCase()}
+                        <ExternalLink size={11} />
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
 
 function ModelList() {
   return (
-    <div className="space-y-3">
-      {MODELS.map((m) => (
-        <ReleaseCard key={m.name} item={m} accentColor={FSO_GOLD} />
-      ))}
-    </div>
+    <ReleaseList items={MODELS} accentColor={FSO_GOLD} emptyLabel="No recent model releases found." />
   );
 }
 
 function ToolsList() {
   return (
-    <div className="space-y-3">
-      {TOOLS_SERVICES.map((t) => (
-        <ReleaseCard key={t.name} item={t} accentColor="#67e8f9" />
-      ))}
-    </div>
+    <ReleaseList items={TOOLS_SERVICES} accentColor="#67e8f9" emptyLabel="No recent tool or service releases found." />
   );
 }
 
