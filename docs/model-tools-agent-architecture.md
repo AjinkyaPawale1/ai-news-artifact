@@ -80,7 +80,7 @@ flowchart TD
     F --> Q[sort by recency then release_score]
 
     F --> G[build_items]
-    G --> R[Item source_type=model|tool_service]
+    G --> R[Item source_type model or tool_service]
     R --> S[supervisor.py]
     S --> T[dedup -> normalize -> score -> quality_gate -> summarize]
     T --> U[push_to_artifact.py]
