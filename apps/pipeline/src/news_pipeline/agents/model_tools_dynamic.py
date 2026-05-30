@@ -13,7 +13,7 @@ from urllib.parse import urlparse
 
 import requests
 
-from ..config import (
+from ..model_tools_config import (
     MODEL_TOOL_CORE_FEEDS,
     MODEL_TOOL_DYNAMIC_AUTO_UPDATE,
     MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS,

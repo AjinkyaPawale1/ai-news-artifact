@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-05-29
+Last updated: 2026-05-30
 Owner: AI agent (Codex)
 
 ## Completed
@@ -34,6 +34,10 @@ Owner: AI agent (Codex)
 - Tightened model/tool release date resolution by extracting article publish dates from HTML metadata, URL patterns, and fallback headers, then dropping undated or stale entries outside the active weekly window.
 - Changed model and tool sections from always-expanded cards to repo-style collapsed rows that expand on click to show the full summary and release/source links.
 - Added `docs/model-tools-agent-architecture.md` documenting the end-to-end model/tools workflow: dynamic input resolution, LangGraph stages, date gating, artifact mapping, supervisor integration, diagnostics, and frontend rendering.
+- Centralized human-maintained model/tools source groups, classifier terms, and limits in `news_pipeline.model_tools_config`.
+- Removed the redundant model/tools feed fallback layer and made normal runs resolve deduplicated core plus emerging feeds.
+- Reused `MODEL_TOOL_MAX_ITEMS` for both graph selection and dashboard release-card rendering.
+- Added focused model/tools tests for bounded rotation, feed composition, and the shared output cap.
 - Created a new private GitHub remote at `https://github.com/AjinkyaPawale1/llm-news-artifact`, committed the current local workspace state, pushed the active and existing local branches, and reset the remote default branch to `main`.
 
 ## Current State
@@ -46,6 +50,7 @@ Owner: AI agent (Codex)
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
 - The dashboard can now receive generated model release and AI tool/service cards with longer notes plus release/source links when current feed entries match deterministic and/or LLM classification.
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
+- `data/model_tools_dynamic_config.json` is generated inspectable state, not the primary contributor edit point; static defaults live in `apps/pipeline/src/news_pipeline/model_tools_config.py`.
 - Latest refresh produced 1 model card and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
 - The docs folder now includes separate architecture pages for GitHub discovery and model/tool release discovery.
 - `origin` now points to `https://github.com/AjinkyaPawale1/llm-news-artifact.git`.

@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-29
+Last updated: 2026-05-30
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -27,6 +27,7 @@ Last updated: 2026-05-29
 - [x] Add richer model/tool card summaries and release/source links.
 - [x] Enforce recent-dated model/tool cards and make them collapsed/expandable like repo cards.
 - [x] Add end-to-end model/tools agent architecture documentation under `docs/`.
+- [x] Centralize model/tools source groups, terms, limits, and documentation.
 - [x] Publish the current project state to the private GitHub repository `AjinkyaPawale1/llm-news-artifact`.
 
 ## Todo

@@ -17,13 +17,16 @@ from urllib.parse import urljoin
 import feedparser
 import requests
 
-from ..config import (
-    MODEL_TOOL_FEEDS,
+from ..config import window_start
+from ..model_tools_config import (
+    MODEL_TOOL_CORE_FEEDS,
+    MODEL_TOOL_CORE_MODEL_TERMS,
+    MODEL_TOOL_CORE_TOOL_SERVICE_TERMS,
     MODEL_TOOL_LLM_CLASSIFY,
     MODEL_TOOL_LLM_CLASSIFY_LIMIT,
     MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_RELEASE_TERMS,
     MODEL_TOOL_SOURCE_PAGES,
-    window_start,
 )
 from ..schema import Item, utc_now_iso
 from .model_tools_dynamic import resolve_dynamic_model_tool_inputs
@@ -58,104 +61,6 @@ class ModelToolsState(TypedDict, total=False):
     selected: list[dict[str, Any]]
     items: list[Item]
 
-
-MODEL_TERMS = [
-    "model",
-    "models",
-    "frontier model",
-    "foundation model",
-    "gpt",
-    "o3",
-    "o4",
-    "o4-mini",
-    "claude",
-    "gemini",
-    "gemini api",
-    "llama",
-    "mistral",
-    "mixtral",
-    "command",
-    "cohere",
-    "grok",
-    "deepseek",
-    "qwen",
-    "phi",
-    "gemma",
-    "sonnet",
-    "opus",
-    "haiku",
-    "embedding",
-    "embeddings",
-    "reasoning",
-    "multimodal",
-    "vision-language",
-    "speech",
-    "tts",
-    "video model",
-    "image model",
-    "veo",
-    "imagen",
-    "sora",
-    "whisper",
-    "voxtral",
-    "sam",
-]
-
-TOOL_SERVICE_TERMS = [
-    "agent",
-    "agents",
-    "agentic",
-    "codex",
-    "claude code",
-    "gemini cli",
-    "antigravity",
-    "copilot",
-    "jules",
-    "ai studio",
-    "studio",
-    "sdk",
-    "api",
-    "responses api",
-    "gemini api",
-    "adk",
-    "agent development kit",
-    "service",
-    "platform",
-    "connector",
-    "tool",
-    "tools",
-    "workflow",
-    "terminal",
-    "ide",
-    "inference",
-    "serving",
-    "deployment",
-    "benchmark",
-    "eval",
-    "evaluation",
-]
-
-RELEASE_TERMS = [
-    "announce",
-    "announcing",
-    "introduce",
-    "introducing",
-    "launch",
-    "launched",
-    "release",
-    "released",
-    "available",
-    "generally available",
-    "preview",
-    "beta",
-    "new",
-    "upgrade",
-    "updated",
-    "updates",
-    "rollout",
-    "rolling out",
-    "changelog",
-]
 
 ORG_HINTS = {
     "openai": "OpenAI",
@@ -562,8 +467,8 @@ def _note(title: str, content: str) -> str:
 
 
 def _release_score(text: str, kind: ReleaseKind) -> int:
-    release_score = _term_count(text, RELEASE_TERMS) * 3
-    focus_terms = MODEL_TERMS if kind == "model" else TOOL_SERVICE_TERMS
+    release_score = _term_count(text, MODEL_TOOL_RELEASE_TERMS) * 3
+    focus_terms = MODEL_TOOL_CORE_MODEL_TERMS if kind == "model" else MODEL_TOOL_CORE_TOOL_SERVICE_TERMS
     focus_score = _term_count(text, focus_terms) * 4
     return release_score + focus_score
 
@@ -584,14 +489,14 @@ def _classify_entry(
         return None
 
     has_release_signal = (
-        _contains_any(title_text, RELEASE_TERMS)
-        or _contains_any(text, RELEASE_TERMS)
+        _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
+        or _contains_any(text, MODEL_TOOL_RELEASE_TERMS)
         or bool(entry.get("source_page"))
     )
     if not has_release_signal and max(title_model_score, title_tool_score) < 2:
         return None
 
-    release_score = _term_count(text, RELEASE_TERMS) * 3
+    release_score = _term_count(text, MODEL_TOOL_RELEASE_TERMS) * 3
     model_score = release_score + _term_count(text, model_terms) * 4 + title_model_score * 8
     tool_score = release_score + _term_count(text, tool_terms) * 4 + title_tool_score * 8
     if model_score < 7 and tool_score < 7:
@@ -730,7 +635,7 @@ def _openai_classify_entry(
 def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
     cutoff = window_start()
     entries: list[dict[str, Any]] = []
-    for feed_url in state.get("feeds", MODEL_TOOL_FEEDS):
+    for feed_url in state.get("feeds", MODEL_TOOL_CORE_FEEDS):
         LOGGER.info("Fetching model/tool feed %s", feed_url)
         feed = feedparser.parse(feed_url)
         feed_title = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
@@ -770,8 +675,8 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
 def _classify_entries(state: ModelToolsState) -> ModelToolsState:
     classified = []
     seen: set[str] = set()
-    model_terms = MODEL_TERMS + state.get("model_terms", [])
-    tool_terms = TOOL_SERVICE_TERMS + state.get("tool_terms", [])
+    model_terms = MODEL_TOOL_CORE_MODEL_TERMS + state.get("model_terms", [])
+    tool_terms = MODEL_TOOL_CORE_TOOL_SERVICE_TERMS + state.get("tool_terms", [])
     llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
     llm_available = llm_error_code not in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
     cutoff = window_start()
@@ -905,7 +810,7 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
         else resolve_dynamic_model_tool_inputs()
     )
     initial_state: ModelToolsState = {
-        "feeds": resolved.get("feeds") or MODEL_TOOL_FEEDS,
+        "feeds": resolved.get("feeds") or MODEL_TOOL_CORE_FEEDS,
         "source_pages": resolved.get("source_pages") or MODEL_TOOL_SOURCE_PAGES,
         "model_terms": resolved.get("emerging_model_terms") or [],
         "tool_terms": resolved.get("emerging_tool_terms") or [],

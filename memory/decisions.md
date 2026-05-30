@@ -151,3 +151,16 @@ Impact:
 - Created the private repository `AjinkyaPawale1/llm-news-artifact`.
 - Added `origin` pointing at the new repository and pushed `main`, `feature/model-tools-releases-workflow`, and `feature/paper-actions-workflow`.
 - Set the repository default branch to `main` after the initial push.
+
+## 2026-05-30 - Centralize model/tools agent configuration
+Status: accepted
+
+Reason:
+- Model/tools feeds, terms, and limits had become distributed across pipeline config, graph code, generated state, and artifact mapping.
+- Contributors need one human-maintained configuration home and one documented vocabulary for source ownership.
+
+Impact:
+- Added `news_pipeline.model_tools_config` for static source groups, core terms, toggles, and numeric limits.
+- Kept generated emerging state in `data/model_tools_dynamic_config.json` for inspection and continuity.
+- Standardized core, emerging, and candidate terminology.
+- Made `MODEL_TOOL_MAX_ITEMS` the shared per-category cap for graph selection and dashboard rendering.
