@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-28
+Last updated: 2026-06-01
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -21,6 +21,15 @@ Last updated: 2026-05-28
 - [x] Add `memory/errors.md` for repeated failures and troubleshooting lessons.
 - [x] Add deterministic arXiv paper action metadata and artifact mapping.
 - [x] Add focused tests for paper action extraction.
+- [x] Replace FSO-specific paper enrichment with generic AI/ML metadata.
+- [x] Add independent deterministic paper research ranking and top-eight artifact mapping.
+- [x] Preserve partial arXiv category results and publish paper fetch diagnostics.
+- [x] Keep the retained paper action metadata scoring generic.
+- [x] Add a paper-only refresh command that preserves non-paper dashboard sections.
+- [x] Add seven-day-first paper selection with bounded fourteen-day backfill.
+- [x] Add optional OpenAI paper summaries with deterministic three-bullet fallback.
+- [x] Reduce paper-card tags and add a highlighted paper link.
+- [x] Replace the weekly briefing mixed action queue with paper-only research cards.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

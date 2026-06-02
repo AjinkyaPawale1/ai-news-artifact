@@ -1,9 +1,10 @@
-"""LangGraph workflow for deterministic paper action extraction."""
+"""LangGraph workflow for deterministic paper enrichment and ranking."""
 
 from __future__ import annotations
 
 import hashlib
 import logging
+from datetime import datetime, timezone
 from typing import Any, TypedDict
 
 from ..schema import Item
@@ -17,59 +18,134 @@ class PaperGraphState(TypedDict, total=False):
 
 
 CAPABILITY_KEYWORDS = [
+    ("Agentic AI", ["agent", "agents", "agentic", "multi-agent", "multiagent", "tool use"]),
     (
-        "Agentic AI",
-        [
-            "agent",
-            "agents",
-            "agentic",
-            "multi-agent",
-            "multiagent",
-            "tool use",
-            "planning",
-        ],
-    ),
-    (
-        "RAG and Knowledge",
+        "RAG and Knowledge Systems",
         ["rag", "retrieval", "embedding", "vector", "knowledge graph", "knowledge base"],
     ),
     (
-        "Model Evaluation",
-        ["benchmark", "evaluation", "eval", "dataset", "leaderboard", "measure"],
+        "Foundation Models and Generative AI",
+        ["llm", "language model", "foundation model", "generative ai", "diffusion", "transformer"],
+    ),
+    ("Reasoning and Planning", ["reasoning", "chain-of-thought", "planning", "mathematical", "logic"]),
+    (
+        "Evaluation and Benchmarks",
+        ["benchmark", "evaluation", "eval", "leaderboard", "measure", "metric"],
+    ),
+    ("Multimodal AI", ["multimodal", "vision-language", "image", "audio", "video", "vlm"]),
+    (
+        "Training and Fine-Tuning",
+        ["training", "fine-tuning", "finetuning", "alignment", "reinforcement learning", "rlhf"],
     ),
     (
-        "Reasoning Models",
-        ["reasoning", "chain-of-thought", "planning", "mathematical", "logic"],
+        "Inference and Model Efficiency",
+        ["inference", "efficient", "compression", "quantization", "distillation", "latency", "serving"],
     ),
     (
-        "Multimodal AI",
-        ["multimodal", "vision-language", "image", "audio", "video", "vlm"],
+        "LLMOps and Production AI",
+        ["llmops", "production", "deployment", "monitoring", "observability", "pipeline", "orchestration"],
     ),
     (
-        "Model Efficiency",
-        ["efficient", "compression", "quantization", "distillation", "latency"],
+        "Safety, Alignment and Governance",
+        ["safety", "alignment", "governance", "privacy", "adversarial", "security", "responsible ai"],
+    ),
+    ("Data and Synthetic Data", ["dataset", "data quality", "synthetic data", "data generation", "labeling"]),
+    (
+        "Classical ML and Predictive Modeling",
+        ["machine learning", "classification", "regression", "forecasting", "clustering", "predictive"],
     ),
 ]
 
-FSO_KEYWORDS = [
-    ("Risk and Compliance", ["risk", "compliance", "audit", "regulation", "governance"]),
-    ("Fraud and Security", ["fraud", "security", "attack", "privacy", "adversarial"]),
-    ("Banking Operations", ["bank", "banking", "loan", "credit", "payment", "customer"]),
-    ("Capital Markets", ["market", "trading", "portfolio", "asset", "investment"]),
-    ("Insurance", ["insurance", "claim", "underwriting", "actuarial"]),
+DOMAIN_KEYWORDS = [
+    (
+        "AI Engineering and Developer Tools",
+        ["developer", "coding", "software", "toolkit", "framework", "orchestration", "pipeline"],
+    ),
+    (
+        "Enterprise and Knowledge Work",
+        ["enterprise", "knowledge work", "document", "workflow", "customer support", "productivity"],
+    ),
+    ("Security and Privacy", ["security", "privacy", "attack", "adversarial", "cyber"]),
+    ("Healthcare and Life Sciences", ["healthcare", "medical", "clinical", "patient", "drug", "biology"]),
+    ("Finance and Economics", ["finance", "financial", "bank", "market", "trading", "economic", "portfolio"]),
+    ("Robotics and Autonomous Systems", ["robot", "robotics", "autonomous", "navigation", "control"]),
+    ("Science and Research", ["science", "scientific", "research", "experiment", "laboratory"]),
+    ("Education", ["education", "learning", "student", "teaching", "tutor"]),
+    ("Media and Creative", ["media", "creative", "music", "video", "image generation", "design"]),
+    ("Public Sector and Legal", ["legal", "law", "government", "public sector", "policy"]),
+    ("Cross-domain", ["general-purpose", "cross-domain", "multi-domain", "generalizable"]),
 ]
 
-EXPERIMENT_TERMS = [
-    "open-source",
-    "code",
-    "github",
+AI_ML_TERMS = [
+    "ai",
+    "artificial intelligence",
+    "machine learning",
+    "ml",
+    "llm",
+    "language model",
+    "generative",
+    "agent",
+    "retrieval",
+    "transformer",
+    "neural",
+    "multimodal",
+    "reasoning",
+]
+EVIDENCE_TERMS = [
+    "benchmark",
+    "evaluation",
+    "experiment",
+    "dataset",
+    "ablation",
+    "baseline",
+    "accuracy",
+    "results",
+    "metric",
+    "study",
+]
+APPLICABILITY_TERMS = [
     "implementation",
     "framework",
     "toolkit",
     "system",
+    "deployment",
+    "production",
+    "workflow",
+    "latency",
+    "inference",
+    "serving",
 ]
-SHARE_TERMS = ["risk", "compliance", "security", "privacy", "audit", "governance"]
-WATCH_TERMS = ["survey", "position", "future work", "limitations", "preliminary"]
+REPRODUCIBILITY_TERMS = [
+    "open-source",
+    "open source",
+    "code",
+    "github",
+    "repository",
+    "dataset",
+    "implementation",
+    "reproduc",
+]
+NOVELTY_TERMS = [
+    "novel",
+    "new",
+    "introduce",
+    "propose",
+    "first",
+    "state-of-the-art",
+    "sota",
+    "emerging",
+]
+SHARE_TERMS = [
+    "safety",
+    "governance",
+    "responsible ai",
+    "privacy",
+    "security",
+    "general-purpose",
+    "widely applicable",
+    "cross-domain",
+]
+WATCH_TERMS = ["survey", "position", "future work", "limitations", "preliminary", "early results"]
 
 
 def _paper_text(item: Item) -> str:
@@ -86,12 +162,54 @@ def _best_label(text: str, groups: list[tuple[str, list[str]]], fallback: str) -
     return label if score else fallback
 
 
-def _action_priority(text: str) -> str:
-    if _matches(text, SHARE_TERMS) >= 2:
+def _component_score(text: str, terms: list[str], weight: int, max_hits: int) -> int:
+    return min(weight, round(weight * min(_matches(text, terms), max_hits) / max_hits))
+
+
+def _recency_score(item: Item) -> int:
+    try:
+        published = datetime.fromisoformat(item.published_date.replace("Z", "+00:00"))
+    except ValueError:
+        return 0
+    if published.tzinfo is None:
+        published = published.replace(tzinfo=timezone.utc)
+    age_days = max(0, (datetime.now(timezone.utc) - published).days)
+    return max(0, 10 - age_days)
+
+
+def _signal_level(score: int, weight: int) -> str:
+    ratio = score / weight
+    if ratio >= 0.67:
+        return "High"
+    if ratio >= 0.34:
+        return "Medium"
+    return "Low"
+
+
+def _research_score(text: str, item: Item) -> tuple[int, dict[str, int], dict[str, str]]:
+    components = {
+        "topical_fit": _component_score(text, AI_ML_TERMS, 25, 4),
+        "evidence": _component_score(text, EVIDENCE_TERMS, 20, 4),
+        "applicability": _component_score(text, APPLICABILITY_TERMS, 20, 4),
+        "reproducibility": _component_score(text, REPRODUCIBILITY_TERMS, 15, 3),
+        "novelty": _component_score(text, NOVELTY_TERMS, 10, 2),
+        "recency": _recency_score(item),
+    }
+    signals = {
+        "evidence": _signal_level(components["evidence"], 20),
+        "applicability": _signal_level(components["applicability"], 20),
+        "reproducibility": _signal_level(components["reproducibility"], 15),
+        "novelty": _signal_level(components["novelty"], 10),
+    }
+    return sum(components.values()), components, signals
+
+
+def _action_priority(text: str, research_signals: dict[str, str]) -> str:
+    if _matches(text, SHARE_TERMS):
         return "SHARE"
-    if _matches(text, EXPERIMENT_TERMS) >= 1:
+    if research_signals["reproducibility"] == "High" or _matches(text, APPLICABILITY_TERMS) >= 2:
         return "EXPERIMENT"
-    if _matches(text, WATCH_TERMS) >= 1:
+    if _matches(text, WATCH_TERMS):
         return "WATCH"
     return "READ"
 
@@ -100,31 +218,14 @@ def _action_title(priority: str) -> str:
     titles = {
         "READ": "Read for research signal",
         "EXPERIMENT": "Prototype a quick evaluation",
-        "SHARE": "Share with risk and governance leads",
+        "SHARE": "Share for broader review",
         "WATCH": "Track for follow-up evidence",
     }
     return titles[priority]
 
 
-def _relevance_for(domain: str, priority: str) -> dict[str, str]:
-    if domain == "Risk and Compliance" or priority == "SHARE":
-        return {"wam": "Medium", "cm": "Medium", "ins": "Medium", "risk": "High"}
-    if domain == "Capital Markets":
-        return {"wam": "High", "cm": "High", "ins": "Low", "risk": "Medium"}
-    if domain == "Insurance":
-        return {"wam": "Medium", "cm": "Low", "ins": "High", "risk": "Medium"}
-    if domain == "Banking Operations":
-        return {"wam": "Medium", "cm": "Medium", "ins": "Low", "risk": "Medium"}
-    return {"wam": "Medium", "cm": "Medium", "ins": "Low", "risk": "Medium"}
-
-
-def _verticals(domain: str, capability: str) -> list[str]:
-    verticals = ["AI", "Research"]
-    if domain != "Financial Services":
-        verticals.append(domain)
-    if capability not in verticals:
-        verticals.append(capability)
-    return verticals[:4]
+def _paper_tags(domain: str, capability: str) -> list[str]:
+    return [capability, domain]
 
 
 def _has_code(text: str, item: Item) -> bool:
@@ -134,6 +235,7 @@ def _has_code(text: str, item: Item) -> bool:
         or "github" in related
         or "code" in text
         or "open-source" in text
+        or "open source" in text
         or "implementation" in text
     )
 
@@ -144,11 +246,12 @@ def _paper_signal_id(item: Item, capability: str, domain: str) -> str:
 
 
 def enrich_paper_item(item: Item) -> Item:
-    """Attach deterministic action metadata to a paper item."""
+    """Attach generic deterministic research metadata to a paper item."""
     text = _paper_text(item)
-    capability = _best_label(text, CAPABILITY_KEYWORDS, "AI Research")
-    domain = _best_label(text, FSO_KEYWORDS, "Financial Services")
-    priority = _action_priority(text)
+    capability = _best_label(text, CAPABILITY_KEYWORDS, "Other AI/ML")
+    domain = _best_label(text, DOMAIN_KEYWORDS, "Other")
+    research_score, score_components, research_signals = _research_score(text, item)
+    priority = _action_priority(text, research_signals)
     action_title = _action_title(priority)
     has_code = _has_code(text, item)
 
@@ -162,7 +265,7 @@ def enrich_paper_item(item: Item) -> Item:
 
     action_items = [
         f"{action_title}: {item.title}",
-        f"Assess whether {capability.lower()} improves a current {domain.lower()} workflow.",
+        f"Assess whether {capability.lower()} improves a relevant {domain.lower()} workflow.",
         "Capture one pilot question and one risk question for stakeholder review.",
     ]
 
@@ -177,8 +280,10 @@ def enrich_paper_item(item: Item) -> Item:
             "action_title": action_title,
             "action_items": action_items,
             "takeaways": takeaways,
-            "verticals": _verticals(domain, capability),
-            "relevance": _relevance_for(domain, priority),
+            "paper_tags": _paper_tags(domain, capability),
+            "research_score": research_score,
+            "research_score_components": score_components,
+            "research_signals": research_signals,
             "has_code": has_code,
         }
     )
@@ -195,7 +300,7 @@ def _run_sequential_graph(state: PaperGraphState) -> PaperGraphState:
 
 
 def enrich_papers_with_graph(papers: list[Item]) -> list[Item]:
-    """Run the paper action extraction workflow."""
+    """Run the paper enrichment workflow."""
     initial_state: PaperGraphState = {"papers": papers}
     try:
         from langgraph.graph import END, StateGraph

@@ -50,6 +50,44 @@ The frontend treats `data/output.json` as a read-only contract and does not call
 
 The pipeline owns `data/output.json` and `data/health.json`. No API service is part of the current architecture.
 
+## Paper Discovery Methodology
+
+The paper source queries the latest `cs.AI`, `cs.CL`, and `cs.LG` arXiv entries and
+starts with papers from the seven-day brief window. If fewer than eight unique papers
+are available, it backfills only the remaining slots from days 8-14. One failed
+category does not discard successful category results.
+
+Paper enrichment produces a primary capability, a descriptive domain, action priority,
+takeaways, action items, tags, code-availability signal, research score, and visible
+research-signal levels. Domain labels are descriptive only and do not filter or score
+papers.
+
+Paper cards are ranked independently from other sources with an explainable `0-100`
+research score:
+
+| Component | Weight |
+| --- | ---: |
+| AI/ML topical fit | 25 |
+| Evidence and evaluation | 20 |
+| Practical applicability | 20 |
+| Reproducibility | 15 |
+| Novelty or emerging signal | 10 |
+| Recency within the seven-day window | 10 |
+
+The artifact emits the top eight available papers. The weekly briefing also uses ranked
+papers only; repos, releases, and tools/services remain separate dashboard sections.
+Paper health diagnostics include per-category status plus raw, seven-day, fourteen-day,
+backfill, deduplicated, and displayed counts.
+
+The eight displayed papers receive exactly three abstract-grounded summary bullets.
+When `OPENAI_API_KEY` is configured, the Responses API produces those bullets with
+`OPENAI_MODEL` and an `OPENAI_PAPER_SUMMARY_LIMIT` cap. Without a key or after an API
+failure, the pipeline falls back to deterministic abstract sentences.
+
+Use `npm run pipeline:papers` to refresh papers, paper-derived compatibility action items,
+and paper health diagnostics without fetching or replacing the existing repos, blogs,
+models, or tools/services.
+
 ## GitHub Discovery Methodology
 
 The GitHub source uses a dedicated LangGraph workflow documented in `docs/github-agent-architecture.md`.
@@ -79,6 +117,7 @@ Run from the repository root:
 
 ```sh
 npm run pipeline
+npm run pipeline:papers
 npm run dev
 npm run build
 npm run preview

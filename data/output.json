@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-28T01:34:22.221373+00:00",
+  "generatedAt": "2026-06-02T00:17:18.695492+00:00",
   "stats": [
     {
       "label": "PAPERS SCANNED",
-      "value": "0",
+      "value": "25",
       "sub": "arXiv"
     },
     {
@@ -25,135 +25,80 @@
   ],
   "actionItems": [
     {
-      "priority": "READ",
-      "title": "VectifyAI/OpenKB",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 25, 2026",
-      "why": "OpenKB: Open LLM Knowledge Base",
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
       "tags": [
-        "agents",
-        "ai",
-        "knowledge-base",
-        "llm",
-        "rag",
-        "retrieval"
+        "cs.CL",
+        "cs.AI"
       ],
-      "score": 60,
+      "score": 78,
       "fsoRelevant": true,
-      "url": "https://github.com/VectifyAI/OpenKB"
+      "url": "https://arxiv.org/pdf/2605.31564v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "swarmclawai/swarmvault",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 20, 2026",
-      "why": "The local-first LLM Wiki: open-source knowledge graph builder, RAG knowledge base, and agent memory store. Built on Andrej Karpathy's pattern. An Obsidian alternative for personal knowledge management, AI second brain, and durable Claude Co",
+      "title": "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
       "tags": [
-        "agent-memory",
-        "ai-agents",
-        "claude-code",
-        "claude-code-memory",
-        "codex",
-        "karpathy",
-        "knowledge-graph",
-        "llm",
-        "llm-wiki",
-        "local-first",
-        "mcp",
-        "mcp-server",
-        "obsidian",
-        "obsidian-alternative",
-        "openclaw",
-        "opencode",
-        "personal-knowledge-management",
-        "pkm",
-        "rag",
-        "wiki"
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
       ],
-      "score": 60,
+      "score": 71,
       "fsoRelevant": true,
-      "url": "https://github.com/swarmclawai/swarmvault"
-    },
-    {
-      "priority": "SHARE",
-      "title": "Beever-AI/beever-atlas",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 25, 2026",
-      "why": "Your First LLM-Wiki Conversation Knowledge Base",
-      "tags": [
-        "adk-google",
-        "agents",
-        "discord-bot",
-        "fastapi",
-        "gemini",
-        "google-adk",
-        "knowledge-base",
-        "large-language-models",
-        "llm",
-        "mattermost",
-        "mcp",
-        "mcp-server",
-        "microsoft-teams",
-        "open-source",
-        "python",
-        "rag",
-        "react",
-        "slack-bot",
-        "wiki"
-      ],
-      "score": 60,
-      "fsoRelevant": true,
-      "url": "https://github.com/Beever-AI/beever-atlas"
-    },
-    {
-      "priority": "WATCH",
-      "title": "syncable-dev/memtrace-public",
-      "source": "GitHub",
-      "sourceMeta": "GITHUB",
-      "date": "May 27, 2026",
-      "why": "Structural memory for AI coding agents. Bi-temporal graph, MCP-native, zero LLM calls. Cursor \u00b7 Claude Code \u00b7 Codex \u00b7 Hermes \u00b7 VS Code \u00b7 Windsurf.",
-      "tags": [
-        "agent-memory",
-        "ai-agents",
-        "bi-temporal-graph",
-        "claude-code",
-        "code-intelligence",
-        "code-search",
-        "coding-agents",
-        "cursor",
-        "developer-tools",
-        "knowledge-graph",
-        "llm",
-        "local-first",
-        "mcp",
-        "mcp-server",
-        "rag",
-        "rust",
-        "semantic-search",
-        "structural-memory",
-        "temporal-analysis",
-        "tree-sitter"
-      ],
-      "score": 48,
-      "fsoRelevant": true,
-      "url": "https://github.com/syncable-dev/memtrace-public"
+      "url": "https://arxiv.org/pdf/2605.31584v1"
     },
     {
       "priority": "READ",
-      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
-      "source": "OpenAI News",
-      "sourceMeta": "RSS",
-      "date": "May 27, 2026",
-      "why": "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation.",
+      "title": "Read for research signal: GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware.",
       "tags": [
-        "rss"
+        "cs.LG",
+        "cs.AI"
       ],
-      "score": 40,
+      "score": 62,
       "fsoRelevant": true,
-      "url": "https://openai.com/index/cisco"
+      "url": "https://arxiv.org/pdf/2605.31464v1"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality.",
+      "tags": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "score": 66,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2605.31603v1"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access.",
+      "tags": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 56,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2605.31500v1"
     }
   ],
   "repos": [
@@ -439,7 +384,280 @@
   ],
   "models": [],
   "toolsServices": [],
-  "papers": [],
+  "papers": [
+    {
+      "title": "What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+      "authors": "Qing Wang, Jacob Devasier, Chengkai Li",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 82,
+      "tags": [
+        "Foundation Models and Generative AI",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation. We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last. We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information. To address this, we propose lambda-scaled structural decoding, a training-free inference-time modification that downweights structural token confidence and recovers +9.4 BLEU-4. Finally, we introduce Graph-LLaDA, which integrates a Graph Transformer encoder into LLaDA's decoding process to explicitly incorporate relational graph structure. Cross-dataset evaluation on LAGRANGE reveals that previous baselines overfit to dataset-specific patterns, while LLM- and MDLM-based approaches generalize significantly better.",
+      "takeaways": [
+        "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
+        "We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last.",
+        "We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+        "Assess whether foundation models and generative ai improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31564v1"
+    },
+    {
+      "title": "LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+      "authors": "Nianyi Lin, Jiajie Zhang, Lei Hou, Juanzi Li",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 77,
+      "tags": [
+        "RAG and Knowledge Systems",
+        "Media and Creative"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content. Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps. To address these issues, we introduce \\textsc{LongTraceRL}. For data construction, we generate multi-hop questions via knowledge graph random walks and leverage search agent trajectories to build \\emph{tiered distractors}: documents the agent read but did not cite (high confusability) and documents that appeared in search results but were never opened (low confusability), producing training contexts that are far more challenging than those built by random sampling or one-shot search. For reward design, we propose a \\emph{rubric reward} that uses the gold entities along each reasoning chain as fine-grained, entity-level process supervision. This rubric reward is applied only to responses with correct final answers (positive-only strategy), distinguishing the reasoning quality among correct responses and preventing reward hacking. Experiments on three reasoning LLMs (4B--30B) across five long-context benchmarks demonstrate that \\textsc{LongTraceRL} consistently outperforms strong baselines and encourages comprehensive, evidence-grounded reasoning. Codes, datasets and models are available at \\href{https://github.com/THU-KEG/LongTraceRL}{https://github.com/THU-KEG/LongTraceRL}.",
+      "takeaways": [
+        "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
+        "Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps.",
+        "To address these issues, we introduce \\textsc{LongTraceRL}."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+        "Assess whether rag and knowledge systems improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "High",
+        "novelty": "High"
+      },
+      "capability": "RAG and Knowledge Systems",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31584v1"
+    },
+    {
+      "title": "GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+      "authors": "Zaid Khan, Justin Chih-Yao Chen, Jaemin Cho, Elias Stengel-Eskin, Mohit Bansal",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 67,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware. While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU. As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck. To address this, we study how LLMs can serve as selective GPU surrogates for kernel evaluation, by forecasting the performance of proposed kernels. A useful surrogate should be accurate, and it should be selective, by knowing when it could be wrong, and deferring to the GPU. To evaluate surrogates, we measure whether their forecasts are accurate, calibrated, and practically useful for recovering fast kernels under limited GPU-measurement budgets. Next, we study whether reinforcement learning can improve forecast accuracy and confidence calibration. Our experiments demonstrate that LLMs can accurately forecast relative kernel performance, that their utility can be improved through reinforcement learning. Used inside a kernel search, the surrogate lets the search consider several times as many candidates under the same GPU evaluation budget, and that leads to finding faster kernels than an equal-budget baseline. These results suggest that LLMs can play a broader role in kernel optimization, by acting as virtual models of a GPU rather than solely as kernel generators for search.",
+      "takeaways": [
+        "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware.",
+        "While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU.",
+        "As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck."
+      ],
+      "actionItems": [
+        "Read for research signal: GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31464v1"
+    },
+    {
+      "title": "Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
+      "authors": "Jiazheng Xing, Hangjie Yuan, Lingling Cai, Xinyu Liu, Yujie Wei, Fei Du, Hai Ci, Tao Feng, Jiasheng Tang, Weihua Chen, Fan Wang, Yong Liu",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 66,
+      "tags": [
+        "Inference and Model Efficiency",
+        "Media and Creative"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality. We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity. Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control. 2) During inference, we introduce Unified Progressive Frequency Bridging (UPFB) to progressively hand off generation to a high-capacity pretrained generator in the shared latent space, enabling coarse-to-fine refinement and producing high-fidelity videos without compromising reasoning quality. To fill the gap in reasoning-driven video generation benchmarks, we introduce VR-Bench, which assesses a model's capability to translate inferred intent into coherent and semantically aligned video content. Extensive experiments demonstrate that Lumos-Nexus achieves substantial gains in visual realism and temporal coherence on VBench, while exhibiting strong reasoning-based generative performance on VR-Bench. Code and models are available at https://jiazheng-xing.github.io/nexus-lumos-home/.",
+      "takeaways": [
+        "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality.",
+        "We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity.",
+        "Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
+        "Assess whether inference and model efficiency improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Inference and Model Efficiency",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31603v1"
+    },
+    {
+      "title": "On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+      "authors": "Daria Fomina, Daniil Krasylnikov, Alexey Boykov, Andrey Dolgovyazov, Vyacheslav Zhdanovskiy, Fedor Velikonivtsev",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 66,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Media and Creative"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access. Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs. We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer). For each family, we develop GPU kernels that reduce data movement, improve locality, and remain robust across realistic graphs. We also study graph reordering and find that its impact depends on the kernel mapping: it benefits neighbor-parallel (gather-dominated) kernels more consistently than feature-parallel designs. Empirically, our fused attention kernels reach up to $\\textbf{3.9}\\times$ speedup for Graph Transformer (median $\\textbf{1.6}\\times$), with Tensor Core (block-sparse) variants up to $\\textbf{7.3}\\times$ on locally dense graphs; for GATv2 we reach up to $\\textbf{8.5}\\times$ speedup (median $\\textbf{2.0}\\times$) while reducing peak memory by up to $\\textbf{76}\\times$ (median $\\textbf{6}\\times$). Our degree-aware reduction kernels achieve up to $\\textbf{10}\\times$ speedup (median $\\textbf{2.6}\\times$). For SpMM-based layers, properly cached cuSPARSE achieves up to $\\textbf{8}\\times$ speedup over DGL and outperforms evaluated custom baselines in the majority of evaluations. We release our implementations as drop-in replacements to support reproducible, hardware-aware GNN acceleration.",
+      "takeaways": [
+        "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access.",
+        "Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs.",
+        "We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer)."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+        "Assess whether evaluation and benchmarks improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "Low"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31500v1"
+    },
+    {
+      "title": "SPECTRA: Synthetic IR Test Collections with Relevance Oracles and Controlled Distractor Diagnostics",
+      "authors": "Eric Liang",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 64,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Scalable information retrieval testing needs corpora that are large enough to stress index construction, ranking latency, query routing, and evaluation tooling, yet human-judged test collections remain expensive and may be unavailable when documents are private or still under design. This paper introduces SPECTRA, a reproducible framework for generating synthetic text corpora and retrieval test collections through a separation of latent topical structure, surface text realization, metadata controls, query intent generation, and deterministic relevance oracles. The framework is intended as a diagnostic complement to Cranfield-style and TREC-style evaluation, not as a replacement for human assessment. A single-process Python prototype generated corpora up to 60,000 documents and 9.61 million tokens while preserving controllable long-tail vocabulary growth and producing graded relevance labels for 96 queries. In the local simulation study, generation remained close to linear at roughly 12K to 14K documents per second, estimated Zipf slopes stayed near 0.86 in absolute value, and increasing cross-topic distractor text reduced BM25 nDCG@10 from 1.00 at 2% distractors to 0.43 at 36% distractors. These results show that lightweight synthetic corpora can expose retrieval-system scaling and failure modes before costly collection construction begins.",
+      "takeaways": [
+        "Scalable information retrieval testing needs corpora that are large enough to stress index construction, ranking latency, query routing, and evaluation tooling, yet human-judged test collections remain expensive and may be unavailable when documents are private or still under design.",
+        "This paper introduces SPECTRA, a reproducible framework for generating synthetic text corpora and retrieval test collections through a separation of latent topical structure, surface text realization, metadata controls, query intent generation, and deterministic relevance oracles.",
+        "The framework is intended as a diagnostic complement to Cranfield-style and TREC-style evaluation, not as a replacement for human assessment."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: SPECTRA: Synthetic IR Test Collections with Relevance Oracles and Controlled Distractor Diagnostics",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "High",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31575v1"
+    },
+    {
+      "title": "Positional versus Symbolic Attention Heads: Learning Dynamics, RoPE Geometry, and Length Generalization",
+      "authors": "Felipe Urrutia, Juan Jos\u00e9 Alegr\u00eda, Cinthia Sanchez Macias, Jorge Salas, Cristian B. Calderon, Cristobal Rojas",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 62,
+      "tags": [
+        "Foundation Models and Generative AI",
+        "Robotics and Autonomous Systems"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Transformer-based language models are widespread in today's society. As such, understanding the mechanisms by which they solve structured tasks and predicting how they may behave in novel scenarios is of great importance for safe deployment. We study the learning dynamics of attention heads in a controlled setting by training a decoder-only Transformer (GPT-J) on two structurally equivalent multi-hop reasoning tasks: a number task requiring positional reasoning and a letter task requiring symbolic reasoning. Using a recently introduced metric that classifies attention-head behavior as positional or symbolic for a given prompt, we show that successful learning is associated with the emergence of pure heads, i.e., heads that express themselves as either positional or symbolic. Despite the tasks' structural equivalence, they impose different mechanistic demands: the number task requires both positional and symbolic heads, whereas the letter task requires only symbolic heads. We then identify the computational roles of these heads, characterize the basic functions they implement, and give theoretical constructions showing how single-layer RoPE-based attention can realize these functions through geometrically interpretable query, key, and value operations. This analysis yields a quantitative separation between positional and symbolic mechanisms in their robustness to longer sequences, formalized through a novel notion of discrepancy. We empirically validate the resulting predictions in both controlled and real-world models, showing that symbolic mechanisms extrapolate more reliably to longer sequences while positional mechanisms face sharper limitations.",
+      "takeaways": [
+        "Transformer-based language models are widespread in today's society.",
+        "As such, understanding the mechanisms by which they solve structured tasks and predicting how they may behave in novel scenarios is of great importance for safe deployment.",
+        "We study the learning dynamics of attention heads in a controlled setting by training a decoder-only Transformer (GPT-J) on two structurally equivalent multi-hop reasoning tasks: a number task requiring positional reasoning and a letter task requiring symbolic reasoning."
+      ],
+      "actionItems": [
+        "Track for follow-up evidence: Positional versus Symbolic Attention Heads: Learning Dynamics, RoPE Geometry, and Length Generalization",
+        "Assess whether foundation models and generative ai improves a relevant robotics and autonomous systems workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "Robotics and Autonomous Systems",
+      "url": "https://arxiv.org/pdf/2605.31558v1"
+    },
+    {
+      "title": "DOA: Training-Free Decoder-Only Attention Policy for Long-Form Simultaneous Translation with SpeechLLMs",
+      "authors": "Sara Papi, Luisa Bentivogli",
+      "org": "arXiv",
+      "date": "May 29, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 57,
+      "tags": [
+        "Foundation Models and Generative AI",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Simultaneous speech-to-text translation (SimulST) generates translations while speech is still unfolding, requiring a streaming policy that decides when to read and when to write. State-of-the-art approaches rely on attention-based encoder-decoder models where cross-attention provides explicit alignment signals. In contrast, Speech Large Language Models (SpeechLLMs) are decoder-only architectures relying solely on self-attention. This raises a central question: whether decoder self-attention contains sufficiently stable alignment signals to guide the streaming policy. Moreover, existing approaches typically rely on training-based adaptations or heuristic wait-$k$ policies and have not been validated in long-form settings. To fill these gaps, we propose Decoder-Only Attention (DOA), a training-free policy that enables long-form simultaneous translation with off-the-shelf SpeechLLMs by deriving a proxy alignment from self-attention. Experiments on Phi4-Multimodal and Qwen3-Omni show that DOA provides an effective alignment signal for supporting streaming decisions, enabling low-latency long-form SimulST with quality close to offline decoding without retraining.",
+      "takeaways": [
+        "Simultaneous speech-to-text translation (SimulST) generates translations while speech is still unfolding, requiring a streaming policy that decides when to read and when to write.",
+        "State-of-the-art approaches rely on attention-based encoder-decoder models where cross-attention provides explicit alignment signals.",
+        "In contrast, Speech Large Language Models (SpeechLLMs) are decoder-only architectures relying solely on self-attention."
+      ],
+      "actionItems": [
+        "Read for research signal: DOA: Training-Free Decoder-Only Attention Policy for Long-Form Simultaneous Translation with SpeechLLMs",
+        "Assess whether foundation models and generative ai improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31432v1"
+    }
+  ],
   "blogs": [
     {
       "source": "OpenAI News",
@@ -557,10 +775,43 @@
   "health": [
     {
       "source": "papers",
-      "status": "error",
-      "item_count": 0,
-      "duration_ms": 478,
-      "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+      "status": "ok",
+      "item_count": 25,
+      "duration_ms": 1229,
+      "fetch_diagnostics": {
+        "categories": [
+          {
+            "category": "cs.AI",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25
+          },
+          {
+            "category": "cs.CL",
+            "status": "error",
+            "raw_count": 0,
+            "seven_day_count": 0,
+            "fourteen_day_count": 0,
+            "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+          },
+          {
+            "category": "cs.LG",
+            "status": "error",
+            "raw_count": 0,
+            "seven_day_count": 0,
+            "fourteen_day_count": 0,
+            "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+          }
+        ],
+        "raw_count": 25,
+        "seven_day_count": 25,
+        "fourteen_day_count": 25,
+        "backfill_count": 0,
+        "selected_window_days": 7,
+        "deduplicated_count": 25,
+        "displayed_count": 8
+      }
     },
     {
       "source": "rss",

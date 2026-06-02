@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-05-28
+Last updated: 2026-06-01
 
 ## Purpose
 A single-page dashboard UI for a weekly AI intelligence brief tailored to financial services stakeholders.
@@ -36,13 +36,28 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Architecture details live in `docs/architecture.md`.
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
-- arXiv papers now carry deterministic action metadata in `Item.metadata`, including
-  `priority`, `takeaways`, `action_items`, `verticals`, `relevance`, and `has_code`.
+- arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,
+  including capability, descriptive domain, priority, takeaways, action items, tags,
+  `research_score`, visible research signals, and `has_code`.
+- Paper ranking is independent from the shared relevance score: research cards are sorted
+  by a transparent `0-100` research score and the top eight available papers are emitted.
+- Paper fetch diagnostics preserve partial arXiv results and capture per-category status
+  plus raw, seven-day, deduplicated, and displayed counts.
+- Paper selection uses the seven-day window first and backfills only missing display slots
+  from days 8-14 when fewer than eight unique recent papers are available.
+- Displayed papers carry exactly three abstract-grounded summary bullets. OpenAI Responses
+  API summaries are optional via `OPENAI_API_KEY`; deterministic abstract bullets remain
+  the fallback.
+- The weekly briefing's primary section is paper-only. The retained `actionItems` artifact
+  compatibility field is also derived from ranked papers only, never GitHub or RSS.
+- `npm run pipeline:papers` refreshes papers and paper health diagnostics while preserving
+  non-paper dashboard sections from the existing artifact checkpoint.
 
 ## Operational Commands
 - npm install
 - pip install -r apps/pipeline/requirements.txt
 - npm run pipeline
+- npm run pipeline:papers
 - npm run dev
 - npm run build
 - npm run preview

@@ -1,9 +1,5 @@
 import { useState } from "react";
 import {
-  BookOpen,
-  Share2,
-  FlaskConical,
-  Eye,
   ChevronRight,
   Star,
   ExternalLink,
@@ -27,57 +23,6 @@ import pipelineData from "../../../data/output.json";
 /* ------------------------------------------------------------------ */
 /*  Mock data — week 18 / 2026                                         */
 /* ------------------------------------------------------------------ */
-
-const ACTION_ITEMS = pipelineData.actionItems ?? [
-  {
-    priority: "READ",
-    title: "Hierarchical Reasoning for Multi-Asset Portfolio Optimization",
-    source: "Stanford AI Lab × JPM Asset Mgmt",
-    sourceMeta: "arXiv 2604.18432 · 38 pp",
-    date: "Apr 29",
-    why:
-      "First production-grade benchmark showing tree-search reasoning beats traditional RL on multi-period rebalancing. Direct relevance to discretionary mandates and the robo-advisory book.",
-    tags: ["WAM", "Capital Markets"],
-    score: 87,
-    fsoRelevant: true,
-  },
-  {
-    priority: "EXPERIMENT",
-    title: "Claude Sonnet 4.6 ships native tool-graph orchestration",
-    source: "Anthropic Engineering",
-    sourceMeta: "Release notes · API GA",
-    date: "May 1",
-    why:
-      "Removes most LangGraph / LlamaIndex glue for typical agent workflows. Drop-in replacement could cut our pipeline LOC by ~40% and eliminate a class of orchestration bugs.",
-    tags: ["All Verticals"],
-    score: 92,
-    fsoRelevant: true,
-  },
-  {
-    priority: "SHARE",
-    title: "Generative AI in Wealth Management — 2026 State of the Industry",
-    source: "BCG · Financial Services Insights",
-    sourceMeta: "62 pp report",
-    date: "Apr 27",
-    why:
-      "Useful client-facing material. 73% of UHNW advisors now use AI assistants for prep; competitive pressure on tier-2 RIAs is intensifying. Solid third-party validation slide.",
-    tags: ["WAM"],
-    score: 78,
-    fsoRelevant: true,
-  },
-  {
-    priority: "WATCH",
-    title: "Test-time-compute scaling laws for actuarial reserving",
-    source: "Lemonade Research × Caltech",
-    sourceMeta: "Working paper · pre-print",
-    date: "May 2",
-    why:
-      "Early signal that o-series-style reasoning models materially improve loss-triangle projections. Worth monitoring for the Insurance practice; not yet production-ready.",
-    tags: ["Insurance"],
-    score: 69,
-    fsoRelevant: true,
-  },
-];
 
 const REPOS = pipelineData.repos ?? [
   {
@@ -224,8 +169,8 @@ const PAPERS = pipelineData.papers ?? [
     date: "Apr 29, 2026",
     hasCode: true,
     stars: 312,
-    score: 87,
-    verticals: ["WAM", "Capital Markets"],
+    researchScore: 87,
+    tags: ["AI Research", "Reasoning and Planning", "Finance and Economics"],
     fsoRelevant: true,
     abstract:
       "We introduce HR-PO, a hierarchical tree-search method for multi-period portfolio optimization that decouples strategic asset allocation from tactical rebalancing. On a 10-year backtest across 47 mandates, HR-PO outperforms Markowitz mean-variance by 142 bps annualized while respecting transaction-cost and drawdown constraints. Ablations show the hierarchy — not the search budget — drives most of the gain.",
@@ -235,7 +180,7 @@ const PAPERS = pipelineData.papers ?? [
       "Directly applicable to discretionary mandates and robo-advisory workflows",
       "Production-grade benchmark validated on 47 real mandates over 10 years",
     ],
-    relevance: { wam: "Critical", cm: "High", ins: "Low", risk: "Medium" },
+    researchSignals: { evidence: "High", applicability: "High", reproducibility: "Medium", novelty: "High" },
   },
   {
     title: "Claim Triage with Sparse Mixture-of-Experts: A Production Deployment",
@@ -244,8 +189,8 @@ const PAPERS = pipelineData.papers ?? [
     date: "Apr 25, 2026",
     hasCode: true,
     stars: 89,
-    score: 71,
-    verticals: ["Insurance"],
+    researchScore: 71,
+    tags: ["AI Research", "Inference and Model Efficiency", "Healthcare and Life Sciences"],
     fsoRelevant: true,
     abstract:
       "We deploy a 32-expert sparse MoE for first-notice-of-loss triage across auto, home, and pet lines. Latency is equivalent to a 7B dense baseline while matching a 70B model on triage accuracy; live A/B shows an 18% reduction in cycle time and a 4.2% lift in fraud catch-rate. We discuss serving infrastructure, expert sharding, and failover paths under bursty inbound load.",
@@ -256,7 +201,7 @@ const PAPERS = pipelineData.papers ?? [
       "Covers auto, home, and pet insurance lines with single architecture",
       "Details on expert sharding and failover for production deployment",
     ],
-    relevance: { wam: "Low", cm: "Low", ins: "Critical", risk: "Medium" },
+    researchSignals: { evidence: "High", applicability: "High", reproducibility: "Medium", novelty: "Medium" },
   },
   {
     title: "Causal Stress Testing in Financial Networks via Agent Simulation",
@@ -265,8 +210,8 @@ const PAPERS = pipelineData.papers ?? [
     date: "Apr 22, 2026",
     hasCode: false,
     stars: 0,
-    score: 79,
-    verticals: ["Risk", "Capital Markets"],
+    researchScore: 79,
+    tags: ["AI Research", "Agentic AI", "Finance and Economics"],
     fsoRelevant: true,
     abstract:
       "An agent-based framework for systemic-risk analysis that combines structural causal models with LLM-driven counterparty behavior. We demonstrate scenarios — a stablecoin run, a 75 bps rates shock — where agentic feedback amplifies losses 2-3× versus VaR-style monte-carlo baselines. The framework is calibrated to Q4-2025 EBA stress data.",
@@ -277,7 +222,7 @@ const PAPERS = pipelineData.papers ?? [
       "Calibrated to real EBA Q4-2025 stress test data",
       "Directly relevant for regulatory stress testing and systemic risk assessment",
     ],
-    relevance: { wam: "Medium", cm: "High", ins: "Medium", risk: "Critical" },
+    researchSignals: { evidence: "High", applicability: "Medium", reproducibility: "Low", novelty: "High" },
   },
   {
     title: "Long-Context Retrieval for Earnings-Call Analysis at Scale",
@@ -286,8 +231,8 @@ const PAPERS = pipelineData.papers ?? [
     date: "Apr 18, 2026",
     hasCode: true,
     stars: 156,
-    score: 64,
-    verticals: ["Capital Markets"],
+    researchScore: 64,
+    tags: ["AI Research", "RAG and Knowledge Systems", "Finance and Economics"],
     fsoRelevant: true,
     abstract:
       "Compares 1M-token-context models against state-of-the-art RAG pipelines on a 12-year corpus of S&P 500 earnings calls. Long-context wins on multi-quarter narrative tracking; RAG retains a clear edge on factoid retrieval and per-query cost. We propose a hybrid router that delivers 92% of long-context quality at 23% of the cost.",
@@ -297,7 +242,7 @@ const PAPERS = pipelineData.papers ?? [
       "RAG still wins on factoid retrieval and per-query cost efficiency",
       "Tested on 12-year S&P 500 earnings call corpus",
     ],
-    relevance: { wam: "High", cm: "Critical", ins: "Low", risk: "Low" },
+    researchSignals: { evidence: "High", applicability: "High", reproducibility: "Medium", novelty: "Medium" },
   },
 ];
 
@@ -484,13 +429,6 @@ const SOCIAL_POSTS = pipelineData.socialPosts ?? [
 /*  Style maps                                                         */
 /* ------------------------------------------------------------------ */
 
-const PRIORITY = {
-  READ:       { hex: "#fb923c", bgRgba: "rgba(251,146,60,0.10)", borderRgba: "rgba(251,146,60,0.40)", icon: BookOpen },
-  EXPERIMENT: { hex: "#a78bfa", bgRgba: "rgba(167,139,250,0.10)", borderRgba: "rgba(167,139,250,0.40)", icon: FlaskConical },
-  SHARE:      { hex: "#34d399", bgRgba: "rgba(52,211,153,0.10)",  borderRgba: "rgba(52,211,153,0.40)",  icon: Share2 },
-  WATCH:      { hex: "#f87171", bgRgba: "rgba(248,113,113,0.10)", borderRgba: "rgba(248,113,113,0.40)", icon: Eye },
-};
-
 const RELEVANCE = {
   Critical: { dot: "#fbbf24", text: "#fcd34d" },
   High:     { dot: "rgba(251,191,36,0.55)", text: "#fde68a" },
@@ -538,29 +476,6 @@ function CircularScore({ score, size = 44 }) {
         {score}
       </div>
     </div>
-  );
-}
-
-function PriorityChip({ kind }) {
-  const p = PRIORITY[kind];
-  const Icon = p.icon;
-  return (
-    <span
-      className="inline-flex items-center gap-1.5"
-      style={{ color: p.hex }}
-    >
-      <Icon size={12} strokeWidth={2.5} />
-      <span
-        className="ai-mono"
-        style={{
-          fontSize: 10,
-          letterSpacing: "0.18em",
-          fontWeight: 600,
-        }}
-      >
-        {kind}
-      </span>
-    </span>
   );
 }
 
@@ -634,73 +549,6 @@ function TakeawayList({ takeaways }) {
 /* ------------------------------------------------------------------ */
 /*  Tab 1 — Weekly Briefing                                            */
 /* ------------------------------------------------------------------ */
-
-function ActionCard({ item }) {
-  const p = PRIORITY[item.priority];
-  return (
-    <div
-      className="group relative border transition-colors"
-      style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}
-      onMouseEnter={(e) => (e.currentTarget.style.borderColor = "#2a2e58")}
-      onMouseLeave={(e) => (e.currentTarget.style.borderColor = "#1c1f3f")}
-    >
-      <div
-        className="absolute left-0 top-0 bottom-0"
-        style={{ width: 3, backgroundColor: p.hex }}
-      />
-      <div className="pl-6 pr-5 py-5">
-        <div className="flex items-start justify-between gap-4 mb-3">
-          <PriorityChip kind={item.priority} />
-          <div className="flex items-center gap-3">
-            <span
-              className="ai-mono"
-              style={{ fontSize: 11, color: "#64748b" }}
-            >
-              {item.date}
-            </span>
-            <CircularScore score={item.score} size={38} />
-          </div>
-        </div>
-
-        <h3
-          className="leading-snug text-slate-100 mb-1.5"
-          style={{ fontSize: 15, fontWeight: 500 }}
-        >
-          {item.title}
-        </h3>
-
-        <div className="ai-mono mb-3" style={{ fontSize: 11, color: "#64748b" }}>
-          <span style={{ color: "#94a3b8" }}>{item.source}</span>
-          <span className="mx-2" style={{ color: "#334155" }}>·</span>
-          <span>{item.sourceMeta}</span>
-        </div>
-
-        <p
-          className="text-slate-400 mb-4"
-          style={{ fontSize: 13, lineHeight: 1.6 }}
-        >
-          {item.why}
-        </p>
-
-        <div className="flex items-center justify-between">
-          <div className="flex flex-wrap gap-1.5">
-            {item.tags.map((t) => (
-              <Tag key={t}>{t.toUpperCase()}</Tag>
-            ))}
-          </div>
-          <button
-            className="ai-mono flex items-center gap-1 transition-colors"
-            style={{ fontSize: 11, color: "#64748b" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = FSO_GOLD)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#64748b")}
-          >
-            OPEN <ExternalLink size={11} />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function StatsBar() {
   const stats = pipelineData.stats ?? [
@@ -915,17 +763,16 @@ function ToolsList() {
   );
 }
 
-function WeeklyBriefing({ fsoFilter }) {
-  const items = fsoFilter ? ACTION_ITEMS.filter((i) => i.fsoRelevant) : ACTION_ITEMS;
+function WeeklyBriefing() {
   return (
     <div>
       <StatsBar />
       <div className="grid grid-cols-3 gap-8">
         <div className="col-span-2">
-          <SectionHeader title="ACTION ITEMS" sub="curated for senior consultants" />
+          <SectionHeader title="RESEARCH PAPERS" sub="top ranked this week" />
           <div className="space-y-3">
-            {items.map((it, i) => (
-              <ActionCard key={i} item={it} />
+            {PAPERS.slice(0, 5).map((paper) => (
+              <PaperCard key={paper.title} paper={paper} />
             ))}
           </div>
         </div>
@@ -1003,13 +850,13 @@ function PaperCard({ paper }) {
                   {paper.stars}
                 </span>
               )}
-              {paper.verticals.map((v) => (
+              {paper.tags.map((v) => (
                 <Tag key={v}>{v.toUpperCase()}</Tag>
               ))}
             </div>
           </div>
           <div className="flex flex-col items-end gap-2 shrink-0">
-            <CircularScore score={paper.score} size={50} />
+            <CircularScore score={paper.researchScore} size={50} />
             <div
               className="ai-mono"
               style={{
@@ -1018,7 +865,7 @@ function PaperCard({ paper }) {
                 color: "#475569",
               }}
             >
-              FSO SCORE
+              RESEARCH SCORE
             </div>
             <ChevronRight
               size={16}
@@ -1061,16 +908,16 @@ function PaperCard({ paper }) {
               color: "#475569",
             }}
           >
-            VERTICAL RELEVANCE
+            RESEARCH SIGNALS
           </div>
           <div className="grid grid-cols-4 gap-3">
             {[
-              { key: "wam", label: "Wealth & Asset Mgmt" },
-              { key: "cm", label: "Capital Markets" },
-              { key: "ins", label: "Insurance" },
-              { key: "risk", label: "Risk" },
+              { key: "evidence", label: "Evidence" },
+              { key: "applicability", label: "Applicability" },
+              { key: "reproducibility", label: "Reproducibility" },
+              { key: "novelty", label: "Novelty" },
             ].map(({ key, label }) => {
-              const lvl = paper.relevance[key];
+              const lvl = paper.researchSignals[key];
               const r = RELEVANCE[lvl];
               return (
                 <div
@@ -1108,61 +955,49 @@ function PaperCard({ paper }) {
               );
             })}
           </div>
+          {paper.url && (
+            <a
+              href={paper.url}
+              target="_blank"
+              rel="noreferrer"
+              className="ai-mono inline-flex items-center gap-2 mt-5 px-3 py-2 border transition-colors"
+              style={{
+                fontSize: 11,
+                letterSpacing: "0.14em",
+                color: "#0a0a1a",
+                backgroundColor: FSO_GOLD,
+                borderColor: FSO_GOLD,
+                fontWeight: 700,
+              }}
+            >
+              OPEN PAPER
+              <ExternalLink size={12} />
+            </a>
+          )}
         </div>
       )}
     </div>
   );
 }
 
-function ResearchPapers({ fsoFilter }) {
-  const [filter, setFilter] = useState("All");
-  const filters = ["All", "WAM", "Capital Markets", "Insurance", "Risk"];
-
-  let filtered = filter === "All" ? PAPERS : PAPERS.filter((p) => p.verticals.includes(filter));
-  if (fsoFilter) filtered = filtered.filter((p) => p.fsoRelevant);
-
+function ResearchPapers() {
   return (
     <div>
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ai-mono" style={{ fontSize: 11, color: "#64748b" }}>
           <Filter size={14} style={{ color: "#64748b" }} />
-          <div className="flex items-center gap-1.5 flex-wrap">
-            {filters.map((f) => {
-              const active = filter === f;
-              return (
-                <button
-                  key={f}
-                  onClick={() => setFilter(f)}
-                  className="ai-mono px-3 py-1.5 border transition-colors"
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: "0.14em",
-                    textTransform: "uppercase",
-                    color: active ? FSO_GOLD : "#64748b",
-                    backgroundColor: active
-                      ? "rgba(251,191,36,0.08)"
-                      : "transparent",
-                    borderColor: active
-                      ? "rgba(251,191,36,0.40)"
-                      : "#1c1f3f",
-                  }}
-                >
-                  {f}
-                </button>
-              );
-            })}
-          </div>
+          7-DAY PAPERS · 14-DAY BACKFILL ONLY IF NEEDED
         </div>
         <div
           className="ai-mono"
           style={{ fontSize: 10, letterSpacing: "0.18em", color: "#475569" }}
         >
-          SHOWING {filtered.length} OF {PAPERS.length} · WEEK 18 / 2026
+          SHOWING {PAPERS.length} PAPERS · WEEK 18 / 2026
         </div>
       </div>
 
       <div className="space-y-3">
-        {filtered.map((p) => (
+        {PAPERS.map((p) => (
           <PaperCard key={p.title} paper={p} />
         ))}
       </div>
@@ -1856,8 +1691,8 @@ export default function Dashboard() {
       </header>
 
       <main className="max-w-[1400px] mx-auto px-8 py-10">
-        {tab === "briefing" && <WeeklyBriefing fsoFilter={fsoFilter} />}
-        {tab === "papers" && <ResearchPapers fsoFilter={fsoFilter} />}
+        {tab === "briefing" && <WeeklyBriefing />}
+        {tab === "papers" && <ResearchPapers />}
         {tab === "pulse" && <AIPulse fsoFilter={fsoFilter} />}
         {tab === "social" && <SocialMedia fsoFilter={fsoFilter} />}
         {tab === "architecture" && <ArchitectureTab />}

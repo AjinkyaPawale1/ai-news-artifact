@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --config apps/web/vite.config.js",
     "pipeline": "PYTHONPATH=apps/pipeline/src python3 -m news_pipeline.supervisor",
+    "pipeline:papers": "PYTHONPATH=apps/pipeline/src python3 -m news_pipeline.paper_pipeline",
     "build": "vite build --config apps/web/vite.config.js",
     "preview": "vite preview --config apps/web/vite.config.js"
   },

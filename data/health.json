@@ -1,10 +1,43 @@
 [
   {
     "source": "papers",
-    "status": "error",
-    "item_count": 0,
-    "duration_ms": 478,
-    "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+    "status": "ok",
+    "item_count": 25,
+    "duration_ms": 1229,
+    "fetch_diagnostics": {
+      "categories": [
+        {
+          "category": "cs.AI",
+          "status": "ok",
+          "raw_count": 25,
+          "seven_day_count": 25,
+          "fourteen_day_count": 25
+        },
+        {
+          "category": "cs.CL",
+          "status": "error",
+          "raw_count": 0,
+          "seven_day_count": 0,
+          "fourteen_day_count": 0,
+          "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.CL&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+        },
+        {
+          "category": "cs.LG",
+          "status": "error",
+          "raw_count": 0,
+          "seven_day_count": 0,
+          "fourteen_day_count": 0,
+          "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+        }
+      ],
+      "raw_count": 25,
+      "seven_day_count": 25,
+      "fourteen_day_count": 25,
+      "backfill_count": 0,
+      "selected_window_days": 7,
+      "deduplicated_count": 25,
+      "displayed_count": 8
+    }
   },
   {
     "source": "rss",

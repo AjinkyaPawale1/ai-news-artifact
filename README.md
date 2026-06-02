@@ -7,7 +7,7 @@ The project combines a React dashboard with a Python news pipeline. The pipeline
 ## What It Does
 
 - Fetches recent AI/LLM papers, repositories, releases, and blog updates.
-- Scores items for relevance to financial services.
+- Ranks papers with generic AI/ML research signals and scores other brief items for relevance.
 - Produces a dashboard-ready brief with action items, research, repos, articles, and source health.
 - Keeps the frontend simple: it reads generated data from `data/output.json`.
 
@@ -53,6 +53,7 @@ Vite will print a local URL. Open that URL in your browser to view the dashboard
 
 ```sh
 npm run pipeline   # fetch and regenerate data/output.json
+npm run pipeline:papers   # refresh papers only and preserve other dashboard sections
 npm run dev        # start the local dashboard
 npm run build      # build the dashboard
 npm run preview    # preview the production build
@@ -67,7 +68,9 @@ GITHUB_TOKEN=...      # improves GitHub API rate limits
 OPENAI_API_KEY=...    # enables LLM-generated GitHub repo bullets
 OPENAI_MODEL=...      # optional; defaults to gpt-5.4-mini
 OPENAI_REPO_BRIEF_LIMIT=5  # caps repo summary calls per run
+OPENAI_PAPER_SUMMARY_LIMIT=8  # caps optional paper summary calls per run
 DATE_WINDOW_DAYS=7    # weekly activity window for news and repo freshness
+ARXIV_FALLBACK_WINDOW_DAYS=14  # used only when fewer than 8 recent papers exist
 GITHUB_MAX_REPO_AGE_DAYS=90  # only show repos created in this recent horizon
 ```
 
