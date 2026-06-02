@@ -40,6 +40,8 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - The neutral dashboard shell uses six tabs: Weekly Snapshot, Research, Repos, Releases,
   Signals, and Pipeline. Weekly Snapshot is intentionally compact; full lists live in
   drill-down tabs.
+- The dashboard layout is responsive: mobile stacks stats/cards, wraps the tab rail,
+  and renders pipeline flow vertically to avoid horizontal overflow.
 - Weekly Snapshot uses a full-width featured-paper banner followed by equal-width repo,
   model-release, and tool/service previews. Repo previews include a one-line description.
 - GitHub `bestFor` labels separate knowledge-management products, MCP tooling, and

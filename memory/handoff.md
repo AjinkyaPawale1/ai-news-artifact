@@ -80,12 +80,16 @@ Owner: AI agent (Codex)
   dashboard URL is `https://ajinkyapawale1.github.io/ai-news-artifact/`.
 - Renamed the npm package to `ai-news-artifact`; the intended GitHub repository slug is
   `ai-news-artifact`.
+- Fixed mobile rendering by making the dashboard grids, header controls, tabs, research
+  cards, release lists, and pipeline flow responsive with no horizontal overflow at 390px.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
 - Python pipeline fetches real arXiv, GitHub, and RSS items and writes `data/output.json`.
 - GitHub repo bullets are generated deterministically by default and can use OpenAI when `OPENAI_API_KEY` is set.
 - Dashboard reads generated JSON data and builds successfully.
+- Dashboard renders properly on desktop and mobile; the mobile tab rail wraps and the
+  pipeline flow stacks vertically.
 - Dashboard branding and user-facing copy are generic rather than financial-services-specific.
 - AI Pulse, Social Pulse, and Enterprise Focus intentionally render as coming-soon placeholders.
 - Generated health log is written to `data/health.json`.
