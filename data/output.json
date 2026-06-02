@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-28T18:30:46.939675+00:00",
+  "generatedAt": "2026-06-02T00:41:19.101098+00:00",
   "stats": [
     {
       "label": "PAPERS SCANNED",
-      "value": "55",
+      "value": "40",
       "sub": "arXiv"
     },
     {
@@ -25,81 +25,79 @@
   ],
   "actionItems": [
     {
-      "priority": "READ",
-      "title": "Do Agents Need Semantic Metadata? A Comparative Study in Agentic Data Retrieval",
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 27, 2026",
-      "why": "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) f",
+      "date": "May 29, 2026",
+      "why": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
       "tags": [
-        "cs.IR",
+        "cs.CL",
         "cs.AI"
       ],
-      "score": 60,
+      "score": 78,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.28787v1"
+      "url": "https://arxiv.org/pdf/2605.31564v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Rethinking Memory as Continuously Evolving Connectivity",
+      "title": "Prototype a quick evaluation: BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 27, 2026",
-      "why": "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneou",
+      "date": "May 29, 2026",
+      "why": "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali.",
       "tags": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG",
-        "cs.MA",
-        "cs.MM"
+        "cs.CL"
       ],
-      "score": 60,
+      "score": 78,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.28773v1"
+      "url": "https://arxiv.org/pdf/2605.31483v1"
     },
     {
-      "priority": "SHARE",
-      "title": "MemTrace: Tracing and Attributing Errors in Large Language Model Memory Systems",
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 27, 2026",
-      "why": "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is s",
+      "date": "May 29, 2026",
+      "why": "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons.",
+      "tags": [
+        "cs.SE",
+        "cs.CL",
+        "eess.SY"
+      ],
+      "score": 76,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2605.31478v1"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "May 29, 2026",
+      "why": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
       "tags": [
         "cs.CL",
         "cs.AI",
         "cs.LG"
       ],
-      "score": 60,
+      "score": 71,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.28732v1"
+      "url": "https://arxiv.org/pdf/2605.31584v1"
     },
     {
-      "priority": "WATCH",
-      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
+      "priority": "SHARE",
+      "title": "Share for broader review: Preference-Aware Rubric Learning for Personalized Evaluation",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 27, 2026",
-      "why": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool acces",
-      "tags": [
-        "cs.AI"
-      ],
-      "score": 60,
-      "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.28721v1"
-    },
-    {
-      "priority": "READ",
-      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "May 27, 2026",
-      "why": "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a",
+      "date": "May 29, 2026",
+      "why": "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck.",
       "tags": [
         "cs.CL"
       ],
-      "score": 60,
+      "score": 71,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.28774v1"
+      "url": "https://arxiv.org/pdf/2605.31545v1"
     }
   ],
   "repos": [
@@ -515,254 +513,276 @@
   ],
   "papers": [
     {
-      "title": "Do Agents Need Semantic Metadata? A Comparative Study in Agentic Data Retrieval",
-      "authors": "Shiyu Chen, Tarfah Alrashed, Alon Halevy, Natasha Noy",
+      "title": "What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+      "authors": "Qing Wang, Jacob Devasier, Chengkai Li",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 60,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 82,
+      "tags": [
+        "Foundation Models and Generative AI",
+        "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) for machine-actionable data and enabled discovery tools like Google Dataset Search. However, the rise of Large Language Models (LLMs) capable of navigating the unstructured web raises a fundamental question: Is semantic metadata still necessary for agentic data discovery, or can agents reliably retrieve actionable data directly from the web? We present a comparative analysis of agentic data retrieval across two distinct environments: a Baseline Agent searching billions of open-web documents, and a Semantic Agent leveraging a corpus of 90 million datasets using schema.org. We deploy an \"LLM-as-a-judge\" evaluation pipeline, mapped directly to the FAIR principles, to assess the semantic relevance, data accessibility, and computational utility of the retrieved data. Our results reveal a clear divergence. The Semantic Agent excels at retrieving actionable data, achieving a 44.9% higher precision for metadata-rich registries and a 46.6% higher precision for pages with machine-readable downloads among its returned results. Conversely, the Baseline Agent frequently suffers \"Last-Mile Utility\" failures, retrieving prose-heavy pages (20.1% of results) and portal landing pages (8.5%) rather than actual data pages. While the Baseline Agent achieves higher coverage by answering 40% more questions, the Semantic Agent delivers greater accuracy, achieving 65.7% higher overall precision in retrieving FAIR-compliant datasets. We conclude that while unstructured retrieval supports broad exploratory tasks, structured ecosystems remain the indispensable foundation for reliable, execution-oriented autonomous workflows.",
+      "abstract": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation. We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last. We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information. To address this, we propose lambda-scaled structural decoding, a training-free inference-time modification that downweights structural token confidence and recovers +9.4 BLEU-4. Finally, we introduce Graph-LLaDA, which integrates a Graph Transformer encoder into LLaDA's decoding process to explicitly incorporate relational graph structure. Cross-dataset evaluation on LAGRANGE reveals that previous baselines overfit to dataset-specific patterns, while LLM- and MDLM-based approaches generalize significantly better.",
       "takeaways": [
-        "In the era of autonomous agents, machine-actionable data is critical for data-driven workflows. For more than a decade, semantic metadata like schema.org has anchored the FAIR principles (Findable, Accessible, Interoperable, and Reusable) f"
+        "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
+        "We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last.",
+        "We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+        "Assess whether foundation models and generative ai improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28787v1"
+      "capability": "Foundation Models and Generative AI",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31564v1"
     },
     {
-      "title": "Rethinking Memory as Continuously Evolving Connectivity",
-      "authors": "Jizhan Fang, Buqiang Xu, Zhixian Wang, Haoliang Cao, Xinle Deng, Baohua Dong, Hangcheng Zhu, Ruohui Huang, Gang Yu, Ying Wei, Guozhou Zheng, Feiyu Xiong, Haofen Wang, Huajun Chen, Ningyu Zhang",
+      "title": "BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
+      "authors": "Shefayat E Shams Adib, Ahmed Alfey Sani, Ekramul Alam Esham, Ajwad Abrar, Ishmam Tashdeed, Md Taukir Azam Chowdhury",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 60,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 82,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneous signals continuously reshape what should be remembered and how it should be connected. To address this, we propose FluxMem, a connectivity-evolving memory framework that models memory as a heterogeneous graph and progressively refines its topology through three stages: initial connection formation, feedback-driven refinement, and long-term consolidation. During execution, FluxMem repairs missing links, prunes interference, aligns abstraction granularity, and distills recurrent successful trajectories into reusable procedural circuits, guided by one metric for memory generalizability and evolutionary maturity. Across three fundamentally distinct benchmarks including LoCoMo, Mind2Web, and GAIA, FluxMem achieves consistent state-of-the-art performance, demonstrating strong adaptation and generalization in complex agentic environments. The code will be open-sourced in https://github.com/zjunlp/LightMem.",
+      "abstract": "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali. We introduce BenHalluEval, a fine-grained hallucination evaluation framework for Bengali covering four tasks: Generative Question Answering (GQA), Bangla-English Code-Mixed QA, Summarization, and Reasoning. We construct 12,000 hallucinated candidates using GPT-5.4 across twelve task-specific hallucination types, drawn from three existing Bengali datasets, and evaluate seven LLMs spanning reasoning-oriented, multilingual, and Bengali-centric categories under a dual-track protocol that independently measures false-positive rate on ground-truth instances (Track A) and hallucination detection rate on hallucinated candidates (Track B). To jointly penalise both failure modes and prevent inflated scores from uniform response bias, we propose BenHalluScore, a dual-track calibration metric that ranges from 7.72% to 55.42% across models and tasks, revealing substantial variation in hallucination calibration. Chain-of-thought prompting, applied as a mitigation strategy, shifts response distributions without consistently improving hallucination discrimination. BenHalluEval establishes the first dedicated hallucination benchmark for Bengali and highlights the inadequacy of single-track and prompting-only evaluation approaches for low-resource language settings. The dataset and code are available at https://anonymous.4open.science/r/BanglaHalluEval-EB77.",
       "takeaways": [
-        "Existing memory-augmented LLM agents often treat memory as a static repository with pre-defined representations and fixed retrieval pipelines, which is brittle in dynamic agentic environments where feedback, task variation, and heterogeneou"
+        "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali.",
+        "We introduce BenHalluEval, a fine-grained hallucination evaluation framework for Bengali covering four tasks: Generative Question Answering (GQA), Bangla-English Code-Mixed QA, Summarization, and Reasoning.",
+        "We construct 12,000 hallucinated candidates using GPT-5.4 across twelve task-specific hallucination types, drawn from three existing Bengali datasets, and evaluate seven LLMs spanning reasoning-oriented, multilingual, and Bengali-centric categories under a dual-track protocol that independently measures false-positive rate on ground-truth instances (Track A) and hallucination detection rate on hallucinated candidates (Track B)."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28773v1"
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31483v1"
     },
     {
-      "title": "MemTrace: Tracing and Attributing Errors in Large Language Model Memory Systems",
-      "authors": "Xinle Deng, Ruobin Zhong, Hujin Peng, Xiaoben Lu, Yanzhe Wu, Guang Li, Buqiang Xu, Yunzhi Yao, Jizhan Fang, Haoliang Cao, Junjie Guo, Yuan Yuan, Ziqing Ma, Yuanqiang Yu, Rui Hu, Baohua Dong, Hangcheng Zhu, Ningyu Zhang",
+      "title": "Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
+      "authors": "Hui Wu, Xiaoyang Wang, Zhong Fan",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 60,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 82,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Enterprise and Knowledge Work"
       ],
       "fsoRelevant": true,
-      "abstract": "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is synthesized, propagated, or corrupted over time. In this work, we study the new problem of error tracing and attribution in LLM memory systems. We propose a novel framework that transforms memory pipelines into executable memory evolution graphs, enabling fine-grained tracing of operational information flow. We then construct MemTraceBench, a benchmark collected from representative memory systems such as Long-Context, RAG, Mem0, and EverMemOS, to systematically study memory failure modes. We further introduce an automatic attribution method that iteratively traces operation subgraphs to pinpoint the root cause of any failed case. Our analysis reveals that memory failures are systematic, stemming from operation-level issues like information loss and retrieval misalignment. Crucially, we leverage these fine-grained attribution signals to guide downstream prompt optimization, establishing a closed-loop system that automatically corrects faults and boosts end-task performance by up to 7.62%. Code will be released at https://github.com/zjunlp/MemTrace.",
+      "abstract": "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons. This makes the reliability of open-weight models a deployment issue. We show that first-pass failures in power-system code generation are dominated not by reasoning alone, but by structured API-knowledge boundary errors: hallucinated function names, misused parameters, and mishandled result tables in versioned simulation libraries. We introduce PowerCodeBench, an execution-validated benchmark generator that pairs natural-language operator queries with pandapower code and numerical ground truth; an L0-L3 documentation-driven probing procedure that measures per-model API knowledge profiles; and a boundary-aware intervention that combines query-side API demand estimation with targeted proactive documentation injection and routed reactive correction. On a 2,000-task frozen release, we evaluate ten open-weight LLMs (1.5B-480B parameters) and four commercial mid-tier APIs. The intervention improves every evaluated open-weight model of at least 7B parameters and every commercial API by 32 to 56 accuracy points. Open-weight models in the 70B-120B range match the commercial mid-tier accuracy range, while Llama-3.1-405B and Qwen3-Coder-480B lead the panel. The targeted prompts preserve the full-context accuracy ceiling while using 41% of the prompt-token cost. The result is an accuracy-side, deployment-time path toward reliable on-premise LLM assistance for grid-analysis workflows without fine-tuning or cloud inference.",
       "takeaways": [
-        "Memory is essential for enabling large language models to support long-horizon reasoning, yet existing memory systems remain unreliable and difficult to debug. Tracing memory's dynamic evolution is crucial to understand how information is s"
+        "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons.",
+        "This makes the reliability of open-weight models a deployment issue.",
+        "We show that first-pass failures in power-system code generation are dominated not by reasoning alone, but by structured API-knowledge boundary errors: hallucinated function names, misused parameters, and mishandled result tables in versioned simulation libraries."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
+        "Assess whether evaluation and benchmarks improves a relevant enterprise and knowledge work workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "High",
+        "reproducibility": "Medium",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28732v1"
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Enterprise and Knowledge Work",
+      "url": "https://arxiv.org/pdf/2605.31478v1"
     },
     {
-      "title": "LiveBrowseComp: Are Search Agents Searching, or Just Verifying What They Already Know?",
-      "authors": "HuiMing Fan, Xiao Wang, Zheng Chu, Qianyu Wang, Zhuoyao Wang, Ming Liu, Bing Qin, XingYu",
+      "title": "LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+      "authors": "Nianyi Lin, Jiajie Zhang, Lei Hou, Juanzi Li",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 60,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 77,
+      "tags": [
+        "RAG and Knowledge Systems",
+        "Media and Creative"
       ],
       "fsoRelevant": true,
-      "abstract": "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool access, agents often rely on intrinsic knowledge -- information encoded in the model before retrieval -- rather than on external evidence. Agents answer up to 44.5% of BrowseComp questions without tools, generate more than half of their search queries from internally produced hypotheses rather than retrieved leads, and perform worse than closed-book baselines when answer-supporting evidence is removed. These results suggest that static search benchmarks can reward memory-backed verification rather than evidence-driven discovery, conflating what agents already know with what they can find. We then introduce LiveBrowseComp, a deep-search benchmark designed to evaluate agents beyond intrinsic coverage. It contains 335 human-authored questions whose answers depend on facts published within the 90 days preceding benchmark construction, drawn from six updated sources and filtered to exclude globally salient events. On LiveBrowseComp, all evaluated agents fall below 2% closed-book accuracy, search-augmented scores drop by 25-40 points relative to BrowseComp, and prior model rankings no longer reliably predict performance. LiveBrowseComp is available at https://huggingface.co/datasets/Forival/LiveBrowseComp.",
+      "abstract": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content. Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps. To address these issues, we introduce \\textsc{LongTraceRL}. For data construction, we generate multi-hop questions via knowledge graph random walks and leverage search agent trajectories to build \\emph{tiered distractors}: documents the agent read but did not cite (high confusability) and documents that appeared in search results but were never opened (low confusability), producing training contexts that are far more challenging than those built by random sampling or one-shot search. For reward design, we propose a \\emph{rubric reward} that uses the gold entities along each reasoning chain as fine-grained, entity-level process supervision. This rubric reward is applied only to responses with correct final answers (positive-only strategy), distinguishing the reasoning quality among correct responses and preventing reward hacking. Experiments on three reasoning LLMs (4B--30B) across five long-context benchmarks demonstrate that \\textsc{LongTraceRL} consistently outperforms strong baselines and encourages comprehensive, evidence-grounded reasoning. Codes, datasets and models are available at \\href{https://github.com/THU-KEG/LongTraceRL}{https://github.com/THU-KEG/LongTraceRL}.",
       "takeaways": [
-        "Are LLM-based search agents genuinely searching, or using the web to verify what they already know? We study this question on BrowseComp with three diagnostics. Our analysis reveals Intrinsic Knowledge Dependence (IKD): even with tool acces"
+        "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
+        "Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps.",
+        "To address these issues, we introduce \\textsc{LongTraceRL}."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+        "Assess whether rag and knowledge systems improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "High",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28721v1"
+      "capability": "RAG and Knowledge Systems",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31584v1"
     },
     {
-      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
-      "authors": "Minki Kang, Shizhe Diao, Ryo Hachiuma, Sung Ju Hwang, Pavlo Molchanov, Yu-Chiang Frank Wang, Byung-Kwan Lee",
+      "title": "Preference-Aware Rubric Learning for Personalized Evaluation",
+      "authors": "Yilun Qiu, Xiaoyan Zhao, Yang Zhang, Yuxin Chen, Cilin Yan, Jiayin Cai, Xiaolong Jiang, Yao Hu, Yoko Yamakata, Tat-Seng Chua",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 60,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 77,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a structural asymmetry: thinking (the self-contained default) and tool use (a high-variance auxiliary acting). We refer to this asymmetry as the Thinking-Acting Gap. Under standard RL recipes like GRPO, the gap manifests as two diagnostic symptoms during training: tool use is attempted on only ~30% of rollouts, and when attempted, the tool-using rollouts within a group are all-wrong on ~40% of questions, suppressing the learning signal at the tool calls that needed it. We propose AXPO (Agent eXplorative Policy Optimization): for each all-wrong tool-using subgroup, AXPO fixes the thinking prefix and resamples the tool call and its continuation, paired with uncertainty-based prefix selection. Across nine multimodal benchmarks and three scales of Qwen3-VL-Thinking, SFT+AXPO outperforms SFT+GRPO at average (+1.8pp Pass@1 and +1.8pp Pass@4 at 8B on average) and 8B with SFT+AXPO surpasses the 32B Base on Pass@4 with 4 times fewer parameters.",
+      "abstract": "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck. Existing evaluation methods-ranging from automatic metrics to LLM-as-a-judge approaches-fail to capture subjective, user-specific preferences embedded in long-term interaction histories. We identify three essential principles for reliable and effective personalized evaluation: Representativeness, User-Consistency, and Discriminativeness. To address these principles, we introduce Personalized Evaluation as Learning, a paradigm that formulates personalized evaluation as a learning problem rather than a static judgment. Under this paradigm, we propose PARL (Preference-Aware Rubric Learning for Personalized Evaluation), a framework that learns to induce preference-aware evaluation rubrics directly from raw user histories and performs a self-validation mechanism to ensure consistency with the user's preferences. PARL integrates rubric induction with a discriminative reinforcement learning objective that contrasts user-authored responses against competitive personalized model outputs, enabling the learned rubrics to capture precise, user-specific decision boundaries. Experiments on real-world personalized text generation tasks show that PARL consistently induces high-fidelity rubrics that reliably identify user-aligned responses and generalize across users and tasks, while capturing stable stylistic preferences and fine-grained evaluative patterns. To ensure reproducibility, our code is available at https://github.com/SnowCharmQ/PARL.",
       "takeaways": [
-        "Vision-language models with extended reasoning succeed on complex problems, but many real-world problems require external tools that internal reasoning alone often cannot resolve. Agentic reasoning therefore interleaves two behaviors with a"
+        "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck.",
+        "Existing evaluation methods-ranging from automatic metrics to LLM-as-a-judge approaches-fail to capture subjective, user-specific preferences embedded in long-term interaction histories.",
+        "We identify three essential principles for reliable and effective personalized evaluation: Representativeness, User-Consistency, and Discriminativeness."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Share for broader review: Preference-Aware Rubric Learning for Personalized Evaluation",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "High",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28774v1"
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31545v1"
     },
     {
-      "title": "OmniVerifier-M1: Multimodal Meta-Verifier with Explicit Structured Recalibration",
-      "authors": "Xinchen Zhang, Bowei Liu, Jiale Liu, Chufan Shi, Yizhen Zhang, Junhong Liu, Youliang Zhang, Zhiheng Li, Yujiu Yang, Ling Yang",
+      "title": "GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+      "authors": "Zaid Khan, Justin Chih-Yao Chen, Jaemin Cho, Elias Stengel-Eskin, Mohit Bansal",
       "org": "arXiv",
-      "date": "May 27, 2026",
+      "date": "May 29, 2026",
       "hasCode": false,
       "stars": 0,
-      "score": 48,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 67,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "Visual outcomes are increasingly central to multimodal large language models, making reliable and fine-grained verification essential for scaling generalist foundation models. In this work, we investigate multimodal meta-verification, which leverages verifier-generated rationales rather than decision-only signals, and explore how to effectively incorporate meta-verification feedback into multimodal verifier training. We identify two key findings. First, symbolic verifier outputs (e.g., bounding boxes) outperform textual explanations as meta-verification rationales, enabling efficient rule-based reinforcement learning rewards while avoiding reliance on model-based rewards from auxiliary judge models. Second, decoupling reinforcement learning objectives for binary judgment and meta-verification substantially outperforms joint reward optimization, due to intrinsic differences in output structure and learning dynamics. Based on these insights, we train OmniVerifier-M1, a generalist visual verifier leveraging symbolic meta-verification and decoupled reinforcement learning. OmniVerifier-M1 provides robust verification and fine-grained error localization, and further enables M1-TTS, a verifier-driven agentic generation system achieving dynamic region-level self-correction. This approach paves the way for more reliable, interpretable, and fine-grained multimodal verification, supporting safer and more controllable foundation model deployment.",
+      "abstract": "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware. While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU. As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck. To address this, we study how LLMs can serve as selective GPU surrogates for kernel evaluation, by forecasting the performance of proposed kernels. A useful surrogate should be accurate, and it should be selective, by knowing when it could be wrong, and deferring to the GPU. To evaluate surrogates, we measure whether their forecasts are accurate, calibrated, and practically useful for recovering fast kernels under limited GPU-measurement budgets. Next, we study whether reinforcement learning can improve forecast accuracy and confidence calibration. Our experiments demonstrate that LLMs can accurately forecast relative kernel performance, that their utility can be improved through reinforcement learning. Used inside a kernel search, the surrogate lets the search consider several times as many candidates under the same GPU evaluation budget, and that leads to finding faster kernels than an equal-budget baseline. These results suggest that LLMs can play a broader role in kernel optimization, by acting as virtual models of a GPU rather than solely as kernel generators for search.",
       "takeaways": [
-        "Visual outcomes are increasingly central to multimodal large language models, making reliable and fine-grained verification essential for scaling generalist foundation models. In this work, we investigate multimodal meta-verification, which"
+        "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware.",
+        "While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU.",
+        "As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Read for research signal: GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28805v1"
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2605.31464v1"
     },
     {
-      "title": "Self-Improving Language Models with Bidirectional Evolutionary Search",
-      "authors": "Guowei Xu, Zhenting Qi, Huangyuan Su, Weirui Ye, Himabindu Lakkaraju, Sham M. Kakade, Yilun Du",
+      "title": "Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
+      "authors": "Jiazheng Xing, Hangjie Yuan, Lingling Cai, Xinyu Liu, Yujie Wei, Fei Du, Hai Ci, Tao Feng, Jiasheng Tang, Weihua Chen, Fan Wang, Yong Liu",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 48,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 66,
+      "tags": [
+        "Inference and Model Efficiency",
+        "Media and Creative"
       ],
       "fsoRelevant": true,
-      "abstract": "Search has been proposed as an effective method for self-improving language models and agentic systems, both for post-training sample generation and for inference. However, widely used methods such as best-of-N sampling and tree search face two fundamental limitations: they are guided by sparse verification signals, and they construct candidates primarily through autoregressive expansion, restricting exploration to regions with substantial model probability mass. To address these, we propose Bidirectional Evolutionary Search (BES), a search framework that couples forward candidate evolution with backward goal decomposition. In the forward search, BES augments standard expansion with evolution operators that recombine partial trajectories to generate candidates that are difficult to obtain from a single model rollout. In the backward search, BES recursively decomposes the original task into checkable subgoals, producing dense intermediate feedback that guides forward search. We provide theoretical motivation showing that candidates generated by expansion-only search are confined to a narrow entropy shell while evolutionary operators can escape it, and that backward search can exponentially reduce the number of required samples to find a correct answer. Experiments show that on challenging post-training tasks where mainstream post-training algorithms fail to improve, BES enables consistent gains, and on three open problem solving benchmarks at inference time, BES outperforms existing open-source frameworks in both average and best-case performance. Code and trained models are available at https://github.com/Embodied-Minds-Lab/BES.",
+      "abstract": "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality. We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity. Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control. 2) During inference, we introduce Unified Progressive Frequency Bridging (UPFB) to progressively hand off generation to a high-capacity pretrained generator in the shared latent space, enabling coarse-to-fine refinement and producing high-fidelity videos without compromising reasoning quality. To fill the gap in reasoning-driven video generation benchmarks, we introduce VR-Bench, which assesses a model's capability to translate inferred intent into coherent and semantically aligned video content. Extensive experiments demonstrate that Lumos-Nexus achieves substantial gains in visual realism and temporal coherence on VBench, while exhibiting strong reasoning-based generative performance on VR-Bench. Code and models are available at https://jiazheng-xing.github.io/nexus-lumos-home/.",
       "takeaways": [
-        "Search has been proposed as an effective method for self-improving language models and agentic systems, both for post-training sample generation and for inference. However, widely used methods such as best-of-N sampling and tree search face"
+        "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality.",
+        "We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity.",
+        "Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
+        "Assess whether inference and model efficiency improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
       },
-      "url": "https://arxiv.org/pdf/2605.28814v1"
+      "capability": "Inference and Model Efficiency",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31603v1"
     },
     {
-      "title": "Human Label Variation as Stable Signal: Learning Annotator-Specific Explanation Behavior via Cross-Annotator Preference Optimization",
-      "authors": "Beiduo Chen, Pingjun Hong, Ziyun Zhang, Benjamin Roth, Anna Korhonen, Barbara Plank",
+      "title": "On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+      "authors": "Daria Fomina, Daniil Krasylnikov, Alexey Boykov, Andrey Dolgovyazov, Vyacheslav Zhdanovskiy, Fedor Velikonivtsev",
       "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
+      "date": "May 29, 2026",
+      "hasCode": true,
       "stars": 0,
-      "score": 48,
-      "verticals": [
-        "AI",
-        "Research"
+      "researchScore": 66,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Media and Creative"
       ],
       "fsoRelevant": true,
-      "abstract": "Free-text explanations extend human label variation (HLV) beyond label disagreement by revealing the reasoning and preferences behind annotators' decisions. We study whether large language models (LLMs) can learn and reproduce such annotator-specific label-explanation behavior. Using two sentence-pair tasks with four annotators each -- natural language inference and paraphrase judgment -- we first analyze whether annotators exhibit stable individual patterns. We find that such patterns are weak at the single-annotation level due to strong input-content effects, but become detectable after input-content reduction and annotator-level aggregation. We then compare prompting and supervised fine-tuning (SFT) baselines and propose cross-annotator preference optimization (CAPO), which contrasts a target annotator's response with other valid but less target-specific annotations for the same input. Experiments show that prompting is limited and unstable, SFT better captures annotator-specific behavior, and CAPO further improves aggregation-aware imitation and judge-based attribution while preserving target-specific reasoning patterns under human validation. Overall, our results show that HLV can be learned as annotator-specific label-explanation behavior, suggesting a path toward scalable explanation-based annotation grounded in annotator histories rather than labels alone.",
+      "abstract": "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access. Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs. We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer). For each family, we develop GPU kernels that reduce data movement, improve locality, and remain robust across realistic graphs. We also study graph reordering and find that its impact depends on the kernel mapping: it benefits neighbor-parallel (gather-dominated) kernels more consistently than feature-parallel designs. Empirically, our fused attention kernels reach up to $\\textbf{3.9}\\times$ speedup for Graph Transformer (median $\\textbf{1.6}\\times$), with Tensor Core (block-sparse) variants up to $\\textbf{7.3}\\times$ on locally dense graphs; for GATv2 we reach up to $\\textbf{8.5}\\times$ speedup (median $\\textbf{2.0}\\times$) while reducing peak memory by up to $\\textbf{76}\\times$ (median $\\textbf{6}\\times$). Our degree-aware reduction kernels achieve up to $\\textbf{10}\\times$ speedup (median $\\textbf{2.6}\\times$). For SpMM-based layers, properly cached cuSPARSE achieves up to $\\textbf{8}\\times$ speedup over DGL and outperforms evaluated custom baselines in the majority of evaluations. We release our implementations as drop-in replacements to support reproducible, hardware-aware GNN acceleration.",
       "takeaways": [
-        "Free-text explanations extend human label variation (HLV) beyond label disagreement by revealing the reasoning and preferences behind annotators' decisions. We study whether large language models (LLMs) can learn and reproduce such annotato"
+        "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access.",
+        "Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs.",
+        "We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer)."
       ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
+      "actionItems": [
+        "Prototype a quick evaluation: On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
+        "Assess whether evaluation and benchmarks improves a relevant media and creative workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "Low"
       },
-      "url": "https://arxiv.org/pdf/2605.28802v1"
-    },
-    {
-      "title": "The Importance of Being Statistically Earnest: A Critical Re-evaluation of GSM-Symbolic",
-      "authors": "Dominika Agnieszka D\u0142ugosz, Arlindo Oliveira, Natalia D\u00edaz Rodr\u00edguez",
-      "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "score": 48,
-      "verticals": [
-        "AI",
-        "Research"
-      ],
-      "fsoRelevant": true,
-      "abstract": "The GSM-Symbolic benchmark (Mirzadeh et al., 2025) reported consistent performance drops across 25 Large Language Models (LLMs) when tested on template-generated variants of GSM8K problems, concluding that the models lack genuine reasoning capabilities. We argue that this conclusion rests on shaky statistical ground. Re-evaluating 20 open-weight models using Generalised Linear Mixed Models with per-question random effects, we find that only half exhibit statistically significant performance changes under the original prompt format. Moreover, we identify a previously unacknowledged factor: the main GSM-Symbolic dataset contains a systematically shifted distribution of larger integers in problem texts relative to GSM-Base (K-S statistic = 0.12, p < 0.001), contradicting the original authors' claims. Controlling for this large number effect accounts for significance in roughly half the remaining cases. Among models with statistically significant performance deltas, we identify distinct, model-specific failure profiles - including fragility of variable binding, arithmetic limitations, and dual-task interference - underscoring that blanket claims about LLM reasoning are both statistically premature and mechanistically misleading.",
-      "takeaways": [
-        "The GSM-Symbolic benchmark (Mirzadeh et al., 2025) reported consistent performance drops across 25 Large Language Models (LLMs) when tested on template-generated variants of GSM8K problems, concluding that the models lack genuine reasoning "
-      ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
-      },
-      "url": "https://arxiv.org/pdf/2605.28700v1"
-    },
-    {
-      "title": "Multi-Mixer Models: Flexible Sequence Modeling with Shared Representations",
-      "authors": "Kevin Y. Li, Asher Trockman, Ananda Theertha Suresh, Ziteng Sun",
-      "org": "arXiv",
-      "date": "May 27, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "score": 48,
-      "verticals": [
-        "AI",
-        "Research"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Softmax attention is the cornerstone of modern large language models, but its memory scales linearly and compute quadratically with sequence length. Linear recurrent models, such as linear attention and state space models, have become widely studied as alternatives to attention due to their linear compute and constant memory. While these sub-quadratic token mixing methods, or mixers, achieve promising efficiency gains and competitive results on a wide range of benchmarks, current linear recurrent models still lag behind on tasks that require long-context retrieval or in-context learning. A growing body of work studies hybrid architectures that attempt to mitigate these trade-offs by statically interleaving or merging attention and recurrent blocks. In this work, we explore a new axis of developing hybrid models: across the token sequence. We propose Oryx, a hybrid model that can, throughout a sequence, flexibly switch between different mixers, for example quadratic attention for rich context utilization and linear recurrences for efficient generation. Oryx ties at least 90% of its parameters across mixers, enabling attention and recurrent modes to operate over shared internal representations. We validate our design with Mamba-2 and Gated DeltaNet variants, up to 1.4B models. Under fixed token budgets and a mixed-training strategy, Oryx achieves comparable or better performance than its single-mixer baselines. At the 1.4B scale, all instances of Oryx outperform their respective baselines by at least 0.7 percentage points on averaged language modeling tasks. On retrieval tasks, Oryx achieves performance comparable to the Transformer baseline even when processing only a tiny fraction (<10%) of the tokens in attention mode. These results suggest that attention and linear recurrent models can share internal representations, and motivate sequence-axis hybridization as a promising direction.",
-      "takeaways": [
-        "Softmax attention is the cornerstone of modern large language models, but its memory scales linearly and compute quadratically with sequence length. Linear recurrent models, such as linear attention and state space models, have become widel"
-      ],
-      "relevance": {
-        "wam": "Medium",
-        "cm": "Medium",
-        "ins": "Low",
-        "risk": "Medium"
-      },
-      "url": "https://arxiv.org/pdf/2605.28769v1"
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Media and Creative",
+      "url": "https://arxiv.org/pdf/2605.31500v1"
     }
   ],
   "blogs": [
@@ -883,8 +903,41 @@
     {
       "source": "papers",
       "status": "ok",
-      "item_count": 75,
-      "duration_ms": 1548
+      "item_count": 40,
+      "duration_ms": 1017,
+      "fetch_diagnostics": {
+        "categories": [
+          {
+            "category": "cs.AI",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25
+          },
+          {
+            "category": "cs.CL",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25
+          },
+          {
+            "category": "cs.LG",
+            "status": "error",
+            "raw_count": 0,
+            "seven_day_count": 0,
+            "fourteen_day_count": 0,
+            "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+          }
+        ],
+        "raw_count": 50,
+        "seven_day_count": 50,
+        "fourteen_day_count": 50,
+        "backfill_count": 0,
+        "selected_window_days": 7,
+        "deduplicated_count": 40,
+        "displayed_count": 8
+      }
     },
     {
       "source": "rss",

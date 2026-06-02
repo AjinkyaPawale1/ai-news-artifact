@@ -32,34 +32,47 @@ def _format_count(value: int | str | None) -> str:
 
 
 def _to_action_item(item: dict, priority: str) -> dict:
+    metadata = item.get("metadata") or {}
+    action_items = metadata.get("action_items") or []
+    takeaways = metadata.get("takeaways") or []
     return {
-        "priority": priority,
-        "title": item.get("title", "Untitled"),
+        "priority": metadata.get("priority") or priority,
+        "title": action_items[0] if action_items else item.get("title", "Untitled"),
         "source": item.get("source", "Unknown"),
         "sourceMeta": item.get("source_type", "source").upper(),
         "date": _format_date(item.get("published_date", "")),
-        "why": item.get("summary") or item.get("raw_content") or "No summary available yet.",
+        "why": (
+            takeaways[0]
+            if takeaways
+            else item.get("summary") or item.get("raw_content") or "No summary available yet."
+        ),
         "tags": item.get("tags") or [item.get("source_type", "AI")],
-        "score": item.get("score", 50),
+        "score": item.get("action_score", item.get("score", 50)),
         "fsoRelevant": True,
         "url": item.get("url", ""),
     }
 
 
 def _to_paper(item: dict) -> dict:
+    metadata = item.get("metadata") or {}
     return {
         "title": item.get("title", "Untitled"),
         "authors": ", ".join(item.get("authors") or ["Unknown"]),
         "org": item.get("source", "arXiv"),
         "date": _format_date(item.get("published_date", "")),
-        "hasCode": False,
+        "hasCode": bool(metadata.get("has_code")),
         "stars": 0,
-        "score": item.get("score", 50),
-        "verticals": ["AI", "Research"],
+        "researchScore": metadata.get("research_score", 0),
+        "tags": metadata.get("paper_tags") or ["AI Research"],
         "fsoRelevant": True,
         "abstract": item.get("raw_content") or item.get("summary") or "No abstract available.",
-        "takeaways": [item.get("summary") or "Review this paper for potential relevance."],
-        "relevance": {"wam": "Medium", "cm": "Medium", "ins": "Low", "risk": "Medium"},
+        "takeaways": metadata.get("takeaways")
+        or [item.get("summary") or "Review this paper for potential relevance."],
+        "actionItems": metadata.get("action_items") or [],
+        "researchSignals": metadata.get("research_signals")
+        or {"evidence": "Low", "applicability": "Low", "reproducibility": "Low", "novelty": "Low"},
+        "capability": metadata.get("capability", "Other AI/ML"),
+        "domain": metadata.get("domain", "Other"),
         "url": item.get("url", ""),
     }
 
@@ -122,6 +135,7 @@ def _to_release(item: dict) -> dict:
 def build_dashboard_payload(items: list[dict], health: list[dict] | None = None) -> dict:
     """Build the JSON shape consumed by the React dashboard."""
     papers = [item for item in items if item.get("source_type") == "paper"]
+    papers.sort(key=lambda item: (item.get("metadata") or {}).get("research_score", 0), reverse=True)
     github = [
         item
         for item in items
@@ -138,7 +152,7 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
     rss = [item for item in items if item.get("source_type") == "rss"]
     models = [item for item in items if item.get("source_type") == "model"]
     tools_services = [item for item in items if item.get("source_type") == "tool_service"]
-    top = items[:5]
+    top_papers = papers[:5]
     priorities = ["READ", "EXPERIMENT", "SHARE", "WATCH", "READ"]
 
     return {
@@ -149,16 +163,49 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
             {"label": "ARTICLES", "value": str(len(rss)), "sub": "RSS feeds"},
             {"label": "FSO-RELEVANT", "value": str(len(items)), "sub": "score ≥ 40", "accent": True},
         ],
-        "actionItems": [_to_action_item(item, priorities[index % len(priorities)]) for index, item in enumerate(top)],
+        "actionItems": [
+            _to_action_item(item, priorities[index % len(priorities)])
+            for index, item in enumerate(top_papers)
+        ],
         "repos": [_to_repo(item) for item in github[:8]],
         "models": [_to_release(item) for item in models[:8]],
         "toolsServices": [_to_release(item) for item in tools_services[:8]],
-        "papers": [_to_paper(item) for item in papers[:10]],
+        "papers": [_to_paper(item) for item in papers[:8]],
         "blogs": [_to_blog(item) for item in rss[:10]],
         "socialPosts": [],
         "trending": [],
         "health": health or [],
     }
+
+
+def update_papers_in_payload(payload: dict, papers: list[dict], health: list[dict]) -> dict:
+    """Refresh paper-owned artifact fields while preserving other dashboard sections."""
+    ranked = sorted(
+        papers,
+        key=lambda item: (item.get("metadata") or {}).get("research_score", 0),
+        reverse=True,
+    )
+    updated = dict(payload)
+    stats = [dict(entry) for entry in payload.get("stats", [])]
+    paper_stat = next((entry for entry in stats if entry.get("label") == "PAPERS SCANNED"), None)
+    if paper_stat is None:
+        stats.insert(0, {"label": "PAPERS SCANNED", "value": str(len(ranked)), "sub": "arXiv"})
+    else:
+        paper_stat.update({"value": str(len(ranked)), "sub": "arXiv"})
+
+    updated.update(
+        {
+            "generatedAt": datetime.now(timezone.utc).isoformat(),
+            "stats": stats,
+            "actionItems": [
+                _to_action_item(item, ["READ", "EXPERIMENT", "SHARE", "WATCH", "READ"][index])
+                for index, item in enumerate(ranked[:5])
+            ],
+            "papers": [_to_paper(item) for item in ranked[:8]],
+            "health": health,
+        }
+    )
+    return updated
 
 
 def push_to_artifact(items: list[dict], health: list[dict] | None = None) -> dict:
@@ -167,3 +214,12 @@ def push_to_artifact(items: list[dict], health: list[dict] | None = None) -> dic
     payload = build_dashboard_payload(items, health)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return payload
+
+
+def push_papers_to_existing_artifact(papers: list[dict], health: list[dict]) -> dict:
+    """Write a paper-only refresh without replacing non-paper dashboard sections."""
+    payload = json.loads(OUTPUT_PATH.read_text(encoding="utf-8")) if OUTPUT_PATH.exists() else {}
+    updated = update_papers_in_payload(payload, papers, health)
+    DATA_DIR.mkdir(exist_ok=True)
+    OUTPUT_PATH.write_text(json.dumps(updated, indent=2), encoding="utf-8")
+    return updated

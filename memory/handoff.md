@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-05-29
+Last updated: 2026-06-01
 Owner: AI agent (Codex)
 
 ## Completed
@@ -35,6 +35,19 @@ Owner: AI agent (Codex)
 - Changed model and tool sections from always-expanded cards to repo-style collapsed rows that expand on click to show the full summary and release/source links.
 - Added `docs/model-tools-agent-architecture.md` documenting the end-to-end model/tools workflow: dynamic input resolution, LangGraph stages, date gating, artifact mapping, supervisor integration, diagnostics, and frontend rendering.
 - Created a new private GitHub remote at `https://github.com/AjinkyaPawale1/llm-news-artifact`, committed the current local workspace state, pushed the active and existing local branches, and reset the remote default branch to `main`.
+- Added deterministic paper action extraction with LangGraph fallback semantics.
+- Wired paper metadata into dashboard paper cards and top action items.
+- Added focused unittest coverage for paper action metadata and artifact mapping.
+- Replaced FSO-specific paper enrichment with generic AI/ML capability and domain taxonomies.
+- Added deterministic paper `research_score` components, visible research signals, and independent top-eight paper ranking.
+- Added a generic `action_score` retained for paper action metadata.
+- Made arXiv extraction preserve partial category results and emit paper diagnostics.
+- Updated the paper dashboard card to show generic tags, `RESEARCH SCORE`, and research signals.
+- Added `npm run pipeline:papers` for paper-only refreshes that preserve existing non-paper dashboard sections.
+- Added seven-day-first paper selection with days 8-14 used only to fill missing top-eight slots.
+- Added optional OpenAI Responses API paper summaries with exactly three abstract-grounded bullets and a deterministic fallback when no key is configured.
+- Reduced paper tags to capability plus domain and added a yellow `OPEN PAPER` link.
+- Replaced the weekly briefing's mixed action-card section with paper-only ranked cards labeled `RESEARCH PAPERS`; repos, releases, and tools remain separate.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -61,6 +74,7 @@ Owner: AI agent (Codex)
 7. Review `data/model_tools_dynamic_config.json` after live weekly runs and tune candidate feeds if the LLM proposal repeatedly keeps low-yield sources.
 8. Watch source-page cards for sparse/generic vendor site copy; if this recurs, add provider-specific content extraction rules before increasing card count.
 9. Consider widening source coverage only if weekly model-card volume stays too low after the stricter date gate; do not relax the recent-date requirement without another filtering strategy.
+10. Consider extracting GitHub/code links from arXiv abstracts or paper pages so `has_code` can be based on explicit links instead of text signals.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
@@ -73,6 +87,7 @@ Owner: AI agent (Codex)
 - Optional model/tool LLM behavior is bounded: it proposes emerging feed/keyword rotations from a candidate catalog and classifies only limited candidate entries.
 - `429 insufficient_quota` from OpenAI is an API billing/quota issue, not a normal transient rate limit; see `memory/errors.md` before retry loops.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
+- Paper research metadata and scores are deterministic keyword logic; adjust keyword groups and score weights carefully if dashboard labels or ranking feel too broad or too narrow.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
 - This checkout is a git worktree; GitHub CLI repository creation works more reliably by creating the remote first, then adding `origin`, rather than using `gh repo create --source=.`.

@@ -8,15 +8,16 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Callable
 
 from .agents.fetch_github import fetch_github, get_last_diagnostics
-from .agents.fetch_papers import fetch_papers
+from .agents.fetch_papers import fetch_papers, update_last_diagnostics
 from .agents.fetch_rss import fetch_rss
 from .agents.model_tools_graph import fetch_model_tools, get_last_diagnostics as get_model_tools_diagnostics
 from .dedup import deduplicate_items
 from .health_log import write_health_log
 from .normalize import normalize_items
+from .paper_summarize import enrich_paper_summaries
 from .push_to_artifact import push_to_artifact
 from .quality_gate import apply_quality_gate
-from .score import score_items
+from .score import attach_action_scores, score_items
 from .summarize import summarize_items
 from .schema import Item
 
@@ -87,6 +88,16 @@ def run_pipeline() -> dict:
     scored = score_items(normalized)
     passed = apply_quality_gate(scored)
     summarized = summarize_items(passed)
+    enrich_paper_summaries(summarized)
+    attach_action_scores(summarized)
+
+    paper_diagnostics = update_last_diagnostics(
+        deduplicated_count=sum(item.source_type == "paper" for item in deduped),
+        displayed_count=min(sum(item.get("source_type") == "paper" for item in summarized), 8),
+    )
+    paper_health = next((entry for entry in health if entry["source"] == "papers"), None)
+    if paper_health is not None:
+        paper_health["fetch_diagnostics"] = paper_diagnostics
 
     payload = push_to_artifact(summarized, health)
     write_health_log(health)

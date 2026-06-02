@@ -34,3 +34,16 @@ What worked:
 
 Notes for next time:
 - Check API billing/credits in the OpenAI Platform when `insufficient_quota` appears; code retries or smaller models will not fix account-level quota exhaustion.
+
+### 2026-05-28 - Python compileall cache permission on macOS
+Status: resolved
+
+What failed:
+- `python3 -m compileall ...` tried to write bytecode under
+  `/Users/ajinkyapawale/Library/Caches/com.apple.python/...` and failed in the sandbox.
+
+What worked:
+- Rerun compile/test commands with `PYTHONPYCACHEPREFIX=/private/tmp/llm-news-paper-actions-pycache`.
+
+Notes for next time:
+- Use a writable `PYTHONPYCACHEPREFIX` for Python validation commands in sandboxed worktrees.

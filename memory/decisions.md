@@ -151,3 +151,54 @@ Impact:
 - Created the private repository `AjinkyaPawale1/llm-news-artifact`.
 - Added `origin` pointing at the new repository and pushed `main`, `feature/model-tools-releases-workflow`, and `feature/paper-actions-workflow`.
 - Set the repository default branch to `main` after the initial push.
+
+## 2026-05-28 - Use deterministic paper action metadata
+Status: accepted
+
+Reason:
+- arXiv papers need dashboard-ready takeaways and action items without depending on an LLM call.
+- The repo already prefers deterministic labels where UI output should remain stable.
+- Paper enrichment is a small workflow step and should align with the LangGraph/LangChain pattern used for agent flows.
+
+Impact:
+- Added `news_pipeline.agents.paper_graph` to enrich paper `Item.metadata`.
+- `fetch_papers` now returns papers with priority, takeaways, action items, relevance, verticals, and code signals.
+- `push_to_artifact` maps those fields into dashboard paper cards and top action items.
+
+## 2026-06-01 - Use generic paper discovery and independent research ranking
+Status: accepted
+
+Reason:
+- Paper discovery should cover broad AI/ML research instead of applying financial-services domain assumptions during enrichment and ranking.
+- Research-card ranking and the mixed-source action queue answer different questions and need separate explainable scores.
+- A single arXiv category rate limit should not discard useful results from other categories.
+
+Impact:
+- Paper metadata now uses generic capability and domain taxonomies, generic research tags, visible research signals, and a deterministic `research_score`.
+- The dashboard emits the top eight available papers by research score and replaces the financial-services relevance grid with generic research signals.
+- The mixed-source action queue uses a separate generic `action_score`.
+- Paper fetches retain partial arXiv results and publish per-category diagnostics.
+
+## 2026-06-01 - Add bounded paper backfill and optional OpenAI summaries
+Status: accepted
+
+Reason:
+- Weekly paper cards should prioritize freshness without leaving the dashboard sparse.
+- Paper takeaways should summarize the abstract rather than repeat generic workflow advice.
+- The dashboard needs concise paper cards with minimal tags and an obvious source link.
+
+Impact:
+- Paper selection uses seven days first and fills missing top-eight slots from days 8-14 only.
+- Displayed papers receive exactly three abstract-grounded bullets, optionally generated through the OpenAI Responses API with deterministic fallback.
+- Paper cards show two tags and a highlighted yellow `OPEN PAPER` link.
+
+## 2026-06-01 - Keep the weekly briefing research-paper focused
+Status: accepted
+
+Reason:
+- Research papers, trending repositories, model releases, and tools/services should remain separate dashboard sections instead of competing in one mixed action queue.
+
+Impact:
+- The weekly briefing left section is labeled `RESEARCH PAPERS` and shows ranked paper cards.
+- The previous consultant-curation subtitle and mixed-source action-card UI were removed.
+- The retained `actionItems` artifact compatibility field now contains papers only.

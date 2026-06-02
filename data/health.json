@@ -2,8 +2,41 @@
   {
     "source": "papers",
     "status": "ok",
-    "item_count": 75,
-    "duration_ms": 1548
+    "item_count": 40,
+    "duration_ms": 1017,
+    "fetch_diagnostics": {
+      "categories": [
+        {
+          "category": "cs.AI",
+          "status": "ok",
+          "raw_count": 25,
+          "seven_day_count": 25,
+          "fourteen_day_count": 25
+        },
+        {
+          "category": "cs.CL",
+          "status": "ok",
+          "raw_count": 25,
+          "seven_day_count": 25,
+          "fourteen_day_count": 25
+        },
+        {
+          "category": "cs.LG",
+          "status": "error",
+          "raw_count": 0,
+          "seven_day_count": 0,
+          "fourteen_day_count": 0,
+          "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+        }
+      ],
+      "raw_count": 50,
+      "seven_day_count": 50,
+      "fourteen_day_count": 50,
+      "backfill_count": 0,
+      "selected_window_days": 7,
+      "deduplicated_count": 40,
+      "displayed_count": 8
+    }
   },
   {
     "source": "rss",

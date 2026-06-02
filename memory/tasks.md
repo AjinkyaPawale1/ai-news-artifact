@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-05-29
+Last updated: 2026-06-01
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -28,6 +28,17 @@ Last updated: 2026-05-29
 - [x] Enforce recent-dated model/tool cards and make them collapsed/expandable like repo cards.
 - [x] Add end-to-end model/tools agent architecture documentation under `docs/`.
 - [x] Publish the current project state to the private GitHub repository `AjinkyaPawale1/llm-news-artifact`.
+- [x] Add deterministic arXiv paper action metadata and artifact mapping.
+- [x] Add focused tests for paper action extraction.
+- [x] Replace FSO-specific paper enrichment with generic AI/ML metadata.
+- [x] Add independent deterministic paper research ranking and top-eight artifact mapping.
+- [x] Preserve partial arXiv category results and publish paper fetch diagnostics.
+- [x] Keep the retained paper action metadata scoring generic.
+- [x] Add a paper-only refresh command that preserves non-paper dashboard sections.
+- [x] Add seven-day-first paper selection with bounded fourteen-day backfill.
+- [x] Add optional OpenAI paper summaries with deterministic three-bullet fallback.
+- [x] Reduce paper-card tags and add a highlighted paper link.
+- [x] Replace the weekly briefing mixed action queue with paper-only research cards.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -40,6 +51,7 @@ Last updated: 2026-05-29
 - [ ] Add cross-source repo mention extraction from RSS and arXiv links.
 - [ ] Review model/tool dynamic config after weekly runs and adjust candidate feeds if needed.
 - [ ] Add provider-specific article extraction rules if source-page cards show repeated generic vendor copy.
+- [ ] Improve paper `has_code` by extracting explicit repository/code links from arXiv metadata or paper pages.
 
 ## In Progress
 - [ ] None
