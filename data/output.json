@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-02T00:41:19.101098+00:00",
+  "generatedAt": "2026-06-02T14:56:39.983275+00:00",
   "stats": [
     {
       "label": "PAPERS SCANNED",
-      "value": "40",
+      "value": "58",
       "sub": "arXiv"
     },
     {
@@ -18,7 +18,7 @@
     },
     {
       "label": "FSO-RELEVANT",
-      "value": "98",
+      "value": "110",
       "sub": "score \u2265 40",
       "accent": true
     }
@@ -26,85 +26,88 @@
   "actionItems": [
     {
       "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
+      "title": "Prototype a quick evaluation: ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 29, 2026",
-      "why": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
+      "date": "Jun 1, 2026",
+      "why": "Introduces ODTQA-FoRe, the first open-domain tabular QA dataset for future data forecasting and forecast-based reasoning on real estate data.",
       "tags": [
+        "cs.IR",
+        "cs.AI",
         "cs.CL",
+        "cs.LG",
+        "cs.MA"
+      ],
+      "score": 82,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2606.02433v1"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Prototype a quick evaluation: MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jun 1, 2026",
+      "why": "Proposes MASER, a lightweight modality-adaptive routing framework for embodied 3D spatial QA that trains five modality-specific adapters on a shared VLM backbone and selects one at inference time based on the question.",
+      "tags": [
+        "cs.CV",
         "cs.AI"
       ],
-      "score": 78,
+      "score": 88,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.31564v1"
+      "url": "https://arxiv.org/pdf/2606.02463v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
+      "title": "Prototype a quick evaluation: Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 29, 2026",
-      "why": "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali.",
+      "date": "Jun 1, 2026",
+      "why": "Identifies \u201cPerceptual Judgment Bias\u201d in multimodal LLM judges: when visual evidence conflicts with text, they often favor plausible narratives over perceptually correct answers.",
       "tags": [
-        "cs.CL"
+        "cs.CV",
+        "cs.AI"
       ],
-      "score": 78,
+      "score": 82,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.31483v1"
+      "url": "https://arxiv.org/pdf/2606.02578v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
+      "title": "Prototype a quick evaluation: Policy and World Modeling Co-Training for Language Agents",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 29, 2026",
-      "why": "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons.",
+      "date": "Jun 1, 2026",
+      "why": "Introduces PaW, a co-training framework that adds auxiliary world-modeling supervision to the same language-agent policy during reinforcement learning, without changing inference-time behavior.",
       "tags": [
-        "cs.SE",
-        "cs.CL",
-        "eess.SY"
+        "cs.LG",
+        "cs.AI"
       ],
-      "score": 76,
+      "score": 83,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.31478v1"
+      "url": "https://arxiv.org/pdf/2606.02388v1"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
+      "title": "Prototype a quick evaluation: AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "May 29, 2026",
-      "why": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
+      "date": "Jun 1, 2026",
+      "why": "AGENTCL introduces a continual-learning evaluation framework for language agents with controlled task streams and transfer-gain metrics, designed to test whether prior experience is reused across episodes.",
       "tags": [
-        "cs.CL",
         "cs.AI",
-        "cs.LG"
-      ],
-      "score": 71,
-      "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.31584v1"
-    },
-    {
-      "priority": "SHARE",
-      "title": "Share for broader review: Preference-Aware Rubric Learning for Personalized Evaluation",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "May 29, 2026",
-      "why": "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck.",
-      "tags": [
         "cs.CL"
       ],
-      "score": 71,
+      "score": 90,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2605.31545v1"
+      "url": "https://arxiv.org/pdf/2606.02461v1"
     }
   ],
   "repos": [
     {
       "name": "safishamsi/graphify",
-      "stars": "55.5k",
-      "desc": "AI coding assistant skill that turns mixed project assets into a queryable knowledge graph for Claude Code, Codex, Cursor, Gemini CLI, and other agents.",
+      "stars": "58.3k",
+      "desc": "AI coding-assistant skill that builds a queryable knowledge graph from codebases, schemas, docs, media, and infra for Claude Code, Cursor, Gemini CLI, and similar tools.",
       "url": "https://github.com/safishamsi/graphify",
       "language": "Python",
       "topics": [
@@ -121,44 +124,23 @@
         "tree-sitter"
       ],
       "createdAt": "Apr 3, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
+      "lastUpdated": "Jun 1, 2026",
+      "fetchedAt": "Jun 2, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Builds graphs from code, SQL, docs, images, and videos",
-        "Combines app code, schema, and infra in one graph",
-        "Uses RAG, tree-sitter, and graph clustering"
+        "Turns folders into a knowledge graph for RAG and code understanding.",
+        "Supports code, SQL, docs, images, videos, and app+DB+infra linkage.",
+        "Large, active Python project with 58k+ stars and recent release."
       ],
-      "latestRelease": "v0.8.22",
-      "latestReleaseUrl": "https://github.com/safishamsi/graphify/releases/tag/v0.8.22",
+      "latestRelease": "v0.8.28",
+      "latestReleaseUrl": "https://github.com/safishamsi/graphify/releases/tag/v0.8.28",
       "homepage": "https://graphifylabs.ai/",
       "license": "MIT"
     },
     {
-      "name": "nashsu/llm_wiki",
-      "stars": "9.7k",
-      "desc": "Cross-platform desktop app that incrementally turns documents into a persistent, interlinked wiki/knowledge base with graph search and multimodal ingest.",
-      "url": "https://github.com/nashsu/llm_wiki",
-      "language": "TypeScript",
-      "topics": [],
-      "createdAt": "Apr 8, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "Incremental wiki generation with source traceability",
-        "Graph, vector, and community-search workflows",
-        "Local API, web clipper, and auto-watch ingest"
-      ],
-      "latestRelease": "v0.4.15",
-      "latestReleaseUrl": "https://github.com/nashsu/llm_wiki/releases/tag/v0.4.15",
-      "homepage": "",
-      "license": "NOASSERTION"
-    },
-    {
       "name": "AgriciDaniel/claude-obsidian",
-      "stars": "5.7k",
-      "desc": "Open-source Obsidian + Claude Code plugin for a self-organizing AI second brain that ingests sources, builds a linked Markdown knowledge graph, and supports PKM/Notion-alternative workflows.",
+      "stars": "5.9k",
+      "desc": "Open-source AI second brain for Obsidian + Claude Code that turns sources into a persistent, linked Markdown knowledge graph. It focuses on AI note-taking, PKM, and a private Notion alternative using Karpathy\u2019s LLM Wiki pattern.",
       "url": "https://github.com/AgriciDaniel/claude-obsidian",
       "language": "Python",
       "topics": [
@@ -185,12 +167,12 @@
       ],
       "createdAt": "Apr 7, 2026",
       "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
+      "fetchedAt": "Jun 2, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "15 Claude Code skills; multi-agent support",
-        "Obsidian AI note-taking with compounding wiki vault",
-        "Based on Karpathy LLM Wiki pattern"
+        "15 Claude Code skills + multi-agent support",
+        "Compounding wiki vault in plain Markdown",
+        "Obsidian plugin for private PKM"
       ],
       "latestRelease": "v1.9.2",
       "latestReleaseUrl": "https://github.com/AgriciDaniel/claude-obsidian/releases/tag/v1.9.2",
@@ -199,8 +181,8 @@
     },
     {
       "name": "VectifyAI/OpenKB",
-      "stars": "1.9k",
-      "desc": "Open-source Python CLI for building a persistent, wiki-style LLM knowledge base from documents using reasoning-based retrieval and no vector DB.",
+      "stars": "2.0k",
+      "desc": "OpenKB is an open-source Python CLI for building a persistent, wiki-style knowledge base from documents using LLMs, with long-document retrieval, cross-references, and multi-modal support without a vector DB.",
       "url": "https://github.com/VectifyAI/OpenKB",
       "language": "Python",
       "topics": [
@@ -212,23 +194,23 @@
         "retrieval"
       ],
       "createdAt": "Apr 4, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
+      "lastUpdated": "Jun 2, 2026",
+      "fetchedAt": "Jun 2, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Compiles docs into interlinked knowledge pages",
-        "Supports query, chat, and skill generation",
-        "Uses long-doc retrieval with multi-modal LLMs"
+        "Compiles documents into interlinked knowledge pages",
+        "Uses reasoning-based retrieval instead of classic RAG",
+        "Supports query, chat, and skill generation"
       ],
-      "latestRelease": "v0.2.0",
-      "latestReleaseUrl": "https://github.com/VectifyAI/OpenKB/releases/tag/v0.2.0",
+      "latestRelease": "v0.3.0",
+      "latestReleaseUrl": "https://github.com/VectifyAI/OpenKB/releases/tag/v0.3.0",
       "homepage": "https://pageindex.ai",
       "license": "Apache-2.0"
     },
     {
       "name": "nduckmink/arkon",
-      "stars": "908",
-      "desc": "Open-source self-hosted enterprise AI knowledge hub and MCP server for turning internal docs into permission-scoped, traceable RAG context for LLMs.",
+      "stars": "924",
+      "desc": "Arkon is a self-hosted enterprise AI knowledge hub and MCP server that turns internal docs into a permissioned, traceable wiki for LLMs.",
       "url": "https://github.com/nduckmink/arkon",
       "language": "Python",
       "topics": [
@@ -246,88 +228,23 @@
         "wiki"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
+      "lastUpdated": "Jun 2, 2026",
+      "fetchedAt": "Jun 2, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Self-hosted MCP server for Claude and other LLMs",
-        "Compiles SOPs and docs into an interlinked knowledge wiki",
-        "Role-aware access control for secure organizational context"
+        "MCP-based secure context delivery for Claude and other LLMs",
+        "MRP pipeline compiles docs into editable, linked knowledge pages",
+        "Role-scoped, self-hosted knowledge base for enterprise RAG"
       ],
-      "latestRelease": "v0.7.4",
-      "latestReleaseUrl": "https://github.com/nduckmink/arkon/releases/tag/v0.7.4",
+      "latestRelease": "v0.9.1",
+      "latestReleaseUrl": "https://github.com/nduckmink/arkon/releases/tag/v0.9.1",
       "homepage": "",
       "license": "NOASSERTION"
     },
     {
-      "name": "AxDSan/mnemosyne",
-      "stars": "705",
-      "desc": "Zero-dependency, SQLite-backed memory layer for AI agents, designed for sub-millisecond local persistence and broad framework/MCP compatibility.",
-      "url": "https://github.com/AxDSan/mnemosyne",
-      "language": "Python",
-      "topics": [
-        "agents",
-        "ai",
-        "hermes",
-        "hermes-agent",
-        "ml",
-        "nousresearch"
-      ],
-      "createdAt": "Apr 5, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "Works with Hermes, Cursor, Claude Code, Codex, OpenWebUI",
-        "One pip install; zero cloud dependencies; fully private",
-        "MCP, native tools, and Python SDK integrations"
-      ],
-      "latestRelease": "v3.1.0",
-      "latestReleaseUrl": "https://github.com/AxDSan/mnemosyne/releases/tag/v3.1.0",
-      "homepage": "https://mnemosyne.site",
-      "license": "MIT"
-    },
-    {
-      "name": "Ontos-AI/knowhere",
-      "stars": "657",
-      "desc": "Open-source Python pipeline that turns messy documents into structured, semantic chunks for AI agents and RAG.",
-      "url": "https://github.com/Ontos-AI/knowhere",
-      "language": "Python",
-      "topics": [
-        "agent",
-        "ai-agents",
-        "chromadb",
-        "claude",
-        "claude-code",
-        "cursor",
-        "elasticsearch",
-        "gemini",
-        "gpt",
-        "langchain",
-        "milvus",
-        "qdrant",
-        "rag",
-        "rag-pipeline",
-        "skills"
-      ],
-      "createdAt": "Apr 30, 2026",
-      "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "Parses unstructured docs into navigable memory",
-        "Supports agentic RAG and vector stores",
-        "Built for cloud, self-hosted, and APIs"
-      ],
-      "latestRelease": "2026.05.27.1",
-      "latestReleaseUrl": "https://github.com/Ontos-AI/knowhere/releases/tag/2026.05.27.1",
-      "homepage": "https://knowhereto.ai",
-      "license": "Apache-2.0"
-    },
-    {
       "name": "stevesolun/ctx",
-      "stars": "371",
-      "desc": "Python tool that recommends the best small set of skills, agents, MCP servers, and harnesses for Claude Code or other LLM workflows using a large LLM-wiki graph.",
+      "stars": "386",
+      "desc": "Python tool that watches your task, queries a 103K-node LLM wiki graph, and recommends a small, scored bundle of skills, agents, MCPs, and harnesses for Claude Code or custom LLMs.",
       "url": "https://github.com/stevesolun/ctx",
       "language": "Python",
       "topics": [
@@ -354,33 +271,284 @@
       ],
       "createdAt": "Apr 8, 2026",
       "lastUpdated": "May 28, 2026",
-      "fetchedAt": "May 28, 2026",
+      "fetchedAt": "Jun 2, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "102k-node graph with 2.9M edges",
-        "91k skills, 10k MCPs, 200+ harnesses",
-        "Supports custom-model harness install flows"
+        "91K+ skill pages with hydrated installable SKILL.md bodies",
+        "10.8K MCP servers, 467 agents, 207 harnesses",
+        "Supports capped installs, updates, dry-runs, and skill rot detection"
       ],
       "latestRelease": "v1.0.11",
       "latestReleaseUrl": "https://github.com/stevesolun/ctx/releases/tag/v1.0.11",
       "homepage": "https://stevesolun.github.io/ctx/",
       "license": "MIT"
+    },
+    {
+      "name": "Beever-AI/beever-atlas",
+      "stars": "367",
+      "desc": "LLM-first wiki/knowledge base that turns team chats into cited topic pages and answers via chat or MCP.",
+      "url": "https://github.com/Beever-AI/beever-atlas",
+      "language": "Python",
+      "topics": [
+        "adk-google",
+        "agents",
+        "discord-bot",
+        "fastapi",
+        "gemini",
+        "google-adk",
+        "knowledge-base",
+        "large-language-models",
+        "llm",
+        "mattermost",
+        "mcp",
+        "mcp-server",
+        "microsoft-teams",
+        "open-source",
+        "python",
+        "rag",
+        "react",
+        "slack-bot",
+        "wiki"
+      ],
+      "createdAt": "Apr 21, 2026",
+      "lastUpdated": "Jun 1, 2026",
+      "fetchedAt": "Jun 2, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Slack/Discord/Teams/Mattermost ingestion",
+        "Atomic fact extraction with citations",
+        "MCP integration for Claude Code/Cursor"
+      ],
+      "latestRelease": "v0.2.0",
+      "latestReleaseUrl": "https://github.com/Beever-AI/beever-atlas/releases/tag/v0.2.0",
+      "homepage": "https://docs.beever.ai/atlas",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "kytmanov/synto",
+      "stars": "78",
+      "desc": "Local-first Python tool that turns Markdown notes into a self-growing Obsidian wiki using Ollama and a local LLM, with cross-linked concept pages and no embeddings/vector DB.",
+      "url": "https://github.com/kytmanov/synto",
+      "language": "Python",
+      "topics": [
+        "git-based-wiki",
+        "karpathy",
+        "knowledge-base",
+        "llm-knowledge-base",
+        "llm-pipeline",
+        "llm-tools",
+        "llm-wiki",
+        "local-first-ai",
+        "local-llm",
+        "markdown-wiki",
+        "obsidian",
+        "obsidian-llm",
+        "obsidian-wiki",
+        "ollama",
+        "personal-knowledge-management",
+        "pkm",
+        "rag-alternative",
+        "rag-local",
+        "second-brain",
+        "self-hosted-wiki"
+      ],
+      "createdAt": "May 15, 2026",
+      "lastUpdated": "Jun 2, 2026",
+      "fetchedAt": "Jun 2, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Markdown notes \u2192 concept extraction \u2192 wiki pages",
+        "100% local with Ollama; notes stay private",
+        "Obsidian-friendly, agent-ready knowledge pack"
+      ],
+      "latestRelease": "v0.4.0",
+      "latestReleaseUrl": "https://github.com/kytmanov/synto/releases/tag/v0.4.0",
+      "homepage": "",
+      "license": "MIT"
+    },
+    {
+      "name": "MemPalace/mempalace",
+      "stars": "53.3k",
+      "desc": "Open-source local-first AI memory system for LLMs, storing verbatim conversations and retrieving them with semantic search via pluggable backends.",
+      "url": "https://github.com/MemPalace/mempalace",
+      "language": "Python",
+      "topics": [
+        "ai",
+        "chromadb",
+        "llm",
+        "mcp",
+        "memory",
+        "python"
+      ],
+      "createdAt": "Apr 5, 2026",
+      "lastUpdated": "May 30, 2026",
+      "fetchedAt": "Jun 2, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "96.6% R@5 on LongMemEval",
+        "ChromaDB default, backend-pluggable",
+        "Zero-API, local-only memory"
+      ],
+      "latestRelease": "v3.3.5",
+      "latestReleaseUrl": "https://github.com/MemPalace/mempalace/releases/tag/v3.3.5",
+      "homepage": "http://mempalaceofficial.com/",
+      "license": "MIT"
     }
   ],
   "models": [
     {
-      "name": "Claude Opus 4.8",
-      "org": "Anthropic",
-      "date": "May 28, 2026",
-      "note": "Anthropic\u2019s Claude Opus 4.8 is now available on Amazon Bedrock and Claude Platform on AWS, bringing stronger agentic coding, deep knowledge work, and long-running autonomous task performance to enterprise AWS deployments.",
+      "name": "Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
+      "org": "JetBrains",
+      "date": "Jun 1, 2026",
+      "note": "JetBrains released Mellum2, a 12B mixture-of-experts model, giving developers a new specialized model option for AI-assisted coding workflows.",
+      "tag": "MODEL",
+      "url": "https://huggingface.co/blog/JetBrains/mellum2-launch",
+      "sourceUrl": "https://huggingface.co/blog/feed.xml",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://huggingface.co/blog/JetBrains/mellum2-launch"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://huggingface.co/blog/feed.xml"
+        }
+      ]
+    },
+    {
+      "name": "NVIDIA Cosmos 3",
+      "org": "NVIDIA",
+      "date": "Jun 1, 2026",
+      "note": "NVIDIA Cosmos 3 ships as an open omni-model for physical AI reasoning and action, giving developers a new foundation for embodied and robotics-style applications.",
+      "tag": "MODEL",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai",
+      "sourceUrl": "https://huggingface.co/blog/feed.xml",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://huggingface.co/blog/feed.xml"
+        }
+      ]
+    },
+    {
+      "name": "Gemini API",
+      "org": "Google",
+      "date": "Jun 1, 2026",
+      "note": "The fastest path from prompt to production with Gemini, Veo, Nano Banana, and more. High-volume, cost-sensitive model with the performance and quality of the Gemini 3 series.",
       "tag": "API",
-      "url": "https://aws.amazon.com/blogs/machine-learning/claude-opus-4-8-is-now-available-on-aws/",
+      "url": "https://ai.google.dev/gemini-api/docs",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://ai.google.dev/gemini-api/docs"
+        },
+        {
+          "label": "Source page",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog"
+        }
+      ]
+    },
+    {
+      "name": "Accelerate LLM model loading and increase context windows with GPUDirect on Amaz",
+      "org": "AWS",
+      "date": "Jun 1, 2026",
+      "note": "If you\u2019re iterating on deploying large language models (LLMs) on AWS GPU instances, you\u2019ve probably noticed the larger the model to be loaded into GPU High Bandwidth Memory (HBM), the longer the painful wait until the GPUs are ready for inference. As models gr",
+      "tag": "OPEN",
+      "url": "https://aws.amazon.com/blogs/machine-learning/accelerate-llm-model-loading-and-increase-context-windows-with-gpudirect-on-amazon-fsx-for-lustre-and-turboquant/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/claude-opus-4-8-is-now-available-on-aws/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/accelerate-llm-model-loading-and-increase-context-windows-with-gpudirect-on-amazon-fsx-for-lustre-and-turboquant/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Current: Gemini 3.5",
+      "org": "Google",
+      "date": "May 29, 2026",
+      "note": "Gemini 3.5 Flash is generally available (GA) , stable, and ready for scaled production use. As our most intelligent Flash model, it delivers sustained frontier performance in agentic execution, coding, and long-horizon tasks at scale.",
+      "tag": "API",
+      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
+      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
+      "sourceLabel": "Source page",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
+        },
+        {
+          "label": "Source page",
+          "url": "https://ai.google.dev/gemini-api/docs/changelog"
+        }
+      ]
+    },
+    {
+      "name": "Claude Opus 4.8",
+      "org": "Anthropic / Microsoft Foundry",
+      "date": "May 29, 2026",
+      "note": "Claude Opus 4.8 is now available in Microsoft Foundry, giving developers and enterprises access to Anthropic\u2019s most capable Opus model for coding, agentic tasks, and professional work.",
+      "tag": "API",
+      "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-4-8-is-now-available-in-microsoft-foundry/4523367",
+      "sourceUrl": "https://azure.microsoft.com/en-us/blog/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-4-8-is-now-available-in-microsoft-foundry/4523367"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://azure.microsoft.com/en-us/blog/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Step 3.7 Flash",
+      "org": "StepFun",
+      "date": "May 29, 2026",
+      "note": "StepFun\u2019s Step 3.7 Flash is now available on NVIDIA-accelerated infrastructure for production multimodal AI across images, documents, video, and language, which matters because it targets enterprise-scale real-time reasoning beyond text generation.",
+      "tag": "MODEL",
+      "url": "https://developer.nvidia.com/blog/run-step-3-7-flash-on-nvidia-gpus-with-enterprise-ready-multimodal-ai/",
+      "sourceUrl": "https://developer.nvidia.com/blog/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developer.nvidia.com/blog/run-step-3-7-flash-on-nvidia-gpus-with-enterprise-ready-multimodal-ai/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developer.nvidia.com/blog/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Training Azerbaijani language models on Amazon SageMaker AI",
+      "org": "AWS",
+      "date": "May 28, 2026",
+      "note": "This solution builds on open source tools including PyTorch, Hugging Face Transformers, and Liger Kernels. The authors would also like to thank Aiham Taleb, Arefeh Ghahvechi, Manav Choudhary, Rohit Thekkanal, Daz Akbarov, Jamila Jamilova, Ross Povelikin, Almas",
+      "tag": "OPEN",
+      "url": "https://aws.amazon.com/blogs/machine-learning/training-azerbaijani-language-models-on-amazon-sagemaker-ai/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/training-azerbaijani-language-models-on-amazon-sagemaker-ai/"
         },
         {
           "label": "RSS feed",
@@ -393,16 +561,16 @@
     {
       "name": "Codex",
       "org": "OpenAI",
-      "date": "May 27, 2026",
-      "note": "OpenAI showed how Codex can be used to build self-improving tax agents that automate filings, improve accuracy, and speed up workflows.",
+      "date": "Jun 2, 2026",
+      "note": "OpenAI says Codex is being positioned as a productivity tool for knowledge work, with AI-powered research, data analysis, workflow automation, and content creation that could broaden how teams use it.",
       "tag": "PLATFORM",
-      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
+      "url": "https://openai.com/index/codex-for-knowledge-work",
       "sourceUrl": "https://openai.com/news/rss.xml",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex"
+          "url": "https://openai.com/index/codex-for-knowledge-work"
         },
         {
           "label": "RSS feed",
@@ -411,18 +579,38 @@
       ]
     },
     {
-      "name": "Amazon Bedrock AgentCore dataset management",
-      "org": "AWS",
-      "date": "May 28, 2026",
-      "note": "AWS added dataset management in Amazon Bedrock AgentCore to version agent evaluation test cases as immutable baselines, making it easier to track real improvements and catch regressions over time.",
+      "name": "OpenAI frontier models and Codex are now available on AWS",
+      "org": "OpenAI",
+      "date": "Jun 1, 2026",
+      "note": "OpenAI frontier models and Codex are now generally available on AWS, giving enterprises a new path to build with OpenAI through the AWS environments, controls, and procurement workflows they already use.",
       "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/build-a-test-suite-that-grows-with-your-agent-with-dataset-management-in-amazon-bedrock-agentcore/",
+      "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws",
+      "sourceUrl": "https://openai.com/news/rss.xml",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://openai.com/news/rss.xml"
+        }
+      ]
+    },
+    {
+      "name": "OpenAI models and Codex on Amazon Bedrock",
+      "org": "AWS",
+      "date": "Jun 1, 2026",
+      "note": "GPT-5.5, GPT-5.4, and Codex are now generally available on Amazon Bedrock, making OpenAI frontier models and the Codex coding agent available for production apps and agents through Bedrock's managed inference stack.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/build-a-test-suite-that-grows-with-your-agent-with-dataset-management-in-amazon-bedrock-agentcore/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/"
         },
         {
           "label": "RSS feed",
@@ -431,38 +619,18 @@
       ]
     },
     {
-      "name": "Google Pay & Wallet Developer MCP server",
-      "org": "Google",
-      "date": "May 28, 2026",
-      "note": "Google released a Model Context Protocol server that lets AI assistants and IDEs access real-time Google Pay and Wallet API docs, account details, and validation tools, reducing friction in payment and wallet integrations.",
-      "tag": "PLATFORM",
-      "url": "https://developers.googleblog.com/supercharge-your-integration-workflow-with-the-google-pay-wallet-developer-mcp-server/",
-      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://developers.googleblog.com/supercharge-your-integration-workflow-with-the-google-pay-wallet-developer-mcp-server/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://developers.googleblog.com/feeds/posts/default"
-        }
-      ]
-    },
-    {
-      "name": "NarrateAI",
+      "name": "Amazon Bedrock AgentCore payments",
       "org": "AWS",
-      "date": "May 27, 2026",
-      "note": "AWS built NarrateAI on Amazon Bedrock AgentCore to provide a conversational business-intelligence assistant for leaders, enabling faster natural-language access to context-rich operational insights.",
+      "date": "Jun 1, 2026",
+      "note": "Amazon Bedrock AgentCore payments is in preview with built-in guardrails so agents can spend on paid resources on a user\u2019s behalf without exposing funds to uncontrolled autonomous actions.",
       "tag": "CLOUD",
-      "url": "https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/",
+      "url": "https://aws.amazon.com/blogs/machine-learning/enable-safe-agentic-payments-with-built-in-guardrails-using-amazon-bedrock-agentcore-payments/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/how-aws-smgs-uses-an-ai-powered-conversational-assistant-to-transform-business-management-with-amazon-bedrock-agentcore/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/enable-safe-agentic-payments-with-built-in-guardrails-using-amazon-bedrock-agentcore-payments/"
         },
         {
           "label": "RSS feed",
@@ -471,18 +639,58 @@
       ]
     },
     {
-      "name": "Strands Agents + NVIDIA NIM + Amazon Bedrock AgentCore",
-      "org": "AWS",
-      "date": "May 26, 2026",
-      "note": "AWS published a reference architecture for building production AI agents with Strands Agents, NVIDIA NIM, and Amazon Bedrock AgentCore, showing how to combine fast inference, shared memory, and observability for scalable multi-agent workflows.",
+      "name": "NVIDIA RTX Spark and OpenShell for local AI agents",
+      "org": "NVIDIA",
+      "date": "Jun 1, 2026",
+      "note": "NVIDIA unveiled RTX Spark, a new Windows PC class for running personal AI agents locally, and OpenShell for secure on-device agent deployment, which matters for private, low-latency agent workflows on RTX and DGX systems.",
       "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/build-high-performance-generative-ai-systems-with-strands-agents-nvidia-nim-and-amazon-bedrock-agentcore/",
+      "url": "https://blogs.nvidia.com/blog/rtx-ai-garage-computex-spark-local-agents/",
+      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://blogs.nvidia.com/blog/rtx-ai-garage-computex-spark-local-agents/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://feeds.feedburner.com/nvidiablog"
+        }
+      ]
+    },
+    {
+      "name": "NVIDIA DOCA In-Silicon Security",
+      "org": "NVIDIA",
+      "date": "Jun 1, 2026",
+      "note": "NVIDIA introduced DOCA in-silicon security for agentic AI infrastructure to help protect AI factories and reduce the new attack surface created by autonomous agents at scale.",
+      "tag": "PLATFORM",
+      "url": "https://developer.nvidia.com/blog/advancing-ai-infrastructure-for-agentic-ai-with-nvidia-doca-in-silicon-security/",
+      "sourceUrl": "https://developer.nvidia.com/blog/feed/",
+      "sourceLabel": "RSS feed",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developer.nvidia.com/blog/advancing-ai-infrastructure-for-agentic-ai-with-nvidia-doca-in-silicon-security/"
+        },
+        {
+          "label": "RSS feed",
+          "url": "https://developer.nvidia.com/blog/feed/"
+        }
+      ]
+    },
+    {
+      "name": "Comprehensive observability for Amazon SageMaker AI LLM inference: From GPU util",
+      "org": "AWS",
+      "date": "May 29, 2026",
+      "note": "Deploying large language models (LLMs) at scale on Amazon SageMaker AI Inference makes observability a critical pillar of any production machine learning (ML) strategy. Unlike conventional software that returns deterministic outputs, LLMs generate variable, fr",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/comprehensive-observability-for-amazon-sagemaker-ai-llm-inference-from-gpu-utilization-to-llm-quality/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/build-high-performance-generative-ai-systems-with-strands-agents-nvidia-nim-and-amazon-bedrock-agentcore/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/comprehensive-observability-for-amazon-sagemaker-ai-llm-inference-from-gpu-utilization-to-llm-quality/"
         },
         {
           "label": "RSS feed",
@@ -491,219 +699,253 @@
       ]
     },
     {
-      "name": "AgentWatch",
-      "org": "AWS",
-      "date": "May 26, 2026",
-      "note": "AWS introduced AgentWatch, an ambient monitoring agent for AWS resources that helps DevOps teams detect issues proactively instead of relying on delayed CloudWatch alarms and reactive triage.",
+      "name": "Google AI Studio",
+      "org": "Google",
+      "date": "May 29, 2026",
+      "note": "Google highlighted an I/O 2026 quiz built in Google AI Studio, underscoring the platform as a place to rapidly build and publish AI-powered experiences.",
       "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/agentwatch-proactive-aws-monitoring-with-ambient-agents/",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/",
+      "sourceUrl": "https://blog.google/technology/ai/rss/",
       "sourceLabel": "RSS feed",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/agentwatch-proactive-aws-monitoring-with-ambient-agents/"
+          "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/"
         },
         {
           "label": "RSS feed",
-          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
+          "url": "https://blog.google/technology/ai/rss/"
         }
       ]
     }
   ],
   "papers": [
     {
-      "title": "What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
-      "authors": "Qing Wang, Jacob Devasier, Chengkai Li",
+      "title": "ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
+      "authors": "Zhensheng Wang, Xiaole Liu, Wenmian Yang, Kun Zhou, Yiquan Zhang, Weijia Jia",
       "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 82,
-      "tags": [
-        "Foundation Models and Generative AI",
-        "AI Engineering and Developer Tools"
-      ],
-      "fsoRelevant": true,
-      "abstract": "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation. We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last. We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information. To address this, we propose lambda-scaled structural decoding, a training-free inference-time modification that downweights structural token confidence and recovers +9.4 BLEU-4. Finally, we introduce Graph-LLaDA, which integrates a Graph Transformer encoder into LLaDA's decoding process to explicitly incorporate relational graph structure. Cross-dataset evaluation on LAGRANGE reveals that previous baselines overfit to dataset-specific patterns, while LLM- and MDLM-based approaches generalize significantly better.",
-      "takeaways": [
-        "We present the first systematic study of masked diffusion language models (MDLMs) for graph-to-text generation.",
-        "We analyze MDLM generation trajectories -- the order in which tokens are unmasked during iterative decoding -- and find that, unlike autoregressive LLMs which generate text linearly, MDLMs naturally prioritize entities first, followed by relational and function words, with structural tokens resolved last.",
-        "We further identify a previously undocumented failure mode of supervised fine-tuning: SFT disrupts this strategy by prematurely anchoring structural sentence-ending tokens early in the decoding trajectory, effectively fixing the output length which can lead to omitted or hallucinated information."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: What Gets Unmasked First? Trajectory Analysis of Diffusion Models for Graph-to-Text Generation",
-        "Assess whether foundation models and generative ai improves a relevant ai engineering and developer tools workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Medium",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2605.31564v1"
-    },
-    {
-      "title": "BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
-      "authors": "Shefayat E Shams Adib, Ahmed Alfey Sani, Ekramul Alam Esham, Ajwad Abrar, Ishmam Tashdeed, Md Taukir Azam Chowdhury",
-      "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 82,
-      "tags": [
-        "Evaluation and Benchmarks",
-        "AI Engineering and Developer Tools"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali. We introduce BenHalluEval, a fine-grained hallucination evaluation framework for Bengali covering four tasks: Generative Question Answering (GQA), Bangla-English Code-Mixed QA, Summarization, and Reasoning. We construct 12,000 hallucinated candidates using GPT-5.4 across twelve task-specific hallucination types, drawn from three existing Bengali datasets, and evaluate seven LLMs spanning reasoning-oriented, multilingual, and Bengali-centric categories under a dual-track protocol that independently measures false-positive rate on ground-truth instances (Track A) and hallucination detection rate on hallucinated candidates (Track B). To jointly penalise both failure modes and prevent inflated scores from uniform response bias, we propose BenHalluScore, a dual-track calibration metric that ranges from 7.72% to 55.42% across models and tasks, revealing substantial variation in hallucination calibration. Chain-of-thought prompting, applied as a mitigation strategy, shifts response distributions without consistently improving hallucination discrimination. BenHalluEval establishes the first dedicated hallucination benchmark for Bengali and highlights the inadequacy of single-track and prompting-only evaluation approaches for low-resource language settings. The dataset and code are available at https://anonymous.4open.science/r/BanglaHalluEval-EB77.",
-      "takeaways": [
-        "Despite Bengali being the sixth most spoken language in the world, no prior work has systematically evaluated hallucination in large language models (LLMs) for Bengali.",
-        "We introduce BenHalluEval, a fine-grained hallucination evaluation framework for Bengali covering four tasks: Generative Question Answering (GQA), Bangla-English Code-Mixed QA, Summarization, and Reasoning.",
-        "We construct 12,000 hallucinated candidates using GPT-5.4 across twelve task-specific hallucination types, drawn from three existing Bengali datasets, and evaluate seven LLMs spanning reasoning-oriented, multilingual, and Bengali-centric categories under a dual-track protocol that independently measures false-positive rate on ground-truth instances (Track A) and hallucination detection rate on hallucinated candidates (Track B)."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: BenHalluEval: A Multi-Task Hallucination Evaluation Framework for Large Language Models on Bengali",
-        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Medium",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2605.31483v1"
-    },
-    {
-      "title": "Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
-      "authors": "Hui Wu, Xiaoyang Wang, Zhong Fan",
-      "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 82,
-      "tags": [
-        "Evaluation and Benchmarks",
-        "Enterprise and Knowledge Work"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons. This makes the reliability of open-weight models a deployment issue. We show that first-pass failures in power-system code generation are dominated not by reasoning alone, but by structured API-knowledge boundary errors: hallucinated function names, misused parameters, and mishandled result tables in versioned simulation libraries. We introduce PowerCodeBench, an execution-validated benchmark generator that pairs natural-language operator queries with pandapower code and numerical ground truth; an L0-L3 documentation-driven probing procedure that measures per-model API knowledge profiles; and a boundary-aware intervention that combines query-side API demand estimation with targeted proactive documentation injection and routed reactive correction. On a 2,000-task frozen release, we evaluate ten open-weight LLMs (1.5B-480B parameters) and four commercial mid-tier APIs. The intervention improves every evaluated open-weight model of at least 7B parameters and every commercial API by 32 to 56 accuracy points. Open-weight models in the 70B-120B range match the commercial mid-tier accuracy range, while Llama-3.1-405B and Qwen3-Coder-480B lead the panel. The targeted prompts preserve the full-context accuracy ceiling while using 41% of the prompt-token cost. The result is an accuracy-side, deployment-time path toward reliable on-premise LLM assistance for grid-analysis workflows without fine-tuning or cloud inference.",
-      "takeaways": [
-        "Large language models (LLMs) are increasingly used to automate power-system analysis, but many utilities and energy-research labs require on-premise serving for confidentiality, regulatory, reproducibility, and cost reasons.",
-        "This makes the reliability of open-weight models a deployment issue.",
-        "We show that first-pass failures in power-system code generation are dominated not by reasoning alone, but by structured API-knowledge boundary errors: hallucinated function names, misused parameters, and mishandled result tables in versioned simulation libraries."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: Knowledge Boundary Probing and Demand-Guided Intervention for LLM-Based Power System Code Generation",
-        "Assess whether evaluation and benchmarks improves a relevant enterprise and knowledge work workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "High",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "Enterprise and Knowledge Work",
-      "url": "https://arxiv.org/pdf/2605.31478v1"
-    },
-    {
-      "title": "LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
-      "authors": "Nianyi Lin, Jiajie Zhang, Lei Hou, Juanzi Li",
-      "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 77,
-      "tags": [
-        "RAG and Knowledge Systems",
-        "Media and Creative"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content. Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps. To address these issues, we introduce \\textsc{LongTraceRL}. For data construction, we generate multi-hop questions via knowledge graph random walks and leverage search agent trajectories to build \\emph{tiered distractors}: documents the agent read but did not cite (high confusability) and documents that appeared in search results but were never opened (low confusability), producing training contexts that are far more challenging than those built by random sampling or one-shot search. For reward design, we propose a \\emph{rubric reward} that uses the gold entities along each reasoning chain as fine-grained, entity-level process supervision. This rubric reward is applied only to responses with correct final answers (positive-only strategy), distinguishing the reasoning quality among correct responses and preventing reward hacking. Experiments on three reasoning LLMs (4B--30B) across five long-context benchmarks demonstrate that \\textsc{LongTraceRL} consistently outperforms strong baselines and encourages comprehensive, evidence-grounded reasoning. Codes, datasets and models are available at \\href{https://github.com/THU-KEG/LongTraceRL}{https://github.com/THU-KEG/LongTraceRL}.",
-      "takeaways": [
-        "Long-context reasoning remains a central challenge for large language models, which often fail to locate and integrate key information in extensive distracting content.",
-        "Reinforcement learning with verifiable rewards (RLVR) has shown promise for this task, yet existing methods are limited by low-confusability distractors and sparse, outcome-only reward signals that cannot supervise intermediate reasoning steps.",
-        "To address these issues, we introduce \\textsc{LongTraceRL}."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: LongTraceRL: Learning Long-Context Reasoning from Search Agent Trajectories with Rubric Rewards",
-        "Assess whether rag and knowledge systems improves a relevant media and creative workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "High",
-        "novelty": "High"
-      },
-      "capability": "RAG and Knowledge Systems",
-      "domain": "Media and Creative",
-      "url": "https://arxiv.org/pdf/2605.31584v1"
-    },
-    {
-      "title": "Preference-Aware Rubric Learning for Personalized Evaluation",
-      "authors": "Yilun Qiu, Xiaoyan Zhao, Yang Zhang, Yuxin Chen, Cilin Yan, Jiayin Cai, Xiaolong Jiang, Yao Hu, Yoko Yamakata, Tat-Seng Chua",
-      "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 77,
-      "tags": [
-        "Evaluation and Benchmarks",
-        "AI Engineering and Developer Tools"
-      ],
-      "fsoRelevant": true,
-      "abstract": "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck. Existing evaluation methods-ranging from automatic metrics to LLM-as-a-judge approaches-fail to capture subjective, user-specific preferences embedded in long-term interaction histories. We identify three essential principles for reliable and effective personalized evaluation: Representativeness, User-Consistency, and Discriminativeness. To address these principles, we introduce Personalized Evaluation as Learning, a paradigm that formulates personalized evaluation as a learning problem rather than a static judgment. Under this paradigm, we propose PARL (Preference-Aware Rubric Learning for Personalized Evaluation), a framework that learns to induce preference-aware evaluation rubrics directly from raw user histories and performs a self-validation mechanism to ensure consistency with the user's preferences. PARL integrates rubric induction with a discriminative reinforcement learning objective that contrasts user-authored responses against competitive personalized model outputs, enabling the learned rubrics to capture precise, user-specific decision boundaries. Experiments on real-world personalized text generation tasks show that PARL consistently induces high-fidelity rubrics that reliably identify user-aligned responses and generalize across users and tasks, while capturing stable stylistic preferences and fine-grained evaluative patterns. To ensure reproducibility, our code is available at https://github.com/SnowCharmQ/PARL.",
-      "takeaways": [
-        "As Large Language Models (LLMs) evolve from general-purpose assistants to user-centric agents, personalization has become central to aligning model behavior with individual preferences, making the evaluation of personalized alignment a critical bottleneck.",
-        "Existing evaluation methods-ranging from automatic metrics to LLM-as-a-judge approaches-fail to capture subjective, user-specific preferences embedded in long-term interaction histories.",
-        "We identify three essential principles for reliable and effective personalized evaluation: Representativeness, User-Consistency, and Discriminativeness."
-      ],
-      "actionItems": [
-        "Share for broader review: Preference-Aware Rubric Learning for Personalized Evaluation",
-        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "High",
-        "novelty": "High"
-      },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2605.31545v1"
-    },
-    {
-      "title": "GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
-      "authors": "Zaid Khan, Justin Chih-Yao Chen, Jaemin Cho, Elias Stengel-Eskin, Mohit Bansal",
-      "org": "arXiv",
-      "date": "May 29, 2026",
+      "date": "Jun 1, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 67,
+      "researchScore": 80,
+      "tags": [
+        "Agentic AI",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "The rapid development of LLMs has significantly advanced tabular question answering, but most systems cannot perform future-oriented numerical prediction. To address this gap, we introduce a novel task, Open-Domain Tabular Question Answering for Future Data Forecasting and Reasoning, and propose the first dataset to cover time-series forecasting and forecast-based reasoning scenarios using real estate data. This task poses challenges in retrieving precise historical data, overcoming the forecasting limitations of LLMs, and standardizing responses for diverse queries. To solve the above challenges, we propose TimeFore, an LLM agent-based framework that decomposes the problem into three collaborative roles: a Retriever autonomously generates SQL to fetch data, a Forecaster invokes external time-series models for higher accuracy, and an Analyzer synthesizes the results to construct a precise and consistent final answer. Extensive experiments demonstrate the effectiveness of our TimeFore.",
+      "takeaways": [
+        "Introduces ODTQA-FoRe, the first open-domain tabular QA dataset for future data forecasting and forecast-based reasoning on real estate data.",
+        "Proposes TimeFore, an LLM-agent framework with three roles: a SQL-generating Retriever, an external-model Forecaster, and an Analyzer that synthesizes the final answer.",
+        "Enables more precise handling of historical retrieval, numerical forecasting, and standardized responses for future-oriented tabular queries in real-world settings."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
+        "Assess whether agentic ai improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Agentic AI",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02433v1"
+    },
+    {
+      "title": "MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
+      "authors": "Hilton Raj, Vishnuram AV",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 75,
       "tags": [
         "Evaluation and Benchmarks",
         "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware. While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU. As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck. To address this, we study how LLMs can serve as selective GPU surrogates for kernel evaluation, by forecasting the performance of proposed kernels. A useful surrogate should be accurate, and it should be selective, by knowing when it could be wrong, and deferring to the GPU. To evaluate surrogates, we measure whether their forecasts are accurate, calibrated, and practically useful for recovering fast kernels under limited GPU-measurement budgets. Next, we study whether reinforcement learning can improve forecast accuracy and confidence calibration. Our experiments demonstrate that LLMs can accurately forecast relative kernel performance, that their utility can be improved through reinforcement learning. Used inside a kernel search, the surrogate lets the search consider several times as many candidates under the same GPU evaluation budget, and that leads to finding faster kernels than an equal-budget baseline. These results suggest that LLMs can play a broader role in kernel optimization, by acting as virtual models of a GPU rather than solely as kernel generators for search.",
+      "abstract": "In 3D environments, Embodied Agents answer spatially relevant questions through reasoning from a mixture of modalities including natural language, RGB images, point clouds, depth maps and camera poses. Existing Vision-Language models (VLMs) are fine-tuned over a single modality. This completely ignores the question semantics which may favor a different modality than the finetuned modality. To address this, we propose MASER (Modality-Adaptive SpEcialist Routing), a lightweight framework that trains five different modality adapters of a shared VLM backbone and learns a neural routing policy that selects the best adapter based on the question during inference. We encode each question with a frozen sentence transformer and pass the embedding through a small Multi-layer Perceptron (MLP) trained on oracle adapter-accuracy labels. We evaluate our methodology over the Open3D-VQA benchmark and our evaluations show that no single modality is universally optimal -- point-cloud answers are best in 51.5% of cases. MASER routes with 51.3% oracle agreement, outperforming a Random-Forest ablation (43.5%), with only a single adapter call per question.",
       "takeaways": [
-        "GPU kernels are the workhorse of modern deep learning, and optimizing them (via evolutionary search or coding agents) usually requires repeated measurement on target hardware.",
-        "While these measurements provide the ground-truth signal necessary for kernel search, they are costly, because each evaluation of a kernel requires compilation and repeated execution on a GPU.",
-        "As improvements in LLM inference reduce the cost of writing novel kernels and LLM-driven searches scale to large search budgets, on-device evaluation becomes a bottleneck."
+        "Proposes MASER, a lightweight modality-adaptive routing framework for embodied 3D spatial QA that trains five modality-specific adapters on a shared VLM backbone and selects one at inference time based on the question.",
+        "Uses a frozen sentence transformer plus a small MLP trained on oracle adapter-accuracy labels; on Open3D-VQA, it shows no single modality is always best, with point-cloud answers best in 51.5% of cases and MASER reaching 51.3% oracle agreement.",
+        "Practical implication: embodied agents can improve question-conditioned 3D reasoning by routing to the most suitable modality with only one adapter call per question, outperforming a Random-Forest ablation (43.5%)."
       ],
       "actionItems": [
-        "Read for research signal: GPU Forecasters: Language Models as Selective Surrogates for Kernel Runtime Optimization",
+        "Prototype a quick evaluation: MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
         "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02463v1"
+    },
+    {
+      "title": "Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
+      "authors": "Seojeong Park, Jiho Choi, Junyong Kang, Seonho Lee, Jaeyo Shin, Hyunjung Shim",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 75,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Recent multimodal large language models have demonstrated strong reasoning ability, yet their reliability as automated evaluators remains limited by a critical weakness: when visual evidence conflicts with textual cues, MLLM judges tend to reward plausible narratives over perceptually correct answers. We identify and systematically analyze this phenomenon, which we term Perceptual Judgment Bias. Through controlled visual perturbations, existing multimodal judges frequently anchor on the response text instead of their own visual perception, leading to inconsistent and non-verifiable evaluations. To address this issue, we introduce the Perceptually Perturbed Judgment Dataset, which constructs minimally edited counterfactual responses that isolate perceptual errors and enable verifiable supervision. Building on this dataset, we develop a unified training framework that combines a structured GRPO-based reward with a batch-ranking objective, achieving coherent global ordering without explicit pairwise labels. Experiments across diverse MLLM-as-a-Judge benchmarks show that our approach substantially improves perceptual fidelity, ranking coherence, and alignment with human evaluation. Our results establish a scalable and generalizable pathway for training multimodal judges that are perceptually grounded, interpretable, and robust to visual-reasoning conflicts.",
+      "takeaways": [
+        "Identifies \u201cPerceptual Judgment Bias\u201d in multimodal LLM judges: when visual evidence conflicts with text, they often favor plausible narratives over perceptually correct answers.",
+        "Introduces the Perceptually Perturbed Judgment Dataset with minimally edited counterfactual responses, and a training framework combining a structured GRPO-based reward with a batch-ranking objective.",
+        "Practical implication: improves perceptual fidelity, ranking coherence, and alignment with human evaluation, supporting more reliable multimodal automated evaluators."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02578v1"
+    },
+    {
+      "title": "Policy and World Modeling Co-Training for Language Agents",
+      "authors": "Ning Lu, Baijiong Lin, Shengcai Liu, Jiahao Wu, Haoze Lv, Yanbin Wei, Lingting Zhu, Shengju Qian, Xin Wang, Ying-Cong Chen, Qi Wang, Ke Tang",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 75,
+      "tags": [
+        "Agentic AI",
+        "Education"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Reinforcement learning (RL) improves large language model (LLM) agents by teaching them which actions lead to high rewards, but provides little supervision on what those actions do to the environment. World modeling (WM) can fill this gap, yet existing approaches often require separate simulators, extra training stages, or additional inference-time computation. We observe that on-policy RL rollouts already contain the needed signal: each transition pairs an action with its resulting next observation. Based on this observation, we propose PaW, a Policy and World modeling co-training framework that adds auxiliary WM supervision to the same policy during RL, without changing the inference paradigm. To make auxiliary WM supervision informative and stable, PaW introduces three components: action-entropy-based WM data selection, noise-tolerant WM loss, and reward-adaptive loss balancing. Experiments on three agentic task benchmarks show consistent improvements over strong RL baselines across models and RL algorithms. These results suggest that standard RL rollouts are a practical source of WM supervision for language-agent training.",
+      "takeaways": [
+        "Introduces PaW, a co-training framework that adds auxiliary world-modeling supervision to the same language-agent policy during reinforcement learning, without changing inference-time behavior.",
+        "Uses on-policy RL rollouts as world-modeling data and stabilizes training with action-entropy-based data selection, a noise-tolerant WM loss, and reward-adaptive loss balancing; evaluated on three agentic task benchmarks.",
+        "Shows consistent gains over strong RL baselines across models and RL algorithms, implying standard RL rollouts can serve as a practical source of world-modeling supervision for language-agent training."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: Policy and World Modeling Co-Training for Language Agents",
+        "Assess whether agentic ai improves a relevant education workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Agentic AI",
+      "domain": "Education",
+      "url": "https://arxiv.org/pdf/2606.02388v1"
+    },
+    {
+      "title": "AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
+      "authors": "Yiheng Shu, Bernal Jim\u00e9nez Guti\u00e9rrez, Saisri Padmaja Jonnalagedda, Yuguang Yao, Huan Sun, Yu Su",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 70,
+      "tags": [
+        "Evaluation and Benchmarks",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Language agents spend substantial inference time solving individual tasks, yet the experience acquired in one episode is often underutilized in future episodes. Continual learning expects an agent to accumulate reusable experience across a stream of tasks, improve over time, and avoid interference from irrelevant experiences. Unfortunately, existing benchmarks struggle to evaluate continual learning in language agents rigorously. Most efforts focus on retrieval and reasoning over long-context conversations or documents, while recent lifelong-adaptation benchmarks often rely on naive task streams with limited analysis of cross-task relationships, making it difficult to understand what an agent learns and reuses over time. This paper presents an evaluation framework AgentCL for continual learning in agents, centered on controlled task streams and metrics for transfer gains. AGENTCL constructs compositional streams where earlier sub-solutions, evidence, or workflows are intentionally reusable in later tasks, and contrasts them with naive streams where such reusability is not guaranteed. We use the benchmark to evaluate non-parametric memory designs for continual learning. To diagnose how memory design choices affect continual learning, we develop MemProbe, a probing method that stores interactions, insights, and skills, while filtering unreliable experiences during consolidation. Empirical analysis across coding, deep research, and language understanding/reasoning tasks shows that naive streams offer limited ability to distinguish memory designs, whereas controlled streams more clearly distinguish their plasticity. Meanwhile, naive and held-out settings often yield limited gains and can expose memory-induced degradation. These results highlight the need for stronger memory designs that balance plasticity and stable reuse.",
+      "takeaways": [
+        "AGENTCL introduces a continual-learning evaluation framework for language agents with controlled task streams and transfer-gain metrics, designed to test whether prior experience is reused across episodes.",
+        "The benchmark uses compositional streams where earlier sub-solutions, evidence, or workflows are intentionally reusable, and MemProbe to store interactions, insights, and skills while filtering unreliable experiences during consolidation.",
+        "Experiments on coding, deep research, and language understanding/reasoning show naive streams often fail to separate memory designs and can reveal memory-induced degradation, implying the need for memory that balances plasticity with stable reuse."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "High",
+        "reproducibility": "Low",
+        "novelty": "Low"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02461v1"
+    },
+    {
+      "title": "ProtoAda: Prototype-Guided Adaptive Adapter Expansion and Geometric Consolidation for Multimodal Continual Instruction Tuning",
+      "authors": "Yu-Cheng Shi, Zhen-Hao Xie, Jun-Tao Tang, Da-Wei Zhou",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 70,
+      "tags": [
+        "Multimodal AI",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Multimodal Large Language Models (MLLMs) achieve strong performance through instruction tuning, but real-world deployment requires them to continually acquire new vision-language capabilities, making Multimodal Continual Instruction Tuning (MCIT) essential. To reduce inter-task interference and promote collaboration, recent methods often employ sparse architectures like Mixture of LoRA Experts with image-text similarity routing. However, tasks with distinct response structures could share highly similar visual-linguistic semantics and thus be wrongly routed to the same expert; image-text similarity alone is insufficient for reliable task assignment. For example, an expert in a grounding task requiring coordinate prediction may be biased toward producing short textual answers after learning semantically similar VQA tasks. This format-blind task assignment integrates heterogeneous response types into shared parameters, inducing gradient interference and ineffective expert collaboration. To address this problem, we propose ProtoAda, a prototype-guided adaptive tuning framework. ProtoAda introduces format-aware task prototypes to align task assignment and routing with both task semantics and output structure, and further consolidates format-compatible updates in a geometry-aware manner to effectively reuse and progressively refine existing parameters. Extensive experiments on multiple benchmarks demonstrate that ProtoAda achieves superior performance, especially on tasks whose answer structures are easily corrupted by sequential tuning.",
+      "takeaways": [
+        "ProtoAda is a prototype-guided adaptive tuning framework for multimodal continual instruction tuning that adds format-aware task prototypes and geometry-aware consolidation to better manage new vision-language capabilities.",
+        "The abstract argues image-text similarity routing can misassign tasks with similar semantics but different response formats, causing gradient interference; extensive experiments on multiple benchmarks are cited as evidence of improved performance.",
+        "Practical implication: MLLMs deployed in continual settings may retain and refine capabilities more reliably when task assignment accounts for both semantics and output structure, especially for format-sensitive tasks like grounding versus VQA."
+      ],
+      "actionItems": [
+        "Prototype a quick evaluation: ProtoAda: Prototype-Guided Adaptive Adapter Expansion and Geometric Consolidation for Multimodal Continual Instruction Tuning",
+        "Assess whether multimodal ai improves a relevant ai engineering and developer tools workflow.",
+        "Capture one pilot question and one risk question for stakeholder review."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Multimodal AI",
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02576v1"
+    },
+    {
+      "title": "Towards Multidisciplinary Summarization of Hospital Stays: Efficient Sentence-Level Clinical Provenance Categorization",
+      "authors": "Baris Karacan, Vaibhav Bhargava, Barbara Di Eugenio, Natalie Parde, Mary Khetani, Yu-Shan Tseng, Vanessa Barbosa, Julie Vignato, Lindsey Knake, Rajashree Dahal, Emily Spellman, Danielle Hitzel, Janine Petitgout, Kristi Haughey, Amanda Karstens, Brianna Clarahan, Rachel Dawson, Lauren Boyd, Mackenzie Weis, Angie Tipton, Jaewon Bae, Catherine K. Craven, Karen Dunn Lopez, Andrew D. Boyd",
+      "org": "arXiv",
+      "date": "Jun 1, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 69,
+      "tags": [
+        "Inference and Model Efficiency",
+        "AI Engineering and Developer Tools"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Effective \"all-team\" summarization in high-complexity settings like the Neonatal Intensive Care Unit (NICU) requires aggregating insights from diverse disciplines (physicians, nurses, therapists) spread across hundreds of clinical free-text notes. Simply pooling heterogeneous text often leads to incoherent outputs. Structured summarization therefore first requires accurate categorization of sentence-level provenance across multi-source notes. This pilot study introduces a clinical provenance categorization pipeline using supervised fine-tuning (SFT) of large language models (LLMs). We adapted two Llama-3 models (8B and 70B) to MedSecId, a corpus of 2,002 MIMIC-III (Adult ICU) notes annotated with clinical provenance headers, achieving in-domain Macro F1 scores above 92% for both models. To evaluate cross-domain generalization, we assessed model capacity (8B vs. 70B) and quantization on a gold-standard dataset of 227 sentence-level spans derived from three multi-disciplinary NICU summaries. Experimental results demonstrate a scale-dependent transfer effect: while SFT produced only marginal changes for the 8B model, it substantially improved the 70B model, increasing Macro F1 by 7%. Notably, the quantized fine-tuned 70B model outperformed its full-precision baseline while substantially reducing computational requirements. These findings suggest that sufficient model capacity is critical for preserving semantic flexibility during cross-domain clinical transfer and that efficient quantized adaptation can enable structured provenance modeling for downstream summarization.",
+      "takeaways": [
+        "Introduces a sentence-level clinical provenance categorization pipeline for multidisciplinary hospital-stay summarization, aiming to make pooled notes more structurally usable for \u201call-team\u201d summaries.",
+        "Uses supervised fine-tuning of Llama-3 8B and 70B on the MedSecId corpus; both exceeded 92% in-domain Macro F1, and cross-domain testing on 227 NICU spans showed a 7% Macro F1 gain for the fine-tuned 70B model.",
+        "Suggests that larger model capacity plus quantized adaptation can support efficient cross-domain provenance modeling, which may help downstream structured summarization in high-complexity clinical settings like the NICU."
+      ],
+      "actionItems": [
+        "Share for broader review: Towards Multidisciplinary Summarization of Hospital Stays: Efficient Sentence-Level Clinical Provenance Categorization",
+        "Assess whether inference and model efficiency improves a relevant ai engineering and developer tools workflow.",
         "Capture one pilot question and one risk question for stakeholder review."
       ],
       "researchSignals": {
@@ -712,90 +954,144 @@
         "reproducibility": "Low",
         "novelty": "High"
       },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2605.31464v1"
-    },
-    {
-      "title": "Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
-      "authors": "Jiazheng Xing, Hangjie Yuan, Lingling Cai, Xinyu Liu, Yujie Wei, Fei Du, Hai Ci, Tao Feng, Jiasheng Tang, Weihua Chen, Fan Wang, Yong Liu",
-      "org": "arXiv",
-      "date": "May 29, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 66,
-      "tags": [
-        "Inference and Model Efficiency",
-        "Media and Creative"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality. We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity. Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control. 2) During inference, we introduce Unified Progressive Frequency Bridging (UPFB) to progressively hand off generation to a high-capacity pretrained generator in the shared latent space, enabling coarse-to-fine refinement and producing high-fidelity videos without compromising reasoning quality. To fill the gap in reasoning-driven video generation benchmarks, we introduce VR-Bench, which assesses a model's capability to translate inferred intent into coherent and semantically aligned video content. Extensive experiments demonstrate that Lumos-Nexus achieves substantial gains in visual realism and temporal coherence on VBench, while exhibiting strong reasoning-based generative performance on VR-Bench. Code and models are available at https://jiazheng-xing.github.io/nexus-lumos-home/.",
-      "takeaways": [
-        "Connector-based video unified models have demonstrated strong capability in instruction-grounded video synthesis, but integrating a large high-fidelity generator into the unified training loop is computationally prohibitive, limiting achievable visual quality.",
-        "We therefore propose Lumos-Nexus, a training-efficient unified video generation framework that facilitates the development of strong reasoning-driven generation capabilities while significantly enhancing visual fidelity.",
-        "Lumos-Nexus adopts a two-stage design: 1) During training, only a lightweight generator is aligned with the understanding block to learn to take in reasoning-driven semantic control."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: Lumos-Nexus: Efficient Frequency Bridging with Homogeneous Latent Space for Video Unified Models",
-        "Assess whether inference and model efficiency improves a relevant media and creative workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "Medium",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
       "capability": "Inference and Model Efficiency",
-      "domain": "Media and Creative",
-      "url": "https://arxiv.org/pdf/2605.31603v1"
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02487v1"
     },
     {
-      "title": "On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
-      "authors": "Daria Fomina, Daniil Krasylnikov, Alexey Boykov, Andrey Dolgovyazov, Vyacheslav Zhdanovskiy, Fedor Velikonivtsev",
+      "title": "TabPrep: Closing the Feature Engineering Gap in Tabular Benchmarks",
+      "authors": "Andrej Tschalzev, Nick Erickson, Yuyang Wang, Huzefa Rangwala, Stefan L\u00fcdtke, Heiner Stuckenschmidt, Christian Bartelt",
       "org": "arXiv",
-      "date": "May 29, 2026",
+      "date": "Jun 1, 2026",
       "hasCode": true,
       "stars": 0,
-      "researchScore": 66,
+      "researchScore": 69,
       "tags": [
         "Evaluation and Benchmarks",
-        "Media and Creative"
+        "AI Engineering and Developer Tools"
       ],
       "fsoRelevant": true,
-      "abstract": "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access. Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs. We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer). For each family, we develop GPU kernels that reduce data movement, improve locality, and remain robust across realistic graphs. We also study graph reordering and find that its impact depends on the kernel mapping: it benefits neighbor-parallel (gather-dominated) kernels more consistently than feature-parallel designs. Empirically, our fused attention kernels reach up to $\\textbf{3.9}\\times$ speedup for Graph Transformer (median $\\textbf{1.6}\\times$), with Tensor Core (block-sparse) variants up to $\\textbf{7.3}\\times$ on locally dense graphs; for GATv2 we reach up to $\\textbf{8.5}\\times$ speedup (median $\\textbf{2.0}\\times$) while reducing peak memory by up to $\\textbf{76}\\times$ (median $\\textbf{6}\\times$). Our degree-aware reduction kernels achieve up to $\\textbf{10}\\times$ speedup (median $\\textbf{2.6}\\times$). For SpMM-based layers, properly cached cuSPARSE achieves up to $\\textbf{8}\\times$ speedup over DGL and outperforms evaluated custom baselines in the majority of evaluations. We release our implementations as drop-in replacements to support reproducible, hardware-aware GNN acceleration.",
+      "abstract": "Progress in tabular machine learning has largely focused on increasingly sophisticated model architectures. At the same time, feature engineering remains a critical yet underexplored component of real-world modeling pipelines that is entirely absent from modern benchmarks, which creates an unquantified evaluation gap. In this work, we introduce TabPrep, a lightweight preprocessing pipeline composed of feature generators that are carefully designed to target three specific structural data patterns. We show that many widely used model classes exhibit predictable blind spots to these patterns and that systematic feature engineering alone can establish new peak performance. Across the TabArena benchmark, integrating TabPrep into model training and tuning consistently improves performance for tree-based, neural, linear, and foundation models, often surpassing gains achieved by model-centric innovations alone. TabPrep outperforms previous automated feature engineering approaches in performance, efficiency, and applicability across datasets, enabling integration into large-scale benchmarks. By releasing TabPrep (see https://github.com/atschalz/tabprep), we enable researchers to integrate feature engineering into their benchmarking setup, filling a longstanding gap in tabular evaluations.",
       "takeaways": [
-        "Graph Neural Networks (GNNs) are bottlenecked by sparse, irregular memory access.",
-        "Popular frameworks such as DGL and PyTorch Geometric support general message passing, but complex layers often materialize edge-wise intermediates, increasing memory traffic and limiting scalability on large graphs.",
-        "We take an I/O- and arithmetic-intensity--centric view and show that widely used layers fall into three kernel families: SpMM-based convolutions, reduction-based aggregations, and attention-based layers (GATv2/Graph Transformer)."
+        "Introduces TabPrep, a lightweight preprocessing pipeline to close the feature-engineering gap missing from modern tabular benchmarks.",
+        "Evaluated on TabArena with feature generators for three structural data patterns; integration into training and tuning improved tree-based, neural, linear, and foundation models and outperformed prior automated feature engineering methods in performance, efficiency, and applicability.",
+        "Practical implication: researchers can incorporate TabPrep into benchmarking setups to better reflect real-world tabular pipelines and more fairly assess model performance."
       ],
       "actionItems": [
-        "Prototype a quick evaluation: On Efficient Scaling of GNNs via IO-Aware Layers Implementations",
-        "Assess whether evaluation and benchmarks improves a relevant media and creative workflow.",
+        "Read for research signal: TabPrep: Closing the Feature Engineering Gap in Tabular Benchmarks",
+        "Assess whether evaluation and benchmarks improves a relevant ai engineering and developer tools workflow.",
         "Capture one pilot question and one risk question for stakeholder review."
       ],
       "researchSignals": {
         "evidence": "High",
-        "applicability": "Medium",
+        "applicability": "Low",
         "reproducibility": "Medium",
-        "novelty": "Low"
+        "novelty": "High"
       },
       "capability": "Evaluation and Benchmarks",
-      "domain": "Media and Creative",
-      "url": "https://arxiv.org/pdf/2605.31500v1"
+      "domain": "AI Engineering and Developer Tools",
+      "url": "https://arxiv.org/pdf/2606.02384v1"
     }
   ],
   "blogs": [
     {
-      "source": "Microsoft Research",
-      "title": "Data Formulator 0.7: AI-powered data analytics for enterprise data",
-      "tag": "RESEARCH BLOG",
+      "source": "OpenAI News",
+      "title": "Advancing youth safety and opportunity through global leadership",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "Jun 2, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI calls for global action on youth AI safety through a dedicated AI Safety Institute"
+      ],
+      "url": "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Our views on AI policy and political advocacy",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "Jun 1, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Our approach to AI policy and political advocacy, transparency, support for thoughtful regulation and AI safety, and that no outside political group speaks on the company\u2019s behalf."
+      ],
+      "url": "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Building the infrastructure for the Intelligence Age in Michigan",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "Jun 1, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI breaks ground on a 1GW data center project in Michigan as part of Stargate, building AI infrastructure to expand access, create jobs, and support communities."
+      ],
+      "url": "https://openai.com/index/stargate-michigan-data-center"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Boston Children\u2019s uses AI to unlock new diagnoses",
+      "tag": "AI",
+      "date": "May 29, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Boston Children\u2019s Hospital uses OpenAI technology to improve patient care, reduce operational burden, and help diagnose more than 40 rare disease cases."
+      ],
+      "url": "https://openai.com/index/boston-childrens-hospital"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "How Braintrust turns customer requests into code with Codex",
+      "tag": "AI",
+      "date": "May 29, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "How Braintrust engineers use Codex with GPT-5.5 to run experiments and code faster."
+      ],
+      "url": "https://openai.com/index/braintrust"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Strengthening societal resilience with Rosalind Biodefense",
+      "tag": "PRODUCT",
+      "date": "May 29, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI launches Rosalind Biodefense, expanding trusted access to GPT-Rosalind for vetted developers and U.S. government partners advancing biodefense, public health, and pandemic preparedness through frontier AI."
+      ],
+      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "A shared playbook for trustworthy third party evaluations",
+      "tag": "SAFETY",
+      "date": "May 29, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "OpenAI shares guidance on third-party AI evaluations, covering how to assess model capabilities, safeguards, and validity for frontier systems."
+      ],
+      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "How Endava builds an agentic organization with Codex",
+      "tag": "AI",
       "date": "May 28, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "At a glance Data Formulator 0.7 is an open-source AI-powered system for enterprise data analytics that combines data connectivity, agent-guided exploration, and visualization refinement in a shared workspace. It includes a Data Connectors f"
+        "Learn how Endava uses Codex to build an agentic organization, accelerating software delivery and reducing requirements analysis from weeks to hours."
       ],
-      "url": "https://www.microsoft.com/en-us/research/blog/data-formulator-0-7-ai-powered-data-analytics-for-enterprise-data/"
+      "url": "https://openai.com/index/endava"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "MUFG aims to become AI-native with OpenAI",
+      "tag": "AI",
+      "date": "May 28, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale."
+      ],
+      "url": "https://openai.com/index/mufg"
     },
     {
       "source": "OpenAI News",
@@ -807,94 +1103,6 @@
         "Explore OpenAI\u2019s Frontier Governance Framework and how our AI safety, security, and risk practices align with emerging EU and California regulations."
       ],
       "url": "https://openai.com/index/openai-frontier-governance-framework"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
-      "tag": "AI",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation."
-      ],
-      "url": "https://openai.com/index/cisco"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Election information and safeguards in 2026",
-      "tag": "GLOBAL AFFAIRS",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Ahead of global elections, we\u2019re helping people access information, supporting cyber defenders, and increasing AI transparency"
-      ],
-      "url": "https://openai.com/index/election-safeguards-2026"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Warp\u2019s big bet on building open source with GPT-5.5",
-      "tag": "STARTUP",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Warp uses GPT-5.5 and OpenAI models to coordinate coding agents across local, cloud, and open-source development workflows."
-      ],
-      "url": "https://openai.com/index/warp"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
-      "tag": "GLOBAL AFFAIRS",
-      "date": "May 25, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "OpenAI partners with Grupo Folha and Grupo UOL to bring trusted Brazilian journalism to ChatGPT, expanding access to news with attribution and transparency."
-      ],
-      "url": "https://openai.com/index/grupo-folha-grupo-uol-partnership"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
-      "tag": "AI ADOPTION",
-      "date": "May 22, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "OpenAI is named a leader in the 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents, with Codex recognized for innovation and enterprise-scale deployment."
-      ],
-      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "How Virgin Atlantic ships faster with Codex",
-      "tag": "AI",
-      "date": "May 22, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "How Virgin Atlantic used Codex to ship its revamped mobile app on a fixed holiday travel deadline, reaching near-total unit test coverage and zero P1 defects."
-      ],
-      "url": "https://openai.com/index/virgin-atlantic"
-    },
-    {
-      "source": "Hugging Face - Blog",
-      "title": "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks \u2014 by Artificial Analysis and IBM",
-      "tag": "AI",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "ITBench-AA: Frontier Models Score Below 50% on the First Benchmark for Agentic Enterprise IT Tasks \u2014 by Artificial Analysis and IBM"
-      ],
-      "url": "https://huggingface.co/blog/ibm-research/itbench-aa"
-    },
-    {
-      "source": "Hugging Face - Blog",
-      "title": "Reachy Mini goes fully local",
-      "tag": "AI",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Reachy Mini goes fully local"
-      ],
-      "url": "https://huggingface.co/blog/local-reachy-mini-conversation"
     }
   ],
   "socialPosts": [],
@@ -903,8 +1111,8 @@
     {
       "source": "papers",
       "status": "ok",
-      "item_count": 40,
-      "duration_ms": 1017,
+      "item_count": 58,
+      "duration_ms": 1555,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -923,33 +1131,32 @@
           },
           {
             "category": "cs.LG",
-            "status": "error",
-            "raw_count": 0,
-            "seven_day_count": 0,
-            "fourteen_day_count": 0,
-            "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25
           }
         ],
-        "raw_count": 50,
-        "seven_day_count": 50,
-        "fourteen_day_count": 50,
+        "raw_count": 75,
+        "seven_day_count": 75,
+        "fourteen_day_count": 75,
         "backfill_count": 0,
         "selected_window_days": 7,
-        "deduplicated_count": 40,
+        "deduplicated_count": 58,
         "displayed_count": 8
       }
     },
     {
       "source": "rss",
       "status": "ok",
-      "item_count": 17,
-      "duration_ms": 4181
+      "item_count": 20,
+      "duration_ms": 4468
     },
     {
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 68560,
+      "duration_ms": 83155,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -962,13 +1169,13 @@
           {
             "query": "topic:agents language:python",
             "fetched": 8,
-            "added": 6,
+            "added": 7,
             "failed": false
           },
           {
             "query": "topic:rag language:python",
             "fetched": 8,
-            "added": 6,
+            "added": 5,
             "failed": false
           },
           {
@@ -986,35 +1193,35 @@
           {
             "query": "memory llm language:python stars:>20",
             "fetched": 8,
-            "added": 2,
+            "added": 4,
             "failed": false
           },
           {
             "query": "\"recursive language model\" OR rlm language:python stars:>10",
-            "fetched": 1,
-            "added": 1,
-            "failed": false
-          },
-          {
-            "query": "\"mcp server\" knowledge base language:python stars:>10",
-            "fetched": 1,
-            "added": 0,
-            "failed": false
-          },
-          {
-            "query": "\"personal knowledge base\" rag language:python stars:>10",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "\"knowledge graph\" \"llm wiki\" stars:>10",
+            "query": "\"model context protocol\" knowledge base language:python stars:>10",
             "fetched": 1,
-            "added": 1,
+            "added": 0,
             "failed": false
           },
           {
-            "query": "\"claude memory\" language:python stars:>10",
+            "query": "\"knowledge graph\" rag language:python stars:>20",
+            "fetched": 3,
+            "added": 2,
+            "failed": false
+          },
+          {
+            "query": "\"llm wiki\" language:python stars:>10",
+            "fetched": 8,
+            "added": 5,
+            "failed": false
+          },
+          {
+            "query": "\"context management\" claude code language:python stars:>10",
             "fetched": 0,
             "added": 0,
             "failed": false
@@ -1071,38 +1278,38 @@
             "kind": "evergreen"
           },
           {
-            "repo": "nduckmink/arkon",
+            "repo": "AxDSan/mnemosyne",
             "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "VectifyAI/OpenKB",
+            "repo": "Ontos-AI/knowhere",
             "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "AgriciDaniel/claude-obsidian",
+            "repo": "stevesolun/ctx",
             "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "nashsu/llm_wiki",
-            "added": 1,
+            "repo": "safishamsi/graphify",
+            "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-05-21",
-        "created_cutoff": "2026-03-29",
+        "pushed_cutoff": "2026-05-26",
+        "created_cutoff": "2026-04-03",
         "dynamic_config": {
-          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
@@ -1112,37 +1319,37 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
+              "\"context management\" claude code language:python stars:>10",
+              "\"llm wiki\" language:python stars:>10",
+              "\"knowledge graph\" rag language:python stars:>20",
+              "\"model context protocol\" knowledge base language:python stars:>10"
+            ],
+            "removed": [
               "\"claude memory\" language:python stars:>10",
               "\"knowledge graph\" \"llm wiki\" stars:>10",
               "\"personal knowledge base\" rag language:python stars:>10",
               "\"mcp server\" knowledge base language:python stars:>10"
-            ],
-            "removed": [
-              "language:typescript topic:ai stars:>20",
-              "topic:mcp language:python stars:>10",
-              "topic:model-context-protocol stars:>10",
-              "\"llm wiki\" OR \"ai wiki\" stars:>5"
             ]
           },
           "watch_rotation": {
             "replacements": 4,
             "added": [
+              "safishamsi/graphify",
+              "stevesolun/ctx",
+              "Ontos-AI/knowhere",
+              "AxDSan/mnemosyne"
+            ],
+            "removed": [
               "nashsu/llm_wiki",
               "AgriciDaniel/claude-obsidian",
               "VectifyAI/OpenKB",
               "nduckmink/arkon"
-            ],
-            "removed": [
-              "swarmclawai/swarmvault",
-              "MemPalace/mempalace",
-              "anthropics/anthropic-sdk-python",
-              "anthropics/anthropic-cookbook"
             ]
           }
         },
-        "total_unique_candidates": 47,
+        "total_unique_candidates": 53,
         "dynamic_refresh": {
-          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
@@ -1152,31 +1359,31 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
+              "\"context management\" claude code language:python stars:>10",
+              "\"llm wiki\" language:python stars:>10",
+              "\"knowledge graph\" rag language:python stars:>20",
+              "\"model context protocol\" knowledge base language:python stars:>10"
+            ],
+            "removed": [
               "\"claude memory\" language:python stars:>10",
               "\"knowledge graph\" \"llm wiki\" stars:>10",
               "\"personal knowledge base\" rag language:python stars:>10",
               "\"mcp server\" knowledge base language:python stars:>10"
-            ],
-            "removed": [
-              "language:typescript topic:ai stars:>20",
-              "topic:mcp language:python stars:>10",
-              "topic:model-context-protocol stars:>10",
-              "\"llm wiki\" OR \"ai wiki\" stars:>5"
             ]
           },
           "watch_rotation": {
             "replacements": 4,
             "added": [
+              "safishamsi/graphify",
+              "stevesolun/ctx",
+              "Ontos-AI/knowhere",
+              "AxDSan/mnemosyne"
+            ],
+            "removed": [
               "nashsu/llm_wiki",
               "AgriciDaniel/claude-obsidian",
               "VectifyAI/OpenKB",
               "nduckmink/arkon"
-            ],
-            "removed": [
-              "swarmclawai/swarmvault",
-              "MemPalace/mempalace",
-              "anthropics/anthropic-sdk-python",
-              "anthropics/anthropic-cookbook"
             ]
           }
         }
@@ -1185,10 +1392,10 @@
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 7,
-      "duration_ms": 107674,
+      "item_count": 16,
+      "duration_ms": 143523,
       "dynamic_config": {
-        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
         "active_source_pages": 6,
@@ -1201,55 +1408,57 @@
         "feed_rotation": {
           "replacements": 2,
           "added": [
-            "https://blog.google/rss/",
-            "https://cloud.google.com/blog/feed/"
+            "https://aws.amazon.com/blogs/machine-learning/feed/",
+            "https://blogs.microsoft.com/ai/feed/"
           ],
           "removed": [
-            "https://aws.amazon.com/blogs/machine-learning/feed/",
-            "https://github.blog/category/ai-and-ml/feed/"
+            "https://blog.google/technology/ai/rss/",
+            "https://developers.googleblog.com/feeds/posts/default"
           ]
         },
         "model_term_rotation": {
           "replacements": 4,
           "added": [
+            "gpt-5",
+            "qwen 3",
+            "mistral medium",
+            "llama 4"
+          ],
+          "removed": [
             "claude opus 4.8",
             "gemini embedding 2",
             "aya multilingual",
             "voxtral tts"
-          ],
-          "removed": [
-            "gemini 3.5 flash",
-            "mistral medium 3.5",
-            "mistral small 4",
-            "mistral 3"
           ]
         },
         "tool_term_rotation": {
-          "replacements": 3,
+          "replacements": 4,
           "added": [
-            "antigravity cli",
-            "agentwatch",
-            "agentcore"
+            "codex",
+            "mcp server",
+            "cli agent",
+            "agentwatch"
           ],
           "removed": [
-            "agents cli",
-            "antigravity cli",
-            "agentwatch"
+            "agentcore",
+            "codex",
+            "mcp server",
+            "cli agent"
           ]
         }
       },
       "extraction_diagnostics": {
         "feeds_requested": 16,
         "source_pages_requested": 6,
-        "entries_fetched": 118,
-        "classified": 8,
-        "selected": 7,
-        "llm_classification_attempts": 19,
+        "entries_fetched": 153,
+        "classified": 24,
+        "selected": 16,
+        "llm_classification_attempts": 24,
         "llm_classification_failures": 0,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
         "dynamic_config": {
-          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
           "active_core_feeds": 14,
           "active_emerging_feeds": 4,
           "active_source_pages": 6,
@@ -1262,40 +1471,42 @@
           "feed_rotation": {
             "replacements": 2,
             "added": [
-              "https://blog.google/rss/",
-              "https://cloud.google.com/blog/feed/"
+              "https://aws.amazon.com/blogs/machine-learning/feed/",
+              "https://blogs.microsoft.com/ai/feed/"
             ],
             "removed": [
-              "https://aws.amazon.com/blogs/machine-learning/feed/",
-              "https://github.blog/category/ai-and-ml/feed/"
+              "https://blog.google/technology/ai/rss/",
+              "https://developers.googleblog.com/feeds/posts/default"
             ]
           },
           "model_term_rotation": {
             "replacements": 4,
             "added": [
+              "gpt-5",
+              "qwen 3",
+              "mistral medium",
+              "llama 4"
+            ],
+            "removed": [
               "claude opus 4.8",
               "gemini embedding 2",
               "aya multilingual",
               "voxtral tts"
-            ],
-            "removed": [
-              "gemini 3.5 flash",
-              "mistral medium 3.5",
-              "mistral small 4",
-              "mistral 3"
             ]
           },
           "tool_term_rotation": {
-            "replacements": 3,
+            "replacements": 4,
             "added": [
-              "antigravity cli",
-              "agentwatch",
-              "agentcore"
+              "codex",
+              "mcp server",
+              "cli agent",
+              "agentwatch"
             ],
             "removed": [
-              "agents cli",
-              "antigravity cli",
-              "agentwatch"
+              "agentcore",
+              "codex",
+              "mcp server",
+              "cli agent"
             ]
           }
         }

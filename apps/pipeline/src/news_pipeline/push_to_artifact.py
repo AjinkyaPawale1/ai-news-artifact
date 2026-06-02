@@ -65,6 +65,7 @@ def _to_paper(item: dict) -> dict:
         "hasCode": bool(metadata.get("has_code")),
         "stars": 0,
         "researchScore": metadata.get("research_score", 0),
+        "priority": metadata.get("priority", "READ"),
         "tags": metadata.get("paper_tags") or ["AI Research"],
         "fsoRelevant": True,
         "abstract": item.get("raw_content") or item.get("summary") or "No abstract available.",

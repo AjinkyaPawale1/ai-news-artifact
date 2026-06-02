@@ -65,12 +65,15 @@ The pipeline can run without secrets, but these are useful:
 
 ```sh
 GITHUB_TOKEN=...      # improves GitHub API rate limits
-OPENAI_API_KEY=...    # enables LLM-generated GitHub repo bullets
+OPENAI_API_KEY=...    # enables default LLM-generated repo and paper summaries
 OPENAI_MODEL=...      # optional; defaults to gpt-5.4-mini
 OPENAI_REPO_BRIEF_LIMIT=5  # caps repo summary calls per run
-OPENAI_PAPER_SUMMARY_LIMIT=8  # caps optional paper summary calls per run
+OPENAI_PAPER_SUMMARY_LIMIT=8  # caps default paper summary calls per run
+OPENAI_PAPER_SUMMARY_MAX_RETRIES=2  # retries transient summary failures twice
 DATE_WINDOW_DAYS=7    # weekly activity window for news and repo freshness
 ARXIV_FALLBACK_WINDOW_DAYS=14  # used only when fewer than 8 recent papers exist
+ARXIV_MAX_RETRIES=2   # retries transient category failures twice
+ARXIV_REQUEST_INTERVAL_SECONDS=3  # respects arXiv request pacing guidance
 GITHUB_MAX_REPO_AGE_DAYS=90  # only show repos created in this recent horizon
 ```
 
@@ -88,5 +91,8 @@ The React app treats `data/output.json` as read-only generated data.
 ## More Context
 
 - Architecture: `docs/architecture.md`
+- Research paper agent: `docs/research-paper-agent-architecture.md`
+- GitHub agent: `docs/github-agent-architecture.md`
+- Model/tools agent: `docs/model-tools-agent-architecture.md`
 - Current plan: `IMPLEMENTATION_PLAN.md`
 - Agent handoff notes: `memory/handoff.md`

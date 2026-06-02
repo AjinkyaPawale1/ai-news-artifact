@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-06-01
+Last updated: 2026-06-02
 
 ## Purpose
 A single-page dashboard UI for a weekly AI intelligence brief tailored to financial services stakeholders.
@@ -49,17 +49,20 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
   `research_score`, visible research signals, and `has_code`.
 - Paper ranking is independent from the shared relevance score: research cards are sorted
   by a transparent `0-100` research score and the top eight available papers are emitted.
-- Paper fetch diagnostics preserve partial arXiv results and capture per-category status
-  plus raw, seven-day, deduplicated, and displayed counts.
+- Paper fetch diagnostics preserve partial arXiv results and capture per-category status,
+  request attempts, retries, plus raw, seven-day, deduplicated, and displayed counts.
 - Paper selection uses the seven-day window first and backfills only missing display slots
   from days 8-14 when fewer than eight unique recent papers are available.
 - Displayed papers carry exactly three abstract-grounded summary bullets. OpenAI Responses
-  API summaries are optional via `OPENAI_API_KEY`; deterministic abstract bullets remain
-  the fallback.
+  API summaries run by default when `OPENAI_API_KEY` is available, retry transient failures
+  twice, and fall back to deterministic abstract bullets.
 - The weekly briefing's primary section is paper-only. The retained `actionItems` artifact
   compatibility field is also derived from ranked papers only, never GitHub or RSS.
 - `npm run pipeline:papers` refreshes papers and paper health diagnostics while preserving
   non-paper dashboard sections from the existing artifact checkpoint.
+- Research-paper agent details live in `docs/research-paper-agent-architecture.md`,
+  including paced arXiv extraction, the three-node LangGraph state, research scoring,
+  default OpenAI summary bullets, retries, diagnostics, and artifact mapping.
 
 ## Operational Commands
 - npm install

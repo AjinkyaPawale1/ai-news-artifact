@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-06-01
+Last updated: 2026-06-02
 Owner: AI agent (Codex)
 
 ## Completed
@@ -53,6 +53,12 @@ Owner: AI agent (Codex)
 - Added optional OpenAI Responses API paper summaries with exactly three abstract-grounded bullets and a deterministic fallback when no key is configured.
 - Reduced paper tags to capability plus domain and added a yellow `OPEN PAPER` link.
 - Replaced the weekly briefing's mixed action-card section with paper-only ranked cards labeled `RESEARCH PAPERS`; repos, releases, and tools remain separate.
+- Added `docs/research-paper-agent-architecture.md` documenting the end-to-end paper workflow: arXiv extraction, freshness backfill, LangGraph state, deterministic scoring, optional OpenAI summaries, fallbacks, diagnostics, paper-only refresh, artifact mapping, and frontend payload.
+- Refactored the paper workflow into explicit LangGraph fetch, recent-selection, and metadata-enrichment stages with sequential fallback.
+- Added paced arXiv category requests, two transient retries with exponential backoff and jitter, and request/retry health diagnostics.
+- Made OpenAI paper summaries the default when a key exists, added two transient retries, and recorded summary attempts, retries, successes, fallbacks, and disable reasons.
+- Tightened deterministic paper labels with weighted phrase matching, word boundaries, overlap suppression, and `Other` for weak or tied domains.
+- Added visible paper priority chips and expanded-card `RECOMMENDED ACTIONS`.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -66,9 +72,9 @@ Owner: AI agent (Codex)
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
 - `data/model_tools_dynamic_config.json` is generated inspectable state, not the primary contributor edit point; static defaults live in `apps/pipeline/src/news_pipeline/model_tools_config.py`.
 - Latest refresh produced 1 model card and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
-- The docs folder now includes separate architecture pages for GitHub discovery and model/tool release discovery.
+- The docs folder now includes separate architecture pages for research papers, GitHub discovery, and model/tool release discovery.
 - `origin` now points to `https://github.com/AjinkyaPawale1/llm-news-artifact.git`.
-- Remote branches currently published: `main`, `feature/model-tools-releases-workflow`, and `feature/paper-actions-workflow`.
+- Remote branch currently published: `main`.
 
 ## Next Recommended Actions
 1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
@@ -94,6 +100,7 @@ Owner: AI agent (Codex)
 - `429 insufficient_quota` from OpenAI is an API billing/quota issue, not a normal transient rate limit; see `memory/errors.md` before retry loops.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
 - Paper research metadata and scores are deterministic keyword logic; adjust keyword groups and score weights carefully if dashboard labels or ranking feel too broad or too narrow.
+- arXiv runs intentionally add three-second spacing between category requests to reduce avoidable `429` responses.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
 - This checkout is a git worktree; GitHub CLI repository creation works more reliably by creating the remote first, then adding `origin`, rather than using `gh repo create --source=.`.

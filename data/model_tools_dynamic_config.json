@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-05-28T18:29:01.195129+00:00",
+  "updated_at": "2026-06-02T17:27:04.131095+00:00",
   "source": "llm",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
@@ -27,19 +27,19 @@
     "https://cohere.com/blog/"
   ],
   "emerging_feeds": [
+    "https://blogs.microsoft.com/ai/feed/",
+    "https://aws.amazon.com/blogs/machine-learning/feed/",
     "https://cloud.google.com/blog/feed/",
-    "https://blog.google/rss/",
-    "https://developers.googleblog.com/feeds/posts/default",
-    "https://blog.google/technology/ai/rss/"
+    "https://blog.google/rss/"
   ],
   "emerging_model_terms": [
-    "voxtral tts",
-    "aya multilingual",
-    "gemini embedding 2",
-    "claude opus 4.8"
+    "llama 4",
+    "mistral medium",
+    "qwen 3",
+    "gpt-5"
   ],
   "emerging_tool_terms": [
-    "agentcore"
+    "agentwatch"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -47,43 +47,19 @@
     "updated": true,
     "source": "llm",
     "feed_rotation": {
-      "replacements": 2,
-      "added": [
-        "https://blog.google/rss/",
-        "https://cloud.google.com/blog/feed/"
-      ],
-      "removed": [
-        "https://aws.amazon.com/blogs/machine-learning/feed/",
-        "https://github.blog/category/ai-and-ml/feed/"
-      ]
+      "replacements": 0,
+      "added": [],
+      "removed": []
     },
     "model_term_rotation": {
-      "replacements": 4,
-      "added": [
-        "claude opus 4.8",
-        "gemini embedding 2",
-        "aya multilingual",
-        "voxtral tts"
-      ],
-      "removed": [
-        "gemini 3.5 flash",
-        "mistral medium 3.5",
-        "mistral small 4",
-        "mistral 3"
-      ]
+      "replacements": 0,
+      "added": [],
+      "removed": []
     },
     "tool_term_rotation": {
-      "replacements": 3,
-      "added": [
-        "antigravity cli",
-        "agentwatch",
-        "agentcore"
-      ],
-      "removed": [
-        "agents cli",
-        "antigravity cli",
-        "agentwatch"
-      ]
+      "replacements": 0,
+      "added": [],
+      "removed": []
     }
   }
 }

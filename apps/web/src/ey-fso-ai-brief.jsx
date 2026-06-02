@@ -852,6 +852,13 @@ function WeeklyBriefing() {
 
 function PaperCard({ paper }) {
   const [open, setOpen] = useState(false);
+  const priorityColors = {
+    READ: { color: "#67e8f9", backgroundColor: "rgba(103,232,249,0.08)", borderColor: "rgba(103,232,249,0.30)" },
+    EXPERIMENT: { color: "#f8c74e", backgroundColor: "rgba(248,199,78,0.08)", borderColor: "rgba(248,199,78,0.30)" },
+    SHARE: { color: "#c084fc", backgroundColor: "rgba(192,132,252,0.08)", borderColor: "rgba(192,132,252,0.30)" },
+    WATCH: { color: "#94a3b8", backgroundColor: "rgba(148,163,184,0.08)", borderColor: "rgba(148,163,184,0.30)" },
+  };
+  const priorityStyle = priorityColors[paper.priority] ?? priorityColors.READ;
   return (
     <div
       className="border transition-colors"
@@ -883,6 +890,18 @@ function PaperCard({ paper }) {
             </div>
             {paper.takeaways && <TakeawayList takeaways={paper.takeaways} />}
             <div className="flex items-center gap-2 flex-wrap mt-3">
+              {paper.priority && (
+                <span
+                  className="ai-mono inline-flex items-center px-2 py-0.5 border"
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: "0.14em",
+                    ...priorityStyle,
+                  }}
+                >
+                  {paper.priority}
+                </span>
+              )}
               {paper.hasCode && (
                 <span
                   className="ai-mono inline-flex items-center gap-1.5 px-2 py-0.5 border"
@@ -1006,6 +1025,32 @@ function PaperCard({ paper }) {
               );
             })}
           </div>
+          {paper.actionItems?.length > 0 && (
+            <div className="mt-6">
+              <div
+                className="ai-mono mb-3"
+                style={{
+                  fontSize: 10,
+                  letterSpacing: "0.18em",
+                  color: "#475569",
+                }}
+              >
+                RECOMMENDED ACTIONS
+              </div>
+              <ul className="space-y-2">
+                {paper.actionItems.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-2"
+                    style={{ fontSize: 12, color: "#cbd5e1", lineHeight: 1.55 }}
+                  >
+                    <ArrowRight size={13} style={{ color: priorityStyle.color, marginTop: 3, flexShrink: 0 }} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           {paper.url && (
             <a
               href={paper.url}

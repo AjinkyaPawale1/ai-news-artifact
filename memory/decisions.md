@@ -215,3 +215,19 @@ Impact:
 - Kept generated emerging state in `data/model_tools_dynamic_config.json` for inspection and continuity.
 - Standardized core, emerging, and candidate terminology.
 - Made `MODEL_TOOL_MAX_ITEMS` the shared per-category cap for graph selection and dashboard rendering.
+
+## 2026-06-02 - Make paper curation resilient and expose recommended actions
+Status: accepted
+
+Reason:
+- arXiv category calls occasionally return transient failures and should not rely on a single request.
+- OpenAI paper summaries are the preferred card copy when a key exists, but deterministic bullets must preserve weekly output when the API is unavailable.
+- Raw substring labels caused weak domain matches such as `learning` forcing an education label.
+- Paper priorities and recommended actions existed in the artifact but were not visible in the paper card.
+
+Impact:
+- Paper fetching now uses explicit LangGraph fetch, recent-selection, and metadata-enrichment stages with sequential fallback.
+- arXiv requests are paced and retry transient failures twice with exponential backoff and jitter.
+- Paper summaries retry transient OpenAI failures twice and publish summary diagnostics with deterministic fallback behavior.
+- Capability and domain labels use weighted phrase matching with weak or tied domains falling back to `Other`.
+- Paper cards render a priority chip and expanded recommended actions while `research_score` remains the ranking signal.

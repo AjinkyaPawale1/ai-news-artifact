@@ -2,8 +2,8 @@
   {
     "source": "papers",
     "status": "ok",
-    "item_count": 40,
-    "duration_ms": 1017,
+    "item_count": 58,
+    "duration_ms": 1555,
     "fetch_diagnostics": {
       "categories": [
         {
@@ -22,33 +22,32 @@
         },
         {
           "category": "cs.LG",
-          "status": "error",
-          "raw_count": 0,
-          "seven_day_count": 0,
-          "fourteen_day_count": 0,
-          "error": "429 Client Error: Unknown Error for url: https://export.arxiv.org/api/query?search_query=cat%3Acs.LG&start=0&max_results=25&sortBy=submittedDate&sortOrder=descending"
+          "status": "ok",
+          "raw_count": 25,
+          "seven_day_count": 25,
+          "fourteen_day_count": 25
         }
       ],
-      "raw_count": 50,
-      "seven_day_count": 50,
-      "fourteen_day_count": 50,
+      "raw_count": 75,
+      "seven_day_count": 75,
+      "fourteen_day_count": 75,
       "backfill_count": 0,
       "selected_window_days": 7,
-      "deduplicated_count": 40,
+      "deduplicated_count": 58,
       "displayed_count": 8
     }
   },
   {
     "source": "rss",
     "status": "ok",
-    "item_count": 17,
-    "duration_ms": 4181
+    "item_count": 20,
+    "duration_ms": 4468
   },
   {
     "source": "github",
     "status": "ok",
     "item_count": 20,
-    "duration_ms": 68560,
+    "duration_ms": 83155,
     "query_mode": "core+emerging",
     "search_diagnostics": {
       "queries": [
@@ -61,13 +60,13 @@
         {
           "query": "topic:agents language:python",
           "fetched": 8,
-          "added": 6,
+          "added": 7,
           "failed": false
         },
         {
           "query": "topic:rag language:python",
           "fetched": 8,
-          "added": 6,
+          "added": 5,
           "failed": false
         },
         {
@@ -85,35 +84,35 @@
         {
           "query": "memory llm language:python stars:>20",
           "fetched": 8,
-          "added": 2,
+          "added": 4,
           "failed": false
         },
         {
           "query": "\"recursive language model\" OR rlm language:python stars:>10",
-          "fetched": 1,
-          "added": 1,
-          "failed": false
-        },
-        {
-          "query": "\"mcp server\" knowledge base language:python stars:>10",
-          "fetched": 1,
-          "added": 0,
-          "failed": false
-        },
-        {
-          "query": "\"personal knowledge base\" rag language:python stars:>10",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "\"knowledge graph\" \"llm wiki\" stars:>10",
+          "query": "\"model context protocol\" knowledge base language:python stars:>10",
           "fetched": 1,
-          "added": 1,
+          "added": 0,
           "failed": false
         },
         {
-          "query": "\"claude memory\" language:python stars:>10",
+          "query": "\"knowledge graph\" rag language:python stars:>20",
+          "fetched": 3,
+          "added": 2,
+          "failed": false
+        },
+        {
+          "query": "\"llm wiki\" language:python stars:>10",
+          "fetched": 8,
+          "added": 5,
+          "failed": false
+        },
+        {
+          "query": "\"context management\" claude code language:python stars:>10",
           "fetched": 0,
           "added": 0,
           "failed": false
@@ -170,38 +169,38 @@
           "kind": "evergreen"
         },
         {
-          "repo": "nduckmink/arkon",
+          "repo": "AxDSan/mnemosyne",
           "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "VectifyAI/OpenKB",
+          "repo": "Ontos-AI/knowhere",
           "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "AgriciDaniel/claude-obsidian",
+          "repo": "stevesolun/ctx",
           "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "nashsu/llm_wiki",
-          "added": 1,
+          "repo": "safishamsi/graphify",
+          "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
         }
       ],
-      "pushed_cutoff": "2026-05-21",
-      "created_cutoff": "2026-03-29",
+      "pushed_cutoff": "2026-05-26",
+      "created_cutoff": "2026-04-03",
       "dynamic_config": {
-        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
         "active_emerging_watch_repos": 4,
         "auto_update_enabled": true,
@@ -211,37 +210,37 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
+            "\"context management\" claude code language:python stars:>10",
+            "\"llm wiki\" language:python stars:>10",
+            "\"knowledge graph\" rag language:python stars:>20",
+            "\"model context protocol\" knowledge base language:python stars:>10"
+          ],
+          "removed": [
             "\"claude memory\" language:python stars:>10",
             "\"knowledge graph\" \"llm wiki\" stars:>10",
             "\"personal knowledge base\" rag language:python stars:>10",
             "\"mcp server\" knowledge base language:python stars:>10"
-          ],
-          "removed": [
-            "language:typescript topic:ai stars:>20",
-            "topic:mcp language:python stars:>10",
-            "topic:model-context-protocol stars:>10",
-            "\"llm wiki\" OR \"ai wiki\" stars:>5"
           ]
         },
         "watch_rotation": {
           "replacements": 4,
           "added": [
+            "safishamsi/graphify",
+            "stevesolun/ctx",
+            "Ontos-AI/knowhere",
+            "AxDSan/mnemosyne"
+          ],
+          "removed": [
             "nashsu/llm_wiki",
             "AgriciDaniel/claude-obsidian",
             "VectifyAI/OpenKB",
             "nduckmink/arkon"
-          ],
-          "removed": [
-            "swarmclawai/swarmvault",
-            "MemPalace/mempalace",
-            "anthropics/anthropic-sdk-python",
-            "anthropics/anthropic-cookbook"
           ]
         }
       },
-      "total_unique_candidates": 47,
+      "total_unique_candidates": 53,
       "dynamic_refresh": {
-        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/github_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
         "active_emerging_watch_repos": 4,
         "auto_update_enabled": true,
@@ -251,31 +250,31 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
+            "\"context management\" claude code language:python stars:>10",
+            "\"llm wiki\" language:python stars:>10",
+            "\"knowledge graph\" rag language:python stars:>20",
+            "\"model context protocol\" knowledge base language:python stars:>10"
+          ],
+          "removed": [
             "\"claude memory\" language:python stars:>10",
             "\"knowledge graph\" \"llm wiki\" stars:>10",
             "\"personal knowledge base\" rag language:python stars:>10",
             "\"mcp server\" knowledge base language:python stars:>10"
-          ],
-          "removed": [
-            "language:typescript topic:ai stars:>20",
-            "topic:mcp language:python stars:>10",
-            "topic:model-context-protocol stars:>10",
-            "\"llm wiki\" OR \"ai wiki\" stars:>5"
           ]
         },
         "watch_rotation": {
           "replacements": 4,
           "added": [
+            "safishamsi/graphify",
+            "stevesolun/ctx",
+            "Ontos-AI/knowhere",
+            "AxDSan/mnemosyne"
+          ],
+          "removed": [
             "nashsu/llm_wiki",
             "AgriciDaniel/claude-obsidian",
             "VectifyAI/OpenKB",
             "nduckmink/arkon"
-          ],
-          "removed": [
-            "swarmclawai/swarmvault",
-            "MemPalace/mempalace",
-            "anthropics/anthropic-sdk-python",
-            "anthropics/anthropic-cookbook"
           ]
         }
       }
@@ -284,10 +283,10 @@
   {
     "source": "model_tools",
     "status": "ok",
-    "item_count": 7,
-    "duration_ms": 107674,
+    "item_count": 16,
+    "duration_ms": 143523,
     "dynamic_config": {
-      "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+      "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
       "active_core_feeds": 14,
       "active_emerging_feeds": 4,
       "active_source_pages": 6,
@@ -300,55 +299,57 @@
       "feed_rotation": {
         "replacements": 2,
         "added": [
-          "https://blog.google/rss/",
-          "https://cloud.google.com/blog/feed/"
+          "https://aws.amazon.com/blogs/machine-learning/feed/",
+          "https://blogs.microsoft.com/ai/feed/"
         ],
         "removed": [
-          "https://aws.amazon.com/blogs/machine-learning/feed/",
-          "https://github.blog/category/ai-and-ml/feed/"
+          "https://blog.google/technology/ai/rss/",
+          "https://developers.googleblog.com/feeds/posts/default"
         ]
       },
       "model_term_rotation": {
         "replacements": 4,
         "added": [
+          "gpt-5",
+          "qwen 3",
+          "mistral medium",
+          "llama 4"
+        ],
+        "removed": [
           "claude opus 4.8",
           "gemini embedding 2",
           "aya multilingual",
           "voxtral tts"
-        ],
-        "removed": [
-          "gemini 3.5 flash",
-          "mistral medium 3.5",
-          "mistral small 4",
-          "mistral 3"
         ]
       },
       "tool_term_rotation": {
-        "replacements": 3,
+        "replacements": 4,
         "added": [
-          "antigravity cli",
-          "agentwatch",
-          "agentcore"
+          "codex",
+          "mcp server",
+          "cli agent",
+          "agentwatch"
         ],
         "removed": [
-          "agents cli",
-          "antigravity cli",
-          "agentwatch"
+          "agentcore",
+          "codex",
+          "mcp server",
+          "cli agent"
         ]
       }
     },
     "extraction_diagnostics": {
       "feeds_requested": 16,
       "source_pages_requested": 6,
-      "entries_fetched": 118,
-      "classified": 8,
-      "selected": 7,
-      "llm_classification_attempts": 19,
+      "entries_fetched": 153,
+      "classified": 24,
+      "selected": 16,
+      "llm_classification_attempts": 24,
       "llm_classification_failures": 0,
       "llm_classification_disabled": false,
       "llm_classification_skip_reason": "",
       "dynamic_config": {
-        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-model-tools/data/model_tools_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
         "active_source_pages": 6,
@@ -361,40 +362,42 @@
         "feed_rotation": {
           "replacements": 2,
           "added": [
-            "https://blog.google/rss/",
-            "https://cloud.google.com/blog/feed/"
+            "https://aws.amazon.com/blogs/machine-learning/feed/",
+            "https://blogs.microsoft.com/ai/feed/"
           ],
           "removed": [
-            "https://aws.amazon.com/blogs/machine-learning/feed/",
-            "https://github.blog/category/ai-and-ml/feed/"
+            "https://blog.google/technology/ai/rss/",
+            "https://developers.googleblog.com/feeds/posts/default"
           ]
         },
         "model_term_rotation": {
           "replacements": 4,
           "added": [
+            "gpt-5",
+            "qwen 3",
+            "mistral medium",
+            "llama 4"
+          ],
+          "removed": [
             "claude opus 4.8",
             "gemini embedding 2",
             "aya multilingual",
             "voxtral tts"
-          ],
-          "removed": [
-            "gemini 3.5 flash",
-            "mistral medium 3.5",
-            "mistral small 4",
-            "mistral 3"
           ]
         },
         "tool_term_rotation": {
-          "replacements": 3,
+          "replacements": 4,
           "added": [
-            "antigravity cli",
-            "agentwatch",
-            "agentcore"
+            "codex",
+            "mcp server",
+            "cli agent",
+            "agentwatch"
           ],
           "removed": [
-            "agents cli",
-            "antigravity cli",
-            "agentwatch"
+            "agentcore",
+            "codex",
+            "mcp server",
+            "cli agent"
           ]
         }
       }

@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-06-01
+Last updated: 2026-06-02
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -37,9 +37,11 @@ Last updated: 2026-06-01
 - [x] Keep the retained paper action metadata scoring generic.
 - [x] Add a paper-only refresh command that preserves non-paper dashboard sections.
 - [x] Add seven-day-first paper selection with bounded fourteen-day backfill.
-- [x] Add optional OpenAI paper summaries with deterministic three-bullet fallback.
+- [x] Add default OpenAI paper summary attempts when a key exists, with deterministic three-bullet fallback.
 - [x] Reduce paper-card tags and add a highlighted paper link.
 - [x] Replace the weekly briefing mixed action queue with paper-only research cards.
+- [x] Add end-to-end research-paper agent architecture documentation under `docs/`.
+- [x] Add paced arXiv retries, default OpenAI summary retries, paper health diagnostics, taxonomy accuracy fixes, and visible paper actions.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

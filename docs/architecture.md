@@ -55,7 +55,8 @@ The pipeline owns `data/output.json` and `data/health.json`. No API service is p
 The paper source queries the latest `cs.AI`, `cs.CL`, and `cs.LG` arXiv entries and
 starts with papers from the seven-day brief window. If fewer than eight unique papers
 are available, it backfills only the remaining slots from days 8-14. One failed
-category does not discard successful category results.
+category does not discard successful category results. arXiv requests are paced by
+three seconds and retry transient failures twice with exponential backoff and jitter.
 
 Paper enrichment produces a primary capability, a descriptive domain, action priority,
 takeaways, action items, tags, code-availability signal, research score, and visible
@@ -76,17 +77,24 @@ research score:
 
 The artifact emits the top eight available papers. The weekly briefing also uses ranked
 papers only; repos, releases, and tools/services remain separate dashboard sections.
-Paper health diagnostics include per-category status plus raw, seven-day, fourteen-day,
-backfill, deduplicated, and displayed counts.
+Paper health diagnostics include per-category status, retry attempts, plus raw,
+seven-day, fourteen-day, backfill, deduplicated, displayed, and summary counts.
 
 The eight displayed papers receive exactly three abstract-grounded summary bullets.
-When `OPENAI_API_KEY` is configured, the Responses API produces those bullets with
-`OPENAI_MODEL` and an `OPENAI_PAPER_SUMMARY_LIMIT` cap. Without a key or after an API
-failure, the pipeline falls back to deterministic abstract sentences.
+When `OPENAI_API_KEY` is configured, the Responses API produces those bullets by default
+with `OPENAI_MODEL`, an `OPENAI_PAPER_SUMMARY_LIMIT` cap, and two transient retries.
+Without a key or after exhausted retries, the pipeline falls back to deterministic
+abstract sentences.
 
 Use `npm run pipeline:papers` to refresh papers, paper-derived compatibility action items,
 and paper health diagnostics without fetching or replacing the existing repos, blogs,
 models, or tools/services.
+
+For the full research-paper flow, including the LangGraph state, arXiv extraction,
+research scoring, default OpenAI summary bullets, paper-only refresh path, diagnostics,
+and artifact mapping, see:
+
+- `docs/research-paper-agent-architecture.md`
 
 ## GitHub Discovery Methodology
 

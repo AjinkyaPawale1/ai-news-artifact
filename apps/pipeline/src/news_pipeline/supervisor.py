@@ -14,7 +14,7 @@ from .agents.model_tools_graph import fetch_model_tools, get_last_diagnostics as
 from .dedup import deduplicate_items
 from .health_log import write_health_log
 from .normalize import normalize_items
-from .paper_summarize import enrich_paper_summaries
+from .paper_summarize import enrich_paper_summaries, get_last_summary_diagnostics
 from .push_to_artifact import push_to_artifact
 from .quality_gate import apply_quality_gate
 from .score import attach_action_scores, score_items
@@ -94,6 +94,7 @@ def run_pipeline() -> dict:
     paper_diagnostics = update_last_diagnostics(
         deduplicated_count=sum(item.source_type == "paper" for item in deduped),
         displayed_count=min(sum(item.get("source_type") == "paper" for item in summarized), 8),
+        summary_diagnostics=get_last_summary_diagnostics(),
     )
     paper_health = next((entry for entry in health if entry["source"] == "papers"), None)
     if paper_health is not None:

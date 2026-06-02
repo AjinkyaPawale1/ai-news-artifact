@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "updated_at": "2026-05-28T18:29:01.685739+00:00",
+  "updated_at": "2026-06-02T17:27:04.849807+00:00",
   "source": "llm",
   "emerging_queries": [
     "reasoning language:python stars:>30",
     "memory llm language:python stars:>20",
     "\"recursive language model\" OR rlm language:python stars:>10",
-    "\"mcp server\" knowledge base language:python stars:>10",
-    "\"personal knowledge base\" rag language:python stars:>10",
-    "\"knowledge graph\" \"llm wiki\" stars:>10",
-    "\"claude memory\" language:python stars:>10"
+    "\"mcp server\" memory language:python stars:>10",
+    "\"long-term memory\" llm language:python stars:>15",
+    "\"agent memory\" language:python stars:>10",
+    "\"context engineering\" language:python stars:>10"
   ],
   "emerging_watch_repos": [
-    "nduckmink/arkon",
-    "VectifyAI/OpenKB",
-    "AgriciDaniel/claude-obsidian",
-    "nashsu/llm_wiki"
+    "memgpt/memgpt",
+    "microsoft/semantic-kernel",
+    "graphlit/graphlit",
+    "mem0ai/mem0"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -25,31 +25,31 @@
     "query_rotation": {
       "replacements": 4,
       "added": [
-        "\"claude memory\" language:python stars:>10",
-        "\"knowledge graph\" \"llm wiki\" stars:>10",
-        "\"personal knowledge base\" rag language:python stars:>10",
-        "\"mcp server\" knowledge base language:python stars:>10"
+        "\"context engineering\" language:python stars:>10",
+        "\"agent memory\" language:python stars:>10",
+        "\"long-term memory\" llm language:python stars:>15",
+        "\"mcp server\" memory language:python stars:>10"
       ],
       "removed": [
-        "language:typescript topic:ai stars:>20",
-        "topic:mcp language:python stars:>10",
-        "topic:model-context-protocol stars:>10",
-        "\"llm wiki\" OR \"ai wiki\" stars:>5"
+        "\"context management\" claude code language:python stars:>10",
+        "\"llm wiki\" language:python stars:>10",
+        "\"knowledge graph\" rag language:python stars:>20",
+        "\"model context protocol\" knowledge base language:python stars:>10"
       ]
     },
     "watch_rotation": {
       "replacements": 4,
       "added": [
-        "nashsu/llm_wiki",
-        "AgriciDaniel/claude-obsidian",
-        "VectifyAI/OpenKB",
-        "nduckmink/arkon"
+        "mem0ai/mem0",
+        "graphlit/graphlit",
+        "microsoft/semantic-kernel",
+        "memgpt/memgpt"
       ],
       "removed": [
-        "swarmclawai/swarmvault",
-        "MemPalace/mempalace",
-        "anthropics/anthropic-sdk-python",
-        "anthropics/anthropic-cookbook"
+        "safishamsi/graphify",
+        "stevesolun/ctx",
+        "Ontos-AI/knowhere",
+        "AxDSan/mnemosyne"
       ]
     }
   }
