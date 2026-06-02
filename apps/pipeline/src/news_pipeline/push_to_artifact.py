@@ -157,14 +157,26 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
     tools_services = [item for item in items if item.get("source_type") == "tool_service"]
     top_papers = papers[:5]
     priorities = ["READ", "EXPERIMENT", "SHARE", "WATCH", "READ"]
+    health_entries = health or []
+    healthy_sources = sum(entry.get("status") == "ok" for entry in health_entries)
+    source_total = len(health_entries)
 
     return {
         "generatedAt": datetime.now(timezone.utc).isoformat(),
         "stats": [
-            {"label": "PAPERS SCANNED", "value": str(len(papers)), "sub": "arXiv"},
+            {"label": "PAPERS REVIEWED", "value": str(len(papers)), "sub": f"{min(len(papers), 8)} selected"},
             {"label": "REPOS INDEXED", "value": str(len(github)), "sub": f"{min(len(github), 8)} shown"},
-            {"label": "ARTICLES", "value": str(len(rss)), "sub": "RSS feeds"},
-            {"label": "FSO-RELEVANT", "value": str(len(items)), "sub": "score ≥ 40", "accent": True},
+            {
+                "label": "RELEASES TRACKED",
+                "value": str(len(models) + len(tools_services)),
+                "sub": f"{len(models)} models · {len(tools_services)} tools",
+            },
+            {
+                "label": "HEALTHY SOURCES",
+                "value": f"{healthy_sources}/{source_total}" if source_total else "—",
+                "sub": "latest pipeline run" if source_total else "run pipeline to populate",
+                "accent": True,
+            },
         ],
         "actionItems": [
             _to_action_item(item, priorities[index % len(priorities)])
@@ -177,7 +189,7 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
         "blogs": [_to_blog(item) for item in rss[:10]],
         "socialPosts": [],
         "trending": [],
-        "health": health or [],
+        "health": health_entries,
     }
 
 
@@ -190,11 +202,14 @@ def update_papers_in_payload(payload: dict, papers: list[dict], health: list[dic
     )
     updated = dict(payload)
     stats = [dict(entry) for entry in payload.get("stats", [])]
-    paper_stat = next((entry for entry in stats if entry.get("label") == "PAPERS SCANNED"), None)
+    paper_stat = next(
+        (entry for entry in stats if entry.get("label") in {"PAPERS REVIEWED", "PAPERS SCANNED"}),
+        None,
+    )
     if paper_stat is None:
-        stats.insert(0, {"label": "PAPERS SCANNED", "value": str(len(ranked)), "sub": "arXiv"})
+        stats.insert(0, {"label": "PAPERS REVIEWED", "value": str(len(ranked)), "sub": f"{min(len(ranked), 8)} selected"})
     else:
-        paper_stat.update({"value": str(len(ranked)), "sub": "arXiv"})
+        paper_stat.update({"label": "PAPERS REVIEWED", "value": str(len(ranked)), "sub": f"{min(len(ranked), 8)} selected"})
 
     updated.update(
         {

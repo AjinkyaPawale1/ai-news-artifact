@@ -4,7 +4,7 @@ This file is the operating guide for AI coding agents working in this repository
 Read it before making changes, then read the files under `memory/`.
 
 ## Purpose
-- Build and maintain a weekly AI intelligence brief dashboard for financial services stakeholders.
+- Build and maintain a weekly enterprise AI intelligence brief dashboard.
 - Preserve project context in version-controlled memory so future sessions do not start from zero.
 - Keep coding work simple, scoped, verifiable, and aligned with existing architecture.
 
@@ -122,4 +122,3 @@ A new contributor should be able to answer all of these from repo memory:
 - What is currently pending.
 - Which tradeoffs were made and why.
 - Which approaches failed and should not be repeated.
-

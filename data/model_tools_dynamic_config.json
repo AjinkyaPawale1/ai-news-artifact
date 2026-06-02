@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-02T17:27:04.131095+00:00",
+  "updated_at": "2026-06-02T20:25:02.742751+00:00",
   "source": "llm",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
@@ -27,19 +27,19 @@
     "https://cohere.com/blog/"
   ],
   "emerging_feeds": [
-    "https://blogs.microsoft.com/ai/feed/",
-    "https://aws.amazon.com/blogs/machine-learning/feed/",
-    "https://cloud.google.com/blog/feed/",
-    "https://blog.google/rss/"
+    "https://github.blog/category/ai-and-ml/feed/",
+    "https://developer.nvidia.com/blog/feed/",
+    "https://blog.google/technology/ai/rss/",
+    "https://blogs.microsoft.com/ai/feed/"
   ],
   "emerging_model_terms": [
-    "llama 4",
-    "mistral medium",
-    "qwen 3",
-    "gpt-5"
+    "claude opus 4.8",
+    "nvidia cosmos 3",
+    "gemini 3.5",
+    "mellum 2"
   ],
   "emerging_tool_terms": [
-    "agentwatch"
+    "nemoclaw"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -47,9 +47,13 @@
     "updated": true,
     "source": "llm",
     "feed_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 1,
+      "added": [
+        "https://github.blog/category/ai-and-ml/feed/"
+      ],
+      "removed": [
+        "https://aws.amazon.com/blogs/machine-learning/feed/"
+      ]
     },
     "model_term_rotation": {
       "replacements": 0,
@@ -57,9 +61,17 @@
       "removed": []
     },
     "tool_term_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 3,
+      "added": [
+        "agentcore",
+        "codex",
+        "nemoclaw"
+      ],
+      "removed": [
+        "policy interceptor",
+        "agentcore",
+        "codex"
+      ]
     }
   }
 }

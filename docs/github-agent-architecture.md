@@ -354,14 +354,18 @@ flowchart LR
     L --> M[metadata.best_for]
 ```
 
-The classifier scores each category by counting keyword hits in the text bundle.
+The classifier scores each category by counting whole-keyword hits in the text bundle.
+This prevents broad words such as `context` from turning every knowledge or prompt
+utility into a RAG infrastructure card. `RAG Infrastructure` is reserved for retrieval,
+vector, embedding, reranking, and chunking signals.
 
 | Label | Keywords |
 | --- | --- |
 | `Agent Security` | security, cyber, threat, malware, incident, red-team, penetration, mitre |
-| `RAG Infrastructure` | rag, retrieval, vector, embedding, knowledge base, knowledge-base, context |
+| `MCP Tooling` | mcp, model context protocol, mcp-server, mcp server, tool server |
+| `Knowledge Management` | knowledge base, knowledge-base, knowledge graph, knowledge-graph, knowledge hub, wiki, obsidian, pkm, second brain |
+| `RAG Infrastructure` | rag, retrieval, vector, vector db, vector database, embedding, rerank, chunking |
 | `Coding Workflow` | code, coding, review, developer, devtools, github copilot, cursor, claude code |
-| `MCP Tooling` | mcp, model context protocol, mcp-server, tool server |
 | `AI Agent Apps` | agent, agents, multiagent, workflow, automation, skills |
 | `Model Serving` | inference, serving, vllm, serverless, gpu, deployment |
 | `AI Research` | research, benchmark, evaluation, eval, paper, experiment |

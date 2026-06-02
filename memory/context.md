@@ -3,7 +3,7 @@
 Last updated: 2026-06-02
 
 ## Purpose
-A single-page dashboard UI for a weekly AI intelligence brief tailored to financial services stakeholders.
+A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
 
 ## Architecture
 - Repository style: lightweight monorepo.
@@ -34,6 +34,15 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Utility-class styling is used in the dashboard component.
 - Tailwind utility classes are enabled via CDN script in index.html.
 - Dashboard imports generated pipeline data from root `data/output.json`.
+- The neutral dashboard shell uses six tabs: Weekly Snapshot, Research, Repos, Releases,
+  Signals, and Pipeline. Weekly Snapshot is intentionally compact; full lists live in
+  drill-down tabs.
+- Weekly Snapshot uses a full-width featured-paper banner followed by equal-width repo,
+  model-release, and tool/service previews. Repo previews include a one-line description.
+- GitHub `bestFor` labels separate knowledge-management products, MCP tooling, and
+  retrieval-specific RAG infrastructure; generic `context` mentions do not imply RAG.
+- AI Pulse, Social Pulse, and Enterprise Focus are explicit placeholders until their
+  collection and ranking workflows are ready.
 - `npm run pipeline` is a convenience wrapper around `PYTHONPATH=apps/pipeline/src python3 -m news_pipeline.supervisor`.
 - Architecture details live in `docs/architecture.md`.
 - Agent operating guidance now lives in `AGENTS.md`.
@@ -44,6 +53,11 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Model/tool vocabulary is standardized: core feeds are always active, emerging feeds/terms rotate within bounds, and candidate feeds are the allowed proposal pool.
 - `MODEL_TOOL_MAX_ITEMS` is the single per-category cap for graph selection and dashboard release-card rendering.
 - Model/tool dashboard cards include release links plus source feed/page links, and source-page candidates are enriched from official article excerpts before LLM classification where possible.
+- Model/tool classification rejects tutorial, guide, case-study, and broad marketing
+  headlines unless they clearly announce a release. Selection also collapses same-day,
+  same-organization near-duplicate product names while preserving distinct versions.
+- RSS selection rotates across configured official feeds before applying the global cap;
+  RSS health diagnostics include per-feed fetched, eligible, and selected counts.
 - arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,
   including capability, descriptive domain, priority, takeaways, action items, tags,
   `research_score`, visible research signals, and `has_code`.
@@ -56,8 +70,8 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Displayed papers carry exactly three abstract-grounded summary bullets. OpenAI Responses
   API summaries run by default when `OPENAI_API_KEY` is available, retry transient failures
   twice, and fall back to deterministic abstract bullets.
-- The weekly briefing's primary section is paper-only. The retained `actionItems` artifact
-  compatibility field is also derived from ranked papers only, never GitHub or RSS.
+- The weekly snapshot features one ranked paper. The retained `actionItems` artifact
+  compatibility field remains derived from ranked papers only, never GitHub or RSS.
 - `npm run pipeline:papers` refreshes papers and paper health diagnostics while preserving
   non-paper dashboard sections from the existing artifact checkpoint.
 - Research-paper agent details live in `docs/research-paper-agent-architecture.md`,

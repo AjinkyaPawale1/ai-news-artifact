@@ -59,19 +59,38 @@ Owner: AI agent (Codex)
 - Made OpenAI paper summaries the default when a key exists, added two transient retries, and recorded summary attempts, retries, successes, fallbacks, and disable reasons.
 - Tightened deterministic paper labels with weighted phrase matching, word boundaries, overlap suppression, and `Other` for weak or tied domains.
 - Added visible paper priority chips and expanded-card `RECOMMENDED ACTIONS`.
+- Replaced the FSO-specific dashboard shell with the neutral `AI Intelligence Brief`.
+- Reworked the UI into Weekly Snapshot, Research, Repos, Releases, Signals, and Pipeline
+  tabs. The snapshot is concise, Signals is explicitly placeholder-only, and Pipeline
+  renders the current multi-source flow plus live health cards.
+- Replaced the misleading `FSO-RELEVANT` stat with truthful paper, repo, release, and
+  healthy-source snapshot metrics.
+- Changed RSS collection to round-robin selection across official feeds and added per-feed
+  health diagnostics.
+- Tightened model/tool release filtering for guide/tutorial/case-study noise, added
+  same-day near-duplicate release collapse, and exposed rejection diagnostics.
+- Rebalanced Weekly Snapshot into a compact full-width featured-paper banner followed by
+  equal-width repo, model-release, and tool/service cards. Repo previews now include a
+  one-line description.
+- Split GitHub `bestFor` labels so knowledge-management products and MCP tooling are not
+  flattened into `RAG Infrastructure`; retrieval-specific terms now drive the RAG label.
+- Refreshed README, top-level implementation plan, and architecture notes so they describe
+  the six-tab dashboard, current artifact contract, source diagnostics, and next phases.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
 - Python pipeline fetches real arXiv, GitHub, and RSS items and writes `data/output.json`.
 - GitHub repo bullets are generated deterministically by default and can use OpenAI when `OPENAI_API_KEY` is set.
 - Dashboard reads generated JSON data and builds successfully.
+- Dashboard branding and user-facing copy are generic rather than financial-services-specific.
+- AI Pulse, Social Pulse, and Enterprise Focus intentionally render as coming-soon placeholders.
 - Generated health log is written to `data/health.json`.
 - Agent operating guidance is now centralized in `AGENTS.md`.
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
 - The dashboard can now receive generated model release and AI tool/service cards with longer notes plus release/source links when current feed entries match deterministic and/or LLM classification.
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
 - `data/model_tools_dynamic_config.json` is generated inspectable state, not the primary contributor edit point; static defaults live in `apps/pipeline/src/news_pipeline/model_tools_config.py`.
-- Latest refresh produced 1 model card and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
+- Latest refresh produced 3 model cards and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
 - The docs folder now includes separate architecture pages for research papers, GitHub discovery, and model/tool release discovery.
 - `origin` now points to `https://github.com/AjinkyaPawale1/llm-news-artifact.git`.
 - Remote branch currently published: `main`.
@@ -87,6 +106,7 @@ Owner: AI agent (Codex)
 8. Watch source-page cards for sparse/generic vendor site copy; if this recurs, add provider-specific content extraction rules before increasing card count.
 9. Consider widening source coverage only if weekly model-card volume stays too low after the stricter date gate; do not relax the recent-date requirement without another filtering strategy.
 10. Consider extracting GitHub/code links from arXiv abstracts or paper pages so `has_code` can be based on explicit links instead of text signals.
+11. Design the broader enterprise credibility, actionability, and personalization scoring phase before implementing it.
 
 ## Risks / Watchouts
 - If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.

@@ -336,7 +336,9 @@ Signal groups:
 High-level logic:
 
 1. Score title matches more heavily than body text.
-2. Require either a release signal or enough term density to justify a release card.
+2. Require release language plus a product-focused headline. Reject tutorials, guides,
+   case studies, customer stories, and implementation advice unless the headline clearly
+   announces a concrete shipped release.
 3. Choose `kind = model` or `kind = tool_service` based on the stronger score.
 4. Derive presentation fields:
    - `name`: cleaned title without generic prefixes
@@ -400,7 +402,9 @@ Selection rules:
    - resolved `published_date` descending
    - `release_score` descending
 3. Deduplicate by normalized release name.
-4. Keep up to `MODEL_TOOL_MAX_ITEMS` per category.
+4. Collapse same-organization, same-kind, same-day near-duplicate product names while
+   preserving distinct version announcements.
+5. Keep up to `MODEL_TOOL_MAX_ITEMS` per category.
 
 This means recency is the primary weekly ranking signal once the item is trusted enough to classify.
 
@@ -525,7 +529,7 @@ Current UI behavior:
   - longer summary note
   - release/source links
 
-This keeps the weekly briefing compact while preserving access to the underlying source material.
+This keeps the Releases drill-down compact while preserving access to the underlying source material.
 
 ## Diagnostics and Health Output
 
@@ -544,6 +548,10 @@ Current diagnostic shape:
     "llm_classification_failures": int,
     "llm_classification_disabled": bool,
     "llm_classification_skip_reason": str,
+    "classification_diagnostics": {...},
+    "selection_diagnostics": {
+        "rejected_near_duplicate": int,
+    },
     "dynamic_config": {...},
 }
 ```

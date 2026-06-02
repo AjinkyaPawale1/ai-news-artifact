@@ -42,6 +42,12 @@ Last updated: 2026-06-02
 - [x] Replace the weekly briefing mixed action queue with paper-only research cards.
 - [x] Add end-to-end research-paper agent architecture documentation under `docs/`.
 - [x] Add paced arXiv retries, default OpenAI summary retries, paper health diagnostics, taxonomy accuracy fixes, and visible paper actions.
+- [x] Redesign the dashboard as a neutral AI Intelligence Brief with overview/detail tabs.
+- [x] Rebalance Weekly Snapshot into a full-width research banner and aligned preview cards.
+- [x] Add one-line repo descriptions and narrower GitHub `bestFor` taxonomy labels.
+- [x] Make RSS selection fair across official feeds and publish feed-level diagnostics.
+- [x] Tighten model/tool release noise filtering and collapse same-day near-duplicates.
+- [x] Refresh README, implementation plan, architecture docs, and memory for the June 2 dashboard/pipeline redesign.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
@@ -55,6 +61,7 @@ Last updated: 2026-06-02
 - [ ] Review model/tool dynamic config after weekly runs and adjust candidate feeds if needed.
 - [ ] Add provider-specific article extraction rules if source-page cards show repeated generic vendor copy.
 - [ ] Improve paper `has_code` by extracting explicit repository/code links from arXiv metadata or paper pages.
+- [ ] Design broader enterprise credibility, actionability, and personalization scoring.
 
 ## In Progress
 - [ ] None

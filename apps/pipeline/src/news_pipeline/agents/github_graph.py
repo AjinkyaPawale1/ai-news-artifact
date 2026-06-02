@@ -8,6 +8,7 @@ import json
 import logging
 import math
 import os
+import re
 from datetime import datetime, timezone
 from typing import Any, TypedDict
 from urllib.parse import quote_plus
@@ -192,9 +193,10 @@ def _best_for_label(repo: dict[str, Any]) -> str:
     text = _repo_text(repo)
     categories = [
         ("Agent Security", ["security", "cyber", "threat", "malware", "incident", "red-team", "penetration", "mitre"]),
-        ("RAG Infrastructure", ["rag", "retrieval", "vector", "embedding", "knowledge base", "knowledge-base", "context"]),
+        ("MCP Tooling", ["mcp", "model context protocol", "mcp-server", "mcp server", "tool server"]),
+        ("Knowledge Management", ["knowledge base", "knowledge-base", "knowledge graph", "knowledge-graph", "knowledge hub", "wiki", "obsidian", "pkm", "second brain"]),
+        ("RAG Infrastructure", ["rag", "retrieval", "vector", "vector db", "vector database", "embedding", "rerank", "chunking"]),
         ("Coding Workflow", ["code", "coding", "review", "developer", "devtools", "github copilot", "cursor", "claude code"]),
-        ("MCP Tooling", ["mcp", "model context protocol", "mcp-server", "tool server"]),
         ("AI Agent Apps", ["agent", "agents", "multiagent", "workflow", "automation", "skills"]),
         ("Model Serving", ["inference", "serving", "vllm", "serverless", "gpu", "deployment"]),
         ("AI Research", ["research", "benchmark", "evaluation", "eval", "paper", "experiment"]),
@@ -202,7 +204,7 @@ def _best_for_label(repo: dict[str, Any]) -> str:
         ("Memory & Reasoning", ["memory", "long-term memory", "episodic memory", "reasoning", "recursive reasoning", "long-context", "context-window", "rlm", "loop-synthesis", "self-improvement"]),
     ]
     scores = [
-        (label, sum(1 for keyword in keywords if keyword in text))
+        (label, sum(1 for keyword in keywords if re.search(rf"(?<![a-z0-9]){re.escape(keyword)}(?![a-z0-9])", text)))
         for label, keywords in categories
     ]
     label, score = max(scores, key=lambda item: item[1])

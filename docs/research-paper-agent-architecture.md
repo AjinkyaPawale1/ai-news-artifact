@@ -464,7 +464,7 @@ The paper-only path intentionally preserves:
 It updates:
 
 - `generatedAt`
-- `PAPERS SCANNED` stats tile
+- `PAPERS REVIEWED` stats tile with the selected paper count
 - `actionItems`
 - `papers`
 - `health`

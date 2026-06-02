@@ -60,6 +60,8 @@ class ModelToolsState(TypedDict, total=False):
     classified: list[dict[str, Any]]
     selected: list[dict[str, Any]]
     items: list[Item]
+    classification_diagnostics: dict[str, int]
+    selection_diagnostics: dict[str, int]
 
 
 ORG_HINTS = {
@@ -75,6 +77,21 @@ ORG_HINTS = {
     "aws": "AWS",
     "github": "GitHub",
 }
+NON_RELEASE_HEADLINE_TERMS = [
+    "how ",
+    "how to ",
+    "guide",
+    "tutorial",
+    "case study",
+    "customer story",
+    "best practices",
+    "accelerate ",
+    "enable ",
+    "training ",
+    "using ",
+    "build ",
+    "building ",
+]
 
 
 class LinkParser(HTMLParser):
@@ -488,12 +505,12 @@ def _classify_entry(
     if title_model_score == 0 and title_tool_score == 0:
         return None
 
-    has_release_signal = (
-        _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
-        or _contains_any(text, MODEL_TOOL_RELEASE_TERMS)
-        or bool(entry.get("source_page"))
-    )
-    if not has_release_signal and max(title_model_score, title_tool_score) < 2:
+    title_has_release_signal = _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
+    has_release_signal = title_has_release_signal or _contains_any(text, MODEL_TOOL_RELEASE_TERMS)
+    looks_like_non_release_article = any(term in title_text for term in NON_RELEASE_HEADLINE_TERMS)
+    if looks_like_non_release_article and not title_has_release_signal:
+        return None
+    if not has_release_signal:
         return None
 
     release_score = _term_count(text, MODEL_TOOL_RELEASE_TERMS) * 3
@@ -571,6 +588,8 @@ def _openai_classify_entry(
                     "Use only the supplied title, source, URL, and excerpt. Return JSON only with keys "
                     "include, kind, name, org, note, tag, confidence. include is true only for concrete "
                     "model releases, API releases, coding agents, agent platforms, SDKs, or AI tools/services. "
+                    "Exclude tutorials, guides, case studies, customer stories, implementation advice, and "
+                    "broad marketing pages unless the headline clearly announces a concrete shipped release. "
                     "The note should be one specific, dashboard-ready sentence about what shipped and why it matters."
                 ),
             },
@@ -675,18 +694,28 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
 def _classify_entries(state: ModelToolsState) -> ModelToolsState:
     classified = []
     seen: set[str] = set()
+    diagnostics = {
+        "entries_considered": 0,
+        "rejected_duplicate_url": 0,
+        "rejected_missing_or_stale_date": 0,
+        "rejected_non_release": 0,
+        "rejected_by_llm": 0,
+    }
     model_terms = MODEL_TOOL_CORE_MODEL_TERMS + state.get("model_terms", [])
     tool_terms = MODEL_TOOL_CORE_TOOL_SERVICE_TERMS + state.get("tool_terms", [])
     llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
     llm_available = llm_error_code not in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
     cutoff = window_start()
     for entry in state.get("entries", []):
+        diagnostics["entries_considered"] += 1
         url = entry["url"]
         if url in seen:
+            diagnostics["rejected_duplicate_url"] += 1
             continue
         seen.add(url)
         entry = _resolve_entry_date(entry, cutoff)
         if not entry:
+            diagnostics["rejected_missing_or_stale_date"] += 1
             continue
         release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
         if release and entry.get("source_page") and len(entry.get("content") or "") <= len(entry.get("title", "")) + 20:
@@ -699,15 +728,49 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
                     "published_date": metadata.get("published_date") or entry.get("published_date", ""),
                 }
                 release = _classify_entry(entry, model_terms=model_terms, tool_terms=tool_terms)
+        if not release:
+            diagnostics["rejected_non_release"] += 1
+            continue
         if release:
             release = _openai_classify_entry(entry, release, llm_available=llm_available)
-        if release:
-            classified.append(release)
-    return {**state, "classified": classified}
+        if not release:
+            diagnostics["rejected_by_llm"] += 1
+            continue
+        classified.append(release)
+    return {**state, "classified": classified, "classification_diagnostics": diagnostics}
+
+
+def _release_versions(name: str) -> set[str]:
+    return set(re.findall(r"\b(?:v?\d+(?:\.\d+)+|v\d+|o[134](?:-mini)?)\b", name.lower()))
+
+
+def _normalized_release_name(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
+
+
+def _is_near_duplicate_release(entry: dict[str, Any], existing: dict[str, Any]) -> bool:
+    if entry.get("kind") != existing.get("kind"):
+        return False
+    if entry.get("org", "").lower() != existing.get("org", "").lower():
+        return False
+    if entry.get("published_date", "")[:10] != existing.get("published_date", "")[:10]:
+        return False
+
+    name = _normalized_release_name(entry.get("name", ""))
+    existing_name = _normalized_release_name(existing.get("name", ""))
+    if not name or not existing_name:
+        return False
+
+    versions = _release_versions(name)
+    existing_versions = _release_versions(existing_name)
+    if versions != existing_versions and (versions or existing_versions):
+        return False
+    return name == existing_name or name in existing_name or existing_name in name
 
 
 def _select_entries(state: ModelToolsState) -> ModelToolsState:
     selected: list[dict[str, Any]] = []
+    diagnostics = {"rejected_near_duplicate": 0}
     for kind in ("model", "tool_service"):
         entries = [entry for entry in state.get("classified", []) if entry.get("kind") == kind]
         entries.sort(
@@ -719,15 +782,19 @@ def _select_entries(state: ModelToolsState) -> ModelToolsState:
         )
         seen_names: set[str] = set()
         for entry in entries:
-            key = re.sub(r"[^a-z0-9]+", " ", entry.get("name", "").lower()).strip()
+            key = _normalized_release_name(entry.get("name", ""))
             if key and key in seen_names:
+                diagnostics["rejected_near_duplicate"] += 1
+                continue
+            if any(_is_near_duplicate_release(entry, existing) for existing in selected):
+                diagnostics["rejected_near_duplicate"] += 1
                 continue
             if key:
                 seen_names.add(key)
             selected.append(entry)
             if len([item for item in selected if item.get("kind") == kind]) >= MODEL_TOOL_MAX_ITEMS:
                 break
-    return {**state, "selected": selected}
+    return {**state, "selected": selected, "selection_diagnostics": diagnostics}
 
 
 def _entry_to_item(entry: dict[str, Any]) -> Item:
@@ -786,6 +853,8 @@ def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
         "llm_classification_failures": _OPENAI_CLASSIFY_FAILURES,
         "llm_classification_disabled": _OPENAI_CLASSIFY_DISABLED_FOR_RUN or disabled_by_dynamic_error,
         "llm_classification_skip_reason": llm_error_code if disabled_by_dynamic_error else "",
+        "classification_diagnostics": state.get("classification_diagnostics", {}),
+        "selection_diagnostics": state.get("selection_diagnostics", {}),
         "dynamic_config": state.get("dynamic_config", {}),
     }
 

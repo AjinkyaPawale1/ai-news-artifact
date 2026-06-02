@@ -37,6 +37,13 @@ fetch agents
 - Shared artifact import: `data/output.json`
 
 The frontend treats `data/output.json` as a read-only contract and does not call pipeline internals directly.
+Its neutral `AI Intelligence Brief` shell uses six views:
+
+- `Weekly Snapshot` for a decision-first overview with one full-width featured-paper banner
+  followed by equal-width repo, model-release, and tool/service previews.
+- `Research`, `Repos`, and `Releases` for full drill-down lists.
+- `Signals` for explicit AI Pulse and Social Pulse placeholders.
+- `Pipeline` for the current artifact flow and live health diagnostics.
 
 ## Pipeline
 
@@ -47,6 +54,7 @@ The frontend treats `data/output.json` as a read-only contract and does not call
   - `news_pipeline.agents.fetch_papers`
   - `news_pipeline.agents.fetch_github`
   - `news_pipeline.agents.fetch_rss`
+  - `news_pipeline.agents.model_tools_graph`
 
 The pipeline owns `data/output.json` and `data/health.json`. No API service is part of the current architecture.
 
@@ -75,8 +83,8 @@ research score:
 | Novelty or emerging signal | 10 |
 | Recency within the seven-day window | 10 |
 
-The artifact emits the top eight available papers. The weekly briefing also uses ranked
-papers only; repos, releases, and tools/services remain separate dashboard sections.
+The artifact emits the top eight available papers. The weekly snapshot features the
+top paper only; the full ranked list lives under `Research`.
 Paper health diagnostics include per-category status, retry attempts, plus raw,
 seven-day, fourteen-day, backfill, deduplicated, displayed, and summary counts.
 
@@ -108,6 +116,9 @@ Current behavior in the codebase:
 - Query-level diagnostics are captured (`fetched`, `added`, `failed`) and written under the GitHub entry in `data/health.json`.
 - Dynamic refresh diagnostics are also written to `data/health.json` (`dynamic_config`, `dynamic_refresh`).
 - Relevance uses a tiered keyword taxonomy (core, emerging, framework) plus an emerging-topic bonus.
+- Repo `bestFor` labels are deterministic and distinguish knowledge-management products,
+  MCP tooling, retrieval-specific RAG infrastructure, coding workflows, model serving,
+  AI agent apps, data extraction, security, research, and memory/reasoning systems.
 - Selection uses tiered thresholds:
   - `TRACTION_THRESHOLD_DEFAULT` for standard repos.
   - `TRACTION_THRESHOLD_EMERGING` for repos with emerging-topic hits.
@@ -118,6 +129,25 @@ For full flowcharts and draw.io-style diagrams, see:
 
 - `docs/github-agent-architecture.md`
 - `docs/assets/github-agent-flow.svg`
+
+## RSS Collection Methodology
+
+The RSS collector reads configured official feeds independently, filters each feed to
+the active date window, then selects entries round-robin within the shared RSS cap. This
+prevents an early high-volume feed from consuming the complete visible article budget.
+The latest run stores per-feed fetched, eligible, and selected counts under the RSS
+entry in `data/health.json`.
+
+## Dashboard Statistics
+
+The snapshot stats describe the artifact contract directly:
+
+- `PAPERS REVIEWED` with the selected paper count.
+- `REPOS INDEXED` with the visible repo count.
+- `RELEASES TRACKED` split into models and tools.
+- `HEALTHY SOURCES` from the latest `data/health.json` statuses.
+
+Broader enterprise credibility and actionability scoring remains a later pipeline phase.
 
 ## Commands
 

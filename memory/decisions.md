@@ -231,3 +231,34 @@ Impact:
 - Paper summaries retry transient OpenAI failures twice and publish summary diagnostics with deterministic fallback behavior.
 - Capability and domain labels use weighted phrase matching with weak or tied domains falling back to `Other`.
 - Paper cards render a priority chip and expanded recommended actions while `research_score` remains the ranking signal.
+
+## 2026-06-02 - Use a neutral decision-first dashboard and targeted pipeline cleanup
+Status: accepted
+
+Reason:
+- The previous weekly page repeated the Research tab and overloaded the landing view with full lists.
+- FSO branding and domain-injection copy no longer matched the generic AI intelligence goal.
+- RSS ordering and permissive release classification created avoidable source imbalance and noisy cards.
+
+Impact:
+- The dashboard now uses Weekly Snapshot, Research, Repos, Releases, Signals, and Pipeline tabs.
+- AI Pulse, Social Pulse, and Enterprise Focus are explicit placeholders.
+- Snapshot stats describe selected artifact content and latest source health rather than a misleading relevance count.
+- RSS selection is round-robin across official feeds.
+- Model/tool filtering rejects non-release article patterns and collapses same-day near-duplicate product names while preserving distinct versions.
+- Broader enterprise credibility and actionability scoring is deferred to a dedicated later phase.
+
+## 2026-06-02 - Rebalance the snapshot and narrow GitHub repo labels
+Status: accepted
+
+Reason:
+- The featured paper stretched beside three stacked cards and left a large empty area.
+- GitHub repo labels treated broad knowledge and context terms as RAG signals, which made
+  unrelated snapshot cards appear to share the same domain.
+
+Impact:
+- Weekly Snapshot uses a full-width paper banner followed by three equal-width preview
+  cards for repos, model releases, and tools/services.
+- Repo previews include one-line descriptions from the generated artifact.
+- GitHub labels separate `Knowledge Management`, `MCP Tooling`, and retrieval-specific
+  `RAG Infrastructure`; bare `context` mentions no longer imply RAG.

@@ -1,20 +1,20 @@
 {
   "version": 1,
-  "updated_at": "2026-06-02T17:27:04.849807+00:00",
+  "updated_at": "2026-06-02T20:25:03.932779+00:00",
   "source": "llm",
   "emerging_queries": [
     "reasoning language:python stars:>30",
     "memory llm language:python stars:>20",
     "\"recursive language model\" OR rlm language:python stars:>10",
-    "\"mcp server\" memory language:python stars:>10",
-    "\"long-term memory\" llm language:python stars:>15",
-    "\"agent memory\" language:python stars:>10",
-    "\"context engineering\" language:python stars:>10"
+    "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20",
+    "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
+    "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
+    "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20"
   ],
   "emerging_watch_repos": [
-    "memgpt/memgpt",
-    "microsoft/semantic-kernel",
-    "graphlit/graphlit",
+    "modelcontextprotocol/servers",
+    "crewAIInc/crewAI",
+    "phidatahq/phidata",
     "mem0ai/mem0"
   ],
   "refresh": {
@@ -25,31 +25,31 @@
     "query_rotation": {
       "replacements": 4,
       "added": [
-        "\"context engineering\" language:python stars:>10",
-        "\"agent memory\" language:python stars:>10",
-        "\"long-term memory\" llm language:python stars:>15",
-        "\"mcp server\" memory language:python stars:>10"
+        "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
+        "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
+        "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
+        "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20"
       ],
       "removed": [
-        "\"context management\" claude code language:python stars:>10",
-        "\"llm wiki\" language:python stars:>10",
-        "\"knowledge graph\" rag language:python stars:>20",
-        "\"model context protocol\" knowledge base language:python stars:>10"
+        "\"memory graph\" llm language:python stars:>20",
+        "\"agentic memory\" language:python stars:>15",
+        "\"knowledge graph\" llm language:python stars:>20",
+        "\"semantic cache\" llm language:python stars:>20"
       ]
     },
     "watch_rotation": {
       "replacements": 4,
       "added": [
         "mem0ai/mem0",
-        "graphlit/graphlit",
-        "microsoft/semantic-kernel",
-        "memgpt/memgpt"
+        "phidatahq/phidata",
+        "crewAIInc/crewAI",
+        "modelcontextprotocol/servers"
       ],
       "removed": [
-        "safishamsi/graphify",
-        "stevesolun/ctx",
-        "Ontos-AI/knowhere",
-        "AxDSan/mnemosyne"
+        "ZepAI/zep",
+        "langchain-ai/langgraph",
+        "run-llama/llama_index",
+        "OpenMemoryProject/openmemory"
       ]
     }
   }

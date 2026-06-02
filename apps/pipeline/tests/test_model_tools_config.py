@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from news_pipeline.agents import model_tools_dynamic
+from news_pipeline.agents import model_tools_dynamic, model_tools_graph
 from news_pipeline import push_to_artifact
 
 
@@ -63,6 +63,80 @@ class DashboardArtifactTests(unittest.TestCase):
 
         self.assertEqual(len(payload["models"]), 2)
         self.assertEqual(len(payload["toolsServices"]), 2)
+
+    def test_dashboard_stats_describe_selected_content_and_health(self) -> None:
+        items = [
+            {"source_type": "paper", "title": "Paper", "metadata": {"research_score": 1}},
+            {"source_type": "github", "title": "org/repo", "metadata": {"item_kind": "repo"}},
+            {"source_type": "model", "title": "Model"},
+            {"source_type": "tool_service", "title": "Tool"},
+        ]
+        health = [{"source": "papers", "status": "ok"}, {"source": "rss", "status": "error"}]
+
+        payload = push_to_artifact.build_dashboard_payload(items, health)
+
+        self.assertEqual(
+            payload["stats"],
+            [
+                {"label": "PAPERS REVIEWED", "value": "1", "sub": "1 selected"},
+                {"label": "REPOS INDEXED", "value": "1", "sub": "1 shown"},
+                {"label": "RELEASES TRACKED", "value": "2", "sub": "1 models · 1 tools"},
+                {"label": "HEALTHY SOURCES", "value": "1/2", "sub": "latest pipeline run", "accent": True},
+            ],
+        )
+
+
+class ModelToolsClassificationTests(unittest.TestCase):
+    def test_classifier_rejects_guide_without_release_headline(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "AWS",
+                "title": "Accelerate LLM model loading with GPUDirect",
+                "content": "A guide for deploying models that includes updated examples.",
+                "url": "https://example.com/guide",
+            },
+            model_terms=["model", "llm"],
+            tool_terms=["deployment"],
+        )
+
+        self.assertIsNone(release)
+
+    def test_classifier_accepts_concrete_release_headline(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "NVIDIA",
+                "title": "Introducing NVIDIA Cosmos 3",
+                "content": "NVIDIA released a new foundation model for physical AI.",
+                "url": "https://example.com/cosmos",
+            },
+            model_terms=["model", "cosmos"],
+            tool_terms=["platform"],
+        )
+
+        self.assertEqual(release["kind"], "model")
+
+    def test_selection_collapses_same_day_near_duplicate_but_preserves_versions(self) -> None:
+        base = {
+            "kind": "tool_service",
+            "org": "OpenAI",
+            "published_date": "2026-06-02T00:00:00+00:00",
+            "release_score": 10,
+        }
+        state = {
+            "classified": [
+                {**base, "name": "Codex for every role, tool, and workflow"},
+                {**base, "name": "Codex", "release_score": 9},
+                {**base, "name": "Codex 2.0", "release_score": 8},
+            ]
+        }
+
+        selected = model_tools_graph._select_entries(state)
+
+        self.assertEqual([entry["name"] for entry in selected["selected"]], [
+            "Codex for every role, tool, and workflow",
+            "Codex 2.0",
+        ])
+        self.assertEqual(selected["selection_diagnostics"]["rejected_near_duplicate"], 1)
 
 
 if __name__ == "__main__":

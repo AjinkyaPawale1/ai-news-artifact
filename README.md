@@ -1,14 +1,16 @@
 # LLM News Artifact
 
-A small intelligence brief dashboard for tracking AI and LLM updates that matter to financial services teams.
+A small intelligence brief dashboard for tracking credible, actionable AI and LLM updates for enterprise experimentation.
 
 The project combines a React dashboard with a Python news pipeline. The pipeline gathers recent AI/LLM signals from arXiv, GitHub, and RSS feeds, scores and formats them, then writes a JSON artifact that the dashboard renders.
 
 ## What It Does
 
 - Fetches recent AI/LLM papers, repositories, releases, and blog updates.
-- Ranks papers with generic AI/ML research signals and scores other brief items for relevance.
-- Produces a dashboard-ready brief with action items, research, repos, articles, and source health.
+- Ranks papers with generic AI/ML research signals and keeps full paper cards under `Research`.
+- Tracks trending GitHub repos, model releases, and AI tools/services in separate drill-down views.
+- Shows a compact `Weekly Snapshot` with one featured paper, repo descriptions, release previews, and source health.
+- Keeps AI Pulse, Social Pulse, and Enterprise Focus as explicit coming-soon placeholders.
 - Keeps the frontend simple: it reads generated data from `data/output.json`.
 
 ## Project Layout
@@ -86,7 +88,8 @@ The pipeline writes:
 - `data/output.json` - dashboard content
 - `data/health.json` - source health from the latest run
 
-The React app treats `data/output.json` as read-only generated data.
+The React app treats `data/output.json` as read-only generated data. The current public
+contract includes `papers`, `repos`, `models`, `toolsServices`, `blogs`, and `socialPosts`.
 
 ## More Context
 

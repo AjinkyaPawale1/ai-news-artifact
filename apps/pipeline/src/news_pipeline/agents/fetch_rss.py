@@ -15,6 +15,7 @@ from ..schema import Item, utc_now_iso
 
 LOGGER = logging.getLogger(__name__)
 HTML_TAG_RE = re.compile(r"<[^>]+>")
+_LAST_DIAGNOSTICS: dict | None = None
 
 
 def _stable_id(value: str) -> str:
@@ -48,15 +49,19 @@ def _entry_content(entry) -> str:
 
 def fetch_rss() -> list[Item]:
     """Fetch recent entries from configured RSS and Atom feeds."""
+    global _LAST_DIAGNOSTICS  # noqa: PLW0603
     cutoff = window_start()
-    items: list[Item] = []
+    feed_buckets: list[list[Item]] = []
+    feed_diagnostics: list[dict] = []
 
     for feed_url in RSS_FEEDS:
         LOGGER.info("Fetching RSS feed %s", feed_url)
         feed = feedparser.parse(feed_url)
         source = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
+        entries = list(feed.entries[:MAX_ITEMS_PER_SOURCE])
+        bucket: list[Item] = []
 
-        for entry in feed.entries[:MAX_ITEMS_PER_SOURCE]:
+        for entry in entries:
             published_dt = _entry_datetime(entry)
             if published_dt and published_dt < cutoff:
                 continue
@@ -67,7 +72,7 @@ def fetch_rss() -> list[Item]:
                 continue
 
             tags = [tag.get("term", "") for tag in getattr(entry, "tags", []) if tag.get("term")]
-            items.append(
+            bucket.append(
                 Item(
                     id=f"rss-{_stable_id(url)}",
                     source=source,
@@ -82,7 +87,45 @@ def fetch_rss() -> list[Item]:
                 )
             )
 
-    return items[:MAX_ITEMS_PER_SOURCE]
+        feed_buckets.append(bucket)
+        feed_diagnostics.append(
+            {
+                "feed_url": feed_url,
+                "source": source,
+                "fetched": len(entries),
+                "eligible": len(bucket),
+                "selected": 0,
+            }
+        )
+
+    selected: list[Item] = []
+    index = 0
+    while len(selected) < MAX_ITEMS_PER_SOURCE:
+        added = False
+        for bucket_index, bucket in enumerate(feed_buckets):
+            if index >= len(bucket):
+                continue
+            selected.append(bucket[index])
+            feed_diagnostics[bucket_index]["selected"] += 1
+            added = True
+            if len(selected) >= MAX_ITEMS_PER_SOURCE:
+                break
+        if not added:
+            break
+        index += 1
+
+    _LAST_DIAGNOSTICS = {
+        "strategy": "round_robin",
+        "feeds_requested": len(RSS_FEEDS),
+        "selected": len(selected),
+        "feeds": feed_diagnostics,
+    }
+    return selected
+
+
+def get_last_diagnostics() -> dict | None:
+    """Return diagnostics from the most recent RSS fetch."""
+    return _LAST_DIAGNOSTICS
 
 
 if __name__ == "__main__":
