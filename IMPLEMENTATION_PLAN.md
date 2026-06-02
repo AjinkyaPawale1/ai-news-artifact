@@ -42,7 +42,8 @@ parallel fetch agents
 | RSS articles | Done | Official feed collection with round-robin selection and feed diagnostics |
 | Placeholder streams | Done | AI Pulse, Social Pulse, and Enterprise Focus render as coming-soon placeholders |
 | Artifact generation | Done | Stable frontend contract in `data/output.json`; source health in `data/health.json` |
-| Automation | Todo | No scheduled GitHub Actions workflow yet |
+| GitHub Pages | Done | Static dashboard deploys from `main` to `https://ajinkyapawale1.github.io/ai-news-artifact/` |
+| Scheduled refresh automation | Todo | No scheduled pipeline refresh workflow yet |
 
 ## Artifact Contract
 
@@ -84,7 +85,8 @@ Snapshot stats describe the generated artifact directly:
 
 ### 4. Automation
 
-- Add a GitHub Actions workflow for manual and scheduled refreshes.
+- Keep the existing GitHub Pages workflow publishing the static dashboard from `main`.
+- Add a separate GitHub Actions workflow for manual and scheduled data refreshes.
 - Install Node and Python dependencies in CI.
 - Run the pipeline and commit updated generated artifacts only when the artifact changes.
 - Use repository secrets for `OPENAI_API_KEY` and `GITHUB_TOKEN` when needed.
@@ -174,6 +176,7 @@ llm-news-artifact/
 | Health output | Root `data/health.json` |
 | API service | Not part of the current plan |
 | Dashboard shell | Neutral `AI Intelligence Brief` |
+| Public Pages URL | `https://ajinkyapawale1.github.io/ai-news-artifact/` |
 | Placeholder streams | AI Pulse, Social Pulse, Enterprise Focus stay explicit coming-soon areas |
 | Paper selection | Seven-day-first, bounded 14-day backfill |
 | Repo labels | Deterministic taxonomy; no broad `context` -> RAG fallback |

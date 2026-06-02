@@ -262,3 +262,17 @@ Impact:
 - Repo previews include one-line descriptions from the generated artifact.
 - GitHub labels separate `Knowledge Management`, `MCP Tooling`, and retrieval-specific
   `RAG Infrastructure`; bare `context` mentions no longer imply RAG.
+
+## 2026-06-02 - Publish the static dashboard through GitHub Pages
+Status: accepted
+
+Reason:
+- The dashboard needs a shareable public URL for email and internet sharing.
+- A static artifact deployment fits the current architecture because the frontend reads
+  generated JSON bundled at build time and does not require an API service.
+
+Impact:
+- The repository slug is `ai-news-artifact` and the npm package name matches it.
+- GitHub Pages publishes the dashboard at `https://ajinkyapawale1.github.io/ai-news-artifact/`.
+- The Pages workflow builds from `main`, uploads root `dist`, and sets `GITHUB_PAGES=true`
+  so Vite uses the `/ai-news-artifact/` base path.

@@ -76,6 +76,10 @@ Owner: AI agent (Codex)
   flattened into `RAG Infrastructure`; retrieval-specific terms now drive the RAG label.
 - Refreshed README, top-level implementation plan, and architecture notes so they describe
   the six-tab dashboard, current artifact contract, source diagnostics, and next phases.
+- Added GitHub Pages deployment through `.github/workflows/deploy-pages.yml`; the public
+  dashboard URL is `https://ajinkyapawale1.github.io/ai-news-artifact/`.
+- Renamed the npm package to `ai-news-artifact`; the intended GitHub repository slug is
+  `ai-news-artifact`.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -92,7 +96,8 @@ Owner: AI agent (Codex)
 - `data/model_tools_dynamic_config.json` is generated inspectable state, not the primary contributor edit point; static defaults live in `apps/pipeline/src/news_pipeline/model_tools_config.py`.
 - Latest refresh produced 3 model cards and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
 - The docs folder now includes separate architecture pages for research papers, GitHub discovery, and model/tool release discovery.
-- `origin` now points to `https://github.com/AjinkyaPawale1/llm-news-artifact.git`.
+- `origin` should point to `https://github.com/AjinkyaPawale1/ai-news-artifact.git`
+  after the repository rename.
 - Remote branch currently published: `main`.
 
 ## Next Recommended Actions

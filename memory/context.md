@@ -34,6 +34,9 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Utility-class styling is used in the dashboard component.
 - Tailwind utility classes are enabled via CDN script in index.html.
 - Dashboard imports generated pipeline data from root `data/output.json`.
+- Public GitHub Pages URL is `https://ajinkyapawale1.github.io/ai-news-artifact/`.
+- Local Vite builds use `/`; the GitHub Pages workflow sets `GITHUB_PAGES=true` so Vite
+  builds with `/ai-news-artifact/`.
 - The neutral dashboard shell uses six tabs: Weekly Snapshot, Research, Repos, Releases,
   Signals, and Pipeline. Weekly Snapshot is intentionally compact; full lists live in
   drill-down tabs.
@@ -85,4 +88,5 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - npm run pipeline:papers
 - npm run dev
 - npm run build
+- GitHub Pages workflow: `.github/workflows/deploy-pages.yml`
 - npm run preview

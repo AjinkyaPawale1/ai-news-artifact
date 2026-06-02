@@ -48,6 +48,7 @@ Last updated: 2026-06-02
 - [x] Make RSS selection fair across official feeds and publish feed-level diagnostics.
 - [x] Tighten model/tool release noise filtering and collapse same-day near-duplicates.
 - [x] Refresh README, implementation plan, architecture docs, and memory for the June 2 dashboard/pipeline redesign.
+- [x] Add GitHub Pages deployment workflow and document the public dashboard URL.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

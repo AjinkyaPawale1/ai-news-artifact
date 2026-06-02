@@ -4,6 +4,8 @@ A small intelligence brief dashboard for tracking credible, actionable AI and LL
 
 The project combines a React dashboard with a Python news pipeline. The pipeline gathers recent AI/LLM signals from arXiv, GitHub, and RSS feeds, scores and formats them, then writes a JSON artifact that the dashboard renders.
 
+Public dashboard: https://ajinkyapawale1.github.io/ai-news-artifact/
+
 ## What It Does
 
 - Fetches recent AI/LLM papers, repositories, releases, and blog updates.
@@ -60,6 +62,15 @@ npm run dev        # start the local dashboard
 npm run build      # build the dashboard
 npm run preview    # preview the production build
 ```
+
+## Deployment
+
+The dashboard deploys to GitHub Pages from `main` through
+`.github/workflows/deploy-pages.yml`. The workflow runs `npm ci`, builds the static
+dashboard with the GitHub Pages base path, and publishes `dist`.
+
+Local builds use `/` as the Vite base path. Pages builds set `GITHUB_PAGES=true` and use
+`/ai-news-artifact/`.
 
 ## Optional Environment Variables
 

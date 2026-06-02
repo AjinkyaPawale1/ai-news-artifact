@@ -45,6 +45,13 @@ Its neutral `AI Intelligence Brief` shell uses six views:
 - `Signals` for explicit AI Pulse and Social Pulse placeholders.
 - `Pipeline` for the current artifact flow and live health diagnostics.
 
+The published static dashboard is served through GitHub Pages at:
+
+- `https://ajinkyapawale1.github.io/ai-news-artifact/`
+
+Local Vite builds use `/` as the base path. The Pages workflow sets
+`GITHUB_PAGES=true`, which makes Vite build with `/ai-news-artifact/`.
+
 ## Pipeline
 
 - Location: `apps/pipeline`
@@ -160,3 +167,11 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## GitHub Pages Deployment
+
+- Workflow: `.github/workflows/deploy-pages.yml`
+- Trigger: pushes to `main` and manual `workflow_dispatch`
+- Build command: `npm run build`
+- Published artifact: root `dist`
+- Vite Pages base: `/ai-news-artifact/`
