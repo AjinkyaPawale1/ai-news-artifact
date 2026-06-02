@@ -40,6 +40,9 @@ A single-page dashboard UI for a weekly AI intelligence brief tailored to financ
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
 - `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
 - Model/tool release discovery uses protected official core feeds, official source pages for providers without reliable RSS, plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
+- Human-maintained model/tool source groups, core terms, and limits live in `apps/pipeline/src/news_pipeline/model_tools_config.py`; `data/model_tools_dynamic_config.json` is generated runtime state for inspection.
+- Model/tool vocabulary is standardized: core feeds are always active, emerging feeds/terms rotate within bounds, and candidate feeds are the allowed proposal pool.
+- `MODEL_TOOL_MAX_ITEMS` is the single per-category cap for graph selection and dashboard release-card rendering.
 - Model/tool dashboard cards include release links plus source feed/page links, and source-page candidates are enriched from official article excerpts before LLM classification where possible.
 - arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,
   including capability, descriptive domain, priority, takeaways, action items, tags,

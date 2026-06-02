@@ -27,6 +27,7 @@ Last updated: 2026-06-01
 - [x] Add richer model/tool card summaries and release/source links.
 - [x] Enforce recent-dated model/tool cards and make them collapsed/expandable like repo cards.
 - [x] Add end-to-end model/tools agent architecture documentation under `docs/`.
+- [x] Centralize model/tools source groups, terms, limits, and documentation.
 - [x] Publish the current project state to the private GitHub repository `AjinkyaPawale1/llm-news-artifact`.
 - [x] Add deterministic arXiv paper action metadata and artifact mapping.
 - [x] Add focused tests for paper action extraction.

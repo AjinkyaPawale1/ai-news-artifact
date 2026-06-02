@@ -202,3 +202,16 @@ Impact:
 - The weekly briefing left section is labeled `RESEARCH PAPERS` and shows ranked paper cards.
 - The previous consultant-curation subtitle and mixed-source action-card UI were removed.
 - The retained `actionItems` artifact compatibility field now contains papers only.
+
+## 2026-05-30 - Centralize model/tools agent configuration
+Status: accepted
+
+Reason:
+- Model/tools feeds, terms, and limits had become distributed across pipeline config, graph code, generated state, and artifact mapping.
+- Contributors need one human-maintained configuration home and one documented vocabulary for source ownership.
+
+Impact:
+- Added `news_pipeline.model_tools_config` for static source groups, core terms, toggles, and numeric limits.
+- Kept generated emerging state in `data/model_tools_dynamic_config.json` for inspection and continuity.
+- Standardized core, emerging, and candidate terminology.
+- Made `MODEL_TOOL_MAX_ITEMS` the shared per-category cap for graph selection and dashboard rendering.

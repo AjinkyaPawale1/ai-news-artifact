@@ -6,6 +6,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from .model_tools_config import MODEL_TOOL_MAX_ITEMS
+
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
 
@@ -168,8 +170,8 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
             for index, item in enumerate(top_papers)
         ],
         "repos": [_to_repo(item) for item in github[:8]],
-        "models": [_to_release(item) for item in models[:8]],
-        "toolsServices": [_to_release(item) for item in tools_services[:8]],
+        "models": [_to_release(item) for item in models[:MODEL_TOOL_MAX_ITEMS]],
+        "toolsServices": [_to_release(item) for item in tools_services[:MODEL_TOOL_MAX_ITEMS]],
         "papers": [_to_paper(item) for item in papers[:8]],
         "blogs": [_to_blog(item) for item in rss[:10]],
         "socialPosts": [],
