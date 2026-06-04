@@ -450,9 +450,9 @@ def enrich_paper_item(item: Item) -> Item:
         takeaways[2] = "Check the implementation or replication path before piloting."
 
     action_items = [
-        f"{action_title}: {item.title}",
-        f"Assess whether {capability.lower()} improves a relevant {domain.lower()} workflow.",
-        "Capture one pilot question and one risk question for stakeholder review.",
+        f"Review {item.title} and flag the core method, evidence, and assumptions for the research brief.",
+        f"Run a small evaluation to test whether {capability.lower()} improves a relevant {domain.lower()} workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot.",
     ]
 
     metadata = dict(item.metadata)

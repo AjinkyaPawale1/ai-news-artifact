@@ -85,6 +85,57 @@ class DashboardArtifactTests(unittest.TestCase):
             ],
         )
 
+    def test_repo_action_items_are_mapped_to_dashboard_payload(self) -> None:
+        payload = push_to_artifact.build_dashboard_payload(
+            [
+                {
+                    "source_type": "github",
+                    "title": "org/repo",
+                    "url": "https://github.com/org/repo",
+                    "metadata": {
+                        "item_kind": "repo",
+                        "action_items": ["Run quickstart.", "Benchmark one task.", "Review issues."],
+                    },
+                }
+            ]
+        )
+
+        self.assertEqual(payload["repos"][0]["actionItems"], ["Run quickstart.", "Benchmark one task.", "Review issues."])
+
+    def test_model_release_links_hide_source_feed_and_add_benchmark(self) -> None:
+        payload = push_to_artifact.build_dashboard_payload(
+            [
+                {
+                    "source_type": "model",
+                    "title": "Model",
+                    "url": "https://example.com/release",
+                    "metadata": {"source_url": "https://example.com/feed.xml", "source_label": "RSS feed"},
+                }
+            ]
+        )
+
+        self.assertEqual(
+            payload["models"][0]["links"],
+            [
+                {"label": "Read release", "url": "https://example.com/release"},
+                {"label": "Benchmark", "url": push_to_artifact.MODEL_BENCHMARK_URL},
+            ],
+        )
+
+    def test_tool_release_links_keep_only_read_release(self) -> None:
+        payload = push_to_artifact.build_dashboard_payload(
+            [
+                {
+                    "source_type": "tool_service",
+                    "title": "Tool",
+                    "url": "https://example.com/tool",
+                    "metadata": {"source_url": "https://example.com/feed.xml", "source_label": "RSS feed"},
+                }
+            ]
+        )
+
+        self.assertEqual(payload["toolsServices"][0]["links"], [{"label": "Read release", "url": "https://example.com/tool"}])
+
 
 class ModelToolsClassificationTests(unittest.TestCase):
     def test_classifier_rejects_guide_without_release_headline(self) -> None:

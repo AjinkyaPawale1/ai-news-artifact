@@ -37,8 +37,8 @@ parallel fetch agents
 | React dashboard | Done | Six tabs: Weekly Snapshot, Research, Repos, Releases, Signals, Pipeline |
 | Weekly Snapshot | Done | Full-width featured paper banner plus equal-width repo/model/tool previews |
 | Research papers | Done | arXiv seven-day-first ranking, 14-day backfill, paper-only refresh path |
-| GitHub repos | Done | LangGraph discovery with dynamic queries, repo summaries, and deterministic `bestFor` labels |
-| Model/tool releases | Done | Official feeds/source pages, release-specific filtering, bounded LLM classification |
+| GitHub repos | Done | LangGraph discovery with dynamic queries, repo summaries/actions, and deterministic `bestFor` labels |
+| Model/tool releases | Done | Official feeds/source pages, release-specific filtering, bounded LLM classification, clean release/benchmark CTAs |
 | RSS articles | Done | Official feed collection with round-robin selection and feed diagnostics |
 | Placeholder streams | Done | AI Pulse, Social Pulse, and Enterprise Focus render as coming-soon placeholders |
 | Artifact generation | Done | Stable frontend contract in `data/output.json`; source health in `data/health.json` |

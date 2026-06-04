@@ -10,6 +10,7 @@ from .model_tools_config import MODEL_TOOL_MAX_ITEMS
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
+MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations"
 
 
 def _format_date(value: str) -> str:
@@ -106,6 +107,7 @@ def _to_repo(item: dict) -> dict:
         "fetchedAt": _format_date(metadata.get("fetched_at") or item.get("fetched_date", "")),
         "bestFor": metadata.get("best_for", "AI Engineering"),
         "bullets": metadata.get("bullets") or [item.get("summary") or "Review this repository."],
+        "actionItems": metadata.get("action_items") or [],
         "latestRelease": metadata.get("latest_release", ""),
         "latestReleaseUrl": metadata.get("latest_release_url", ""),
         "homepage": metadata.get("homepage", ""),
@@ -117,11 +119,14 @@ def _to_release(item: dict) -> dict:
     metadata = item.get("metadata") or {}
     release_url = item.get("url", "")
     source_url = metadata.get("source_url", "")
+    benchmark_url = metadata.get("benchmark_url", "")
+    if item.get("source_type") == "model" and not benchmark_url:
+        benchmark_url = MODEL_BENCHMARK_URL
     links = []
     if release_url:
         links.append({"label": "Read release", "url": release_url})
-    if source_url and source_url != release_url:
-        links.append({"label": metadata.get("source_label", "Source"), "url": source_url})
+    if item.get("source_type") == "model" and benchmark_url:
+        links.append({"label": "Benchmark", "url": benchmark_url})
     return {
         "name": metadata.get("name") or item.get("title", "Untitled"),
         "org": metadata.get("org") or item.get("source", "AI"),
@@ -131,6 +136,7 @@ def _to_release(item: dict) -> dict:
         "url": release_url,
         "sourceUrl": source_url,
         "sourceLabel": metadata.get("source_label", "Source"),
+        "benchmarkUrl": benchmark_url,
         "links": links,
     }
 

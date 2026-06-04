@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 
 ## Purpose
 A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
@@ -46,6 +46,9 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
   model-release, and tool/service previews. Repo previews include a one-line description.
 - GitHub `bestFor` labels separate knowledge-management products, MCP tooling, and
   retrieval-specific RAG infrastructure; generic `context` mentions do not imply RAG.
+- GitHub repo cards carry exactly three recommended actions. OpenAI can generate them
+  as part of the repo brief when `OPENAI_API_KEY` is present; deterministic clone,
+  workflow-mapping, and release/issues/license review actions remain the fallback.
 - AI Pulse, Social Pulse, and Enterprise Focus are explicit placeholders until their
   collection and ranking workflows are ready.
 - `npm run pipeline` is a convenience wrapper around `PYTHONPATH=apps/pipeline/src python3 -m news_pipeline.supervisor`.
@@ -57,7 +60,10 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Human-maintained model/tool source groups, core terms, and limits live in `apps/pipeline/src/news_pipeline/model_tools_config.py`; `data/model_tools_dynamic_config.json` is generated runtime state for inspection.
 - Model/tool vocabulary is standardized: core feeds are always active, emerging feeds/terms rotate within bounds, and candidate feeds are the allowed proposal pool.
 - `MODEL_TOOL_MAX_ITEMS` is the single per-category cap for graph selection and dashboard release-card rendering.
-- Model/tool dashboard cards include release links plus source feed/page links, and source-page candidates are enriched from official article excerpts before LLM classification where possible.
+- Model/tool dashboard cards include release links; model cards also include a benchmark
+  link. RSS/source-page links remain metadata only and are not rendered as card CTAs.
+  Source-page candidates are enriched from official article excerpts before LLM
+  classification where possible.
 - Model/tool classification rejects tutorial, guide, case-study, and broad marketing
   headlines unless they clearly announce a release. Selection also collapses same-day,
   same-organization near-duplicate product names while preserving distinct versions.
@@ -75,13 +81,16 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Displayed papers carry exactly three abstract-grounded summary bullets. OpenAI Responses
   API summaries run by default when `OPENAI_API_KEY` is available, retry transient failures
   twice, and fall back to deterministic abstract bullets.
+- Displayed papers carry exactly three action items. OpenAI Responses API action generation
+  runs by default when `OPENAI_API_KEY` is available, retries transient or invalid responses
+  twice, and falls back to deterministic review, experiment/evaluation, and risk/adoption actions.
 - The weekly snapshot features one ranked paper. The retained `actionItems` artifact
   compatibility field remains derived from ranked papers only, never GitHub or RSS.
 - `npm run pipeline:papers` refreshes papers and paper health diagnostics while preserving
   non-paper dashboard sections from the existing artifact checkpoint.
 - Research-paper agent details live in `docs/research-paper-agent-architecture.md`,
   including paced arXiv extraction, the three-node LangGraph state, research scoring,
-  default OpenAI summary bullets, retries, diagnostics, and artifact mapping.
+  default OpenAI summary bullets and action items, retries, diagnostics, and artifact mapping.
 
 ## Operational Commands
 - npm install

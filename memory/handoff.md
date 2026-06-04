@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 Owner: AI agent (Codex)
 
 ## Completed
@@ -82,6 +82,13 @@ Owner: AI agent (Codex)
   `ai-news-artifact`.
 - Fixed mobile rendering by making the dashboard grids, header controls, tabs, research
   cards, release lists, and pipeline flow responsive with no horizontal overflow at 390px.
+- Added OpenAI-backed action-item generation for displayed research papers with deterministic
+  fallback, retry/disable diagnostics, artifact-compatible `papers[].actionItems`, focused
+  unit coverage, and updated research-paper architecture docs.
+- Added repo recommended actions with optional OpenAI generation and deterministic fallback,
+  plus expanded repo-card action panels and rectangular release/open-repo CTAs.
+- Removed RSS/source-feed CTAs from model/tool release cards; model cards now show a blue
+  benchmark CTA and release/tool cards use yellow read-release CTAs.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -95,11 +102,22 @@ Owner: AI agent (Codex)
 - Generated health log is written to `data/health.json`.
 - Agent operating guidance is now centralized in `AGENTS.md`.
 - Repo memory now includes context, decisions, handoff, tasks, and errors.
-- The dashboard can now receive generated model release and AI tool/service cards with longer notes plus release/source links when current feed entries match deterministic and/or LLM classification.
+- The dashboard can now receive generated model release and AI tool/service cards with
+  longer notes plus release links when current feed entries match deterministic and/or
+  LLM classification; source-feed URLs are retained as metadata rather than visible CTAs.
 - Model/tool dynamic state is persisted in `data/model_tools_dynamic_config.json`; health output includes extraction diagnostics and dynamic refresh metadata.
 - `data/model_tools_dynamic_config.json` is generated inspectable state, not the primary contributor edit point; static defaults live in `apps/pipeline/src/news_pipeline/model_tools_config.py`.
 - Latest refresh produced 3 model cards and 6 tool/service cards, all with resolved in-window dates and no `Unknown` values.
 - The docs folder now includes separate architecture pages for research papers, GitHub discovery, and model/tool release discovery.
+- Displayed research-paper cards now carry exactly three action items. OpenAI action
+  generation runs when `OPENAI_API_KEY` is configured and falls back to deterministic
+  review, experiment/evaluation, and risk/adoption actions.
+- Displayed repo cards now carry exactly three action items. OpenAI repo briefs can provide
+  them; deterministic clone, map-use-case, and review-release/issues/license actions are
+  used when the API is unavailable or the artifact has not been refreshed.
+- Model/tool cards no longer expose RSS/source feed buttons in the UI. Model cards use
+  `https://artificialanalysis.ai/evaluations` as the default benchmark CTA unless a
+  future card provides `benchmarkUrl`.
 - `origin` should point to `https://github.com/AjinkyaPawale1/ai-news-artifact.git`
   after the repository rename.
 - Remote branch currently published: `main`.
@@ -122,6 +140,11 @@ Owner: AI agent (Codex)
 - GitHub API runs unauthenticated unless GITHUB_TOKEN is provided; rate limits may apply.
 - LangGraph is now a pipeline dependency; run `pip install -r apps/pipeline/requirements.txt` after pulling.
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
+- OpenAI repo recommended actions share `OPENAI_REPO_BRIEF_LIMIT`; missing or invalid
+  `actionItems` fall back deterministically while keeping repo bullets available.
+- OpenAI paper summaries and paper action items are optional and require `OPENAI_API_KEY`;
+  both paths disable later calls for their own path after auth/quota failures and publish
+  diagnostics under the papers health entry.
 - Some RSS feeds may fail or return sparse content; health log captures source-level status.
 - Model/tool extraction remains deterministic-first, but official source pages can pass release-signal checks and may rely on LLM classification for final card naming and notes.
 - The model/tool workflow now drops entries when a recent publish date cannot be resolved; this avoids `Unknown` cards and stale releases, but it can reduce weekly card count when provider pages omit publish metadata.

@@ -126,11 +126,16 @@ Current behavior in the codebase:
 - Repo `bestFor` labels are deterministic and distinguish knowledge-management products,
   MCP tooling, retrieval-specific RAG infrastructure, coding workflows, model serving,
   AI agent apps, data extraction, security, research, and memory/reasoning systems.
+- Displayed repo cards carry exactly three recommended actions. OpenAI can generate
+  those actions with the repo brief when `OPENAI_API_KEY` is available; deterministic
+  clone, map-a-use-case, and review-release/issues/license actions remain the fallback.
 - Selection uses tiered thresholds:
   - `TRACTION_THRESHOLD_DEFAULT` for standard repos.
   - `TRACTION_THRESHOLD_EMERGING` for repos with emerging-topic hits.
 - Guardrails bound auto-updater churn via `GITHUB_DYNAMIC_MAX_QUERY_REPLACEMENTS` and `GITHUB_DYNAMIC_MAX_WATCH_REPLACEMENTS`.
 - Artifact stats intentionally separate pool size from display size (`REPOS INDEXED` with `8 shown`).
+- Expanded repo cards show the recommended actions plus rectangular `RELEASE` and
+  `OPEN REPO` CTAs.
 
 For full flowcharts and draw.io-style diagrams, see:
 
@@ -144,6 +149,11 @@ the active date window, then selects entries round-robin within the shared RSS c
 prevents an early high-volume feed from consuming the complete visible article budget.
 The latest run stores per-feed fetched, eligible, and selected counts under the RSS
 entry in `data/health.json`.
+
+Model/tool release cards do not render RSS or source-page feed links. Model cards show
+a yellow `Read release` CTA plus a blue `Benchmark` CTA; tool/service cards show only
+the yellow `Read release` CTA. Source URLs remain in the artifact metadata for audit
+and diagnostics.
 
 ## Dashboard Statistics
 

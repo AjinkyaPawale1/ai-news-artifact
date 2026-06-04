@@ -228,6 +228,35 @@ def _fallback_bullets(repo: dict[str, Any]) -> list[str]:
     return bullets[:3]
 
 
+def _clean_three_strings(values: Any) -> list[str]:
+    if not isinstance(values, list):
+        return []
+    cleaned = []
+    seen = set()
+    for value in values:
+        text = " ".join(str(value).split())
+        if not text or text.lower() in seen:
+            continue
+        cleaned.append(text)
+        seen.add(text.lower())
+        if len(cleaned) == 3:
+            break
+    return cleaned if len(cleaned) == 3 else []
+
+
+def _fallback_repo_actions(repo: dict[str, Any], best_for: str | None = None) -> list[str]:
+    owner_repo = repo.get("full_name") or repo.get("name") or "this repository"
+    language = repo.get("language") or "the main runtime"
+    release = repo.get("latest_release") or {}
+    release_ref = release.get("tag_name") or "recent commit history"
+    focus = (best_for or _best_for_label(repo)).lower()
+    return [
+        f"Clone {owner_repo} and run the README quickstart with a small {language} smoke test.",
+        f"Map one {focus} use case to the repo APIs, inputs, and required integrations.",
+        f"Review {release_ref}, open issues, and license before deciding on a deeper benchmark or pilot.",
+    ]
+
+
 def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
     global _OPENAI_ATTEMPTS, _OPENAI_DISABLED_FOR_RUN  # noqa: PLW0603 - run-level API backoff state
 
@@ -242,8 +271,11 @@ def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
         "language": repo.get("language"),
         "topics": repo.get("topics") or [],
         "stars": repo.get("stargazers_count"),
+        "open_issues": repo.get("open_issues_count"),
         "pushed_at": repo.get("pushed_at"),
         "latest_release": (repo.get("latest_release") or {}).get("tag_name"),
+        "latest_release_url": (repo.get("latest_release") or {}).get("html_url"),
+        "license": (repo.get("license") or {}).get("spdx_id") or "",
         "readme_excerpt": repo.get("readme_excerpt", "")[:2500],
     }
     body = {
@@ -253,8 +285,9 @@ def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
                 "role": "system",
                 "content": (
                     "You summarize GitHub repositories for an AI/LLM intelligence brief. "
-                    "Return compact JSON only with keys desc, bullets, whyTrending. "
-                    "bullets must be exactly three short strings."
+                    "Return compact JSON only with keys desc, bullets, whyTrending, actionItems. "
+                    "bullets and actionItems must each be exactly three short strings. "
+                    "actionItems should be concrete repo experiments a developer or evaluator can run."
                 ),
             },
             {"role": "user", "content": json.dumps(prompt, ensure_ascii=True)},
@@ -285,13 +318,14 @@ def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
         LOGGER.warning("OpenAI repo brief failed for %s: %s", repo.get("full_name"), exc)
         return None
 
-    bullets = [str(item).strip() for item in parsed.get("bullets", []) if str(item).strip()]
+    bullets = _clean_three_strings(parsed.get("bullets"))
     if len(bullets) != 3:
         return None
     return {
         "desc": str(parsed.get("desc") or repo.get("description") or "").strip(),
         "bullets": bullets,
         "why_trending": str(parsed.get("whyTrending") or "").strip(),
+        "action_items": _clean_three_strings(parsed.get("actionItems")),
     }
 
 
@@ -418,6 +452,8 @@ def _repo_to_item(repo: dict[str, Any]) -> Item:
     brief = _openai_repo_brief(repo)
     bullets = brief["bullets"] if brief else _fallback_bullets(repo)
     description = (brief or {}).get("desc") or repo.get("description") or bullets[0]
+    best_for = _best_for_label(repo)
+    action_items = (brief or {}).get("action_items") or _fallback_repo_actions(repo, best_for)
     why_trending = (brief or {}).get("why_trending") or (
         f"Created within {GITHUB_MAX_REPO_AGE_DAYS} days and active in the last {DATE_WINDOW_DAYS} days; "
         f"traction score {repo.get('traction_score', 0)} from stars, activity, releases, and AI topic overlap."
@@ -453,10 +489,11 @@ def _repo_to_item(repo: dict[str, Any]) -> Item:
             "max_repo_age_days": GITHUB_MAX_REPO_AGE_DAYS,
             "latest_release": release.get("tag_name") or "",
             "latest_release_url": release.get("html_url") or "",
-            "best_for": _best_for_label(repo),
+            "best_for": best_for,
             "traction_score": repo.get("traction_score", 0),
             "delta": f"{repo.get('traction_score', 0)} pts",
             "bullets": bullets,
+            "action_items": action_items,
             "why_trending": why_trending,
         },
     )

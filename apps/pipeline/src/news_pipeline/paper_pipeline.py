@@ -10,7 +10,12 @@ from .agents.fetch_papers import fetch_papers, update_last_diagnostics
 from .dedup import deduplicate_items
 from .health_log import DATA_DIR, write_health_log
 from .normalize import normalize_items
-from .paper_summarize import enrich_paper_summaries, get_last_summary_diagnostics
+from .paper_summarize import (
+    enrich_paper_action_items,
+    enrich_paper_summaries,
+    get_last_action_diagnostics,
+    get_last_summary_diagnostics,
+)
 from .push_to_artifact import push_papers_to_existing_artifact
 from .score import attach_action_scores
 from .summarize import summarize_items
@@ -34,12 +39,14 @@ def run_paper_pipeline() -> dict:
     normalized = normalize_items(deduped)
     summarized = summarize_items([item.to_dict() for item in normalized])
     enrich_paper_summaries(summarized)
+    enrich_paper_action_items(summarized)
     attach_action_scores(summarized)
 
     diagnostics = update_last_diagnostics(
         deduplicated_count=len(deduped),
         displayed_count=min(len(summarized), 8),
         summary_diagnostics=get_last_summary_diagnostics(),
+        action_diagnostics=get_last_action_diagnostics(),
     )
     paper_health = {
         "source": "papers",

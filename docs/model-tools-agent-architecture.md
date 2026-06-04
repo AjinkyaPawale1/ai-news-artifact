@@ -457,6 +457,10 @@ Item(
 
 These items then re-enter the shared pipeline with the other source types.
 
+`related_links` and `metadata.source_url` preserve the originating feed or
+source page for diagnostics and auditability. They are not rendered as RSS/source
+feed buttons in the dashboard release cards.
+
 ## Supervisor Integration
 
 The model/tools workflow is one fetch agent inside the main supervisor fan-out.
@@ -500,9 +504,10 @@ def _to_release(item: dict) -> dict:
         "url": release_url,
         "sourceUrl": source_url,
         "sourceLabel": metadata.get("source_label", "Source"),
+        "benchmarkUrl": benchmark_url,  # model cards default to Artificial Analysis evaluations
         "links": [
             {"label": "Read release", "url": release_url},
-            {"label": source_label, "url": source_url},
+            {"label": "Benchmark", "url": benchmark_url},  # model cards only
         ],
     }
 ```
@@ -511,6 +516,9 @@ Final artifact fields:
 
 - `models`: first `MODEL_TOOL_MAX_ITEMS` `source_type == "model"` items mapped through `_to_release(...)`
 - `toolsServices`: first `MODEL_TOOL_MAX_ITEMS` `source_type == "tool_service"` items mapped through `_to_release(...)`
+- model cards include a yellow `Read release` CTA and a blue `Benchmark` CTA
+- tool/service cards include only the yellow `Read release` CTA
+- RSS feed and source-page URLs remain in `sourceUrl`/`sourceLabel` metadata but are not rendered as release-card CTAs
 
 Because stale or undated entries are filtered before artifact generation, the dashboard cards should not require frontend-side date repair.
 
@@ -524,12 +532,13 @@ Current UI behavior:
 - rows are collapsed by default, matching the repo-list interaction style
 - clicking a row expands it to show:
   - organization tag
-  - resolved date tag
   - type tag
   - longer summary note
-  - release/source links
+  - rectangular release CTA
+  - rectangular benchmark CTA for model releases only
 
-This keeps the Releases drill-down compact while preserving access to the underlying source material.
+This keeps the Releases drill-down compact and focuses user clicks on the
+release itself instead of the upstream RSS/source feed.
 
 ## Diagnostics and Health Output
 

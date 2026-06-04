@@ -327,11 +327,12 @@ state["selected"] = sorted_recent_trending_repos
 
 Purpose: convert selected GitHub repo dictionaries into shared pipeline `Item` objects.
 
-This node performs three transformations:
+This node performs four transformations:
 
 1. deterministic `bestFor` classification
 2. optional OpenAI brief generation
-3. `Item` construction with repo-specific metadata
+3. optional OpenAI recommended-action generation with deterministic fallback
+4. `Item` construction with repo-specific metadata
 
 Output state:
 
@@ -375,9 +376,10 @@ vector, embedding, reranking, and chunking signals.
 
 This label is displayed at the bottom of the expanded repo card.
 
-## Optional OpenAI Brief
+## Optional OpenAI Brief And Actions
 
-OpenAI is used only to improve repo bullets. It is not required for filtering or classification.
+OpenAI is used only to improve visible repo bullets and recommended actions. It
+is not required for searching, filtering, scoring, or classification.
 
 Model:
 
@@ -396,6 +398,8 @@ Prompt input:
   "stars": 1234,
   "pushed_at": "2026-05-15T00:00:00Z",
   "latest_release": "v1.2.0",
+  "latest_release_url": "https://github.com/owner/repo/releases/tag/v1.2.0",
+  "license": "Apache-2.0",
   "readme_excerpt": "first 2500 chars"
 }
 ```
@@ -412,15 +416,17 @@ Expected model output:
 {
   "desc": "Compact description",
   "bullets": ["...", "...", "..."],
-  "whyTrending": "..."
+  "whyTrending": "...",
+  "actionItems": ["...", "...", "..."]
 }
 ```
 
 Fallback behavior:
 
-- If `OPENAI_API_KEY` is missing, use deterministic bullets.
+- If `OPENAI_API_KEY` is missing, use deterministic bullets and three
+  deterministic repo actions.
 - If OpenAI returns `401`, `403`, or `429`, disable OpenAI calls for the rest of the run.
-- `OPENAI_REPO_BRIEF_LIMIT` caps summary attempts per run.
+- `OPENAI_REPO_BRIEF_LIMIT` caps combined bullet/action attempts per run.
 
 The frontend does not currently display `whyTrending`.
 
@@ -449,6 +455,7 @@ metadata = {
     "best_for": str,
     "traction_score": int,
     "bullets": list[str],
+    "action_items": list[str],
 }
 ```
 
@@ -487,6 +494,11 @@ Frontend-facing repo shape:
     "What stack or topics it uses.",
     "Why it appears actively maintained."
   ],
+  "actionItems": [
+    "Clone and run the README quickstart.",
+    "Map one workflow to the repo APIs.",
+    "Review release, issues, and license before a pilot."
+  ],
   "latestRelease": "v1.2.0",
   "latestReleaseUrl": "https://github.com/owner/repo/releases/tag/v1.2.0",
   "homepage": "https://example.com",
@@ -505,8 +517,9 @@ The dashboard card shows:
 - license
 - three bullets
 - `BEST FOR` label
-- release link, when available
-- open repo link
+- `RECOMMENDED ACTIONS` panel with exactly three repo experiment pointers
+- blue rectangular release link, when available
+- gold rectangular open repo link
 
 ## End-To-End GitHub Agent Sequence
 
@@ -546,9 +559,9 @@ sequenceDiagram
     Select-->>Graph: state.selected
     Graph->>Build: state.selected
     Build->>Build: Classify bestFor
-    Build->>OAI: Optional bullet summary
-    OAI-->>Build: JSON summary or rate-limit failure
-    Build->>Build: Use fallback bullets if needed
+    Build->>OAI: Optional bullet/action summary
+    OAI-->>Build: JSON summary/actions or rate-limit failure
+    Build->>Build: Use fallback bullets/actions if needed
     Build-->>Graph: state.items
     Graph->>Health: Write query_mode + search_diagnostics
     Graph->>Artifact: Convert Item metadata to repos[]

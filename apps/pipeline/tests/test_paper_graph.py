@@ -9,7 +9,12 @@ import requests
 from news_pipeline.agents.fetch_papers import fetch_papers, update_last_diagnostics
 from news_pipeline.agents.paper_graph import enrich_paper_item
 from news_pipeline.agents import paper_graph
-from news_pipeline.paper_summarize import enrich_paper_summaries, get_last_summary_diagnostics
+from news_pipeline.paper_summarize import (
+    enrich_paper_action_items,
+    enrich_paper_summaries,
+    get_last_action_diagnostics,
+    get_last_summary_diagnostics,
+)
 from news_pipeline.push_to_artifact import build_dashboard_payload, update_papers_in_payload
 from news_pipeline.schema import Item
 from news_pipeline.score import attach_action_scores
@@ -97,6 +102,7 @@ class PaperGraphTests(unittest.TestCase):
         self.assertIn("researchSignals", payload["papers"][0])
         self.assertEqual(payload["papers"][0]["priority"], "READ")
         self.assertEqual(len(payload["papers"][0]["actionItems"]), 3)
+        self.assertTrue(all(isinstance(action, str) for action in payload["papers"][0]["actionItems"]))
         self.assertNotIn("relevance", payload["papers"][0])
         self.assertNotIn("verticals", payload["papers"][0])
 
@@ -153,6 +159,8 @@ class PaperGraphTests(unittest.TestCase):
         self.assertEqual(payload["toolsServices"], existing["toolsServices"])
         self.assertEqual(len(payload["actionItems"]), 1)
         self.assertEqual(payload["actionItems"][0]["source"], "arXiv")
+        self.assertEqual(len(payload["papers"][0]["actionItems"]), 3)
+        self.assertTrue(all(isinstance(action, str) for action in payload["papers"][0]["actionItems"]))
 
     @patch.dict("os.environ", {"OPENAI_API_KEY": ""})
     def test_paper_summary_fallback_uses_three_abstract_grounded_bullets(self) -> None:
@@ -187,6 +195,79 @@ class PaperGraphTests(unittest.TestCase):
         self.assertEqual(paper["metadata"]["takeaways"], ["Contribution", "Evidence", "Implication"])
         self.assertEqual(mock_post.call_count, 1)
         self.assertEqual(get_last_summary_diagnostics()["successes"], 1)
+
+    @patch("news_pipeline.paper_summarize.requests.post")
+    @patch("news_pipeline.retry.time.sleep")
+    @patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"})
+    def test_paper_actions_use_openai_three_action_response(self, _mock_sleep: Mock, mock_post: Mock) -> None:
+        paper = enrich_paper_item(
+            _paper("paper-action-openai", "AI Evaluation", "An evaluation benchmark with deployment evidence.")
+        ).to_dict()
+        response = Mock()
+        response.raise_for_status.return_value = None
+        response.json.return_value = {
+            "output_text": (
+                '{"actions":['
+                '"Review the benchmark design and evidence assumptions.",'
+                '"Run a small comparison against the current evaluation set.",'
+                '"Ask whether data coverage or governance limits adoption."'
+                "]}"
+            )
+        }
+        mock_post.return_value = response
+
+        enrich_paper_action_items([paper])
+
+        self.assertEqual(
+            paper["metadata"]["action_items"],
+            [
+                "Review the benchmark design and evidence assumptions.",
+                "Run a small comparison against the current evaluation set.",
+                "Ask whether data coverage or governance limits adoption.",
+            ],
+        )
+        self.assertEqual(mock_post.call_count, 1)
+        self.assertEqual(get_last_action_diagnostics()["successes"], 1)
+
+    @patch("news_pipeline.paper_summarize.requests.post")
+    @patch("news_pipeline.retry.time.sleep")
+    @patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"})
+    def test_paper_actions_invalid_response_falls_back(self, _mock_sleep: Mock, mock_post: Mock) -> None:
+        paper = enrich_paper_item(
+            _paper(
+                "paper-action-invalid",
+                "AI Evaluation",
+                "First sentence. Second sentence. Third sentence.",
+            )
+        ).to_dict()
+        original_actions = list(paper["metadata"]["action_items"])
+        response = Mock()
+        response.raise_for_status.return_value = None
+        response.json.return_value = {"output_text": '{"actions":["same","same"]}'}
+        mock_post.return_value = response
+
+        enrich_paper_action_items([paper])
+        diagnostics = get_last_action_diagnostics()
+
+        self.assertEqual(paper["metadata"]["action_items"], original_actions)
+        self.assertEqual(mock_post.call_count, 3)
+        self.assertEqual(diagnostics["retry_count"], 2)
+        self.assertEqual(diagnostics["fallbacks"], 1)
+
+    @patch.dict("os.environ", {"OPENAI_API_KEY": ""})
+    def test_paper_actions_missing_key_uses_deterministic_fallback(self) -> None:
+        paper = enrich_paper_item(
+            _paper("paper-action-missing-key", "AI Evaluation", "An evaluation benchmark.")
+        ).to_dict()
+        original_actions = list(paper["metadata"]["action_items"])
+
+        enrich_paper_action_items([paper])
+        diagnostics = get_last_action_diagnostics()
+
+        self.assertEqual(paper["metadata"]["action_items"], original_actions)
+        self.assertEqual(len(paper["metadata"]["action_items"]), 3)
+        self.assertEqual(diagnostics["skip_reason"], "missing_api_key")
+        self.assertEqual(diagnostics["fallbacks"], 1)
 
     @patch("news_pipeline.agents.fetch_papers.ARXIV_CATEGORIES", ["cs.AI", "cs.CL"])
     @patch("news_pipeline.agents.paper_graph._pace_arxiv_request")

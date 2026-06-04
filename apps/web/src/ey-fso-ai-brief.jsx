@@ -20,17 +20,51 @@ import {
 } from "lucide-react";
 import pipelineData from "../../../data/output.json";
 
-const ACCENT_GOLD = "#fbbf24";
+const THEME = {
+  bg: "#f7f8fb",
+  shell: "#ffffff",
+  surface: "#ffffff",
+  surfaceSoft: "#f3f6fa",
+  surfaceWarm: "#fffaf0",
+  border: "#d8dee8",
+  borderSoft: "#e7ebf2",
+  text: "#182235",
+  heading: "#0f172a",
+  muted: "#667085",
+  faint: "#98a2b3",
+  accent: "#b45309",
+  accentSoft: "#fef3c7",
+  blue: "#2563eb",
+  teal: "#0f766e",
+  green: "#15803d",
+  red: "#b42318",
+  purple: "#7c3aed",
+};
+const ACCENT_GOLD = THEME.accent;
+
+const TYPE = {
+  appTitle: { fontSize: 20, lineHeight: 1.2, fontWeight: 650, color: THEME.heading, letterSpacing: "-0.01em" },
+  sectionTitle: { fontSize: 16, lineHeight: 1.25, fontWeight: 650, color: THEME.heading, letterSpacing: "-0.01em" },
+  cardTitle: { fontSize: 17, lineHeight: 1.35, fontWeight: 560, color: THEME.heading, letterSpacing: "-0.005em" },
+  compactTitle: { fontSize: 13, lineHeight: 1.45, fontWeight: 560, color: THEME.text },
+  body: { fontSize: 13, lineHeight: 1.65, color: THEME.muted },
+  reading: { fontSize: 15, lineHeight: 1.85, color: "#24324a" },
+  meta: { fontSize: 11, lineHeight: 1.45, color: THEME.muted, letterSpacing: "0.02em" },
+  label: { fontSize: 10, lineHeight: 1.2, color: THEME.faint, letterSpacing: "0.08em", textTransform: "uppercase" },
+  nav: { fontSize: 12, lineHeight: 1, letterSpacing: "0.04em", fontWeight: 500 },
+};
+
 const REPOS = pipelineData.repos ?? [];
 const MODELS = pipelineData.models ?? [];
 const TOOLS_SERVICES = pipelineData.toolsServices ?? [];
 const PAPERS = pipelineData.papers ?? [];
 const HEALTH = pipelineData.health ?? [];
+const DEFAULT_MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations";
 
 const SIGNAL_COLORS = {
-  High: { dot: "#34d399", text: "#6ee7b7" },
-  Medium: { dot: "#fbbf24", text: "#fde68a" },
-  Low: { dot: "#64748b", text: "#94a3b8" },
+  High: { dot: THEME.green, text: "#166534", bg: "#ecfdf3" },
+  Medium: { dot: THEME.accent, text: "#92400e", bg: "#fffbeb" },
+  Low: { dot: THEME.muted, text: THEME.muted, bg: "#f8fafc" },
 };
 
 function getIsoWeekLabel(value) {
@@ -44,15 +78,16 @@ function getIsoWeekLabel(value) {
   return `WEEK ${String(week).padStart(2, "0")} · ${date.getUTCFullYear()}`;
 }
 
-function Tag({ children }) {
+function Tag({ children, color = THEME.muted, backgroundColor = "transparent" }) {
   return (
     <span
       className="ai-mono inline-flex items-center px-2 py-0.5 border"
       style={{
+        ...TYPE.label,
         fontSize: 9,
-        letterSpacing: "0.12em",
-        color: "#94a3b8",
-        borderColor: "rgba(51,65,85,0.6)",
+        color,
+        backgroundColor,
+        borderColor: "#d8dee8",
       }}
     >
       {children}
@@ -65,13 +100,12 @@ function SectionHeader({ title, sub, action }) {
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
       <div>
         <h2
-          className="ai-mono"
-          style={{ fontSize: 12, letterSpacing: "0.2em", color: "#cbd5e1", fontWeight: 600 }}
+          style={TYPE.sectionTitle}
         >
           {title}
         </h2>
         {sub && (
-          <div className="ai-mono mt-1" style={{ fontSize: 9, letterSpacing: "0.16em", color: "#475569" }}>
+          <div className="ai-mono mt-1" style={TYPE.label}>
             {sub}
           </div>
         )}
@@ -87,11 +121,27 @@ function TextButton({ children, onClick }) {
       type="button"
       onClick={onClick}
       className="ai-mono inline-flex items-center gap-1.5 transition-colors"
-      style={{ fontSize: 10, letterSpacing: "0.12em", color: ACCENT_GOLD }}
+      style={{ ...TYPE.nav, fontSize: 11, color: ACCENT_GOLD }}
     >
       {children}
       <ArrowRight size={12} />
     </button>
+  );
+}
+
+function CtaLink({ href, children, color = ACCENT_GOLD }) {
+  if (!href) return null;
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="ai-mono inline-flex items-center gap-2 px-3 py-2 border"
+      style={{ fontSize: 11, color: "#ffffff", backgroundColor: color, borderColor: color, fontWeight: 700 }}
+    >
+      {children}
+      <ExternalLink size={12} />
+    </a>
   );
 }
 
@@ -101,7 +151,7 @@ function CircularScore({ score }) {
   return (
     <div className="relative" style={{ width: 52, height: 52 }}>
       <svg width="52" height="52" viewBox="0 0 52 52" style={{ transform: "rotate(-90deg)" }}>
-        <circle cx="26" cy="26" r={radius} fill="none" stroke="#1c1f3f" strokeWidth="3" />
+        <circle cx="26" cy="26" r={radius} fill="none" stroke="#d8dee8" strokeWidth="3" />
         <circle
           cx="26"
           cy="26"
@@ -116,7 +166,7 @@ function CircularScore({ score }) {
       </svg>
       <div
         className="ai-mono absolute inset-0 flex items-center justify-center"
-        style={{ fontSize: 12, color: ACCENT_GOLD }}
+        style={{ fontSize: 12, color: ACCENT_GOLD, fontWeight: 600 }}
       >
         {score}
       </div>
@@ -130,32 +180,61 @@ function TakeawayList({ takeaways, limit }) {
       {(takeaways ?? []).slice(0, limit).map((takeaway) => (
         <li key={takeaway} className="flex items-start gap-2">
           <ChevronRight size={10} className="shrink-0 mt-1" style={{ color: ACCENT_GOLD }} />
-          <span style={{ fontSize: 12, color: "#94a3b8", lineHeight: 1.5 }}>{takeaway}</span>
+          <span style={TYPE.body}>{takeaway}</span>
         </li>
       ))}
     </ul>
   );
 }
 
+function ActionList({ actions }) {
+  return (
+    <ol className="space-y-2">
+      {(actions ?? []).map((action, index) => (
+        <li
+          key={action}
+          className="flex items-start gap-3 border px-3 py-3"
+          style={{ backgroundColor: "#ffffff", borderColor: THEME.borderSoft }}
+        >
+          <span
+            className="ai-mono shrink-0 inline-flex items-center justify-center"
+            style={{
+              width: 22,
+              height: 22,
+              fontSize: 10,
+              color: ACCENT_GOLD,
+              backgroundColor: THEME.accentSoft,
+              border: `1px solid #fde68a`,
+            }}
+          >
+            {index + 1}
+          </span>
+          <span style={{ ...TYPE.body, fontSize: 13.5, color: THEME.text }}>{action}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function StatsBar() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px border mb-8" style={{ borderColor: "#1c1f3f", backgroundColor: "#1c1f3f" }}>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px border mb-8" style={{ borderColor: "#d8dee8", backgroundColor: "#d8dee8" }}>
       {(pipelineData.stats ?? []).map((stat) => (
         <div
           key={stat.label}
           className="px-5 sm:px-6 py-5"
-          style={{ backgroundColor: "#0c0e26" }}
+          style={{ backgroundColor: "#ffffff" }}
         >
-          <div className="ai-mono mb-2" style={{ fontSize: 10, letterSpacing: "0.18em", color: "#64748b" }}>
+          <div className="ai-mono mb-2" style={TYPE.label}>
             {stat.label}
           </div>
           <div
-            className="ai-mono mb-0.5"
-            style={{ fontSize: 30, color: stat.accent ? ACCENT_GOLD : "#f1f5f9", fontWeight: 500 }}
+            className="mb-0.5"
+            style={{ fontSize: 32, lineHeight: 1, color: stat.accent ? ACCENT_GOLD : THEME.heading, fontWeight: 650, letterSpacing: "-0.04em" }}
           >
             {stat.value}
           </div>
-          <div style={{ fontSize: 11, color: "#64748b" }}>{stat.sub}</div>
+          <div style={{ ...TYPE.body, fontSize: 12 }}>{stat.sub}</div>
         </div>
       ))}
     </div>
@@ -164,20 +243,20 @@ function StatsBar() {
 
 function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary, onNavigate }) {
   return (
-    <div className="border p-4 h-full min-w-0" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+    <div className="border p-4 h-full min-w-0" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
       <div className="flex items-center justify-between gap-3 mb-3">
-        <div className="ai-mono flex items-center gap-2 min-w-0" style={{ fontSize: 11, color: "#cbd5e1", letterSpacing: "0.14em" }}>
-          <Icon size={14} style={{ color: "#67e8f9" }} />
+        <div className="ai-mono flex items-center gap-2 min-w-0" style={{ ...TYPE.nav, color: THEME.text }}>
+          <Icon size={14} style={{ color: "#2563eb" }} />
           <span className="truncate">{title}</span>
         </div>
         <TextButton onClick={onNavigate}>VIEW ALL</TextButton>
       </div>
       <div className="space-y-2.5">
         {items.slice(0, 3).map((item) => (
-          <div key={getTitle(item)} className="border-t pt-2.5" style={{ borderColor: "rgba(28,31,63,0.8)" }}>
-            <div className="truncate" style={{ fontSize: 12, color: "#e2e8f0" }}>{getTitle(item)}</div>
-            {getSummary && <div className="truncate mt-1" style={{ fontSize: 10, color: "#94a3b8" }}>{getSummary(item)}</div>}
-            <div className="ai-mono truncate mt-1" style={{ fontSize: 9, color: "#64748b" }}>{getMeta(item)}</div>
+          <div key={getTitle(item)} className="border-t pt-2.5" style={{ borderColor: "#e7ebf2" }}>
+            <div className="truncate" style={TYPE.compactTitle}>{getTitle(item)}</div>
+            {getSummary && <div className="truncate mt-1" style={{ ...TYPE.body, fontSize: 12 }}>{getSummary(item)}</div>}
+            <div className="ai-mono truncate mt-1" style={{ ...TYPE.meta, fontSize: 10 }}>{getMeta(item)}</div>
           </div>
         ))}
       </div>
@@ -188,27 +267,27 @@ function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary,
 function FeaturedResearch({ paper, onNavigate }) {
   if (!paper) return null;
   return (
-    <div className="border p-4 sm:p-6 mb-4" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+    <div className="border p-4 sm:p-6 mb-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-5 md:gap-6 items-center">
         <div className="md:col-span-3 min-w-0">
-          <div className="ai-mono mb-3" style={{ fontSize: 10, color: ACCENT_GOLD, letterSpacing: "0.18em" }}>
+          <div className="ai-mono mb-3" style={{ ...TYPE.label, color: ACCENT_GOLD }}>
             FEATURED RESEARCH PICK
           </div>
-          <h3 className="leading-snug mb-2" style={{ fontSize: 18, color: "#f1f5f9", fontWeight: 600 }}>{paper.title}</h3>
-          <div className="ai-mono mb-3" style={{ fontSize: 10, color: "#64748b" }}>{paper.date} · {paper.org}</div>
+          <h3 className="mb-2" style={{ ...TYPE.cardTitle, fontSize: 22 }}>{paper.title}</h3>
+          <div className="ai-mono mb-3" style={TYPE.meta}>{paper.date} · {paper.org}</div>
           <TakeawayList takeaways={paper.takeaways} limit={2} />
           <div className="flex flex-wrap items-center gap-2 mt-4">
             {paper.priority && <Tag>{paper.priority}</Tag>}
             {(paper.tags ?? []).slice(0, 2).map((tag) => <Tag key={tag}>{tag.toUpperCase()}</Tag>)}
           </div>
         </div>
-        <div className="h-full pt-5 md:pt-0 md:pl-6 border-t md:border-t-0 md:border-l flex flex-row md:flex-col items-center justify-between md:justify-center gap-4 text-center" style={{ borderColor: "rgba(28,31,63,0.8)" }}>
+        <div className="h-full pt-5 md:pt-0 md:pl-6 border-t md:border-t-0 md:border-l flex flex-row md:flex-col items-center justify-between md:justify-center gap-4 text-center" style={{ borderColor: "#e7ebf2" }}>
           <CircularScore score={paper.researchScore} />
-          <div className="ai-mono mt-2" style={{ fontSize: 8, color: "#475569", letterSpacing: "0.12em" }}>RESEARCH SCORE</div>
+          <div className="ai-mono mt-2" style={{ ...TYPE.label, fontSize: 9 }}>RESEARCH SCORE</div>
           <div className="md:mt-5 flex flex-col gap-3 items-center">
             <TextButton onClick={onNavigate}>EXPLORE RESEARCH</TextButton>
             {paper.url && (
-              <a href={paper.url} target="_blank" rel="noreferrer" className="ai-mono inline-flex items-center gap-1" style={{ fontSize: 10, color: "#67e8f9" }}>
+              <a href={paper.url} target="_blank" rel="noreferrer" className="ai-mono inline-flex items-center gap-1" style={{ fontSize: 10, color: "#2563eb" }}>
                 OPEN PAPER <ExternalLink size={11} />
               </a>
             )}
@@ -237,55 +316,65 @@ function WeeklySnapshot({ onNavigate }) {
 function PaperCard({ paper }) {
   const [open, setOpen] = useState(false);
   const priorityColors = {
-    READ: "#67e8f9",
-    EXPERIMENT: "#f8c74e",
-    SHARE: "#c084fc",
-    WATCH: "#94a3b8",
+    READ: "#2563eb",
+    EXPERIMENT: "#b45309",
+    SHARE: "#7c3aed",
+    WATCH: "#667085",
   };
   const priorityColor = priorityColors[paper.priority] ?? priorityColors.READ;
   return (
-    <div className="border" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+    <div className="border" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8", boxShadow: open ? "0 10px 30px rgba(15, 23, 42, 0.06)" : "none" }}>
       <button type="button" onClick={() => setOpen(!open)} className="w-full text-left px-4 sm:px-6 py-5">
         <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
           <div className="flex-1 min-w-0">
-            <h3 className="leading-snug mb-2" style={{ fontSize: 15, color: "#f1f5f9", fontWeight: 500 }}>{paper.title}</h3>
-            <div className="ai-mono mb-3" style={{ fontSize: 10, color: "#64748b" }}>{paper.authors} · {paper.org} · {paper.date}</div>
+            <h3 className="mb-2" style={TYPE.cardTitle}>{paper.title}</h3>
+            <div className="ai-mono mb-3" style={TYPE.meta}>{paper.authors} · {paper.org} · {paper.date}</div>
             <TakeawayList takeaways={paper.takeaways} />
             <div className="flex items-center gap-2 flex-wrap mt-3">
-              {paper.priority && <Tag>{paper.priority}</Tag>}
+              {paper.priority && <Tag color={priorityColor} backgroundColor={priorityColor === THEME.accent ? THEME.accentSoft : "#f8fafc"}>{paper.priority}</Tag>}
               {paper.hasCode && <Tag><Code2 size={10} className="mr-1" />CODE</Tag>}
               {(paper.tags ?? []).map((tag) => <Tag key={tag}>{tag.toUpperCase()}</Tag>)}
             </div>
           </div>
           <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 shrink-0">
             <CircularScore score={paper.researchScore} />
-            <ChevronRight size={16} style={{ color: "#475569", transform: open ? "rotate(90deg)" : "none" }} />
+            <ChevronRight size={16} style={{ color: "#98a2b3", transform: open ? "rotate(90deg)" : "none" }} />
           </div>
         </div>
       </button>
       {open && (
-        <div className="px-4 sm:px-6 pb-6 pt-5 border-t" style={{ borderColor: "rgba(28,31,63,0.7)" }}>
-          <div className="ai-mono mb-2" style={{ fontSize: 10, color: "#475569", letterSpacing: "0.18em" }}>ABSTRACT</div>
-          <p className="mb-6" style={{ fontSize: 13, color: "#cbd5e1", lineHeight: 1.65 }}>{paper.abstract}</p>
-          <div className="ai-mono mb-3" style={{ fontSize: 10, color: "#475569", letterSpacing: "0.18em" }}>RESEARCH SIGNALS</div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {Object.entries(paper.researchSignals ?? {}).map(([label, level]) => {
-              const style = SIGNAL_COLORS[level] ?? SIGNAL_COLORS.Low;
-              return (
-                <div key={label} className="border p-3" style={{ borderColor: "#1c1f3f" }}>
-                  <div className="ai-mono mb-2" style={{ fontSize: 9, color: "#64748b", textTransform: "uppercase" }}>{label}</div>
-                  <div className="flex items-center gap-2"><span className="rounded-full" style={{ width: 8, height: 8, backgroundColor: style.dot }} /><span style={{ fontSize: 12, color: style.text }}>{level}</span></div>
-                </div>
-              );
-            })}
-          </div>
-          {(paper.actionItems ?? []).length > 0 && (
-            <div className="mt-6">
-              <div className="ai-mono mb-3" style={{ fontSize: 10, color: "#475569", letterSpacing: "0.18em" }}>RECOMMENDED ACTIONS</div>
-              <TakeawayList takeaways={paper.actionItems} />
+        <div className="px-4 sm:px-6 pb-6 pt-5 border-t" style={{ borderColor: "#e7ebf2", backgroundColor: THEME.surfaceSoft }}>
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-5">
+            <div className="min-w-0">
+              <div className="ai-mono mb-2" style={TYPE.label}>ABSTRACT</div>
+              <div style={{ backgroundColor: "#ffffff", borderLeft: `3px solid ${ACCENT_GOLD}`, padding: "14px 16px" }}>
+                <p style={TYPE.reading}>{paper.abstract}</p>
+              </div>
+              <div className="ai-mono mt-5 mb-3" style={TYPE.label}>RESEARCH SIGNALS</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {Object.entries(paper.researchSignals ?? {}).map(([label, level]) => {
+                  const style = SIGNAL_COLORS[level] ?? SIGNAL_COLORS.Low;
+                  return (
+                    <div key={label} className="flex items-center justify-between gap-3 border px-3 py-2" style={{ borderColor: "#e7ebf2", backgroundColor: style.bg }}>
+                      <div className="ai-mono truncate" style={{ ...TYPE.label, fontSize: 9 }}>{label}</div>
+                      <div className="flex items-center gap-2 shrink-0"><span className="rounded-full" style={{ width: 8, height: 8, backgroundColor: style.dot }} /><span style={{ fontSize: 12, color: style.text, fontWeight: 600 }}>{level}</span></div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          )}
-          {paper.url && <a href={paper.url} target="_blank" rel="noreferrer" className="ai-mono inline-flex items-center gap-2 mt-5 px-3 py-2 border" style={{ fontSize: 11, color: "#0a0a1a", backgroundColor: ACCENT_GOLD, borderColor: ACCENT_GOLD, fontWeight: 700 }}>OPEN PAPER <ExternalLink size={12} /></a>}
+            <aside className="min-w-0">
+              {(paper.actionItems ?? []).length > 0 && (
+                <div className="border p-4" style={{ backgroundColor: "#fffaf0", borderColor: "#fde68a" }}>
+                  <div className="ai-mono mb-3" style={{ ...TYPE.label, color: "#92400e" }}>RECOMMENDED ACTIONS</div>
+                  <ActionList actions={paper.actionItems} />
+                </div>
+              )}
+              <div className="mt-4">
+                <CtaLink href={paper.url}>OPEN PAPER</CtaLink>
+              </div>
+            </aside>
+          </div>
         </div>
       )}
     </div>
@@ -301,21 +390,52 @@ function ResearchTab({ weekLabel }) {
   );
 }
 
+function repoActionItems(repo) {
+  const generated = (repo.actionItems ?? []).filter(Boolean);
+  if (generated.length >= 3) return generated.slice(0, 3);
+  const focus = repo.bestFor || "AI Engineering";
+  const release = repo.latestRelease || "recent commits";
+  const license = repo.license || "license terms";
+  return [
+    `Clone ${repo.name} and run the README quickstart against a small local sample.`,
+    `Map one ${focus} workflow to the repo APIs, inputs, and required integrations.`,
+    `Review ${release}, open issues, and ${license} before a deeper benchmark or pilot.`,
+  ];
+}
+
 function RepoList({ items = REPOS }) {
   const [openRepo, setOpenRepo] = useState(items[0]?.name ?? "");
   return (
-    <div className="border" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+    <div className="border" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
       {items.map((repo, index) => (
-        <div key={repo.name} className="px-4 py-3" style={{ borderBottom: index < items.length - 1 ? "1px solid #1c1f3f" : "none" }}>
+        <div key={repo.name} className="px-4 py-3" style={{ borderBottom: index < items.length - 1 ? "1px solid #d8dee8" : "none" }}>
           <button type="button" onClick={() => setOpenRepo(openRepo === repo.name ? "" : repo.name)} className="w-full text-left">
-            <div className="flex justify-between gap-3"><div className="ai-mono truncate min-w-0" style={{ fontSize: 12, color: "#e2e8f0" }}>{repo.name}</div><div className="ai-mono shrink-0" style={{ fontSize: 10, color: "#64748b" }}><Star size={10} className="inline mr-1" />{repo.stars}</div></div>
-            <div className="truncate mt-1" style={{ fontSize: 11, color: "#64748b" }}>{repo.desc}</div>
+            <div className="flex justify-between gap-3"><div className="ai-mono truncate min-w-0" style={{ ...TYPE.compactTitle, fontFamily: "var(--ai-font-mono)" }}>{repo.name}</div><div className="ai-mono shrink-0" style={{ ...TYPE.meta, fontSize: 10 }}><Star size={10} className="inline mr-1" />{repo.stars}</div></div>
+            <div className="truncate mt-1" style={{ ...TYPE.body, fontSize: 12 }}>{repo.desc}</div>
           </button>
           {openRepo === repo.name && (
-            <div className="mt-3 pt-3 border-t" style={{ borderColor: "rgba(28,31,63,0.7)" }}>
-              <div className="flex flex-wrap gap-2 mb-3">{repo.language && <Tag>{repo.language.toUpperCase()}</Tag>}{repo.lastUpdated && <Tag>UPDATED {repo.lastUpdated.toUpperCase()}</Tag>}{repo.license && <Tag>{repo.license.toUpperCase()}</Tag>}</div>
-              <TakeawayList takeaways={repo.bullets ?? [repo.desc]} limit={3} />
-              <div className="flex flex-wrap gap-4 mt-4">{repo.latestReleaseUrl && <a href={repo.latestReleaseUrl} target="_blank" rel="noreferrer" className="ai-mono" style={{ fontSize: 10, color: "#67e8f9" }}>RELEASE <ExternalLink size={11} className="inline" /></a>}{repo.url && <a href={repo.url} target="_blank" rel="noreferrer" className="ai-mono" style={{ fontSize: 10, color: ACCENT_GOLD }}>OPEN REPO <ExternalLink size={11} className="inline" /></a>}</div>
+            <div className="mt-3 pt-3 border-t" style={{ borderColor: "#e7ebf2" }}>
+              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-5">
+                <div className="min-w-0">
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {repo.bestFor && <Tag>{repo.bestFor.toUpperCase()}</Tag>}
+                    {repo.language && <Tag>{repo.language.toUpperCase()}</Tag>}
+                    {repo.lastUpdated && <Tag>UPDATED {repo.lastUpdated.toUpperCase()}</Tag>}
+                    {repo.license && <Tag>{repo.license.toUpperCase()}</Tag>}
+                  </div>
+                  <TakeawayList takeaways={repo.bullets ?? [repo.desc]} limit={3} />
+                </div>
+                <aside className="min-w-0">
+                  <div className="border p-4" style={{ backgroundColor: "#fffaf0", borderColor: "#fde68a" }}>
+                    <div className="ai-mono mb-3" style={{ ...TYPE.label, color: "#92400e" }}>RECOMMENDED ACTIONS</div>
+                    <ActionList actions={repoActionItems(repo)} />
+                  </div>
+                  <div className="flex flex-wrap gap-3 mt-4">
+                    <CtaLink href={repo.latestReleaseUrl} color={THEME.blue}>RELEASE</CtaLink>
+                    <CtaLink href={repo.url}>OPEN REPO</CtaLink>
+                  </div>
+                </aside>
+              </div>
             </div>
           )}
         </div>
@@ -328,18 +448,45 @@ function ReposTab() {
   return <div><SectionHeader title="REPOS" sub="TRENDING OPEN-SOURCE PROJECTS · EXPAND FOR WHY THEY MATTER" /><RepoList /></div>;
 }
 
-function ReleaseList({ items, accentColor, emptyLabel }) {
+function releaseLinksForItem(item, kind) {
+  const links = item.links ?? [];
+  const readRelease = links.find((link) => link.label?.toLowerCase() === "read release") ?? (item.url ? { label: "Read release", url: item.url } : null);
+  const visibleLinks = [];
+  if (readRelease?.url) visibleLinks.push({ ...readRelease, color: ACCENT_GOLD });
+  if (kind === "model") {
+    const benchmark = links.find((link) => link.label?.toLowerCase() === "benchmark") ?? {
+      label: "Benchmark",
+      url: item.benchmarkUrl || DEFAULT_MODEL_BENCHMARK_URL,
+    };
+    if (benchmark.url) visibleLinks.push({ ...benchmark, color: THEME.blue });
+  }
+  return visibleLinks;
+}
+
+function ReleaseList({ items, kind, emptyLabel }) {
   const [openItem, setOpenItem] = useState(items[0]?.name ?? "");
-  if (!items.length) return <div className="border p-4" style={{ borderColor: "#1c1f3f", color: "#64748b" }}>{emptyLabel}</div>;
+  if (!items.length) return <div className="border p-4" style={{ borderColor: "#d8dee8", color: "#667085" }}>{emptyLabel}</div>;
   return (
-    <div className="border" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+    <div className="border" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
       {items.map((item, index) => (
-        <div key={`${item.name}-${item.url}`} className="px-4 py-3" style={{ borderBottom: index < items.length - 1 ? "1px solid #1c1f3f" : "none" }}>
+        <div key={`${item.name}-${item.url}`} className="px-4 py-3" style={{ borderBottom: index < items.length - 1 ? "1px solid #d8dee8" : "none" }}>
           <button type="button" onClick={() => setOpenItem(openItem === item.name ? "" : item.name)} className="w-full text-left">
-            <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-3"><div className="truncate min-w-0" style={{ fontSize: 13, color: "#f1f5f9" }}>{item.name}</div><div className="ai-mono shrink-0" style={{ fontSize: 10, color: "#64748b" }}>{item.date}</div></div>
-            <div className="truncate mt-1" style={{ fontSize: 11, color: "#64748b" }}>{item.note}</div>
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-3"><div className="truncate min-w-0" style={TYPE.compactTitle}>{item.name}</div><div className="ai-mono shrink-0" style={{ ...TYPE.meta, fontSize: 10 }}>{item.date}</div></div>
+            <div className="truncate mt-1" style={{ ...TYPE.body, fontSize: 12 }}>{item.note}</div>
           </button>
-          {openItem === item.name && <div className="mt-3 pt-3 border-t" style={{ borderColor: "rgba(28,31,63,0.7)" }}><div className="flex gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag></div><div style={{ fontSize: 12, color: "#94a3b8" }}>{item.note}</div><div className="flex flex-wrap gap-3 mt-3">{(item.links ?? []).map((link) => <a key={`${item.name}-${link.url}`} href={link.url} target="_blank" rel="noreferrer" className="ai-mono" style={{ fontSize: 10, color: accentColor }}>{link.label.toUpperCase()} <ExternalLink size={11} className="inline" /></a>)}</div></div>}
+          {openItem === item.name && (
+            <div className="mt-3 pt-3 border-t" style={{ borderColor: "#e7ebf2" }}>
+              <div className="flex gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag></div>
+              <div style={TYPE.body}>{item.note}</div>
+              <div className="flex flex-wrap gap-3 mt-3">
+                {releaseLinksForItem(item, kind).map((link) => (
+                  <CtaLink key={`${item.name}-${link.label}-${link.url}`} href={link.url} color={link.color}>
+                    {link.label.toUpperCase()}
+                  </CtaLink>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </div>
@@ -349,19 +496,19 @@ function ReleaseList({ items, accentColor, emptyLabel }) {
 function ReleasesTab() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={MODELS} accentColor={ACCENT_GOLD} emptyLabel="No recent model releases found." /></div>
-      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={TOOLS_SERVICES} accentColor="#67e8f9" emptyLabel="No recent tool or service releases found." /></div>
+      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={MODELS} kind="model" emptyLabel="No recent model releases found." /></div>
+      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={TOOLS_SERVICES} kind="tool" emptyLabel="No recent tool or service releases found." /></div>
     </div>
   );
 }
 
 function ComingSoonPanel({ title, icon: Icon, copy }) {
   return (
-    <div className="border p-6" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
-      <Icon size={20} style={{ color: "#67e8f9" }} />
-      <div className="ai-mono mt-5 mb-2" style={{ fontSize: 12, color: "#e2e8f0", letterSpacing: "0.16em" }}>{title}</div>
-      <div style={{ fontSize: 13, color: "#94a3b8", lineHeight: 1.6 }}>{copy}</div>
-      <div className="ai-mono mt-6" style={{ fontSize: 10, color: ACCENT_GOLD, letterSpacing: "0.14em" }}>COMING SOON</div>
+    <div className="border p-6" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
+      <Icon size={20} style={{ color: "#2563eb" }} />
+      <div className="mt-5 mb-2" style={TYPE.compactTitle}>{title}</div>
+      <div style={TYPE.body}>{copy}</div>
+      <div className="ai-mono mt-6" style={{ ...TYPE.label, color: ACCENT_GOLD }}>COMING SOON</div>
     </div>
   );
 }
@@ -404,23 +551,23 @@ function PipelineTab() {
     <div className="space-y-8">
       <div>
         <SectionHeader title="PIPELINE" sub="CURRENT MULTI-SOURCE ARTIFACT FLOW" />
-        <div className="border p-5" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}>
+        <div className="border p-5" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {fetchers.map(({ name, sub, icon: Icon }) => <div key={name} className="border p-4" style={{ borderColor: "#1c1f3f" }}><Icon size={16} style={{ color: "#67e8f9" }} /><div className="mt-3" style={{ color: "#f1f5f9", fontSize: 13 }}>{name}</div><div className="ai-mono mt-1" style={{ color: "#64748b", fontSize: 9 }}>{sub.toUpperCase()}</div></div>)}
+            {fetchers.map(({ name, sub, icon: Icon }) => <div key={name} className="border p-4" style={{ borderColor: "#d8dee8" }}><Icon size={16} style={{ color: "#2563eb" }} /><div className="mt-3" style={TYPE.compactTitle}>{name}</div><div className="ai-mono mt-1" style={{ ...TYPE.label, fontSize: 9 }}>{sub.toUpperCase()}</div></div>)}
           </div>
-          <div className="ai-mono text-center my-4" style={{ fontSize: 10, color: "#475569" }}>PARALLEL FETCH · SPECIALIZED WORKFLOWS · SHARED ARTIFACT CONTRACT</div>
+          <div className="ai-mono text-center my-4" style={TYPE.label}>PARALLEL FETCH · SPECIALIZED WORKFLOWS · SHARED ARTIFACT CONTRACT</div>
           <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
-            {shared.map(({ name, icon: Icon }, index) => <div key={name} className="flex flex-col md:flex-row md:contents items-center gap-2"><div className="w-full md:flex-1 border px-3 py-3 text-center" style={{ borderColor: "#1c1f3f" }}><Icon size={14} className="mx-auto" style={{ color: index === shared.length - 1 ? "#6ee7b7" : ACCENT_GOLD }} /><div className="ai-mono mt-2" style={{ fontSize: 9, color: "#94a3b8" }}>{name.toUpperCase()}</div></div>{index < shared.length - 1 && <ArrowRight size={13} className="rotate-90 md:rotate-0" style={{ color: "#334155" }} />}</div>)}
+            {shared.map(({ name, icon: Icon }, index) => <div key={name} className="flex flex-col md:flex-row md:contents items-center gap-2"><div className="w-full md:flex-1 border px-3 py-3 text-center" style={{ borderColor: "#d8dee8" }}><Icon size={14} className="mx-auto" style={{ color: index === shared.length - 1 ? "#15803d" : ACCENT_GOLD }} /><div className="ai-mono mt-2" style={{ ...TYPE.label, fontSize: 9 }}>{name.toUpperCase()}</div></div>{index < shared.length - 1 && <ArrowRight size={13} className="rotate-90 md:rotate-0" style={{ color: "#cbd5e1" }} />}</div>)}
           </div>
         </div>
       </div>
       <div>
         <SectionHeader title="LATEST SOURCE HEALTH" sub="LIVE DATA FROM DATA/HEALTH.JSON" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {HEALTH.map((entry) => <div key={entry.source} className="border p-4" style={{ backgroundColor: "#0e1130", borderColor: "#1c1f3f" }}><div className="flex items-center justify-between"><div className="ai-mono" style={{ fontSize: 11, color: "#cbd5e1" }}>{entry.source.toUpperCase()}</div><CheckCircle size={13} style={{ color: entry.status === "ok" ? "#34d399" : "#f87171" }} /></div><div className="ai-mono mt-4" style={{ fontSize: 24, color: "#f1f5f9" }}>{entry.item_count}</div><div className="ai-mono mt-1" style={{ fontSize: 9, color: "#64748b" }}>{healthDetail(entry)}</div><div className="ai-mono mt-3" style={{ fontSize: 9, color: "#475569" }}>{entry.duration_ms} MS</div></div>)}
+          {HEALTH.map((entry) => <div key={entry.source} className="border p-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}><div className="flex items-center justify-between"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.text }}>{entry.source.toUpperCase()}</div><CheckCircle size={13} style={{ color: entry.status === "ok" ? "#15803d" : "#b42318" }} /></div><div className="mt-4" style={{ fontSize: 26, lineHeight: 1, color: THEME.heading, fontWeight: 650, letterSpacing: "-0.03em" }}>{entry.item_count}</div><div className="ai-mono mt-1" style={{ ...TYPE.meta, fontSize: 10 }}>{healthDetail(entry)}</div><div className="ai-mono mt-3" style={{ ...TYPE.label, fontSize: 9 }}>{entry.duration_ms} MS</div></div>)}
         </div>
       </div>
-      <div className="border p-4 flex items-start gap-3 min-w-0" style={{ borderColor: "#1c1f3f", backgroundColor: "#0e1130" }}><FileJson size={16} className="shrink-0 mt-0.5" style={{ color: ACCENT_GOLD }} /><div className="min-w-0"><div style={{ fontSize: 13, color: "#e2e8f0" }}>Stable frontend contract</div><div className="ai-mono mt-1 break-words" style={{ fontSize: 9, color: "#64748b" }}>DATA/OUTPUT.JSON · PAPERS · REPOS · MODELS · TOOLSERVICES · BLOGS · SOCIALPOSTS</div></div></div>
+      <div className="border p-4 flex items-start gap-3 min-w-0" style={{ borderColor: "#d8dee8", backgroundColor: "#ffffff" }}><FileJson size={16} className="shrink-0 mt-0.5" style={{ color: ACCENT_GOLD }} /><div className="min-w-0"><div style={TYPE.compactTitle}>Stable frontend contract</div><div className="ai-mono mt-1 break-words" style={{ ...TYPE.label, fontSize: 9 }}>DATA/OUTPUT.JSON · PAPERS · REPOS · MODELS · TOOLSERVICES · BLOGS · SOCIALPOSTS</div></div></div>
     </div>
   );
 }
@@ -441,20 +588,20 @@ export default function Dashboard() {
     { id: "pipeline", label: "Pipeline" },
   ];
   return (
-    <div className="ai-root min-h-screen" style={{ backgroundColor: "#0a0a1a", color: "#cbd5e1", fontFamily: "'DM Sans', system-ui, sans-serif" }}>
-      <style>{`@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap'); .ai-root,.ai-root button{font-family:'DM Sans',system-ui,sans-serif}.ai-root .ai-mono,.ai-root .ai-mono *{font-family:'JetBrains Mono',ui-monospace,monospace}`}</style>
-      <header className="border-b sticky top-0 z-20" style={{ borderColor: "#1c1f3f", backgroundColor: "rgba(10,10,26,0.96)", backdropFilter: "blur(8px)" }}>
+    <div className="ai-root min-h-screen" style={{ backgroundColor: "#f7f8fb", color: "#344054", fontFamily: "var(--ai-font-sans)" }}>
+      <style>{`.ai-root,.ai-root button{font-family:var(--ai-font-sans);font-feature-settings:'rlig' 1,'calt' 1}.ai-root .ai-mono,.ai-root .ai-mono *{font-family:var(--ai-font-mono);font-feature-settings:'ss09' 1,'calt' 1}`}</style>
+      <header className="border-b sticky top-0 z-20" style={{ borderColor: "#d8dee8", backgroundColor: "rgba(255,255,255,0.94)", backdropFilter: "blur(10px)" }}>
         <div className="max-w-[1400px] mx-auto px-4 sm:px-8 pt-5 sm:pt-6">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5 sm:mb-6">
-            <div><div style={{ fontSize: 18, color: "#f1f5f9", fontWeight: 600 }}>AI Intelligence Brief</div><div className="ai-mono mt-1" style={{ fontSize: 10, color: "#64748b", letterSpacing: "0.18em" }}>WEEKLY ENTERPRISE AI SIGNALS</div></div>
+            <div><div style={TYPE.appTitle}>AI Intelligence Brief</div><div className="ai-mono mt-1" style={TYPE.label}>WEEKLY ENTERPRISE AI SIGNALS</div></div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-              <button type="button" disabled className="ai-mono px-3 py-2 border" style={{ borderColor: "#1c1f3f", color: "#64748b", fontSize: 10, letterSpacing: "0.12em" }}>ENTERPRISE FOCUS · COMING SOON</button>
-              <div className="sm:text-right"><div className="ai-mono" style={{ fontSize: 11, color: "#94a3b8", letterSpacing: "0.16em" }}>{weekLabel}</div><div className="ai-mono mt-1" style={{ fontSize: 9, color: "#475569" }}>REFRESHED {refreshedAt}</div></div>
+              <button type="button" disabled className="ai-mono px-3 py-2 border" style={{ borderColor: "#d8dee8", color: "#667085", ...TYPE.nav, fontSize: 11 }}>ENTERPRISE FOCUS · COMING SOON</button>
+              <div className="sm:text-right"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.muted }}>{weekLabel}</div><div className="ai-mono mt-1" style={{ ...TYPE.label, fontSize: 9 }}>REFRESHED {refreshedAt}</div></div>
             </div>
           </div>
           <nav className="flex flex-wrap items-center gap-1" style={{ marginBottom: -1 }}>
-            {tabs.map((item) => <button type="button" key={item.id} onClick={() => setTab(item.id)} className="ai-mono px-3 sm:px-4 py-3" style={{ fontSize: 11, letterSpacing: "0.16em", color: tab === item.id ? "#fef3c7" : "#64748b", borderBottom: tab === item.id ? `2px solid ${ACCENT_GOLD}` : "2px solid transparent" }}>{item.label.toUpperCase()}</button>)}
-            <div className="ai-mono ml-auto hidden md:flex items-center gap-2 pb-3 flex-shrink-0" style={{ fontSize: 10, color: "#475569", letterSpacing: "0.16em" }}><Activity size={11} style={{ color: "#34d399" }} />ARTIFACT · LIVE</div>
+            {tabs.map((item) => <button type="button" key={item.id} onClick={() => setTab(item.id)} className="ai-mono px-3 sm:px-4 py-3" style={{ ...TYPE.nav, color: tab === item.id ? "#92400e" : "#667085", borderBottom: tab === item.id ? `2px solid ${ACCENT_GOLD}` : "2px solid transparent" }}>{item.label.toUpperCase()}</button>)}
+            <div className="ai-mono ml-auto hidden md:flex items-center gap-2 pb-3 flex-shrink-0" style={{ ...TYPE.nav, fontSize: 10, color: THEME.faint }}><Activity size={11} style={{ color: "#15803d" }} />ARTIFACT · LIVE</div>
           </nav>
         </div>
       </header>
@@ -466,7 +613,7 @@ export default function Dashboard() {
         {tab === "signals" && <SignalsTab />}
         {tab === "pipeline" && <PipelineTab />}
       </main>
-      <footer className="border-t mt-16 sm:mt-20" style={{ borderColor: "#1c1f3f" }}><div className="ai-mono max-w-[1400px] mx-auto px-4 sm:px-8 py-5 flex flex-col sm:flex-row gap-2 sm:justify-between" style={{ fontSize: 9, color: "#475569", letterSpacing: "0.14em" }}><div>AI INTELLIGENCE BRIEF · LOCAL ARTIFACT</div><div>{weekLabel} · GENERATED {refreshedAt}</div></div></footer>
+      <footer className="border-t mt-16 sm:mt-20" style={{ borderColor: "#d8dee8" }}><div className="ai-mono max-w-[1400px] mx-auto px-4 sm:px-8 py-5 flex flex-col sm:flex-row gap-2 sm:justify-between" style={{ ...TYPE.label, fontSize: 9 }}><div>AI INTELLIGENCE BRIEF · LOCAL ARTIFACT</div><div>{weekLabel} · GENERATED {refreshedAt}</div></div></footer>
     </div>
   );
 }

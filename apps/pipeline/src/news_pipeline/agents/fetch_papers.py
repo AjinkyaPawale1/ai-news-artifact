@@ -26,6 +26,7 @@ def update_last_diagnostics(
     deduplicated_count: int,
     displayed_count: int,
     summary_diagnostics: dict | None = None,
+    action_diagnostics: dict | None = None,
 ) -> dict:
     """Attach post-processing counts to diagnostics for the latest paper run."""
     _LAST_DIAGNOSTICS.update(
@@ -36,6 +37,8 @@ def update_last_diagnostics(
     )
     if summary_diagnostics is not None:
         _LAST_DIAGNOSTICS["summary_diagnostics"] = dict(summary_diagnostics)
+    if action_diagnostics is not None:
+        _LAST_DIAGNOSTICS["action_diagnostics"] = dict(action_diagnostics)
     return get_last_diagnostics()
 
 
@@ -45,6 +48,7 @@ def get_last_diagnostics() -> dict:
         **_LAST_DIAGNOSTICS,
         "categories": [dict(entry) for entry in _LAST_DIAGNOSTICS.get("categories", [])],
         "summary_diagnostics": dict(_LAST_DIAGNOSTICS.get("summary_diagnostics", {})),
+        "action_diagnostics": dict(_LAST_DIAGNOSTICS.get("action_diagnostics", {})),
     }
 
 

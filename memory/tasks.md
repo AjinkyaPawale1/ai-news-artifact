@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -50,6 +50,11 @@ Last updated: 2026-06-02
 - [x] Refresh README, implementation plan, architecture docs, and memory for the June 2 dashboard/pipeline redesign.
 - [x] Add GitHub Pages deployment workflow and document the public dashboard URL.
 - [x] Fix mobile dashboard responsiveness and verify all six tabs at 390px width.
+- [x] Add OpenAI-backed research-paper action item generation with deterministic fallback,
+      diagnostics, tests, and architecture documentation.
+- [x] Add repo recommended actions with optional OpenAI generation, deterministic fallback,
+      expanded-card action panels, and rectangular repo/release CTAs.
+- [x] Remove RSS/source-feed CTAs from model/tool cards and add model benchmark CTA.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

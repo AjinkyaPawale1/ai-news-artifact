@@ -11,6 +11,7 @@ Public dashboard: https://ajinkyapawale1.github.io/ai-news-artifact/
 - Fetches recent AI/LLM papers, repositories, releases, and blog updates.
 - Ranks papers with generic AI/ML research signals and keeps full paper cards under `Research`.
 - Tracks trending GitHub repos, model releases, and AI tools/services in separate drill-down views.
+- Shows repo recommended actions and clean release CTAs so each expanded card has a next step.
 - Shows a compact `Weekly Snapshot` with one featured paper, repo descriptions, release previews, and source health.
 - Keeps AI Pulse, Social Pulse, and Enterprise Focus as explicit coming-soon placeholders.
 - Keeps the frontend simple: it reads generated data from `data/output.json`.
@@ -78,9 +79,9 @@ The pipeline can run without secrets, but these are useful:
 
 ```sh
 GITHUB_TOKEN=...      # improves GitHub API rate limits
-OPENAI_API_KEY=...    # enables default LLM-generated repo and paper summaries
+OPENAI_API_KEY=...    # enables default LLM-generated repo briefs/actions and paper summaries/actions
 OPENAI_MODEL=...      # optional; defaults to gpt-5.4-mini
-OPENAI_REPO_BRIEF_LIMIT=5  # caps repo summary calls per run
+OPENAI_REPO_BRIEF_LIMIT=5  # caps repo brief/action calls per run
 OPENAI_PAPER_SUMMARY_LIMIT=8  # caps default paper summary calls per run
 OPENAI_PAPER_SUMMARY_MAX_RETRIES=2  # retries transient summary failures twice
 DATE_WINDOW_DAYS=7    # weekly activity window for news and repo freshness
