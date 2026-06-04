@@ -22,9 +22,11 @@ from ..model_tools_config import (
     MODEL_TOOL_CORE_FEEDS,
     MODEL_TOOL_CORE_MODEL_TERMS,
     MODEL_TOOL_CORE_TOOL_SERVICE_TERMS,
+    MODEL_TOOL_HOSTING_RELEASE_TERMS,
     MODEL_TOOL_LLM_CLASSIFY,
     MODEL_TOOL_LLM_CLASSIFY_LIMIT,
     MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS,
     MODEL_TOOL_RELEASE_TERMS,
     MODEL_TOOL_SOURCE_PAGES,
 )
@@ -490,6 +492,14 @@ def _release_score(text: str, kind: ReleaseKind) -> int:
     return release_score + focus_score
 
 
+def _has_hosting_release_signal(text: str) -> bool:
+    return _contains_any(text, MODEL_TOOL_HOSTING_RELEASE_TERMS)
+
+
+def _is_model_update_only(title_text: str) -> bool:
+    return _contains_any(title_text, MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS)
+
+
 def _classify_entry(
     entry: dict[str, Any],
     *,
@@ -512,6 +522,8 @@ def _classify_entry(
         return None
     if not has_release_signal:
         return None
+    if _is_model_update_only(title_text):
+        return None
 
     release_score = _term_count(text, MODEL_TOOL_RELEASE_TERMS) * 3
     model_score = release_score + _term_count(text, model_terms) * 4 + title_model_score * 8
@@ -520,6 +532,8 @@ def _classify_entry(
         return None
 
     kind: ReleaseKind = "model" if model_score >= tool_score else "tool_service"
+    if kind == "model" and _has_hosting_release_signal(title_text):
+        kind = "tool_service"
     org = _org_from_source(entry["source"], text)
     return {
         **entry,

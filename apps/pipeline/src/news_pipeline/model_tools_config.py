@@ -149,6 +149,32 @@ MODEL_TOOL_CORE_TOOL_SERVICE_TERMS = [
     "eval",
     "evaluation",
 ]
+
+MODEL_TOOL_KNOWN_BENCHMARK_URLS = {
+    "claude opus 4 8": "https://artificialanalysis.ai/models/claude-opus-4-8",
+    "gemini 3 5 flash": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+    "step 3 7 flash": "https://artificialanalysis.ai/models/step-3-7-flash",
+}
+
+MODEL_TOOL_HOSTING_RELEASE_TERMS = [
+    "amazon bedrock",
+    "amazon sagemaker",
+    "aws",
+    "azure",
+    "foundry",
+    "jumpstart",
+    "microsoft foundry",
+    "nvidia-accelerated",
+    "nvidia gpus",
+    "sagemaker",
+]
+
+MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS = [
+    "new capabilities to",
+    "new capability to",
+    "updates to",
+    "upgrade to",
+]
 MODEL_TOOL_RELEASE_TERMS = [
     "announce",
     "announcing",

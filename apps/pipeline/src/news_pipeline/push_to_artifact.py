@@ -3,14 +3,16 @@
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
-from .model_tools_config import MODEL_TOOL_MAX_ITEMS
+from .model_tools_config import MODEL_TOOL_KNOWN_BENCHMARK_URLS, MODEL_TOOL_MAX_ITEMS
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
 MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations"
+ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models"
 
 
 def _format_date(value: str) -> str:
@@ -32,6 +34,15 @@ def _format_count(value: int | str | None) -> str:
     if value >= 1_000:
         return f"{value / 1_000:.1f}k"
     return str(value)
+
+
+def _normalized_benchmark_name(name: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
+
+
+def _artificial_analysis_model_url(name: str) -> str:
+    normalized = _normalized_benchmark_name(name)
+    return MODEL_TOOL_KNOWN_BENCHMARK_URLS.get(normalized, ARTIFICIAL_ANALYSIS_MODELS_URL)
 
 
 def _to_action_item(item: dict, priority: str) -> dict:
@@ -117,18 +128,20 @@ def _to_repo(item: dict) -> dict:
 
 def _to_release(item: dict) -> dict:
     metadata = item.get("metadata") or {}
+    name = metadata.get("name") or item.get("title", "Untitled")
     release_url = item.get("url", "")
     source_url = metadata.get("source_url", "")
     benchmark_url = metadata.get("benchmark_url", "")
     if item.get("source_type") == "model" and not benchmark_url:
-        benchmark_url = MODEL_BENCHMARK_URL
+        benchmark_url = _artificial_analysis_model_url(name)
     links = []
     if release_url:
         links.append({"label": "Read release", "url": release_url})
     if item.get("source_type") == "model" and benchmark_url:
-        links.append({"label": "Benchmark", "url": benchmark_url})
+        benchmark_label = "Benchmarks" if benchmark_url == ARTIFICIAL_ANALYSIS_MODELS_URL else "Benchmark"
+        links.append({"label": benchmark_label, "url": benchmark_url})
     return {
-        "name": metadata.get("name") or item.get("title", "Untitled"),
+        "name": name,
         "org": metadata.get("org") or item.get("source", "AI"),
         "date": _format_date(item.get("published_date", "")),
         "note": metadata.get("note") or item.get("summary") or item.get("raw_content") or "Review this release.",

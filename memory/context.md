@@ -27,16 +27,23 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Local baseline CSS: `apps/web/src/styles.css`.
 
 ## Dependencies
-- Frontend: react, react-dom, lucide-react, vite, @vitejs/plugin-react, Rollup WASM package alias
+- Frontend: react, react-dom, lucide-react, vite, Rollup WASM package alias
 - Pipeline: requests, feedparser, python-dotenv, ruff
 
 ## Notes
 - Utility-class styling is used in the dashboard component.
-- Tailwind utility classes are enabled via CDN script in index.html.
+- Dashboard utility classes are implemented in local `apps/web/src/styles.css`; do not
+  rely on runtime Tailwind CDN for local or production rendering.
 - Dashboard imports generated pipeline data from root `data/output.json`.
 - Public GitHub Pages URL is `https://ajinkyapawale1.github.io/ai-news-artifact/`.
 - Local Vite builds use `/`; the GitHub Pages workflow sets `GITHUB_PAGES=true` so Vite
   builds with `/ai-news-artifact/`.
+- Vite dev is pinned to `127.0.0.1` and uses native esbuild JSX handling instead of
+  `@vitejs/plugin-react`; this avoids repeated dev transform hangs on the large
+  dashboard module.
+- The dashboard imports only the specific Lucide icon modules it renders; avoid
+  reintroducing the `lucide-react` barrel import because it made Vite/esbuild crawl the
+  full icon catalog during local startup.
 - The neutral dashboard shell uses six tabs: Weekly Snapshot, Research, Repos, Releases,
   Signals, and Pipeline. Weekly Snapshot is intentionally compact; full lists live in
   drill-down tabs.
@@ -61,9 +68,10 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Model/tool vocabulary is standardized: core feeds are always active, emerging feeds/terms rotate within bounds, and candidate feeds are the allowed proposal pool.
 - `MODEL_TOOL_MAX_ITEMS` is the single per-category cap for graph selection and dashboard release-card rendering.
 - Model/tool dashboard cards include release links; model cards also include a benchmark
-  link. RSS/source-page links remain metadata only and are not rendered as card CTAs.
-  Source-page candidates are enriched from official article excerpts before LLM
-  classification where possible.
+  link. Benchmark links use verified Artificial Analysis model URLs when known and
+  otherwise fall back to the Artificial Analysis models directory. RSS/source-page
+  links remain metadata only and are not rendered as card CTAs. Source-page candidates
+  are enriched from official article excerpts before LLM classification where possible.
 - Model/tool classification rejects tutorial, guide, case-study, and broad marketing
   headlines unless they clearly announce a release. Selection also collapses same-day,
   same-organization near-duplicate product names while preserving distinct versions.

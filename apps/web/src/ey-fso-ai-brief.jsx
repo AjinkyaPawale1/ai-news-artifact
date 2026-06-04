@@ -1,23 +1,21 @@
 import { useState } from "react";
-import {
-  Activity,
-  ArrowRight,
-  BookOpen,
-  Boxes,
-  CheckCircle,
-  ChevronRight,
-  Code2,
-  Database,
-  ExternalLink,
-  FileJson,
-  Layers,
-  Radio,
-  Search,
-  Server,
-  Sparkles,
-  Star,
-  Wrench,
-} from "lucide-react";
+import Activity from "lucide-react/dist/esm/icons/activity.js";
+import ArrowRight from "lucide-react/dist/esm/icons/arrow-right.js";
+import BookOpen from "lucide-react/dist/esm/icons/book-open.js";
+import Boxes from "lucide-react/dist/esm/icons/boxes.js";
+import CheckCircle from "lucide-react/dist/esm/icons/check-circle.js";
+import ChevronRight from "lucide-react/dist/esm/icons/chevron-right.js";
+import Code2 from "lucide-react/dist/esm/icons/code-2.js";
+import Database from "lucide-react/dist/esm/icons/database.js";
+import ExternalLink from "lucide-react/dist/esm/icons/external-link.js";
+import FileJson from "lucide-react/dist/esm/icons/file-json.js";
+import Layers from "lucide-react/dist/esm/icons/layers.js";
+import Radio from "lucide-react/dist/esm/icons/radio.js";
+import Search from "lucide-react/dist/esm/icons/search.js";
+import Server from "lucide-react/dist/esm/icons/server.js";
+import Sparkles from "lucide-react/dist/esm/icons/sparkles.js";
+import Star from "lucide-react/dist/esm/icons/star.js";
+import Wrench from "lucide-react/dist/esm/icons/wrench.js";
 import pipelineData from "../../../data/output.json";
 
 const THEME = {
@@ -60,6 +58,12 @@ const TOOLS_SERVICES = pipelineData.toolsServices ?? [];
 const PAPERS = pipelineData.papers ?? [];
 const HEALTH = pipelineData.health ?? [];
 const DEFAULT_MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations";
+const ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models";
+const KNOWN_MODEL_BENCHMARK_URLS = {
+  "claude opus 4 8": "https://artificialanalysis.ai/models/claude-opus-4-8",
+  "gemini 3 5 flash": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+  "step 3 7 flash": "https://artificialanalysis.ai/models/step-3-7-flash",
+};
 
 const SIGNAL_COLORS = {
   High: { dot: THEME.green, text: "#166534", bg: "#ecfdf3" },
@@ -136,13 +140,18 @@ function CtaLink({ href, children, color = ACCENT_GOLD }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="ai-mono inline-flex items-center gap-2 px-3 py-2 border"
-      style={{ fontSize: 11, color: "#ffffff", backgroundColor: color, borderColor: color, fontWeight: 700 }}
+      className="ai-mono inline-flex items-center gap-1.5 px-2.5 py-1.5 border"
+      style={{ fontSize: 10.5, lineHeight: 1.1, color: "#ffffff", backgroundColor: color, borderColor: color, fontWeight: 700 }}
     >
       {children}
-      <ExternalLink size={12} />
+      <ExternalLink size={11} />
     </a>
   );
+}
+
+function artificialAnalysisModelUrl(item) {
+  const normalized = (item?.name ?? "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  return KNOWN_MODEL_BENCHMARK_URLS[normalized] ?? ARTIFICIAL_ANALYSIS_MODELS_URL;
 }
 
 function CircularScore({ score }) {
@@ -411,30 +420,34 @@ function RepoList({ items = REPOS }) {
         <div key={repo.name} className="px-4 py-3" style={{ borderBottom: index < items.length - 1 ? "1px solid #d8dee8" : "none" }}>
           <button type="button" onClick={() => setOpenRepo(openRepo === repo.name ? "" : repo.name)} className="w-full text-left">
             <div className="flex justify-between gap-3"><div className="ai-mono truncate min-w-0" style={{ ...TYPE.compactTitle, fontFamily: "var(--ai-font-mono)" }}>{repo.name}</div><div className="ai-mono shrink-0" style={{ ...TYPE.meta, fontSize: 10 }}><Star size={10} className="inline mr-1" />{repo.stars}</div></div>
-            <div className="truncate mt-1" style={{ ...TYPE.body, fontSize: 12 }}>{repo.desc}</div>
+            <div className="mt-1 break-words" style={{ ...TYPE.body, fontSize: 12, lineHeight: 1.55 }}>{repo.desc}</div>
           </button>
           {openRepo === repo.name && (
             <div className="mt-3 pt-3 border-t" style={{ borderColor: "#e7ebf2" }}>
-              <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-5">
-                <div className="min-w-0">
-                  <div className="flex flex-wrap gap-2 mb-3">
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {repo.bestFor && <Tag>{repo.bestFor.toUpperCase()}</Tag>}
                     {repo.language && <Tag>{repo.language.toUpperCase()}</Tag>}
                     {repo.lastUpdated && <Tag>UPDATED {repo.lastUpdated.toUpperCase()}</Tag>}
                     {repo.license && <Tag>{repo.license.toUpperCase()}</Tag>}
                   </div>
-                  <TakeawayList takeaways={repo.bullets ?? [repo.desc]} limit={3} />
-                </div>
-                <aside className="min-w-0">
-                  <div className="border p-4" style={{ backgroundColor: "#fffaf0", borderColor: "#fde68a" }}>
-                    <div className="ai-mono mb-3" style={{ ...TYPE.label, color: "#92400e" }}>RECOMMENDED ACTIONS</div>
-                    <ActionList actions={repoActionItems(repo)} />
-                  </div>
-                  <div className="flex flex-wrap gap-3 mt-4">
+                  <div className="flex flex-wrap gap-2 shrink-0">
                     <CtaLink href={repo.latestReleaseUrl} color={THEME.blue}>RELEASE</CtaLink>
                     <CtaLink href={repo.url}>OPEN REPO</CtaLink>
                   </div>
-                </aside>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] gap-4">
+                  <div className="min-w-0">
+                    <TakeawayList takeaways={repo.bullets ?? [repo.desc]} limit={3} />
+                  </div>
+                  <aside className="min-w-0">
+                    <div className="border p-4" style={{ backgroundColor: "#fffaf0", borderColor: "#fde68a" }}>
+                      <div className="ai-mono mb-3" style={{ ...TYPE.label, color: "#92400e" }}>RECOMMENDED ACTIONS</div>
+                      <ActionList actions={repoActionItems(repo)} />
+                    </div>
+                  </aside>
+                </div>
               </div>
             </div>
           )}
@@ -458,7 +471,9 @@ function releaseLinksForItem(item, kind) {
       label: "Benchmark",
       url: item.benchmarkUrl || DEFAULT_MODEL_BENCHMARK_URL,
     };
-    if (benchmark.url) visibleLinks.push({ ...benchmark, color: THEME.blue });
+    const benchmarkUrl = benchmark.url === DEFAULT_MODEL_BENCHMARK_URL ? artificialAnalysisModelUrl(item) : benchmark.url;
+    const benchmarkLabel = benchmarkUrl === ARTIFICIAL_ANALYSIS_MODELS_URL ? "Benchmarks" : benchmark.label;
+    if (benchmarkUrl) visibleLinks.push({ ...benchmark, label: benchmarkLabel, url: benchmarkUrl, color: THEME.blue });
   }
   return visibleLinks;
 }

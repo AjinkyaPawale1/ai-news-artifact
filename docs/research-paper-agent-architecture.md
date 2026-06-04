@@ -8,16 +8,14 @@ The agent answers one question for each weekly run:
 > reproducibility, novelty, and freshness signals for the weekly dashboard?
 
 The paper workflow uses a three-node LangGraph for source extraction, freshness
-selection, and deterministic metadata enrichment. Default OpenAI summaries,
-OpenAI action-item generation, and artifact mapping remain explicit post-score
-pipeline stages:
+selection, and deterministic metadata enrichment. Default OpenAI summaries and
+artifact mapping remain explicit post-score pipeline stages:
 
 ```text
 fetch_papers
   -> LangGraph(fetch_arxiv_entries -> select_recent_papers -> extract_action_metadata)
   -> shared pipeline processing
   -> default OpenAI summary bullets with deterministic fallback
-  -> default OpenAI action items with deterministic fallback
   -> rank and write papers[] + paper-derived actionItems[]
 ```
 
@@ -67,7 +65,7 @@ flowchart TD
     B --> C[arXiv Atom API<br/>cs.AI, cs.CL, cs.LG]
     C --> D[parse Atom entries into Item objects]
     D --> E[keep seven-day papers<br/>backfill missing slots from days 8-14]
-    E --> F[fetch_papers_with_graph]
+    E --> F[enrich_papers_with_graph]
     F --> G[extract_action_metadata]
     G --> H[capability + domain labels]
     G --> I[research_score + research_signals]
@@ -101,8 +99,6 @@ Paper discovery configuration currently lives in
 | `ARXIV_FALLBACK_WINDOW_DAYS` | `14` | `ARXIV_FALLBACK_WINDOW_DAYS` | bounded backfill horizon when fewer than eight recent unique papers exist |
 | `OPENAI_PAPER_SUMMARY_LIMIT` | `8` | `OPENAI_PAPER_SUMMARY_LIMIT` | maximum displayed-paper summary attempts per run |
 | `OPENAI_PAPER_SUMMARY_MAX_RETRIES` | `2` | `OPENAI_PAPER_SUMMARY_MAX_RETRIES` | transient retries after the initial summary request |
-| `OPENAI_PAPER_ACTION_LIMIT` | `8` | `OPENAI_PAPER_ACTION_LIMIT` | maximum displayed-paper action-item attempts per run |
-| `OPENAI_PAPER_ACTION_MAX_RETRIES` | `2` | `OPENAI_PAPER_ACTION_MAX_RETRIES` | transient retries after the initial action-item request |
 | `ARXIV_MAX_RETRIES` | `2` | `ARXIV_MAX_RETRIES` | transient retries after the initial category request |
 | `ARXIV_REQUEST_INTERVAL_SECONDS` | `3` | `ARXIV_REQUEST_INTERVAL_SECONDS` | minimum spacing between arXiv API requests |
 | `OPENAI_MODEL` | `gpt-5.4-mini` | `OPENAI_MODEL` | model used for default paper-summary bullets |
@@ -314,11 +310,11 @@ The metadata graph produces a deterministic action priority:
 | `WATCH` | abstract contains early-stage terms such as survey, preliminary, or limitations |
 | `READ` | default |
 
-Each paper receives three deterministic fallback action items:
+Each paper receives three action items:
 
-1. immediate review action covering the method, evidence, and assumptions
-2. experiment or evaluation action for the paper's capability and domain
-3. risk or adoption question for responsible-pilot review
+1. priority-specific action title plus paper title
+2. capability-to-domain assessment prompt
+3. one pilot question and one risk question prompt
 
 `has_code` is currently a heuristic. It becomes `true` when the paper text or
 related links mention terms such as `github`, `code`, `open source`, or
@@ -326,20 +322,19 @@ related links mention terms such as `github`, `code`, `open source`, or
 
 ## Where OpenAI Is Used
 
-OpenAI summaries and action items are the default when `OPENAI_API_KEY` is
-configured. Both run after deterministic metadata enrichment and shared
+OpenAI summaries are the default when `OPENAI_API_KEY` is configured and appear
+at one point only: after deterministic metadata enrichment and shared
 summarization, before final artifact mapping.
 
 | LLM path | When it runs | Calls per paper run | What it does | What it does not do |
 | --- | --- | ---: | --- | --- |
 | Displayed-paper summary bullets | after ranking metadata exists | `0` to `8` papers; up to `24` HTTP requests with default retries | returns exactly three concise abstract-grounded bullets | does not fetch, filter, score, rank, or label papers |
-| Displayed-paper action items | after summary bullets exist | `0` to `8` papers; up to `24` HTTP requests with default retries | returns exactly three grounded actions: review, experiment/evaluation, risk/adoption question | does not fetch, filter, score, rank, label, or change summary bullets |
 
 ### Why the LLM Call Exists
 
 The deterministic graph can classify and rank a paper without OpenAI. The
-default summary call improves the readability of the displayed paper card by
-turning the title and abstract into three concise bullets covering:
+default summary call improves the readability of the displayed paper card by turning
+the title and abstract into three concise bullets covering:
 
 1. contribution
 2. evidence or method
@@ -368,40 +363,20 @@ Expected JSON response:
 }
 ```
 
-The default action-item call replaces the deterministic fallback actions for
-displayed papers only. It receives the title, abstract, deterministic metadata,
-research signals, priority, and available takeaways, then must return:
-
-```json
-{
-  "actions": [
-    "Immediate review action",
-    "Experiment or evaluation action",
-    "Risk or adoption question"
-  ]
-}
-```
-
-The output must contain exactly three non-repetitive strings. Invalid JSON,
-missing `actions`, repeated actions, or any count other than three triggers the
-same deterministic fallback used when no key is configured.
-
 ### LLM Guardrails and Fallback
 
 - If `OPENAI_API_KEY` is missing, the workflow uses deterministic fallback
-  bullets and action items.
+  bullets.
 - Transient request errors, retryable HTTP statuses, invalid JSON, and invalid
-  three-item responses retry twice with exponential backoff and jitter.
-- If retries are exhausted, the workflow uses deterministic fallback bullets or
-  deterministic fallback action items.
+  three-bullet responses retry twice with exponential backoff and jitter.
+- If retries are exhausted, the workflow uses deterministic fallback bullets.
 - If an OpenAI request returns `401`, `403`, or `429 insufficient_quota`, later
-  calls for that LLM path are disabled for the rest of that process.
-- The prompts require outputs grounded only in the supplied title, abstract, and
-  deterministic paper metadata.
-- The default caps are `OPENAI_PAPER_SUMMARY_LIMIT=8` and
-  `OPENAI_PAPER_ACTION_LIMIT=8`, matching the maximum displayed paper cards.
+  paper-summary calls are disabled for the rest of that process.
+- The prompt requires bullets grounded only in the supplied title and abstract.
+- The default cap is `OPENAI_PAPER_SUMMARY_LIMIT=8`, matching the maximum
+  displayed paper cards.
 
-Summary fallback logic:
+Fallback logic:
 
 1. Use the first three abstract sentences.
 2. If fewer than three sentences exist, fill remaining slots with deterministic
@@ -409,13 +384,6 @@ Summary fallback logic:
 
 This keeps paper discovery and ranking functional without an API key or API
 quota.
-
-Action fallback logic:
-
-1. Use the deterministic metadata action items generated by `paper_graph.py`
-   when they already contain exactly three unique strings.
-2. Otherwise regenerate the same three-action pattern locally from the paper
-   title, capability, and domain.
 
 ## Shared Supervisor Integration
 
@@ -443,12 +411,9 @@ Full pipeline sequence:
    - `summarize_items(...)`
 4. `enrich_paper_summaries(...)` replaces deterministic graph takeaways for the
    highest-ranked bounded paper set with OpenAI bullets or abstract fallbacks.
-5. `enrich_paper_action_items(...)` replaces deterministic graph action items
-   for the highest-ranked bounded paper set with OpenAI actions or deterministic
-   fallbacks.
-6. `attach_action_scores(...)` adds a separate generic actionability score.
-7. Supervisor adds paper fetch diagnostics to the `papers` health entry.
-8. `push_to_artifact(...)` ranks and writes the dashboard payload.
+5. `attach_action_scores(...)` adds a separate generic actionability score.
+6. Supervisor adds paper fetch diagnostics to the `papers` health entry.
+7. `push_to_artifact(...)` ranks and writes the dashboard payload.
 
 ### Three Different Scores
 
@@ -482,7 +447,6 @@ fetch_papers
   -> normalize_items
   -> summarize_items
   -> enrich_paper_summaries
-  -> enrich_paper_action_items
   -> attach_action_scores
   -> update_papers_in_payload
   -> write data/output.json + data/health.json
@@ -500,7 +464,7 @@ The paper-only path intentionally preserves:
 It updates:
 
 - `generatedAt`
-- `PAPERS REVIEWED` stats tile with the selected paper count
+- `PAPERS SCANNED` stats tile
 - `actionItems`
 - `papers`
 - `health`
@@ -551,10 +515,6 @@ The retained `actionItems[]` compatibility field is also paper-only. It maps
 the top five ranked papers through `_to_action_item(...)`; GitHub, RSS, model,
 and tool/service items do not compete for those slots.
 
-The React paper card shows the paper priority as a compact chip. Expanded cards
-also render the three priority-derived prompts under `RECOMMENDED ACTIONS`.
-`researchScore` remains the only visible ranking score.
-
 ## Diagnostics and Health Output
 
 Supervisor writes paper diagnostics into `data/health.json` under
@@ -576,8 +536,6 @@ Current diagnostic shape:
                 "raw_count": int,
                 "seven_day_count": int,
                 "fourteen_day_count": int,
-                "request_attempts": int,
-                "retry_count": int,
                 "error": str,  # only on failure
             }
         ],
@@ -591,15 +549,6 @@ Current diagnostic shape:
         "request_attempts": int,
         "retry_count": int,
         "summary_diagnostics": {
-            "attempted_papers": int,
-            "request_attempts": int,
-            "retry_count": int,
-            "successes": int,
-            "fallbacks": int,
-            "disabled": bool,
-            "skip_reason": str,
-        },
-        "action_diagnostics": {
             "attempted_papers": int,
             "request_attempts": int,
             "retry_count": int,
@@ -624,9 +573,8 @@ runs.
 | Duplicate paper appears across arXiv categories | deduplicate by URL |
 | `langgraph` is unavailable | run the same metadata extraction function sequentially |
 | OpenAI key is missing | use deterministic abstract-grounded bullets |
-| OpenAI action key is missing | use deterministic three-action fallback |
-| OpenAI returns invalid JSON or a transient request error | retry twice, then use deterministic summary or action fallback |
-| OpenAI returns `401`, `403`, or `429 insufficient_quota` | disable later calls for that paper LLM path for the rest of the process |
+| OpenAI returns invalid JSON or a transient request error | retry twice, then use deterministic abstract-grounded bullets |
+| OpenAI returns `401`, `403`, or `429 insufficient_quota` | disable later paper-summary calls for the rest of the process |
 | Paper mentions code without an explicit repository URL | expose heuristic `hasCode`; improve explicit link extraction before treating it as verified |
 
 ## End-to-End Research Paper Sequence
@@ -644,18 +592,15 @@ sequenceDiagram
 
     Fetch->>Arxiv: Query cs.AI, cs.CL, cs.LG with pacing and retries
     Arxiv-->>Fetch: Atom entries or per-category failure
-    Fetch->>Graph: Invoke paper workflow with arXiv categories
-    Graph->>Graph: Parse Item objects and apply 7-day selection
-    Graph->>Graph: Backfill missing slots from days 8-14 only
+    Fetch->>Fetch: Parse Item objects and apply 7-day selection
+    Fetch->>Fetch: Backfill missing slots from days 8-14 only
+    Fetch->>Graph: state.papers
     Graph->>Graph: Attach labels, research_score, signals, actions, has_code
     Graph-->>Shared: Enriched paper Item objects
     Shared->>Shared: Dedup, normalize, score, quality gate, summarize
     Shared->>OAI: Default displayed-paper summary request when key exists
     OAI-->>Shared: Three JSON bullets or failure
     Shared->>Shared: Use abstract fallback bullets when needed
-    Shared->>OAI: Default displayed-paper action request when key exists
-    OAI-->>Shared: Three JSON actions or failure
-    Shared->>Shared: Use deterministic action fallback when needed
     Shared->>Health: Write paper fetch diagnostics
     Shared->>Artifact: Rank by research_score and emit top 8 papers
     Artifact->>UI: Render research-paper cards
@@ -675,7 +620,7 @@ sequenceDiagram
 | domain keyword groups | improve descriptive domain labels |
 | research-score term groups and weights | tune visible paper ranking |
 | priority term groups | tune `READ`, `EXPERIMENT`, `SHARE`, and `WATCH` assignment |
-| `OPENAI_PAPER_SUMMARY_LIMIT` | control default summary cost and rate-limit exposure |
+| `OPENAI_PAPER_SUMMARY_LIMIT` | control optional summary cost and rate-limit exposure |
 | `OPENAI_PAPER_SUMMARY_MAX_RETRIES` | control transient summary retry exposure |
 | `has_code` heuristic | replace text-signal inference with explicit repository-link extraction |
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-02T20:25:02.742751+00:00",
+  "updated_at": "2026-06-04T00:31:00.105521+00:00",
   "source": "llm",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
@@ -27,19 +27,19 @@
     "https://cohere.com/blog/"
   ],
   "emerging_feeds": [
+    "https://cloud.google.com/blog/feed/",
+    "https://blog.google/rss/",
     "https://github.blog/category/ai-and-ml/feed/",
-    "https://developer.nvidia.com/blog/feed/",
-    "https://blog.google/technology/ai/rss/",
-    "https://blogs.microsoft.com/ai/feed/"
+    "https://developer.nvidia.com/blog/feed/"
   ],
   "emerging_model_terms": [
-    "claude opus 4.8",
-    "nvidia cosmos 3",
-    "gemini 3.5",
-    "mellum 2"
+    "gpt-5",
+    "gemma",
+    "codey",
+    "gemini flash"
   ],
   "emerging_tool_terms": [
-    "nemoclaw"
+    "bedrock agents"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -47,28 +47,40 @@
     "updated": true,
     "source": "llm",
     "feed_rotation": {
-      "replacements": 1,
+      "replacements": 2,
       "added": [
-        "https://github.blog/category/ai-and-ml/feed/"
+        "https://blog.google/rss/",
+        "https://cloud.google.com/blog/feed/"
       ],
       "removed": [
-        "https://aws.amazon.com/blogs/machine-learning/feed/"
+        "https://blogs.microsoft.com/ai/feed/",
+        "https://blog.google/technology/ai/rss/"
       ]
     },
     "model_term_rotation": {
-      "replacements": 0,
-      "added": [],
-      "removed": []
+      "replacements": 4,
+      "added": [
+        "gemini flash",
+        "codey",
+        "gemma",
+        "gpt-5"
+      ],
+      "removed": [
+        "mellum 2",
+        "gemini 3.5",
+        "nvidia cosmos 3",
+        "claude opus 4.8"
+      ]
     },
     "tool_term_rotation": {
       "replacements": 3,
       "added": [
         "agentcore",
         "codex",
-        "nemoclaw"
+        "bedrock agents"
       ],
       "removed": [
-        "policy interceptor",
+        "nemoclaw",
         "agentcore",
         "codex"
       ]

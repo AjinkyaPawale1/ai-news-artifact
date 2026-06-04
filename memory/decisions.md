@@ -312,3 +312,40 @@ Impact:
 - Model/tool release cards no longer render RSS/source-feed CTAs. Model cards show
   yellow `Read release` plus blue `Benchmark`; tool/service cards show only yellow
   `Read release`.
+
+## 2026-06-04 - Tighten release CTAs and repo expanded-card layout
+Status: accepted
+
+Reason:
+- Generic Artificial Analysis evaluation links made model benchmark CTAs less useful
+  than a model-specific destination.
+- Expanded repo cards left release/open-repo CTAs visually detached from the repo
+  metadata and created too much empty space.
+- Release CTAs were visually heavier than the notes they support.
+
+Impact:
+- Model benchmark links now fall back to Artificial Analysis model-page slugs derived
+  from the release name, with existing explicit benchmark URLs still respected.
+- Repo expanded cards place release/open-repo CTAs in the expanded header next to
+  repo tags, followed by a balanced takeaways/actions grid.
+- Shared CTA sizing is more compact across research, repo, model-release, and
+  tool/service links.
+
+## 2026-06-04 - Verify benchmark links and remove runtime CSS CDNs
+Status: accepted
+
+Reason:
+- Guessing Artificial Analysis model slugs created 404-prone benchmark links.
+- Hosted-model availability posts were polluting the strict model-release lane.
+- The dev dashboard was slow/blank on first load because it depended on runtime
+  Tailwind and Google Fonts network requests.
+
+Impact:
+- Model benchmark links now use a maintained verified Artificial Analysis allowlist;
+  unverified models link to the Artificial Analysis models directory as `Benchmarks`.
+- Hosted distribution announcements such as SageMaker JumpStart, Bedrock, Foundry,
+  AWS/Azure availability, and NVIDIA deployment posts classify as tools/services.
+- Model capability-update headlines without a new model, such as `new capabilities to`,
+  are rejected from model releases.
+- The frontend no longer loads Tailwind CDN or Google Fonts at runtime; needed layout
+  utilities are local CSS, and production build verification passes again.

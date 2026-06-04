@@ -504,10 +504,10 @@ def _to_release(item: dict) -> dict:
         "url": release_url,
         "sourceUrl": source_url,
         "sourceLabel": metadata.get("source_label", "Source"),
-        "benchmarkUrl": benchmark_url,  # model cards default to Artificial Analysis evaluations
+        "benchmarkUrl": benchmark_url,  # verified Artificial Analysis model page or models directory fallback
         "links": [
             {"label": "Read release", "url": release_url},
-            {"label": "Benchmark", "url": benchmark_url},  # model cards only
+            {"label": "Benchmark", "url": benchmark_url},  # model cards only when model-specific
         ],
     }
 ```
@@ -516,9 +516,14 @@ Final artifact fields:
 
 - `models`: first `MODEL_TOOL_MAX_ITEMS` `source_type == "model"` items mapped through `_to_release(...)`
 - `toolsServices`: first `MODEL_TOOL_MAX_ITEMS` `source_type == "tool_service"` items mapped through `_to_release(...)`
-- model cards include a yellow `Read release` CTA and a blue `Benchmark` CTA
+- model cards include a yellow `Read release` CTA and a blue benchmark CTA; verified
+  Artificial Analysis model pages are labeled `Benchmark`, while unverified models link
+  to the Artificial Analysis models directory as `Benchmarks`
 - tool/service cards include only the yellow `Read release` CTA
 - RSS feed and source-page URLs remain in `sourceUrl`/`sourceLabel` metadata but are not rendered as release-card CTAs
+- hosted-model distribution announcements such as Bedrock, SageMaker JumpStart, Foundry,
+  AWS/Azure availability, or NVIDIA deployment posts are classified as tool/service
+  releases rather than new model releases
 
 Because stale or undated entries are filtered before artifact generation, the dashboard cards should not require frontend-side date repair.
 
@@ -535,7 +540,7 @@ Current UI behavior:
   - type tag
   - longer summary note
   - rectangular release CTA
-  - rectangular benchmark CTA for model releases only
+  - rectangular benchmark CTA for model releases only, using a verified model page when available
 
 This keeps the Releases drill-down compact and focuses user clicks on the
 release itself instead of the upstream RSS/source feed.

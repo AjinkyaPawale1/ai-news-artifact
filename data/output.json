@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-06-02T20:26:56.008436+00:00",
+  "generatedAt": "2026-06-04T00:34:06.758885+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
-      "value": "58",
+      "value": "57",
       "sub": "8 selected"
     },
     {
@@ -13,8 +13,8 @@
     },
     {
       "label": "RELEASES TRACKED",
-      "value": "9",
-      "sub": "3 models \u00b7 6 tools"
+      "value": "12",
+      "sub": "3 models · 9 tools"
     },
     {
       "label": "HEALTHY SOURCES",
@@ -25,118 +25,85 @@
   ],
   "actionItems": [
     {
-      "priority": "WATCH",
-      "title": "Track for follow-up evidence: ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
+      "priority": "SHARE",
+      "title": "Review the VLESA paper for the goal-conditioned safety dataset design and the exact-frame intervention evaluation on ASIMOV-2.0.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jun 1, 2026",
-      "why": "Introduces ODTQA-FoRe, the first open-domain tabular QA dataset for future data forecasting and forecast-based reasoning on real-estate data.",
-      "tags": [
-        "cs.IR",
-        "cs.AI",
-        "cs.CL",
-        "cs.LG",
-        "cs.MA"
-      ],
-      "score": 71,
-      "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2606.02433v1"
-    },
-    {
-      "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jun 1, 2026",
-      "why": "Introduces MASER, a lightweight modality-adaptive routing framework that trains five modality-specific adapters on a shared VLM backbone for embodied 3D spatial question answering.",
+      "date": "Jun 2, 2026",
+      "why": "Introduces VLESA, a vision-language embodied safety agent that monitors egocentric human activity and triggers real-time interventions when dangerous actions are predicted, including intent-dependent safety decisions.",
       "tags": [
         "cs.CV",
-        "cs.AI"
+        "cs.LG",
+        "cs.RO"
       ],
-      "score": 85,
+      "score": 69,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2606.02463v1"
+      "url": "https://arxiv.org/pdf/2606.03954v1"
     },
     {
       "priority": "READ",
-      "title": "Read for research signal: Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
+      "title": "Review the ACTS formulation details: verify how the controller’s state (reasoning trace plus remaining budget) maps to the MDP and how the steering action combines a reasoning strategy with a steering phrase.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jun 1, 2026",
-      "why": "Identifies \"Perceptual Judgment Bias\" in multimodal LLM judges: when image and text disagree, they often reward plausible answers over visually correct ones.",
+      "date": "Jun 2, 2026",
+      "why": "Introduces ACTS, a controller-agent framework that steers a frozen LLM reasoner during inference via explicit strategy-and-phrase actions, aiming to make chain-of-thought reasoning both efficient and controllable.",
       "tags": [
-        "cs.CV",
+        "cs.CL",
+        "cs.AI"
+      ],
+      "score": 79,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2606.03965v1"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Review the AgenticRL closed-loop reward refinement design, especially how the multimodal GPT agent generates rewards and diagnosis packets for UAV navigation tasks.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jun 2, 2026",
+      "why": "Introduces AgenticRL, a self-refining agentic reinforcement learning framework for vision-conditioned UAV navigation that automates reward design, policy refinement, and deployment.",
+      "tags": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "score": 82,
+      "fsoRelevant": true,
+      "url": "https://arxiv.org/pdf/2606.03963v1"
+    },
+    {
+      "priority": "READ",
+      "title": "Review the PET, PT, and MVC benchmark definitions and the ground-truth imagination labels to verify how IPT supervision differs from label-only and textual chain-of-thought training.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jun 2, 2026",
+      "why": "Introduces Imaginative Perception Tokens (IPT), intermediate perceptual representations for multimodal language models to reason about unseen spatial structure from observed inputs.",
+      "tags": [
         "cs.AI"
       ],
       "score": 73,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2606.02578v1"
+      "url": "https://arxiv.org/pdf/2606.03988v1"
     },
     {
-      "priority": "EXPERIMENT",
-      "title": "Prototype a quick evaluation: AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
+      "priority": "READ",
+      "title": "Review Hedge-Bench 1.0’s 102 analyst tasks and deterministic grading setup to see whether the benchmark scope and verified expert-step labels match your financial reasoning evaluation needs.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jun 1, 2026",
-      "why": "Introduces AGENTCL, an evaluation framework for continual learning in language agents using controlled task streams and transfer-gain metrics to test reusable experience.",
+      "date": "Jun 2, 2026",
+      "why": "Introduces Hedge-Bench 1.0, a benchmark of 102 real hedge fund analyst tasks aimed at evaluating open-ended financial reasoning beyond mechanical analysis.",
       "tags": [
-        "cs.AI",
-        "cs.CL"
+        "cs.AI"
       ],
-      "score": 87,
+      "score": 71,
       "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2606.02461v1"
-    },
-    {
-      "priority": "SHARE",
-      "title": "Share for broader review: PaSBench-Video: A Streaming Video Benchmark for Proactive Safety Warning",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jun 1, 2026",
-      "why": "PaSBench-Video introduces a 740-video streaming benchmark for proactive safety warning, with frame-level risk onset and accident boundaries across driving, healthcare, daily life, and industrial production.",
-      "tags": [
-        "cs.CL",
-        "cs.AI",
-        "cs.CV"
-      ],
-      "score": 67,
-      "fsoRelevant": true,
-      "url": "https://arxiv.org/pdf/2606.02443v1"
+      "url": "https://arxiv.org/pdf/2606.03918v1"
     }
   ],
   "repos": [
     {
-      "name": "VectifyAI/OpenKB",
-      "stars": "2.0k",
-      "desc": "OpenKB is a Python CLI for turning raw docs into a persistent, wiki-style LLM knowledge base with reasoning-based retrieval and no vector DB.",
-      "url": "https://github.com/VectifyAI/OpenKB",
-      "language": "Python",
-      "topics": [
-        "agents",
-        "ai",
-        "knowledge-base",
-        "llm",
-        "rag",
-        "retrieval"
-      ],
-      "createdAt": "Apr 4, 2026",
-      "lastUpdated": "Jun 2, 2026",
-      "fetchedAt": "Jun 2, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "Compiles documents into linked concept pages",
-        "Supports query, chat, and skill generation",
-        "Uses PageIndex for vectorless long-doc retrieval"
-      ],
-      "latestRelease": "v0.3.0",
-      "latestReleaseUrl": "https://github.com/VectifyAI/OpenKB/releases/tag/v0.3.0",
-      "homepage": "https://pageindex.ai",
-      "license": "Apache-2.0"
-    },
-    {
       "name": "nduckmink/arkon",
-      "stars": "929",
-      "desc": "Self-hosted enterprise AI knowledge hub and MCP server that compiles org docs into a traceable, permission-scoped wiki for LLMs.",
+      "stars": "937",
+      "desc": "Arkon is a self-hosted enterprise AI knowledge hub and MCP server that compiles internal docs into a traceable, role-scoped wiki for LLMs like Claude, with ingest/review pipelines, policy controls, and RAG-oriented knowledge management.",
       "url": "https://github.com/nduckmink/arkon",
       "language": "Python",
       "topics": [
@@ -154,13 +121,18 @@
         "wiki"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "Jun 2, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "Knowledge Management",
       "bullets": [
-        "MCP server for Claude and other LLMs",
-        "RAG/knowledge wiki with MRP pipeline",
-        "Role-based, self-hosted org knowledge access"
+        "MCP server for secure org-wide AI knowledge access",
+        "MRP pipeline turns docs into linked wiki pages",
+        "Role-scoped, traceable, self-hosted knowledge layer"
+      ],
+      "actionItems": [
+        "Spin up the Docker stack and verify Claude can query a scoped knowledge page via MCP",
+        "Ingest a small policy/SOP set and inspect the generated plan, page merges, and source traceability",
+        "Test permission boundaries by querying the same doc as two roles and comparing returned context"
       ],
       "latestRelease": "v0.9.1",
       "latestReleaseUrl": "https://github.com/nduckmink/arkon/releases/tag/v0.9.1",
@@ -169,8 +141,8 @@
     },
     {
       "name": "stevesolun/ctx",
-      "stars": "404",
-      "desc": "Python tool that watches your work and recommends a small, scored bundle of skills, agents, MCP servers, and harnesses for Claude Code or other LLMs using a large knowledge graph.",
+      "stars": "436",
+      "desc": "Python repo that builds a huge LLM wiki/graph and recommends the best small bundle of skills, agents, MCP servers, and harnesses for a task, with install/update flows and context-budget controls.",
       "url": "https://github.com/stevesolun/ctx",
       "language": "Python",
       "topics": [
@@ -197,12 +169,17 @@
       ],
       "createdAt": "Apr 8, 2026",
       "lastUpdated": "May 28, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "Knowledge Management",
       "bullets": [
-        "102K-node LLM-wiki graph with 2.9M edges",
-        "91K+ skills, 10.7K MCPs, 467 agents",
-        "Capped installs, dry-run/update/uninstall controls"
+        "102k-node knowledge graph with 2.9M edges for semantic recommendation",
+        "91k+ skills plus agents/MCPs/harnesses and micro-skill conversion",
+        "Designed for Claude Code and custom LLMs with capped execution workflows"
+      ],
+      "actionItems": [
+        "Run ctx-init on a sample project and measure recommended skill bundle size vs task quality",
+        "Compare Claude Code hooks mode against custom model harness mode on the same goal",
+        "Test update prompts for entities and verify benefits/risks gating prevents unwanted replacements"
       ],
       "latestRelease": "v1.0.11",
       "latestReleaseUrl": "https://github.com/stevesolun/ctx/releases/tag/v1.0.11",
@@ -211,8 +188,8 @@
     },
     {
       "name": "Beever-AI/beever-atlas",
-      "stars": "367",
-      "desc": "LLM-first wiki knowledge base that turns team chat from Slack, Discord, Teams, and Mattermost into a self-maintaining, cited knowledge graph using Python, FastAPI, React, RAG, and Google ADK.",
+      "stars": "368",
+      "desc": "Python/React LLM knowledge base that turns team chat from Slack, Discord, Teams, and Mattermost into cited wiki pages and graph-linked topics, with Google ADK and MCP integration.",
       "url": "https://github.com/Beever-AI/beever-atlas",
       "language": "Python",
       "topics": [
@@ -237,13 +214,18 @@
         "wiki"
       ],
       "createdAt": "Apr 21, 2026",
-      "lastUpdated": "Jun 1, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "MCP Tooling",
       "bullets": [
-        "Auto-extracts atomic facts and deduplicates chat into wiki pages",
-        "Cited Q&A via dashboard and MCP integrations for Claude Code/Cursor",
-        "Connects multiple chat platforms into one evolving knowledge base"
+        "Chat ingestion + topic clustering from major team messengers",
+        "Cited Q&A over atomic facts with graph-backed relationships",
+        "MCP server support for Claude Code/Cursor plus web dashboard"
+      ],
+      "actionItems": [
+        "Run a connector smoke test on Slack or Discord export ingest and verify citation fidelity",
+        "Benchmark question answering on a small channel corpus for latency and source accuracy",
+        "Test MCP tool calls from Cursor/Claude Code against the Atlas knowledge base"
       ],
       "latestRelease": "v0.2.0",
       "latestReleaseUrl": "https://github.com/Beever-AI/beever-atlas/releases/tag/v0.2.0",
@@ -251,9 +233,47 @@
       "license": "Apache-2.0"
     },
     {
+      "name": "SudoJacky/tinybot",
+      "stars": "247",
+      "desc": "Lightweight Python personal AI agent framework with LLM chat, memory, RAG, task scheduling, and web UI integrations.",
+      "url": "https://github.com/SudoJacky/tinybot",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "ai",
+        "ai-agent",
+        "deepseek",
+        "llm",
+        "memory",
+        "python",
+        "qwen",
+        "rag",
+        "task-scheduler",
+        "webui"
+      ],
+      "createdAt": "Apr 9, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "Supports multi-platform chat and tool-based automation.",
+        "Adds editable real-time memory with contradiction handling.",
+        "Recent UI updates include AG-UI-inspired forms and follow-up collection."
+      ],
+      "actionItems": [
+        "Run a local chat turn test with memory save/load enabled.",
+        "Benchmark RAG retrieval quality on a small custom knowledge base.",
+        "Exercise the new follow-up form flow with a multi-step user task."
+      ],
+      "latestRelease": "0.0.18",
+      "latestReleaseUrl": "https://github.com/SudoJacky/tinybot/releases/tag/0.0.18",
+      "homepage": "https://deepwiki.com/SudoJacky/tinybot",
+      "license": "MIT"
+    },
+    {
       "name": "MemPalace/mempalace",
-      "stars": "53.3k",
-      "desc": "Open-source local-first AI memory system with verbatim storage, semantic retrieval, and pluggable backends; benchmarked for high recall and designed to keep data on-device.",
+      "stars": "53.4k",
+      "desc": "MemPalace is a local-first Python AI memory system that stores verbatim conversations and retrieves them with semantic search, using a structured index (wings/rooms/drawers) and pluggable backends like ChromaDB.",
       "url": "https://github.com/MemPalace/mempalace",
       "language": "Python",
       "topics": [
@@ -265,13 +285,18 @@
         "python"
       ],
       "createdAt": "Apr 5, 2026",
-      "lastUpdated": "May 30, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Verbatim conversation memory, not summaries",
-        "ChromaDB default; backend interface is pluggable",
-        "Huge traction: 53k stars, active releases"
+        "53k+ stars; MIT; active recent push and v3.3.5 release.",
+        "Claims 96.6% R@5 on LongMemEval with zero API calls.",
+        "Focuses on local privacy, structured retrieval, and backend extensibility."
+      ],
+      "actionItems": [
+        "Run the default ChromaDB backend against a small chat corpus and measure retrieval latency/recall.",
+        "Swap in a custom backend via mempalace/backends/base.py and verify parity on the same queries.",
+        "Benchmark memory quality on your agent traces versus summarization-based memory using the provided LongMemEval-style flow."
       ],
       "latestRelease": "v3.3.5",
       "latestReleaseUrl": "https://github.com/MemPalace/mempalace/releases/tag/v3.3.5",
@@ -280,8 +305,8 @@
     },
     {
       "name": "Ontos-AI/knowhere",
-      "stars": "843",
-      "desc": "Python pipeline that turns messy unstructured docs into structured, context-rich chunks for AI agents and RAG, with parsing, hierarchy extraction, multimodal structuring, and graph construction.",
+      "stars": "902",
+      "desc": "Python pipeline that turns messy documents into structured, context-preserving chunks for agentic RAG and memory layers, with integrations across popular vector/search stacks and LLM providers.",
       "url": "https://github.com/Ontos-AI/knowhere",
       "language": "Python",
       "topics": [
@@ -302,13 +327,18 @@
         "skills"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "Jun 2, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
-        "Agentic RAG memory layer",
-        "Plugs into Chroma, Milvus, Qdrant",
-        "Cloud API, self-host, containers"
+        "Doc parsing, hierarchy extraction, and multimodal structuring in one flow",
+        "Outputs persistent chunks with semantic context for agents/RAG",
+        "Broad ecosystem fit: ChromaDB, Milvus, Qdrant, Elasticsearch, Claude, GPT, Gemini"
+      ],
+      "actionItems": [
+        "Run a PDF+HTML ingest benchmark and compare chunk quality vs baseline splitters",
+        "Test end-to-end retrieval on Qdrant and Elasticsearch using Knowhere outputs",
+        "Evaluate multimodal parsing on scanned docs/images and inspect context retention"
       ],
       "latestRelease": "2026.06.02.1",
       "latestReleaseUrl": "https://github.com/Ontos-AI/knowhere/releases/tag/2026.06.02.1",
@@ -317,8 +347,8 @@
     },
     {
       "name": "lthoangg/OpenAgentd",
-      "stars": "191",
-      "desc": "Self-hosted desktop OS for running local AI agent teams with streaming chat, tool use, persistent memory, and a real UI.",
+      "stars": "193",
+      "desc": "OpenAgentd is a self-hosted desktop OS for local AI agents, combining FastAPI/React UI, persistent memory, tool use, and multi-agent teamwork on the user's machine.",
       "url": "https://github.com/lthoangg/OpenAgentd",
       "language": "Python",
       "topics": [
@@ -329,39 +359,70 @@
         "self-hosted"
       ],
       "createdAt": "Apr 30, 2026",
-      "lastUpdated": "Jun 2, 2026",
-      "fetchedAt": "Jun 2, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
-        "Runs entirely on your machine with your keys",
-        "Multi-agent cockpit for watching agent steps live",
-        "FastAPI + React desktop app with sandboxing"
+        "Local-first agent cockpit with streaming chat and real-time step visibility.",
+        "Supports multi-agent teams, persistent memory, and sandboxed file/tool access.",
+        "Broad provider support, Apache-2.0 licensed, with active releases and recent updates."
       ],
-      "latestRelease": "v1.43.3",
-      "latestReleaseUrl": "https://github.com/lthoangg/OpenAgentd/releases/tag/v1.43.3",
+      "actionItems": [
+        "Run a fresh install and benchmark first-response latency across 2-3 model providers.",
+        "Create a 3-agent coding task and compare output quality with memory on vs off.",
+        "Test sandbox permissions by attempting file edits, shell actions, and blocked tool calls."
+      ],
+      "latestRelease": "v1.44.1",
+      "latestReleaseUrl": "https://github.com/lthoangg/OpenAgentd/releases/tag/v1.44.1",
       "homepage": "https://github.com/lthoangg/openagentd",
       "license": "Apache-2.0"
     },
     {
-      "name": "quarqlabs/agent-oss",
-      "stars": "220",
-      "desc": "Python memory-first AI agent runtime with hybrid retrieval, temporal/quant reasoning, self-correcting learning, and local persistent memory.",
-      "url": "https://github.com/quarqlabs/agent-oss",
+      "name": "syncable-dev/memtrace-public",
+      "stars": "178",
+      "desc": "Memtrace is a structural-memory layer for AI coding agents that builds a bi-temporal code knowledge graph, exposes it via MCP, and aims to let agents query repo history and dependencies without LLM calls.",
+      "url": "https://github.com/syncable-dev/memtrace-public",
       "language": "Python",
-      "topics": [],
-      "createdAt": "May 24, 2026",
-      "lastUpdated": "Jun 2, 2026",
-      "fetchedAt": "Jun 2, 2026",
-      "bestFor": "RAG Infrastructure",
-      "bullets": [
-        "Local durable memory",
-        "Evidence-gated retrieval",
-        "Benchmark-focused recall"
+      "topics": [
+        "agent-memory",
+        "ai-agents",
+        "bi-temporal-graph",
+        "claude-code",
+        "code-intelligence",
+        "code-search",
+        "coding-agents",
+        "cursor",
+        "developer-tools",
+        "knowledge-graph",
+        "llm",
+        "local-first",
+        "mcp",
+        "mcp-server",
+        "rag",
+        "rust",
+        "semantic-search",
+        "structural-memory",
+        "temporal-analysis",
+        "tree-sitter"
       ],
-      "latestRelease": "",
-      "latestReleaseUrl": "",
-      "homepage": "",
-      "license": "Apache-2.0"
+      "createdAt": "Apr 11, 2026",
+      "lastUpdated": "Jun 3, 2026",
+      "fetchedAt": "Jun 4, 2026",
+      "bestFor": "Coding Workflow",
+      "bullets": [
+        "Bi-temporal graph for code entities, edges, and versions",
+        "MCP-native, local-first memory/query layer for agents",
+        "Targets Cursor, Claude Code, Codex, VS Code, Windsurf"
+      ],
+      "actionItems": [
+        "Install and run on a medium-sized repo; measure indexing time and query latency",
+        "Connect via MCP in Cursor or Claude Code and test blast-radius / time-travel queries",
+        "Compare refactor safety vs plain RAG by replaying a recent code change with the memory graph"
+      ],
+      "latestRelease": "v0.6.0",
+      "latestReleaseUrl": "https://github.com/syncable-dev/memtrace-public/releases/tag/v0.6.0",
+      "homepage": "https://memtrace.io",
+      "license": "NOASSERTION"
     }
   ],
   "models": [
@@ -369,19 +430,41 @@
       "name": "Mellum2",
       "org": "JetBrains",
       "date": "Jun 1, 2026",
-      "note": "JetBrains launched Mellum2, a 12B mixture-of-experts model, adding a new code-focused model release for developers.",
+      "note": "JetBrains launched Mellum2, a 12B mixture-of-experts model, adding a new code-focused model release that could improve AI-assisted development workflows.",
       "tag": "MODEL",
       "url": "https://huggingface.co/blog/JetBrains/mellum2-launch",
       "sourceUrl": "https://huggingface.co/blog/feed.xml",
       "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
       "links": [
         {
           "label": "Read release",
           "url": "https://huggingface.co/blog/JetBrains/mellum2-launch"
         },
         {
-          "label": "RSS feed",
-          "url": "https://huggingface.co/blog/feed.xml"
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ]
+    },
+    {
+      "name": "Gemma 4 12B",
+      "org": "Google",
+      "date": "Jun 3, 2026",
+      "note": "Google shipped Gemma 4 12B, a unified encoder-free multimodal model designed to deliver high-performance multimodal intelligence on a laptop.",
+      "tag": "MODEL",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/",
+      "sourceUrl": "https://blog.google/technology/developers/rss/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12b/"
+        },
+        {
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
         }
       ]
     },
@@ -389,19 +472,39 @@
       "name": "Gemini 3.5 Flash",
       "org": "Google",
       "date": "May 29, 2026",
-      "note": "Gemini 3.5 Flash is now generally available and ready for scaled production use, bringing stronger agentic execution, coding, and long-horizon performance at scale.",
+      "note": "Gemini 3.5 Flash is now generally available and stable for production use, bringing improved agentic execution, coding, and long-horizon task performance at scale.",
       "tag": "API",
       "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
       "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
       "sourceLabel": "Source page",
+      "benchmarkUrl": "https://artificialanalysis.ai/models/gemini-3-5-flash",
       "links": [
         {
           "label": "Read release",
           "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
         },
         {
-          "label": "Source page",
-          "url": "https://ai.google.dev/gemini-api/docs/changelog"
+          "label": "Benchmark",
+          "url": "https://artificialanalysis.ai/models/gemini-3-5-flash"
+        }
+      ]
+    }
+  ],
+  "toolsServices": [
+    {
+      "name": "NEXUS",
+      "org": "Fundamental",
+      "date": "Jun 3, 2026",
+      "note": "Fundamental’s NEXUS foundation model is now available on Amazon SageMaker JumpStart, giving users a deployable large tabular model for deterministic predictions on structured data.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/fundamentals-large-tabular-model-nexus-is-now-available-on-amazon-sagemaker-jumpstart/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/fundamentals-large-tabular-model-nexus-is-now-available-on-amazon-sagemaker-jumpstart/"
         }
       ]
     },
@@ -409,41 +512,101 @@
       "name": "Claude Opus 4.8",
       "org": "Anthropic via Microsoft Foundry",
       "date": "May 29, 2026",
-      "note": "Claude Opus 4.8 is now available in Microsoft Foundry, bringing Anthropic\u2019s most capable Opus model to developers and enterprises for coding, agentic workflows, and long-form professional analysis.",
+      "note": "Claude Opus 4.8 is now available in Microsoft Foundry, bringing Anthropic’s latest Opus model to developers and enterprises for coding, agentic workflows, and complex professional work.",
       "tag": "API",
       "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-4-8-is-now-available-in-microsoft-foundry/4523367",
       "sourceUrl": "https://azure.microsoft.com/en-us/blog/feed/",
       "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
           "url": "https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/claude-opus-4-8-is-now-available-in-microsoft-foundry/4523367"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://azure.microsoft.com/en-us/blog/feed/"
         }
       ]
-    }
-  ],
-  "toolsServices": [
+    },
+    {
+      "name": "Step 3.7 Flash",
+      "org": "StepFun",
+      "date": "May 29, 2026",
+      "note": "StepFun’s Step 3.7 Flash is now available on NVIDIA-accelerated infrastructure, bringing a 198B multimodal model for production use across images, documents, video, and language.",
+      "tag": "PLATFORM",
+      "url": "https://developer.nvidia.com/blog/run-step-3-7-flash-on-nvidia-gpus-with-enterprise-ready-multimodal-ai/",
+      "sourceUrl": "https://developer.nvidia.com/blog/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developer.nvidia.com/blog/run-step-3-7-flash-on-nvidia-gpus-with-enterprise-ready-multimodal-ai/"
+        }
+      ]
+    },
     {
       "name": "Codex for every role, tool, and workflow",
       "org": "OpenAI",
       "date": "Jun 2, 2026",
-      "note": "OpenAI shipped new Codex plugins, sites, and annotations aimed at helping analysts, marketers, designers, investors, and other teams get more done with AI.",
+      "note": "Discover new Codex plugins, sites, and annotations that help analysts, marketers, designers, investors, and other teams get more done with AI.",
       "tag": "PLATFORM",
       "url": "https://openai.com/index/codex-for-every-role-tool-workflow",
       "sourceUrl": "https://openai.com/news/rss.xml",
       "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
           "url": "https://openai.com/index/codex-for-every-role-tool-workflow"
-        },
+        }
+      ]
+    },
+    {
+      "name": "NVIDIA Physical AI Agent Skills",
+      "org": "NVIDIA",
+      "date": "Jun 3, 2026",
+      "note": "NVIDIA unveiled new physical AI agent skills at CVPR to automate workflows for autonomous vehicles, robotics, and vision AI, helping researchers reconstruct scenes, generate edge cases, and iterate faster on physical AI systems.",
+      "tag": "CLOUD",
+      "url": "https://blogs.nvidia.com/blog/cvpr-physical-ai-research-agent-skills/",
+      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
         {
-          "label": "RSS feed",
-          "url": "https://openai.com/news/rss.xml"
+          "label": "Read release",
+          "url": "https://blogs.nvidia.com/blog/cvpr-physical-ai-research-agent-skills/"
+        }
+      ]
+    },
+    {
+      "name": "Build Personal AI Agents on Windows PCs with New Tools from Microsoft and NVIDIA",
+      "org": "NVIDIA",
+      "date": "Jun 2, 2026",
+      "note": "NVIDIA and Microsoft announced new tools for building on-device AI agents on Windows PCs, lowering setup friction and adding native security for local agent workflows.",
+      "tag": "PLATFORM",
+      "url": "https://developer.nvidia.com/blog/build-personal-ai-agents-on-windows-pcs-with-new-tools-from-microsoft-and-nvidia/",
+      "sourceUrl": "https://developer.nvidia.com/blog/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developer.nvidia.com/blog/build-personal-ai-agents-on-windows-pcs-with-new-tools-from-microsoft-and-nvidia/"
+        }
+      ]
+    },
+    {
+      "name": "OpenAI models and Codex on Amazon Bedrock are now generally available",
+      "org": "AWS",
+      "date": "Jun 1, 2026",
+      "note": "GPT-5.5, GPT-5.4, and Codex are now generally available on Amazon Bedrock, giving teams production access to OpenAI frontier models and the Codex coding agent through AWS infrastructure.",
+      "tag": "PLATFORM",
+      "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/"
         }
       ]
     },
@@ -456,378 +619,312 @@
       "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws",
       "sourceUrl": "https://openai.com/news/rss.xml",
       "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
           "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://openai.com/news/rss.xml"
         }
       ]
     },
     {
-      "name": "NVIDIA OpenAI partnership for agentic AI deployment",
-      "org": "NVIDIA",
-      "date": "Jun 2, 2026",
-      "note": "NVIDIA and Microsoft announced a unified stack for building and running agentic AI across Windows devices, Azure cloud, and local deployments, including RTX Spark, DGX Station for Windows, Microsoft Fabric acceleration, and OpenShell in GitHub Copilot.",
-      "tag": "PLATFORM",
-      "url": "https://blogs.nvidia.com/blog/microsoft-build-windows-local-cloud-devices/",
-      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blogs.nvidia.com/blog/microsoft-build-windows-local-cloud-devices/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://feeds.feedburner.com/nvidiablog"
-        }
-      ]
-    },
-    {
-      "name": "NVIDIA JetPack 7.2 and NVIDIA NemoClaw for Jetson",
-      "org": "NVIDIA",
-      "date": "Jun 2, 2026",
-      "note": "NVIDIA announced JetPack 7.2 and NemoClaw support for Jetson, adding agentic AI skills, Yocto support, CUDA 13, and MIG on Jetson Thor to push physical AI into production at the edge.",
-      "tag": "PLATFORM",
-      "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/",
-      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blogs.nvidia.com/blog/jetson-agentic-ai-physical-world/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://feeds.feedburner.com/nvidiablog"
-        }
-      ]
-    },
-    {
-      "name": "OpenAI models and Codex on Amazon Bedrock are now generally available",
-      "org": "AWS",
-      "date": "Jun 1, 2026",
-      "note": "GPT-5.5, GPT-5.4, and Codex are now generally available on Amazon Bedrock, adding frontier models and the OpenAI coding agent to Bedrock for production apps and agents.",
-      "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-      "sourceLabel": "RSS feed",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/openai-models-and-codex-on-amazon-bedrock-are-now-generally-available/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://aws.amazon.com/blogs/machine-learning/feed/"
-        }
-      ]
-    },
-    {
-      "name": "NVIDIA RTX Spark",
+      "name": "NVIDIA OpenShell runtime",
       "org": "NVIDIA",
       "date": "Jun 1, 2026",
-      "note": "NVIDIA unveiled RTX Spark, a new Windows PC class purpose-built for running personal AI agents locally with 1 petaflop of AI compute and 128GB of unified memory.",
+      "note": "NVIDIA announced the OpenShell runtime for Windows, giving developers an easy-to-deploy package for secure, on-device AI agents.",
       "tag": "PLATFORM",
       "url": "https://blogs.nvidia.com/blog/rtx-ai-garage-computex-spark-local-agents/",
       "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
       "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
           "url": "https://blogs.nvidia.com/blog/rtx-ai-garage-computex-spark-local-agents/"
-        },
-        {
-          "label": "RSS feed",
-          "url": "https://feeds.feedburner.com/nvidiablog"
         }
       ]
     }
   ],
   "papers": [
     {
-      "title": "ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
-      "authors": "Zhensheng Wang, Xiaole Liu, Wenmian Yang, Kun Zhou, Yiquan Zhang, Weijia Jia",
+      "title": "VLESA: Vision-Language Embodied Safety Agent for Human Activity Monitoring",
+      "authors": "Hanjiang Hu, Yiyuan Pan, Jiaxing Li, Xusheng Luo, Alexander Robey, Na Li, Yebin Wang, Changliu Liu",
       "org": "arXiv",
-      "date": "Jun 1, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 69,
-      "priority": "WATCH",
-      "tags": [
-        "Foundation Models and Generative AI",
-        "Finance and Economics"
-      ],
-      "fsoRelevant": true,
-      "abstract": "The rapid development of LLMs has significantly advanced tabular question answering, but most systems cannot perform future-oriented numerical prediction. To address this gap, we introduce a novel task, Open-Domain Tabular Question Answering for Future Data Forecasting and Reasoning, and propose the first dataset to cover time-series forecasting and forecast-based reasoning scenarios using real estate data. This task poses challenges in retrieving precise historical data, overcoming the forecasting limitations of LLMs, and standardizing responses for diverse queries. To solve the above challenges, we propose TimeFore, an LLM agent-based framework that decomposes the problem into three collaborative roles: a Retriever autonomously generates SQL to fetch data, a Forecaster invokes external time-series models for higher accuracy, and an Analyzer synthesizes the results to construct a precise and consistent final answer. Extensive experiments demonstrate the effectiveness of our TimeFore.",
-      "takeaways": [
-        "Introduces ODTQA-FoRe, the first open-domain tabular QA dataset for future data forecasting and forecast-based reasoning on real-estate data.",
-        "Proposes TimeFore, an LLM agent framework with Retriever, Forecaster, and Analyzer roles that uses SQL retrieval plus external time-series models to answer future-oriented tabular queries.",
-        "Suggests a practical path for tabular QA systems to handle forecasting and reasoning tasks that standard LLMs struggle with, with experiments showing effectiveness."
-      ],
-      "actionItems": [
-        "Track for follow-up evidence: ODTQA-FoRe: An Open-Domain Tabular Question Answering Dataset for Future Data Forecasting and Reasoning",
-        "Assess whether foundation models and generative ai improves a relevant finance and economics workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "High"
-      },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "Finance and Economics",
-      "url": "https://arxiv.org/pdf/2606.02433v1"
-    },
-    {
-      "title": "MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
-      "authors": "Hilton Raj, Vishnuram AV",
-      "org": "arXiv",
-      "date": "Jun 1, 2026",
+      "date": "Jun 2, 2026",
       "hasCode": true,
       "stars": 0,
-      "researchScore": 64,
-      "priority": "EXPERIMENT",
+      "researchScore": 61,
+      "priority": "SHARE",
       "tags": [
         "Multimodal AI",
         "Robotics and Autonomous Systems"
       ],
       "fsoRelevant": true,
-      "abstract": "In 3D environments, Embodied Agents answer spatially relevant questions through reasoning from a mixture of modalities including natural language, RGB images, point clouds, depth maps and camera poses. Existing Vision-Language models (VLMs) are fine-tuned over a single modality. This completely ignores the question semantics which may favor a different modality than the finetuned modality. To address this, we propose MASER (Modality-Adaptive SpEcialist Routing), a lightweight framework that trains five different modality adapters of a shared VLM backbone and learns a neural routing policy that selects the best adapter based on the question during inference. We encode each question with a frozen sentence transformer and pass the embedding through a small Multi-layer Perceptron (MLP) trained on oracle adapter-accuracy labels. We evaluate our methodology over the Open3D-VQA benchmark and our evaluations show that no single modality is universally optimal -- point-cloud answers are best in 51.5% of cases. MASER routes with 51.3% oracle agreement, outperforming a Random-Forest ablation (43.5%), with only a single adapter call per question.",
+      "abstract": "As AI systems increasingly assist humans in physical tasks, ensuring safety becomes paramount -- physical actions carry immediate and irreversible consequences that digital errors do not. We introduce the Vision-Language Embodied Safety Agent (VLESA), a framework that monitors human activities from egocentric video and triggers real-time safety interventions when dangerous actions are predicted. VLESA addresses intent-dependent safety where identical actions can be safe or dangerous depending on context. A dataset pairing egocentric frames with goal-conditioned safety annotations is introduced, enabling a goal-conditioned safety Q-filter trained via GRPO that evaluates actions with respect to inferred intent without retraining. On top of that, an intent-action prediction agent is proposed to jointly infer goals and predict future actions from video. On the ASIMOV-2.0 benchmark, VLESA achieves higher intervention accuracy at the exact ground-truth frame compared to baselines, while the GRPO-trained Q-filter improves action safety by over 41 percentage points through goal-conditioned constrained decoding. Code is available at https://github.com/HanjiangHu/VLESA.",
       "takeaways": [
-        "Introduces MASER, a lightweight modality-adaptive routing framework that trains five modality-specific adapters on a shared VLM backbone for embodied 3D spatial question answering.",
-        "Uses a frozen sentence transformer plus a small MLP trained on oracle adapter-accuracy labels to choose the best adapter at inference; on Open3D-VQA, point-cloud answers are best for 51.5% of cases and MASER reaches 51.3% oracle agreement, beating a Random-Forest ablation at 43.5%.",
-        "Practical implication: embodied agents should route questions to the modality most aligned with question semantics, enabling better 3D spatial QA with only one adapter call per question."
+        "Introduces VLESA, a vision-language embodied safety agent that monitors egocentric human activity and triggers real-time interventions when dangerous actions are predicted, including intent-dependent safety decisions.",
+        "Presents a goal-conditioned safety dataset plus a GRPO-trained safety Q-filter and an intent-action prediction agent that infer goals and future actions from video without retraining.",
+        "On ASIMOV-2.0, VLESA improves exact-frame intervention accuracy over baselines, and the GRPO-trained Q-filter boosts action safety by over 41 percentage points via goal-conditioned constrained decoding."
       ],
       "actionItems": [
-        "Prototype a quick evaluation: MASER: Modality-Adaptive Specialist Routing for Embodied 3D Spatial Intelligence",
-        "Assess whether multimodal ai improves a relevant robotics and autonomous systems workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Medium",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Multimodal AI",
-      "domain": "Robotics and Autonomous Systems",
-      "url": "https://arxiv.org/pdf/2606.02463v1"
-    },
-    {
-      "title": "Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
-      "authors": "Seojeong Park, Jiho Choi, Junyong Kang, Seonho Lee, Jaeyo Shin, Hyunjung Shim",
-      "org": "arXiv",
-      "date": "Jun 1, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 64,
-      "priority": "READ",
-      "tags": [
-        "Multimodal AI",
-        "Other"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Recent multimodal large language models have demonstrated strong reasoning ability, yet their reliability as automated evaluators remains limited by a critical weakness: when visual evidence conflicts with textual cues, MLLM judges tend to reward plausible narratives over perceptually correct answers. We identify and systematically analyze this phenomenon, which we term Perceptual Judgment Bias. Through controlled visual perturbations, existing multimodal judges frequently anchor on the response text instead of their own visual perception, leading to inconsistent and non-verifiable evaluations. To address this issue, we introduce the Perceptually Perturbed Judgment Dataset, which constructs minimally edited counterfactual responses that isolate perceptual errors and enable verifiable supervision. Building on this dataset, we develop a unified training framework that combines a structured GRPO-based reward with a batch-ranking objective, achieving coherent global ordering without explicit pairwise labels. Experiments across diverse MLLM-as-a-Judge benchmarks show that our approach substantially improves perceptual fidelity, ranking coherence, and alignment with human evaluation. Our results establish a scalable and generalizable pathway for training multimodal judges that are perceptually grounded, interpretable, and robust to visual-reasoning conflicts.",
-      "takeaways": [
-        "Identifies \"Perceptual Judgment Bias\" in multimodal LLM judges: when image and text disagree, they often reward plausible answers over visually correct ones.",
-        "Introduces the Perceptually Perturbed Judgment Dataset with minimally edited counterfactual responses, and trains a unified GRPO-based reward plus batch-ranking objective to provide verifiable supervision without explicit pairwise labels.",
-        "Shows improved perceptual fidelity, ranking coherence, and alignment with human evaluation across MLLM-as-a-Judge benchmarks, suggesting a more robust way to build multimodal evaluators."
-      ],
-      "actionItems": [
-        "Read for research signal: Mitigating Perceptual Judgment Bias in Multimodal LLM-as-a-Judge via Perceptual Perturbation and Reward Modeling",
-        "Assess whether multimodal ai improves a relevant other workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
+        "Review the VLESA paper for the goal-conditioned safety dataset design and the exact-frame intervention evaluation on ASIMOV-2.0.",
+        "Evaluate whether the GRPO-trained safety Q-filter and intent-action prediction agent can be reproduced from the released code and benchmarked against the reported 41+ percentage-point safety gain.",
+        "Assess the adoption risk of using intent-dependent safety decisions in egocentric human activity monitoring, especially whether inferred goals can be reliable enough for real-time intervention without false alarms or missed hazards."
       ],
       "researchSignals": {
         "evidence": "High",
         "applicability": "Low",
-        "reproducibility": "Low",
+        "reproducibility": "High",
         "novelty": "Medium"
       },
       "capability": "Multimodal AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2606.02578v1"
+      "domain": "Robotics and Autonomous Systems",
+      "url": "https://arxiv.org/pdf/2606.03954v1"
     },
     {
-      "title": "AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
-      "authors": "Yiheng Shu, Bernal Jim\u00e9nez Guti\u00e9rrez, Saisri Padmaja Jonnalagedda, Yuguang Yao, Huan Sun, Yu Su",
+      "title": "Agentic Chain-of-Thought Steering for Efficient and Controllable LLM Reasoning",
+      "authors": "Yu Xia, Zhouhang Xie, Xin Xu, Byungkyu Kang, Prarit Lamba, Xiang Gao, Julian McAuley",
       "org": "arXiv",
-      "date": "Jun 1, 2026",
+      "date": "Jun 2, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 59,
+      "priority": "READ",
+      "tags": [
+        "Reasoning and Planning",
+        "Other"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Large language models improve final-answer accuracy through extended chain-of-thought reasoning, but often spend tokens inefficiently and offer little inference-time control. Existing efficient reasoning methods control thinking length by shortening, early-stopping, or compressing traces, leaving how the model thinks implicit. In this paper, we propose Agentic Chain-of-Thought Steering (ACTS), which formulates reasoning steering as a Markov decision process where a controller agent adaptively steers a frozen reasoner during inference. At each step, the controller observes the reasoning trace and remaining thinking budget, then issues a steering action consisting of a reasoning strategy and a steering phrase that initiates the next reasoner step. This enables budget-aware strategy control for efficient reasoning while preserving the reasoner's generation continuity. We initialize the controller agent from our constructed synthetic steering trajectories with multi-budget augmentation, and further optimize it via reinforcement learning with budget-conditioned reward shaping. Experiments across multiple benchmarks show that ACTS matches full-thinking performance with substantial token savings, and enables controllable accuracy-efficiency trade-offs across different reasoners and tasks. The code is available at https://github.com/Andree-9/ACTS.",
+      "takeaways": [
+        "Introduces ACTS, a controller-agent framework that steers a frozen LLM reasoner during inference via explicit strategy-and-phrase actions, aiming to make chain-of-thought reasoning both efficient and controllable.",
+        "Method combines synthetic steering trajectories with multi-budget augmentation and reinforcement learning with budget-conditioned reward shaping; evaluations across multiple benchmarks show it can match full-thinking performance while using substantially fewer tokens.",
+        "Practical implication: inference-time reasoning can be budget-aware and adjustable, giving users controllable accuracy-efficiency trade-offs across different reasoners and tasks instead of relying only on implicit shortening or early stopping."
+      ],
+      "actionItems": [
+        "Review the ACTS formulation details: verify how the controller’s state (reasoning trace plus remaining budget) maps to the MDP and how the steering action combines a reasoning strategy with a steering phrase.",
+        "Plan an evaluation that checks whether ACTS truly matches full-thinking accuracy while reducing tokens, and whether its controllable accuracy-efficiency trade-off holds across multiple benchmarks and different reasoners/tasks.",
+        "Assess adoption risk by asking whether the added controller-agent and reinforcement-learning pipeline is worth the inference-time control benefits compared with simpler shortening or early-stopping methods for budget-constrained deployment."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "Medium"
+      },
+      "capability": "Reasoning and Planning",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2606.03965v1"
+    },
+    {
+      "title": "Self-Refining Agentic Reinforcement Learning for Vision-Conditioned UAV Navigation",
+      "authors": "Roohan Ahmed Khan, Yasheerah Yaqoot, Muhammad Ahsan Mustafa, Dzmitry Tsetserukou",
+      "org": "arXiv",
+      "date": "Jun 2, 2026",
       "hasCode": false,
       "stars": 0,
       "researchScore": 59,
       "priority": "EXPERIMENT",
       "tags": [
         "Agentic AI",
-        "AI Engineering and Developer Tools"
+        "Robotics and Autonomous Systems"
       ],
       "fsoRelevant": true,
-      "abstract": "Language agents spend substantial inference time solving individual tasks, yet the experience acquired in one episode is often underutilized in future episodes. Continual learning expects an agent to accumulate reusable experience across a stream of tasks, improve over time, and avoid interference from irrelevant experiences. Unfortunately, existing benchmarks struggle to evaluate continual learning in language agents rigorously. Most efforts focus on retrieval and reasoning over long-context conversations or documents, while recent lifelong-adaptation benchmarks often rely on naive task streams with limited analysis of cross-task relationships, making it difficult to understand what an agent learns and reuses over time. This paper presents an evaluation framework AgentCL for continual learning in agents, centered on controlled task streams and metrics for transfer gains. AGENTCL constructs compositional streams where earlier sub-solutions, evidence, or workflows are intentionally reusable in later tasks, and contrasts them with naive streams where such reusability is not guaranteed. We use the benchmark to evaluate non-parametric memory designs for continual learning. To diagnose how memory design choices affect continual learning, we develop MemProbe, a probing method that stores interactions, insights, and skills, while filtering unreliable experiences during consolidation. Empirical analysis across coding, deep research, and language understanding/reasoning tasks shows that naive streams offer limited ability to distinguish memory designs, whereas controlled streams more clearly distinguish their plasticity. Meanwhile, naive and held-out settings often yield limited gains and can expose memory-induced degradation. These results highlight the need for stronger memory designs that balance plasticity and stable reuse.",
+      "abstract": "Deep reinforcement learning has shown strong potential for enabling autonomous robots to learn complex navigational tasks. However, its practical use still depends heavily on human designed reward functions and repeated manual fine tuning, which is time consuming and does not guarantee high success in the desired task. This paper presents AgenticRL, agent guided reinforcement learning framework that increases autonomy in reward design, policy refinement, and real world deployment for unmanned aerial vehicles (UAV) navigation tasks. AgenticRL uses a multimodal generative pre-trained tansformer (GPT) agent to interpret task information and visual scene observations, generate task specific reward functions, train policies using Proximal Policy Optimization (PPO) algorithm, and then act as a critic by evaluating the trained policy through diagnosis packets to generate feedback. Based on this feedback, the agent identifies failure modes and refines the reward function in a closed loop self improvement process. To further leverage the multimodal GPT agent during inference, AgenticRL uses real world images and natural language task information to automatically identify the active scenario and select the appropriate trained policy for execution. The framework is evaluated on multiple navigational tasks, including gate traversal, obstacle avoidance, wall barrier crossing with landing, trajectory following, and motion behavior learning. Experimental results show that the closed loop refinement process improves policy behavior compared with initial rewards by 71%. We also demonstrate sim-to-real transfer of the proposed framework, achieving a real world success rate of 91% and a sim-to-real accuracy of 94%.",
       "takeaways": [
-        "Introduces AGENTCL, an evaluation framework for continual learning in language agents using controlled task streams and transfer-gain metrics to test reusable experience.",
-        "Uses compositional streams plus MemProbe, which stores interactions, insights, and skills while filtering unreliable experiences, to compare non-parametric memory designs across coding, deep research, and language understanding/reasoning tasks.",
-        "Suggests that rigorous continual-learning benchmarks can better reveal memory plasticity and reuse limits, helping guide memory designs that reduce degradation and improve stable reuse over time."
+        "Introduces AgenticRL, a self-refining agentic reinforcement learning framework for vision-conditioned UAV navigation that automates reward design, policy refinement, and deployment.",
+        "Uses a multimodal GPT agent with PPO in a closed loop: it generates task-specific rewards from task/scene inputs, critiques trained policies via diagnosis packets, and iteratively refines rewards based on detected failure modes.",
+        "Reports improved policy behavior by 71%, plus sim-to-real results of 91% real-world success and 94% sim-to-real accuracy, suggesting a more practical path to autonomous UAV navigation."
       ],
       "actionItems": [
-        "Prototype a quick evaluation: AGENTCL: Toward Rigorous Evaluation of Continual Learning in Language Agents",
-        "Assess whether agentic ai improves a relevant ai engineering and developer tools workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
+        "Review the AgenticRL closed-loop reward refinement design, especially how the multimodal GPT agent generates rewards and diagnosis packets for UAV navigation tasks.",
+        "Evaluate the framework on each reported task separately—gate traversal, obstacle avoidance, wall barrier crossing with landing, trajectory following, and motion behavior learning—and compare initial vs refined reward performance.",
+        "Question the adoption risk around reproducibility and sim-to-real robustness, given the low reproducibility signal and dependence on multimodal GPT-driven reward and policy selection."
       ],
       "researchSignals": {
-        "evidence": "High",
-        "applicability": "Medium",
+        "evidence": "Medium",
+        "applicability": "High",
         "reproducibility": "Low",
         "novelty": "Low"
       },
       "capability": "Agentic AI",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2606.02461v1"
+      "domain": "Robotics and Autonomous Systems",
+      "url": "https://arxiv.org/pdf/2606.03963v1"
     },
     {
-      "title": "PaSBench-Video: A Streaming Video Benchmark for Proactive Safety Warning",
-      "authors": "Yusong Zhao, Yuejin Xie, Youliang Yuan, Junjie Hu, Jitian Guo, Yujiu Yang, Pinjia He",
+      "title": "Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models",
+      "authors": "Mahtab Bigverdi, Lindsey Li, Weikai Huang, Yiming Liu, Jaemin Cho, Jieyu Zhang, Tuhin Kundu, Chris Dangjoo Kim, Zelun Luo, Linda Shapiro, Ranjay Krishna",
       "org": "arXiv",
-      "date": "Jun 1, 2026",
+      "date": "Jun 2, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 58,
-      "priority": "SHARE",
-      "tags": [
-        "Multimodal AI",
-        "Other"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Between the first visible sign of danger and the moment an accident occurs, there is often a window where intervention remains possible. Video-capable multimodal large language models (MLLMs) could serve as always-on safety monitors that issue warnings during this window. Yet current benchmarks do not test this ability: they rely on static inputs, ignore timing precision, and omit false-positive measurement on safe scenes. We present PaSBench-Video, a 740-video benchmark with 481 risk and 259 no-risk videos across four domains: driving, healthcare, daily life, and industrial production. Risk videos are annotated with frame-level risk onset and accident boundaries. A model must observe the video causally and produce a warning that is both temporally calibrated and content-correct. Testing 13 MLLMs, we find that no model exceeds 20.0% on our strictest metric, and recall is tightly coupled with false-positive rate, with Pearson correlation 0.64: higher detection comes only at the cost of triggering warnings on the majority of safe clips. Performance splits sharply by domain: models achieve moderate recall at low false-positive rates in daily life, where risks are inherently anomalous, yet fire indiscriminately in driving, where routine and hazardous scenes look alike. These results indicate that current models rely on scene-level activity cues rather than reasoning about emerging harm.",
-      "takeaways": [
-        "PaSBench-Video introduces a 740-video streaming benchmark for proactive safety warning, with frame-level risk onset and accident boundaries across driving, healthcare, daily life, and industrial production.",
-        "The benchmark evaluates 13 MLLMs on causal, temporally calibrated warnings and shows no model exceeds 20.0% on the strictest metric; higher recall is strongly linked to more false positives, especially in safe clips.",
-        "Practically, the results suggest current video MLLMs are not reliable always-on safety monitors and may depend on scene-level cues rather than reasoning about emerging harm."
-      ],
-      "actionItems": [
-        "Share for broader review: PaSBench-Video: A Streaming Video Benchmark for Proactive Safety Warning",
-        "Assess whether multimodal ai improves a relevant other workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "High"
-      },
-      "capability": "Multimodal AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2606.02443v1"
-    },
-    {
-      "title": "Policy and World Modeling Co-Training for Language Agents",
-      "authors": "Ning Lu, Baijiong Lin, Shengcai Liu, Jiahao Wu, Haoze Lv, Yanbin Wei, Lingting Zhu, Shengju Qian, Xin Wang, Ying-Cong Chen, Qi Wang, Ke Tang",
-      "org": "arXiv",
-      "date": "Jun 1, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 54,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Agentic AI",
-        "Other"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Reinforcement learning (RL) improves large language model (LLM) agents by teaching them which actions lead to high rewards, but provides little supervision on what those actions do to the environment. World modeling (WM) can fill this gap, yet existing approaches often require separate simulators, extra training stages, or additional inference-time computation. We observe that on-policy RL rollouts already contain the needed signal: each transition pairs an action with its resulting next observation. Based on this observation, we propose PaW, a Policy and World modeling co-training framework that adds auxiliary WM supervision to the same policy during RL, without changing the inference paradigm. To make auxiliary WM supervision informative and stable, PaW introduces three components: action-entropy-based WM data selection, noise-tolerant WM loss, and reward-adaptive loss balancing. Experiments on three agentic task benchmarks show consistent improvements over strong RL baselines across models and RL algorithms. These results suggest that standard RL rollouts are a practical source of WM supervision for language-agent training.",
-      "takeaways": [
-        "PaW is a policy-and-world-model co-training framework for language agents that uses RL rollouts to add auxiliary world-model supervision during training, without changing inference-time behavior.",
-        "The method leverages on-policy action-next-observation transitions and adds action-entropy-based data selection, a noise-tolerant WM loss, and reward-adaptive loss balancing; experiments on three agentic benchmarks showed consistent gains over strong RL baselines across models and RL algorithms.",
-        "Practically, the paper argues that standard RL rollouts are a usable source of world-model training signal, reducing the need for separate simulators, extra stages, or added inference-time computation."
-      ],
-      "actionItems": [
-        "Prototype a quick evaluation: Policy and World Modeling Co-Training for Language Agents",
-        "Assess whether agentic ai improves a relevant other workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "Medium",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Agentic AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2606.02388v1"
-    },
-    {
-      "title": "Beyond One-shot: AI Agents for Learning in Field Experiments",
-      "authors": "Junjie Luo, Ritu Agarwal, Gordon Gao",
-      "org": "arXiv",
-      "date": "Jun 1, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 51,
-      "priority": "SHARE",
-      "tags": [
-        "Agentic AI",
-        "Other"
-      ],
-      "fsoRelevant": true,
-      "abstract": "Organizations routinely run experiments for A/B testing, yet the data generated from one experiment is underutilized to inform subsequent intervention design. Significant barriers exist to extracting actionable knowledge from prior experimental data to inform new interventions. We study whether tool-augmented agentic AI can automatically learn from experimental data to generate new interventions in subsequent experiments. Through two-stage field experiments in healthcare prescription messaging (693,139 patient visits), we compare a Human + Chatbot method (Stage 1: behavioral experts with conversational AI co-designing 13 message variants, 444,691 patient visits) against a Tool-Augmented Agentic AI method (Stage 2: AI autonomously extracting principles from Stage 1 data to generate 17 new variants, 248,448 patient visits). The Agentic AI method, equipped with analytical tools, structured Data-Information-Knowledge-Wisdom (DIKW) reasoning agents, and transparent evidence chains, produces superior interventions: the best AI-generated message achieved a 69.8% CTR (+6.5 percentage points over baseline). Critically, our results suggest that the value comes from domain-specific experimental data, not from general reasoning ability: frontier LLMs operating without experimental data failed to predict which interventions would succeed. The field experiments also revealed that general-purpose behavioral theories used for intervention design do not extend uniformly to specific healthcare contexts, motivating an agentic AI approach to theory audits at field-experiment scale. Our research shows that tool-augmented AI can learn from experimental data and generate improved domain-relevant interventions, transforming behavioral experimentation from one-shot evaluation into a scalable system for cumulative design learning.",
-      "takeaways": [
-        "Tool-augmented agentic AI learned from prior field-experiment data to generate new healthcare prescription messaging interventions, moving experimentation from one-shot testing toward cumulative design learning.",
-        "In two-stage field experiments across 693,139 patient visits, a Human + Chatbot baseline co-designed 13 variants, while an AI system using analytical tools, DIKW reasoning agents, and transparent evidence chains autonomously produced 17 new variants; the best AI-generated message reached 69.8% CTR (+6.5 percentage points over baseline).",
-        "Practical implication: domain-specific experimental data mattered more than general reasoning, since frontier LLMs without such data failed to predict winners, suggesting agentic AI can support iterative intervention design and theory audits in field-experiment settings."
-      ],
-      "actionItems": [
-        "Share for broader review: Beyond One-shot: AI Agents for Learning in Field Experiments",
-        "Assess whether agentic ai improves a relevant other workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Agentic AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2606.02458v1"
-    },
-    {
-      "title": "HLL: Can Agents Cross Humanity's Last Line of Verification?",
-      "authors": "Xinhao Song, Su Su, Sirui Song, Hongliang Wu, Wen Shen, Zhihua Wei, Gongshen Liu, Linfeng Zhang, Dongrui Liu",
-      "org": "arXiv",
-      "date": "Jun 1, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 51,
+      "researchScore": 53,
       "priority": "READ",
       "tags": [
         "Multimodal AI",
         "Other"
       ],
       "fsoRelevant": true,
-      "abstract": "Multimodal agents are increasingly expected to operate interfaces on behalf of users, raising a central deployment question: can they truly substitute for humans in workflows that services deliberately protect against automation? CAPTCHA verification makes this question concrete. It is not merely a visual puzzle, but a human-verification boundary placed before account creation, content access, form submission, and other protected actions. We introduce \\textbf{Humanity's Last Line of Verification (HLL)}, a controlled benchmark that uses interactive CAPTCHA verification to evaluate whether agents can cross this boundary through grounded, human-like interaction rather than recognition alone. HLL covers diverse CAPTCHA interactions and exposes agents to controlled realism stressors, including cluttered webpages, harder task variants, and trace-conditioned validation of the solving process. We evaluate eight frontier multimodal agents in a closed-loop GUI environment. The results show that current agents remain brittle at this human-substitution boundary: performance varies sharply across verification types, degrades under realistic interface conditions, and drops further when correct answers must be supported by valid action traces. By exposing gaps in localization, action calibration, state tracking, and process consistency, HLL provides a concrete testbed for measuring how close multimodal agents are to acting as human substitutes in protected real-world workflows. Our code is available at https://github.com/XinhaoS0101/HLL",
+      "abstract": "Vision language models (VLMs) excel at many tasks but still struggle with spatial reasoning when critical information is not directly observable. Many such problems require imaginative perception: inferring what would be seen from an unseen viewpoint, tracing paths through occluded spaces, or integrating partial observations into a coherent spatial representation. We introduce Imaginative Perception Tokens (IPT), intermediate perceptual representations that externalize what a VLM would perceive under alternative spatial configurations while remaining consistent with the observed input. To study this capability, we formulate three tasks, Perspective Taking (PET), Path Tracing (PT), and Multiview Counting (MVC), and construct datasets of approximately 20K examples with ground truth imaginations, answers, and evaluation benchmarks. Using the unified VLM BAGEL as the backbone, IPT supervision consistently improves spatial reasoning and often outperforms textual chain of thought training, even without generating images at inference time. On MVC, IPT improves accuracy by 3.4% and achieves competitive performance with strong closed-source models on PT. We further find that combining IPT and label-only supervision yields additional gains, whereas textual chain of thought can substantially degrade performance, suggesting a modality mismatch when spatial computation is forced through language. Overall, IPT provides a principled supervision signal for reasoning about unobserved spatial structure, improving generalization while producing interpretable intermediate representations.",
       "takeaways": [
-        "Introduces HLL (Humanity's Last Line of Verification), a controlled benchmark using interactive CAPTCHA verification to test whether multimodal agents can cross a human-verification boundary in protected workflows.",
-        "Evaluates eight frontier multimodal agents in a closed-loop GUI environment with diverse CAPTCHA types, cluttered webpages, harder variants, and trace-conditioned validation of solving actions.",
-        "Finds current agents are brittle at this boundary, with performance dropping under realistic conditions and trace checks, implying they are not yet reliable substitutes for humans in protected interfaces."
+        "Introduces Imaginative Perception Tokens (IPT), intermediate perceptual representations for multimodal language models to reason about unseen spatial structure from observed inputs.",
+        "Evaluated on three new tasks—Perspective Taking, Path Tracing, and Multiview Counting—using ~20K examples with ground-truth imaginations; IPT supervision improved spatial reasoning, including +3.4% on MVC, and often beat textual chain-of-thought training.",
+        "Practical takeaway: IPT offers an interpretable supervision signal that can improve generalization for spatial reasoning even without image generation at inference, while purely textual reasoning may hurt performance."
       ],
       "actionItems": [
-        "Read for research signal: HLL: Can Agents Cross Humanity's Last Line of Verification?",
-        "Assess whether multimodal ai improves a relevant other workflow.",
-        "Capture one pilot question and one risk question for stakeholder review."
+        "Review the PET, PT, and MVC benchmark definitions and the ground-truth imagination labels to verify how IPT supervision differs from label-only and textual chain-of-thought training.",
+        "Run an ablation/evaluation comparing IPT, label-only supervision, textual chain of thought, and their combination on MVC and PT to confirm the reported accuracy gains and degradation under textual CoT.",
+        "Assess whether the interpretable IPT supervision signal is practical to adopt in your VLM pipeline given that it relies on ground-truth imaginations and may not generalize beyond spatial reasoning tasks."
       ],
       "researchSignals": {
-        "evidence": "Medium",
+        "evidence": "High",
         "applicability": "Low",
-        "reproducibility": "Medium",
+        "reproducibility": "Low",
         "novelty": "Medium"
       },
       "capability": "Multimodal AI",
       "domain": "Other",
-      "url": "https://arxiv.org/pdf/2606.02449v1"
+      "url": "https://arxiv.org/pdf/2606.03988v1"
+    },
+    {
+      "title": "Hedge-Bench: Benchmarking Agents on Hard, Realistic Tasks Pertaining to Financial Reasoning",
+      "authors": "Eric Cho, Shawn Huang, Alice Lu, Andy Lyu",
+      "org": "arXiv",
+      "date": "Jun 2, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 51,
+      "priority": "READ",
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Finance and Economics"
+      ],
+      "fsoRelevant": true,
+      "abstract": "AI agents can increasingly handle the mechanical tasks of financial analysis: retrieving documents, calculating formulas, updating spreadsheets. The harder, more valuable challenge is reasoning through the open-ended questions that define expert Analyst work. Existing benchmarks do not capture this class of problem, and those that attempt to evaluate open-ended reasoning rely on model-judged outputs that introduce noise and circularity. We present Hedge-Bench 1.0: a benchmark of 102 actual, on-the-job tasks grounded in the explicit reasoning traces of professional hedge fund analysts working with relevant information sources. This approach enables deterministic grading against verified expert steps. Frontier models and agents score below 16\\% on the benchmark. We publish the dataset and evaluation harness at github.com/Trata-Inc/trata-hedge-bench.",
+      "takeaways": [
+        "Introduces Hedge-Bench 1.0, a benchmark of 102 real hedge fund analyst tasks aimed at evaluating open-ended financial reasoning beyond mechanical analysis.",
+        "Uses explicit reasoning traces from professional analysts and deterministic grading against verified expert steps, avoiding model-judged outputs and their noise/circularity.",
+        "Finds frontier models and agents score below 16% on the benchmark, suggesting current systems remain weak on expert-level financial analysis tasks; dataset and evaluation harness are released."
+      ],
+      "actionItems": [
+        "Review Hedge-Bench 1.0’s 102 analyst tasks and deterministic grading setup to see whether the benchmark scope and verified expert-step labels match your financial reasoning evaluation needs.",
+        "Run your target model or agent against the released dataset and evaluation harness to compare its score with the reported sub-16% frontier-model baseline.",
+        "Assess whether relying on explicit analyst reasoning traces and hedge-fund task data creates any domain-specific access, privacy, or deployment constraints for your intended use."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "Medium"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Finance and Economics",
+      "url": "https://arxiv.org/pdf/2606.03918v1"
+    },
+    {
+      "title": "scTranslation: A Comprehensive Benchmark for Single-Cell Multi-Omics Modality Translation",
+      "authors": "Jiabei Cheng, Jingbo Zhou, Jun Xia, Changkai Li, Zhen Lei, Chang Yu, Stan Z. Li",
+      "org": "arXiv",
+      "date": "Jun 2, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 50,
+      "priority": "READ",
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Other"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Simultaneous measurement of multiple omics modalities in single cells enables researchers to gain a more comprehensive understanding of cellular states and regulatory mechanisms. However, due to high experimental costs, significant noise, and incomplete modality coverage, a variety of computational methods for modality translation have emerged in recent years. Despite the development of translation models, there is still a lack of systematic benchmark evaluation in terms of datasets, evaluation metrics, and influencing factors. To address this, we present scTranslation, a comprehensive benchmark for single-cell multi-omics modality translation tasks. It includes diverse translation datasets, integrates state-of-the-art models, and provides a comprehensive evaluation metrics. In addition, we assess model performance under different scenarios, such as feature selection, feature quality, and few-shot settings. These factors significantly affect model performance but have rarely been systematically studied before. Leveraging this benchmark, we conduct a large-scale study of current methods, report many insightful findings that open up new possibilities for future development. The benchmark is open-sourced to facilitate future research. The code is anonymously released at https://github.com/Bunnybeibei/scTranslation.",
+      "takeaways": [
+        "Introduces scTranslation, a comprehensive benchmark for single-cell multi-omics modality translation with diverse datasets, state-of-the-art models, and evaluation metrics.",
+        "Benchmarks current methods across settings including feature selection, feature quality, and few-shot learning, showing these factors significantly affect performance.",
+        "Provides an open-sourced resource and large-scale comparative study to guide future development of single-cell modality translation methods."
+      ],
+      "actionItems": [
+        "Review scTranslation’s benchmark scope and the included datasets, models, and evaluation metrics to confirm they match your single-cell multi-omics modality translation use case.",
+        "Run or inspect the benchmark results for feature selection, feature quality, and few-shot settings to compare how candidate methods behave under these scenarios.",
+        "Ask whether the benchmark’s dataset coverage and evaluation setup are sufficient for your target modalities and experimental conditions, given the reported low applicability outside this task class."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2606.03906v1"
+    },
+    {
+      "title": "Agent libOS: A Library-OS-Inspired Runtime for Long-Running, Capability-Controlled LLM Agents",
+      "authors": "Yingqi Zhang",
+      "org": "arXiv",
+      "date": "Jun 2, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 49,
+      "priority": "SHARE",
+      "tags": [
+        "Foundation Models and Generative AI",
+        "Other"
+      ],
+      "fsoRelevant": true,
+      "abstract": "Large language model (LLM) agents are evolving from request-response assistants into long-running software actors: they maintain state across model calls, fork subtasks, wait for external events, request human authority, generate tools, and perform side effects that must be resumed and audited. This paper presents Agent libOS, a library-OS-inspired runtime substrate for LLM agents. Agent libOS runs above a conventional host operating system; it does not implement hardware drivers, kernel-mode isolation, or a POSIX-compatible operating system. Instead, it treats an agent as an AgentProcess: a schedulable execution subject with process identity, parent-child lineage, lifecycle state, a tool table derived from an AgentImage, typed Object Memory, explicit capabilities, human queues, checkpoints, events, and audit records. Its central design rule is tools are libc-like wrappers; runtime primitives are the authority boundary. Filesystem access, object access, sleeps, human approval, JIT tool registration, and external side effects are checked at primitive boundaries under explicit capabilities and policy. We describe the design, threat model, Python prototype, and safety-oriented evaluation. The current prototype implements async scheduling, namespace-local Object Memory, runtime-integrated human approval, one-shot permission grants, per-process working directories, shell and image-registration primitives, Deno/TypeScript JIT tools over a libOS syscall broker, filesystem/object bridge tools, an injectable Resource Provider Substrate, deterministic demos, real-model smoke scripts, and 123 regression tests at the time of writing. Rather than improving planner accuracy, Agent libOS demonstrates a runtime substrate in which long-running LLM agents can be scheduled, authorized, resumed, and audited without treating tool dispatch as the trust boundary.",
+      "takeaways": [
+        "Proposes Agent libOS, a library-OS-inspired runtime for long-running LLM agents that treats an agent as an AgentProcess with identity, lineage, state, capabilities, checkpoints, events, and audit records.",
+        "Shows a Python prototype and safety-oriented evaluation with async scheduling, namespace-local Object Memory, human approval, one-shot permission grants, JIT tool registration, deterministic demos, smoke scripts, and 123 regression tests.",
+        "Implication: tool dispatch is not the trust boundary; runtime primitives enforce explicit capability checks for filesystem/object access, sleeps, human approval, and side effects so agents can be resumed, authorized, and audited."
+      ],
+      "actionItems": [
+        "Review the Agent libOS design against the stated threat model, with attention to AgentProcess identity, lineage, checkpoints, audit records, and the claim that runtime primitives—not tool dispatch—form the trust boundary.",
+        "Evaluate the prototype on capability enforcement and resumability by exercising filesystem/object access, human approval, one-shot permission grants, JIT tool registration, and side-effect paths under the existing regression tests and smoke scripts.",
+        "Assess adoption risk by asking whether the Python prototype’s async scheduling, namespace-local Object Memory, and libOS syscall broker fit the target deployment environment without requiring POSIX compatibility or kernel-level isolation."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Low"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2606.03895v1"
+    },
+    {
+      "title": "Entropy Is Not Enough: Unlocking Effective Reinforcement Learning for Visual Reasoning via Vision-Anchored Token Selection",
+      "authors": "Senjie Jin, Peixin Wang, Boyang Liu, Xiaoran Fan, Shuo Li, Zhiheng Xi, Jiazheng Zhang, Yuhao Zhou, Tao Gui, Qi Zhang, Xuanjing Huang",
+      "org": "arXiv",
+      "date": "Jun 2, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 48,
+      "priority": "READ",
+      "tags": [
+        "Multimodal AI",
+        "Other"
+      ],
+      "fsoRelevant": true,
+      "abstract": "While token-level entropy is commonly recognized as effective for credit assignment in text-only reinforcement learning with verifiable rewards (RLVR), it remains unclear whether this mechanism still holds in visual reasoning. Our controlled study shows that this mechanism collapses in visual reasoning due to the omission of vision-sensitive tokens with naturally low entropy. Although existing multimodal RL methods increasingly acknowledge the importance of visual perception, they struggle to satisfy the inherent demand for interleaving precise perceptual grounding with semantic reasoning, either lacking systematic visual measurements or overlooking that token entropy primarily drives semantic exploration. To address this, we introduce VEPO (Vision-Entropy token-selection for Policy Optimization), an effective RL framework explicitly integrating visual sensitivity with token entropy via a principled multiplicative coupling, where VEPO redirects gradient credit toward tokens which are simultaneously visually grounded and highly informative. Extensive experiments demonstrate VEPO's leading performance, significantly outperforming the entropy-only baseline by 2.28 points at 7B-scale and 3.15 points at 3B-scale. Ablations further substantiate the soundness of our method.",
+      "takeaways": [
+        "Shows that token-level entropy alone breaks down for visual reasoning because low-entropy but vision-sensitive tokens are omitted, weakening credit assignment.",
+        "Introduces VEPO, a reinforcement learning framework that multiplies visual sensitivity with token entropy to route gradient credit to visually grounded, informative tokens; experiments and ablations support the design.",
+        "Practical implication: multimodal RL for visual reasoning should select tokens using both perceptual grounding and entropy, improving performance over entropy-only baselines at 7B and 3B scale."
+      ],
+      "actionItems": [
+        "Review the VEPO design and ablation setup to understand how visual sensitivity is combined multiplicatively with token entropy for credit assignment in visual reasoning.",
+        "Run a comparative evaluation against an entropy-only baseline at 7B and 3B scale, focusing on whether token selection preserves low-entropy but vision-sensitive tokens and reproduces the reported gains.",
+        "Assess whether the method’s reliance on visual sensitivity measurements is practical and robust for your multimodal RL setting, especially where systematic visual measurements may be limited."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2606.03937v1"
     }
   ],
   "blogs": [
@@ -843,26 +940,48 @@
       "url": "https://www.microsoft.com/en-us/research/blog/data-formulator-0-7-ai-powered-data-analytics-for-enterprise-data/"
     },
     {
-      "source": "OpenAI News",
-      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
+      "source": "Hugging Face - Blog",
+      "title": "Direct Preference Optimization Beyond Chatbots",
       "tag": "AI",
-      "date": "Jun 2, 2026",
+      "date": "Jun 3, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand."
+        "Direct Preference Optimization Beyond Chatbots"
       ],
-      "url": "https://openai.com/index/travelers"
+      "url": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots"
+    },
+    {
+      "source": "The latest research from Google",
+      "title": "The next chapter in flood resilience: Open sourcing Google’s hydrology framework",
+      "tag": "CLIMATE & SUST",
+      "date": "Jun 3, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Climate & Sustainability"
+      ],
+      "url": "https://research.google/blog/the-next-chapter-in-flood-resilience-open-sourcing-googles-hydrology-framework/"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "How Wasmer used Codex to build a Node.js runtime for the edge",
+      "tag": "AI",
+      "date": "Jun 3, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "See how Wasmer used Codex with GPT-5.5 to build a Node.js runtime for the edge, accelerating development 10x to 20x and shipping in weeks instead of months."
+      ],
+      "url": "https://openai.com/index/wasmer"
     },
     {
       "source": "Hugging Face - Blog",
-      "title": "Holo3.1: Fast & Local Computer Use Agents",
+      "title": "Adding MCP Tools to Reachy Mini",
       "tag": "AI",
-      "date": "Jun 2, 2026",
+      "date": "Jun 3, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "Holo3.1: Fast & Local Computer Use Agents"
+        "Adding MCP Tools to Reachy Mini"
       ],
-      "url": "https://huggingface.co/blog/Hcompany/holo31"
+      "url": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini"
     },
     {
       "source": "The latest research from Google",
@@ -876,128 +995,58 @@
       "url": "https://research.google/blog/a-new-era-of-innovation-google-research-at-io-2026/"
     },
     {
-      "source": "The latest research from Google",
-      "title": "Private analytics via zero-trust aggregation",
-      "tag": "SECURITY, PRIV",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Security, Privacy and Abuse Prevention"
-      ],
-      "url": "https://research.google/blog/private-analytics-via-zero-trust-aggregation/"
-    },
-    {
-      "source": "Microsoft Research",
-      "title": "Extending Human Intelligence Through AI",
-      "tag": "RESEARCH BLOG",
-      "date": "May 27, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "At a glance Modern AI systems are powerful not because they replicate human intelligence, but because they presuppose it, by extending structures already present in human cognition and language. This perspective helps explain both AI\u2019s rema"
-      ],
-      "url": "https://www.microsoft.com/en-us/research/blog/extending-human-intelligence-through-ai/"
-    },
-    {
       "source": "OpenAI News",
-      "title": "Advancing youth safety and opportunity through global leadership",
+      "title": "OpenAI public policy agenda",
       "tag": "GLOBAL AFFAIRS",
-      "date": "Jun 2, 2026",
+      "date": "Jun 3, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "OpenAI calls for global action on youth AI safety, proposing an international institute to strengthen safeguards, standards, and opportunities for young people."
+        "OpenAI outlines its public policy agenda for AI, including safety, youth protection, workforce transition, and global standards to ensure AI benefits society."
       ],
-      "url": "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership"
+      "url": "https://openai.com/index/public-policy-agenda"
     },
     {
       "source": "Hugging Face - Blog",
-      "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
+      "title": "Holo3.1: Fast & Local Computer Use Agents",
       "tag": "AI",
-      "date": "Jun 1, 2026",
-      "fsoRelevant": true,
-      "takeaways": [
-        "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic"
-      ],
-      "url": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Codex is becoming a productivity tool for everyone",
-      "tag": "GLOBAL AFFAIRS",
       "date": "Jun 2, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "The Next Era of Knowledge Work report explores how Codex is transforming productivity through AI-powered research, data analysis, workflow automation, and content creation."
+        "Holo3.1: Fast & Local Computer Use Agents"
       ],
-      "url": "https://openai.com/index/codex-for-knowledge-work"
+      "url": "https://huggingface.co/blog/Hcompany/holo31"
     },
     {
-      "source": "Hugging Face - Blog",
-      "title": "Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action",
-      "tag": "AI",
-      "date": "Jun 1, 2026",
+      "source": "OpenAI News",
+      "title": "A blueprint for democratic governance of frontier AI",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "Jun 3, 2026",
       "fsoRelevant": true,
       "takeaways": [
-        "Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action"
+        "OpenAI outlines a blueprint for U.S. governance of frontier AI, proposing a federal framework for safety, resilience, and national security."
       ],
-      "url": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai"
+      "url": "https://openai.com/index/frontier-safety-blueprint"
+    },
+    {
+      "source": "OpenAI News",
+      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
+      "tag": "AI",
+      "date": "Jun 2, 2026",
+      "fsoRelevant": true,
+      "takeaways": [
+        "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand."
+      ],
+      "url": "https://openai.com/index/travelers"
     }
   ],
   "socialPosts": [],
   "trending": [],
   "health": [
     {
-      "source": "rss",
-      "status": "ok",
-      "item_count": 20,
-      "duration_ms": 6540,
-      "fetch_diagnostics": {
-        "strategy": "round_robin",
-        "feeds_requested": 5,
-        "selected": 20,
-        "feeds": [
-          {
-            "feed_url": "https://openai.com/news/rss.xml",
-            "source": "OpenAI News",
-            "fetched": 20,
-            "eligible": 18,
-            "selected": 9
-          },
-          {
-            "feed_url": "https://www.anthropic.com/news/rss.xml",
-            "source": "https://www.anthropic.com/news/rss.xml",
-            "fetched": 0,
-            "eligible": 0,
-            "selected": 0
-          },
-          {
-            "feed_url": "https://huggingface.co/blog/feed.xml",
-            "source": "Hugging Face - Blog",
-            "fetched": 20,
-            "eligible": 7,
-            "selected": 7
-          },
-          {
-            "feed_url": "https://research.google/blog/rss/",
-            "source": "The latest research from Google",
-            "fetched": 20,
-            "eligible": 2,
-            "selected": 2
-          },
-          {
-            "feed_url": "https://www.microsoft.com/en-us/research/feed/",
-            "source": "Microsoft Research",
-            "fetched": 10,
-            "eligible": 2,
-            "selected": 2
-          }
-        ]
-      }
-    },
-    {
       "source": "papers",
       "status": "ok",
-      "item_count": 58,
-      "duration_ms": 7120,
+      "item_count": 57,
+      "duration_ms": 6510,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -1033,7 +1082,7 @@
         "fourteen_day_count": 75,
         "backfill_count": 0,
         "selected_window_days": 7,
-        "deduplicated_count": 58,
+        "deduplicated_count": 57,
         "displayed_count": 8,
         "request_attempts": 3,
         "retry_count": 0,
@@ -1045,14 +1094,71 @@
           "fallbacks": 0,
           "disabled": false,
           "skip_reason": ""
+        },
+        "action_diagnostics": {
+          "attempted_papers": 8,
+          "request_attempts": 8,
+          "retry_count": 0,
+          "successes": 8,
+          "fallbacks": 0,
+          "disabled": false,
+          "skip_reason": ""
         }
+      }
+    },
+    {
+      "source": "rss",
+      "status": "ok",
+      "item_count": 20,
+      "duration_ms": 6566,
+      "fetch_diagnostics": {
+        "strategy": "round_robin",
+        "feeds_requested": 5,
+        "selected": 20,
+        "feeds": [
+          {
+            "feed_url": "https://openai.com/news/rss.xml",
+            "source": "OpenAI News",
+            "fetched": 20,
+            "eligible": 16,
+            "selected": 10
+          },
+          {
+            "feed_url": "https://www.anthropic.com/news/rss.xml",
+            "source": "https://www.anthropic.com/news/rss.xml",
+            "fetched": 0,
+            "eligible": 0,
+            "selected": 0
+          },
+          {
+            "feed_url": "https://huggingface.co/blog/feed.xml",
+            "source": "Hugging Face - Blog",
+            "fetched": 20,
+            "eligible": 7,
+            "selected": 7
+          },
+          {
+            "feed_url": "https://research.google/blog/rss/",
+            "source": "The latest research from Google",
+            "fetched": 20,
+            "eligible": 2,
+            "selected": 2
+          },
+          {
+            "feed_url": "https://www.microsoft.com/en-us/research/feed/",
+            "source": "Microsoft Research",
+            "fetched": 10,
+            "eligible": 1,
+            "selected": 1
+          }
+        ]
       }
     },
     {
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 68240,
+      "duration_ms": 67109,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1065,13 +1171,13 @@
           {
             "query": "topic:agents language:python",
             "fetched": 8,
-            "added": 7,
+            "added": 8,
             "failed": false
           },
           {
             "query": "topic:rag language:python",
             "fetched": 8,
-            "added": 5,
+            "added": 7,
             "failed": false
           },
           {
@@ -1089,7 +1195,7 @@
           {
             "query": "memory llm language:python stars:>20",
             "fetched": 8,
-            "added": 5,
+            "added": 3,
             "failed": false
           },
           {
@@ -1099,25 +1205,25 @@
             "failed": false
           },
           {
-            "query": "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20",
+            "query": "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
+            "query": "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
+            "query": "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
+            "query": "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
@@ -1174,36 +1280,36 @@
             "kind": "evergreen"
           },
           {
-            "repo": "modelcontextprotocol/servers",
+            "repo": "microsoft/graphrag",
             "added": 0,
             "failed": false,
             "skipped_old": true,
             "kind": "emerging"
           },
           {
-            "repo": "crewAIInc/crewAI",
+            "repo": "ZepAI/zep",
+            "added": 0,
+            "failed": true,
+            "skipped_old": false,
+            "kind": "emerging"
+          },
+          {
+            "repo": "supermemoryai/supermemory",
             "added": 0,
             "failed": false,
             "skipped_old": true,
             "kind": "emerging"
           },
           {
-            "repo": "phidatahq/phidata",
-            "added": 0,
-            "failed": false,
-            "skipped_old": true,
-            "kind": "emerging"
-          },
-          {
-            "repo": "mem0ai/mem0",
+            "repo": "open-webui/open-webui",
             "added": 0,
             "failed": false,
             "skipped_old": true,
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-05-26",
-        "created_cutoff": "2026-04-03",
+        "pushed_cutoff": "2026-05-28",
+        "created_cutoff": "2026-04-05",
         "dynamic_config": {
           "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1215,35 +1321,35 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
+              "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
+              "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
+              "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
+              "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
+            ],
+            "removed": [
               "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
               "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
               "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
               "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20"
-            ],
-            "removed": [
-              "\"memory graph\" llm language:python stars:>20",
-              "\"agentic memory\" language:python stars:>15",
-              "\"knowledge graph\" llm language:python stars:>20",
-              "\"semantic cache\" llm language:python stars:>20"
             ]
           },
           "watch_rotation": {
             "replacements": 4,
             "added": [
+              "open-webui/open-webui",
+              "supermemoryai/supermemory",
+              "ZepAI/zep",
+              "microsoft/graphrag"
+            ],
+            "removed": [
               "mem0ai/mem0",
               "phidatahq/phidata",
               "crewAIInc/crewAI",
               "modelcontextprotocol/servers"
-            ],
-            "removed": [
-              "ZepAI/zep",
-              "langchain-ai/langgraph",
-              "run-llama/llama_index",
-              "OpenMemoryProject/openmemory"
             ]
           }
         },
-        "total_unique_candidates": 47,
+        "total_unique_candidates": 48,
         "dynamic_refresh": {
           "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1255,31 +1361,31 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
+              "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
+              "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
+              "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
+              "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
+            ],
+            "removed": [
               "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
               "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
               "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
               "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20"
-            ],
-            "removed": [
-              "\"memory graph\" llm language:python stars:>20",
-              "\"agentic memory\" language:python stars:>15",
-              "\"knowledge graph\" llm language:python stars:>20",
-              "\"semantic cache\" llm language:python stars:>20"
             ]
           },
           "watch_rotation": {
             "replacements": 4,
             "added": [
+              "open-webui/open-webui",
+              "supermemoryai/supermemory",
+              "ZepAI/zep",
+              "microsoft/graphrag"
+            ],
+            "removed": [
               "mem0ai/mem0",
               "phidatahq/phidata",
               "crewAIInc/crewAI",
               "modelcontextprotocol/servers"
-            ],
-            "removed": [
-              "ZepAI/zep",
-              "langchain-ai/langgraph",
-              "run-llama/llama_index",
-              "OpenMemoryProject/openmemory"
             ]
           }
         }
@@ -1288,8 +1394,8 @@
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 9,
-      "duration_ms": 101462,
+      "item_count": 13,
+      "duration_ms": 165925,
       "dynamic_config": {
         "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
@@ -1302,52 +1408,64 @@
         "updated": true,
         "source": "llm",
         "feed_rotation": {
-          "replacements": 1,
+          "replacements": 2,
           "added": [
-            "https://github.blog/category/ai-and-ml/feed/"
+            "https://blog.google/rss/",
+            "https://cloud.google.com/blog/feed/"
           ],
           "removed": [
-            "https://aws.amazon.com/blogs/machine-learning/feed/"
+            "https://blogs.microsoft.com/ai/feed/",
+            "https://blog.google/technology/ai/rss/"
           ]
         },
         "model_term_rotation": {
-          "replacements": 0,
-          "added": [],
-          "removed": []
+          "replacements": 4,
+          "added": [
+            "gemini flash",
+            "codey",
+            "gemma",
+            "gpt-5"
+          ],
+          "removed": [
+            "mellum 2",
+            "gemini 3.5",
+            "nvidia cosmos 3",
+            "claude opus 4.8"
+          ]
         },
         "tool_term_rotation": {
           "replacements": 3,
           "added": [
             "agentcore",
             "codex",
-            "nemoclaw"
+            "bedrock agents"
           ],
           "removed": [
-            "policy interceptor",
+            "nemoclaw",
             "agentcore",
             "codex"
           ]
         }
       },
       "extraction_diagnostics": {
-        "feeds_requested": 15,
+        "feeds_requested": 17,
         "source_pages_requested": 6,
-        "entries_fetched": 143,
-        "classified": 11,
-        "selected": 9,
-        "llm_classification_attempts": 20,
-        "llm_classification_failures": 0,
+        "entries_fetched": 154,
+        "classified": 14,
+        "selected": 13,
+        "llm_classification_attempts": 24,
+        "llm_classification_failures": 1,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
         "classification_diagnostics": {
-          "entries_considered": 143,
-          "rejected_duplicate_url": 2,
-          "rejected_missing_or_stale_date": 46,
-          "rejected_non_release": 75,
-          "rejected_by_llm": 9
+          "entries_considered": 154,
+          "rejected_duplicate_url": 9,
+          "rejected_missing_or_stale_date": 47,
+          "rejected_non_release": 74,
+          "rejected_by_llm": 10
         },
         "selection_diagnostics": {
-          "rejected_near_duplicate": 2
+          "rejected_near_duplicate": 1
         },
         "dynamic_config": {
           "state_path": "/Users/ajinkyapawale/Documents/llm-news-artifact-feature-ajinkya-exp/data/model_tools_dynamic_config.json",
@@ -1361,28 +1479,40 @@
           "updated": true,
           "source": "llm",
           "feed_rotation": {
-            "replacements": 1,
+            "replacements": 2,
             "added": [
-              "https://github.blog/category/ai-and-ml/feed/"
+              "https://blog.google/rss/",
+              "https://cloud.google.com/blog/feed/"
             ],
             "removed": [
-              "https://aws.amazon.com/blogs/machine-learning/feed/"
+              "https://blogs.microsoft.com/ai/feed/",
+              "https://blog.google/technology/ai/rss/"
             ]
           },
           "model_term_rotation": {
-            "replacements": 0,
-            "added": [],
-            "removed": []
+            "replacements": 4,
+            "added": [
+              "gemini flash",
+              "codey",
+              "gemma",
+              "gpt-5"
+            ],
+            "removed": [
+              "mellum 2",
+              "gemini 3.5",
+              "nvidia cosmos 3",
+              "claude opus 4.8"
+            ]
           },
           "tool_term_rotation": {
             "replacements": 3,
             "added": [
               "agentcore",
               "codex",
-              "nemoclaw"
+              "bedrock agents"
             ],
             "removed": [
-              "policy interceptor",
+              "nemoclaw",
               "agentcore",
               "codex"
             ]

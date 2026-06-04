@@ -1,21 +1,21 @@
 {
   "version": 1,
-  "updated_at": "2026-06-02T20:25:03.932779+00:00",
+  "updated_at": "2026-06-04T00:30:59.885451+00:00",
   "source": "llm",
   "emerging_queries": [
     "reasoning language:python stars:>30",
     "memory llm language:python stars:>20",
     "\"recursive language model\" OR rlm language:python stars:>10",
-    "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20",
-    "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
-    "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
-    "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20"
+    "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25",
+    "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
+    "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
+    "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15"
   ],
   "emerging_watch_repos": [
-    "modelcontextprotocol/servers",
-    "crewAIInc/crewAI",
-    "phidatahq/phidata",
-    "mem0ai/mem0"
+    "microsoft/graphrag",
+    "ZepAI/zep",
+    "supermemoryai/supermemory",
+    "open-webui/open-webui"
   ],
   "refresh": {
     "auto_update_enabled": true,
@@ -25,31 +25,31 @@
     "query_rotation": {
       "replacements": 4,
       "added": [
+        "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
+        "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
+        "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
+        "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
+      ],
+      "removed": [
         "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
         "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
         "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
         "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20"
-      ],
-      "removed": [
-        "\"memory graph\" llm language:python stars:>20",
-        "\"agentic memory\" language:python stars:>15",
-        "\"knowledge graph\" llm language:python stars:>20",
-        "\"semantic cache\" llm language:python stars:>20"
       ]
     },
     "watch_rotation": {
       "replacements": 4,
       "added": [
+        "open-webui/open-webui",
+        "supermemoryai/supermemory",
+        "ZepAI/zep",
+        "microsoft/graphrag"
+      ],
+      "removed": [
         "mem0ai/mem0",
         "phidatahq/phidata",
         "crewAIInc/crewAI",
         "modelcontextprotocol/servers"
-      ],
-      "removed": [
-        "ZepAI/zep",
-        "langchain-ai/langgraph",
-        "run-llama/llama_index",
-        "OpenMemoryProject/openmemory"
       ]
     }
   }

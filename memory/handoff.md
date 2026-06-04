@@ -89,12 +89,31 @@ Owner: AI agent (Codex)
   plus expanded repo-card action panels and rectangular release/open-repo CTAs.
 - Removed RSS/source-feed CTAs from model/tool release cards; model cards now show a blue
   benchmark CTA and release/tool cards use yellow read-release CTAs.
+- Tightened CTA sizing across dashboard links, moved expanded repo release/open-repo CTAs
+  into the expanded header beside repo tags, and changed model benchmark fallbacks from
+  the generic Artificial Analysis evaluations page to model-specific `/models/<slug>/`
+  pages.
+- Replaced guessed Artificial Analysis benchmark slugs with a verified allowlist plus
+  safe models-directory fallback, moved hosted-model availability cards such as NEXUS
+  on SageMaker into tools/services, and removed GPT-Rosalind capability updates from
+  model releases.
+- Removed runtime Tailwind CDN and Google Fonts dependencies; local utility CSS now
+  covers the dashboard classes and production `npm run build` passes again.
+- Fixed the recurring local dev hang where Vite listened on `5173` but did not respond:
+  Vite now binds to `127.0.0.1`, uses esbuild JSX handling instead of the React Babel
+  plugin, Lucide icons are imported directly to avoid barrel prebundling, and stale
+  orphaned Vite/esbuild plus headless automation processes were cleaned up.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
 - Python pipeline fetches real arXiv, GitHub, and RSS items and writes `data/output.json`.
 - GitHub repo bullets are generated deterministically by default and can use OpenAI when `OPENAI_API_KEY` is set.
-- Dashboard reads generated JSON data and builds successfully.
+- Dashboard reads generated JSON data. Current dev-server rendering was verified on
+  `http://localhost:5173`; visible title load improved from roughly 11.8s to roughly
+  0.57s after removing runtime CDN/font dependencies.
+- Current dev server is running at `http://127.0.0.1:5173/`; normal cached startup
+  measured about 130-184 ms, `/` returned in about 68 ms, and the main dashboard JSX
+  module returned in about 32 ms after the Vite cache was ready.
 - Dashboard renders properly on desktop and mobile; the mobile tab rail wraps and the
   pipeline flow stacks vertically.
 - Dashboard branding and user-facing copy are generic rather than financial-services-specific.
@@ -116,8 +135,8 @@ Owner: AI agent (Codex)
   them; deterministic clone, map-use-case, and review-release/issues/license actions are
   used when the API is unavailable or the artifact has not been refreshed.
 - Model/tool cards no longer expose RSS/source feed buttons in the UI. Model cards use
-  `https://artificialanalysis.ai/evaluations` as the default benchmark CTA unless a
-  future card provides `benchmarkUrl`.
+  verified Artificial Analysis model URLs when known; otherwise they link to
+  `https://artificialanalysis.ai/models` as `Benchmarks` to avoid 404s.
 - `origin` should point to `https://github.com/AjinkyaPawale1/ai-news-artifact.git`
   after the repository rename.
 - Remote branch currently published: `main`.
@@ -136,7 +155,8 @@ Owner: AI agent (Codex)
 11. Design the broader enterprise credibility, actionability, and personalization scoring phase before implementing it.
 
 ## Risks / Watchouts
-- If utility classes expand, CDN-based styling may be less maintainable than local Tailwind setup.
+- If utility classes expand, local utility CSS may become less maintainable than a real
+  local Tailwind pipeline; do not reintroduce runtime Tailwind CDN for the dashboard.
 - GitHub API runs unauthenticated unless GITHUB_TOKEN is provided; rate limits may apply.
 - LangGraph is now a pipeline dependency; run `pip install -r apps/pipeline/requirements.txt` after pulling.
 - OpenAI repo summaries are optional and require `OPENAI_API_KEY`; `OPENAI_MODEL` defaults to `gpt-5.4-mini`.
@@ -154,6 +174,8 @@ Owner: AI agent (Codex)
 - Paper research metadata and scores are deterministic keyword logic; adjust keyword groups and score weights carefully if dashboard labels or ranking feel too broad or too narrow.
 - arXiv runs intentionally add three-second spacing between category requests to reduce avoidable `429` responses.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.
+- On 2026-06-04, `npm run build` initially timed out at Vite `transforming...`; after
+  removing runtime Tailwind CDN and Google Fonts imports, the build completed in 1.87s.
 - Keep `AGENTS.md` and the `memory/` files in sync when agent operating rules change.
 - This checkout is a git worktree; GitHub CLI repository creation works more reliably by creating the remote first, then adding `origin`, rather than using `gh repo create --source=.`.
 

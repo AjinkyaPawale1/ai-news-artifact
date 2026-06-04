@@ -55,6 +55,13 @@ Last updated: 2026-06-03
 - [x] Add repo recommended actions with optional OpenAI generation, deterministic fallback,
       expanded-card action panels, and rectangular repo/release CTAs.
 - [x] Remove RSS/source-feed CTAs from model/tool cards and add model benchmark CTA.
+- [x] Tighten CTA sizing, move expanded repo CTAs beside repo tags, and make model
+      benchmark fallbacks point to Artificial Analysis model pages.
+- [x] Verify model benchmark links, add safe Artificial Analysis fallback, tighten
+      model-vs-tool classification, and remove runtime CSS/font CDNs.
+- [x] Fix local Vite dev-server hang on `5173` by using esbuild JSX, binding to
+      `127.0.0.1`, importing Lucide icons directly, and clearing stale
+      Vite/esbuild/headless-browser processes.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

@@ -151,7 +151,9 @@ The latest run stores per-feed fetched, eligible, and selected counts under the 
 entry in `data/health.json`.
 
 Model/tool release cards do not render RSS or source-page feed links. Model cards show
-a yellow `Read release` CTA plus a blue `Benchmark` CTA; tool/service cards show only
+a yellow `Read release` CTA plus a blue benchmark CTA only after mapping to a verified
+Artificial Analysis model page; unverified models link to the Artificial Analysis models
+directory as `Benchmarks` instead of inventing a model URL. Tool/service cards show only
 the yellow `Read release` CTA. Source URLs remain in the artifact metadata for audit
 and diagnostics.
 

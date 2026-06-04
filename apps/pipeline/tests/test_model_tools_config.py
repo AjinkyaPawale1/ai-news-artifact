@@ -107,9 +107,30 @@ class DashboardArtifactTests(unittest.TestCase):
             [
                 {
                     "source_type": "model",
-                    "title": "Model",
+                    "title": "Claude Opus 4.8",
                     "url": "https://example.com/release",
                     "metadata": {"source_url": "https://example.com/feed.xml", "source_label": "RSS feed"},
+                }
+            ]
+        )
+
+        expected_benchmark_url = "https://artificialanalysis.ai/models/claude-opus-4-8"
+        self.assertEqual(
+            payload["models"][0]["links"],
+            [
+                {"label": "Read release", "url": "https://example.com/release"},
+                {"label": "Benchmark", "url": expected_benchmark_url},
+            ],
+        )
+        self.assertEqual(payload["models"][0]["benchmarkUrl"], expected_benchmark_url)
+
+    def test_unknown_model_release_falls_back_to_benchmark_directory(self) -> None:
+        payload = push_to_artifact.build_dashboard_payload(
+            [
+                {
+                    "source_type": "model",
+                    "title": "Mellum2",
+                    "url": "https://example.com/mellum2",
                 }
             ]
         )
@@ -117,8 +138,8 @@ class DashboardArtifactTests(unittest.TestCase):
         self.assertEqual(
             payload["models"][0]["links"],
             [
-                {"label": "Read release", "url": "https://example.com/release"},
-                {"label": "Benchmark", "url": push_to_artifact.MODEL_BENCHMARK_URL},
+                {"label": "Read release", "url": "https://example.com/mellum2"},
+                {"label": "Benchmarks", "url": "https://artificialanalysis.ai/models"},
             ],
         )
 
@@ -165,6 +186,34 @@ class ModelToolsClassificationTests(unittest.TestCase):
         )
 
         self.assertEqual(release["kind"], "model")
+
+    def test_classifier_moves_hosted_model_availability_to_tools(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "AWS",
+                "title": "Fundamental's large tabular model NEXUS is now available on Amazon SageMaker JumpStart",
+                "content": "Fundamental's NEXUS foundation model is now available on Amazon SageMaker JumpStart.",
+                "url": "https://example.com/nexus",
+            },
+            model_terms=["model", "foundation model", "nexus"],
+            tool_terms=["deployment", "sagemaker", "jumpstart"],
+        )
+
+        self.assertEqual(release["kind"], "tool_service")
+
+    def test_classifier_rejects_model_capability_update_without_new_model(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "OpenAI",
+                "title": "Introducing new capabilities to GPT-Rosalind",
+                "content": "OpenAI shipped new capabilities for biology workflows.",
+                "url": "https://example.com/gpt-rosalind",
+            },
+            model_terms=["model", "gpt"],
+            tool_terms=["workflow"],
+        )
+
+        self.assertIsNone(release)
 
     def test_selection_collapses_same_day_near_duplicate_but_preserves_versions(self) -> None:
         base = {
