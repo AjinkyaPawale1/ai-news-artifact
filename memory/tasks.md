@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-06-03
+Last updated: 2026-06-08
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -24,6 +24,7 @@ Last updated: 2026-06-03
 - [x] Add bounded LLM-assisted emerging feed and keyword refresh for model/tool releases.
 - [x] Add optional LLM classification for bounded model/tool release candidates.
 - [x] Expand official model/tool provider feeds and source pages.
+- [x] Add permanent Perplexity and ElevenLabs model/tool release sources with live extraction tests.
 - [x] Add richer model/tool card summaries and release/source links.
 - [x] Enforce recent-dated model/tool cards and make them collapsed/expandable like repo cards.
 - [x] Add end-to-end model/tools agent architecture documentation under `docs/`.
@@ -67,6 +68,8 @@ Last updated: 2026-06-03
 - [x] Schedule Monday 10:00 AM Eastern pipeline refreshes and GitHub Pages deployment.
 - [x] Block incomplete source refreshes before automated commit and deployment.
 - [x] Load only the selected historical edition instead of bundling every archive.
+- [x] Reject non-product source-page announcements and defer monthly changelog blocks
+      until the following calendar month.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

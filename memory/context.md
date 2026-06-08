@@ -68,6 +68,9 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
 - `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
 - Model/tool release discovery uses protected official core feeds, official source pages for providers without reliable RSS, plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
+- Perplexity's official API changelog and the ElevenLabs blog are permanent
+  model/tool source pages. Perplexity Markdown updates are split by completed
+  month, while ElevenLabs article dates and excerpts are resolved from each post.
 - Human-maintained model/tool source groups, core terms, and limits live in `apps/pipeline/src/news_pipeline/model_tools_config.py`; `data/model_tools_dynamic_config.json` is generated runtime state for inspection.
 - Model/tool vocabulary is standardized: core feeds are always active, emerging feeds/terms rotate within bounds, and candidate feeds are the allowed proposal pool.
 - `MODEL_TOOL_MAX_ITEMS` is the single per-category cap for graph selection and dashboard release-card rendering.
@@ -76,9 +79,10 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
   otherwise fall back to the Artificial Analysis models directory. RSS/source-page
   links remain metadata only and are not rendered as card CTAs. Source-page candidates
   are enriched from official article excerpts before LLM classification where possible.
-- Model/tool classification rejects tutorial, guide, case-study, and broad marketing
-  headlines unless they clearly announce a release. Selection also collapses same-day,
-  same-organization near-duplicate product names while preserving distinct versions.
+- Model/tool classification rejects tutorial, guide, case-study, broad marketing, and
+  corporate-announcement source pages unless the headline contains a concrete product
+  signal. Selection also collapses same-day, same-organization near-duplicate product
+  names while preserving distinct versions.
 - RSS selection rotates across configured official feeds before applying the global cap;
   RSS health diagnostics include per-feed fetched, eligible, and selected counts.
 - arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,

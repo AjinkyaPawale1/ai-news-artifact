@@ -133,7 +133,7 @@ Collection bounds and controls:
 | Collection or control | Default | Env var | Meaning |
 | --- | ---: | --- | --- |
 | Core feeds | `14` static defaults | `MODEL_TOOL_CORE_FEEDS` | always active; override replaces the complete list |
-| Source pages | `6` static defaults | `MODEL_TOOL_SOURCE_PAGES_EXTRA` | official fallback pages; extras are additive |
+| Source pages | `8` static defaults | `MODEL_TOOL_SOURCE_PAGES_EXTRA` | official fallback pages; extras are additive |
 | Candidate feeds | derived allow-list | `MODEL_TOOL_EMERGING_FEEDS_EXTRA` | allowed proposal pool; extras also become candidates |
 | Emerging feeds | max `5` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS` | rotating feed set |
 | Emerging model terms | max `12` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS` | rotating model-term set |
@@ -262,7 +262,8 @@ Current source families:
 - Google research, developer, AI, and cloud feeds
 - Microsoft research, AI, and Azure feeds
 - NVIDIA and AWS ML feeds
-- Official source pages for Anthropic, Gemini changelog, Meta AI, Mistral, and Cohere
+- Official source pages for Anthropic, Gemini changelog, Meta AI, Mistral, Cohere,
+  Perplexity, and ElevenLabs
 
 RSS handling:
 
@@ -278,6 +279,11 @@ Source-page handling:
 - Collects candidate links, title text, page descriptions, and paragraph text
 - Filters links by host match, path relevance, and title quality
 - Seeds initial `published_date` from title text when a visible date exists
+- Perplexity's official Markdown changelog is split into release candidates from
+  completed monthly update blocks; each block uses its month-end date so it can
+  enter the next weekly run without assigning an invented intra-month date
+- ElevenLabs release candidates come from its official blog and are enriched
+  from article metadata and excerpts before classification
 
 Output state:
 
@@ -338,7 +344,9 @@ High-level logic:
 1. Score title matches more heavily than body text.
 2. Require release language plus a product-focused headline. Reject tutorials, guides,
    case studies, customer stories, and implementation advice unless the headline clearly
-   announces a concrete shipped release.
+   announces a concrete shipped release. Source-page headlines must contain a model/tool,
+   product capability, version, or explicit product-availability signal; corporate expansion
+   and partnership announcements cannot qualify from body text alone.
 3. Choose `kind = model` or `kind = tool_service` based on the stronger score.
 4. Derive presentation fields:
    - `name`: cleaned title without generic prefixes
@@ -588,6 +596,7 @@ Common failure cases and how the workflow handles them:
 | --- | --- |
 | RSS feed missing timestamps | fallback date extraction from article/page content |
 | Official source page is noisy | URL/title filters and article excerpt re-fetch before classification |
+| Provider has no valid official RSS/Atom endpoint | use its permanent official changelog or blog through the source-page path |
 | OpenAI unavailable or over quota | deterministic behavior continues; diagnostics capture the reason |
 | Candidate has no trustworthy recent date | card is dropped before selection |
 | Duplicate vendor announcements across feeds/pages | dedupe by normalized release name during selection |

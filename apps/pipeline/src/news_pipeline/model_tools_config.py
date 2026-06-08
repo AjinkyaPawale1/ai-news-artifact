@@ -48,6 +48,8 @@ MODEL_TOOL_SOURCE_PAGES = [
     "https://ai.meta.com/blog/",
     "https://mistral.ai/news/",
     "https://cohere.com/blog/",
+    "https://docs.perplexity.ai/docs/resources/changelog.md",
+    "https://elevenlabs.io/blog/",
 ]
 MODEL_TOOL_SOURCE_PAGES += _env_list("MODEL_TOOL_SOURCE_PAGES_EXTRA")
 
@@ -157,11 +159,14 @@ MODEL_TOOL_KNOWN_BENCHMARK_URLS = {
 }
 
 MODEL_TOOL_HOSTING_RELEASE_TERMS = [
+    "agent api",
     "amazon bedrock",
     "amazon sagemaker",
     "aws",
     "azure",
+    "endpoint",
     "foundry",
+    "integration",
     "jumpstart",
     "microsoft foundry",
     "nvidia-accelerated",

@@ -7,6 +7,7 @@ import json
 import logging
 import os
 import re
+from calendar import monthrange
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
@@ -42,6 +43,16 @@ MONTH_DATE_RE = re.compile(
 )
 ISO_DATE_RE = re.compile(r"\b20\d{2}-\d{2}-\d{2}(?:[T ][0-2]\d:\d{2}:\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?\b")
 URL_DATE_RE = re.compile(r"/(20\d{2})/(\d{2})/(\d{2})(?:/|$)")
+MARKDOWN_UPDATE_RE = re.compile(
+    r'<Update\s+label="([^"]+)"[^>]*>(.*?)</Update>',
+    flags=re.DOTALL,
+)
+MARKDOWN_HEADING_RE = re.compile(r"^\s*\*\*(.+?)\*\*\s*$", flags=re.MULTILINE)
+PRODUCT_VERSION_RE = re.compile(r"\bv?\d+(?:\.\d+)*\b", flags=re.IGNORECASE)
+PRODUCT_AVAILABILITY_RE = re.compile(
+    r":\s*(?:now\s+)?(?:available|released|preview|beta)\b",
+    flags=re.IGNORECASE,
+)
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
 DEFAULT_OPENAI_MODEL = "gpt-5.4-mini"
 _LAST_DIAGNOSTICS: dict[str, Any] | None = None
@@ -78,6 +89,8 @@ ORG_HINTS = {
     "nvidia": "NVIDIA",
     "aws": "AWS",
     "github": "GitHub",
+    "perplexity": "Perplexity",
+    "elevenlabs": "ElevenLabs",
 }
 NON_RELEASE_HEADLINE_TERMS = [
     "how ",
@@ -93,6 +106,32 @@ NON_RELEASE_HEADLINE_TERMS = [
     "using ",
     "build ",
     "building ",
+]
+NON_PRODUCT_ANNOUNCEMENT_TERMS = [
+    "acquires ",
+    "acquisition",
+    "appoints ",
+    "collaboration",
+    "expands presence",
+    "expansion",
+    "funding",
+    "joins forces",
+    "opens office",
+    "partners with",
+    "partnership",
+]
+SOURCE_PAGE_PRODUCT_TERMS = [
+    "api",
+    "cli",
+    "dubbing",
+    "integration",
+    "model",
+    "music",
+    "platform",
+    "sdk",
+    "search",
+    "tool",
+    "ui",
 ]
 
 
@@ -202,6 +241,10 @@ def _source_name(url: str) -> str:
         return "AWS"
     if "github" in host:
         return "GitHub"
+    if "perplexity" in host:
+        return "Perplexity"
+    if "elevenlabs" in host:
+        return "ElevenLabs"
     if "google" in host:
         return "Google"
     return host or url
@@ -304,6 +347,60 @@ def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
     return any(part in url for part in ("/news", "/engineering", "/blog", "/research", "/docs", "/gemini"))
 
 
+def _markdown_text(value: str) -> str:
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value)
+    text = re.sub(r"</?[A-Za-z][^>]*>", " ", text)
+    text = re.sub(r"[`*_#>-]+", " ", text)
+    return WHITESPACE_RE.sub(" ", text).strip()
+
+
+def _month_end_date(label: str) -> str:
+    try:
+        month = datetime.strptime(label.strip(), "%B %Y")
+    except ValueError:
+        return ""
+    last_day = monthrange(month.year, month.month)[1]
+    resolved = month.replace(day=last_day, tzinfo=timezone.utc)
+    now = datetime.now(timezone.utc)
+    if (month.year, month.month) >= (now.year, now.month):
+        return ""
+    return resolved.isoformat()
+
+
+def _fetch_markdown_changelog_entries(page_url: str, markdown: str) -> list[dict[str, Any]]:
+    entries: list[dict[str, Any]] = []
+    source = _source_name(page_url)
+    canonical_url = page_url.removesuffix(".md")
+    ignored_headings = {"Highlights:", "Key capabilities:", "What this means:"}
+
+    for update_match in MARKDOWN_UPDATE_RE.finditer(markdown):
+        label, block = update_match.groups()
+        published_date = _month_end_date(label)
+        if not published_date:
+            continue
+        headings = list(MARKDOWN_HEADING_RE.finditer(block))
+        for index, heading in enumerate(headings):
+            title = _markdown_text(heading.group(1))
+            if title in ignored_headings or len(title) < 8:
+                continue
+            content_end = headings[index + 1].start() if index + 1 < len(headings) else len(block)
+            content = _markdown_text(block[heading.end() : content_end])[:1800]
+            slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:80]
+            entries.append(
+                {
+                    "source": source,
+                    "title": title,
+                    "url": f"{canonical_url}#{label.lower().replace(' ', '-')}-{slug}",
+                    "published_date": published_date,
+                    "content": content or title,
+                    "source_page": True,
+                    "source_url": page_url,
+                    "source_label": "Source page",
+                }
+            )
+    return entries
+
+
 def _article_metadata(url: str, title: str) -> dict[str, str]:
     try:
         response = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
@@ -362,6 +459,10 @@ def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
             response.raise_for_status()
         except requests.RequestException as exc:
             LOGGER.warning("Source page fetch failed for %s: %s", page_url, exc)
+            continue
+
+        if page_url.endswith(".md") or "markdown" in response.headers.get("Content-Type", ""):
+            entries.extend(_fetch_markdown_changelog_entries(page_url, response.text))
             continue
 
         parser = LinkParser()
@@ -433,6 +534,8 @@ def _org_from_source(source: str, text: str) -> str:
         "NVIDIA",
         "AWS",
         "GitHub",
+        "Perplexity",
+        "ElevenLabs",
     }
     if source in known_sources:
         return source
@@ -500,6 +603,23 @@ def _is_model_update_only(title_text: str) -> bool:
     return _contains_any(title_text, MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS)
 
 
+def _source_page_title_has_product_signal(
+    title_text: str,
+    *,
+    title_model_score: int,
+    title_tool_score: int,
+) -> bool:
+    if any(term in title_text for term in NON_PRODUCT_ANNOUNCEMENT_TERMS):
+        return False
+    return bool(
+        title_model_score
+        or title_tool_score
+        or _contains_any(title_text, SOURCE_PAGE_PRODUCT_TERMS)
+        or PRODUCT_VERSION_RE.search(title_text)
+        or PRODUCT_AVAILABILITY_RE.search(title_text)
+    )
+
+
 def _classify_entry(
     entry: dict[str, Any],
     *,
@@ -512,10 +632,18 @@ def _classify_entry(
     text = f"{title} {content}".lower()
     title_model_score = _term_count(title_text, model_terms)
     title_tool_score = _term_count(title_text, tool_terms)
-    if title_model_score == 0 and title_tool_score == 0:
-        return None
-
     title_has_release_signal = _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
+    if entry.get("source_page") and not _source_page_title_has_product_signal(
+        title_text,
+        title_model_score=title_model_score,
+        title_tool_score=title_tool_score,
+    ):
+        return None
+    if title_model_score == 0 and title_tool_score == 0:
+        content_has_focus = _contains_any(text, model_terms) or _contains_any(text, tool_terms)
+        if not entry.get("source_page") or not title_has_release_signal or not content_has_focus:
+            return None
+
     has_release_signal = title_has_release_signal or _contains_any(text, MODEL_TOOL_RELEASE_TERMS)
     looks_like_non_release_article = any(term in title_text for term in NON_RELEASE_HEADLINE_TERMS)
     if looks_like_non_release_article and not title_has_release_signal:

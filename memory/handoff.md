@@ -149,6 +149,17 @@ Owner: AI agent (Codex)
 - Model/tool cards no longer expose RSS/source feed buttons in the UI. Model cards use
   verified Artificial Analysis model URLs when known; otherwise they link to
   `https://artificialanalysis.ai/models` as `Benchmarks` to avoid 404s.
+- Perplexity's official API changelog Markdown and the ElevenLabs blog are now
+  permanent model/tool source pages. Live checks on 2026-06-08 extracted
+  Perplexity Finance Search and Agent API updates plus ElevenLabs Dubbing v2,
+  Music v2, Eleven v3, and ElevenLabs UI releases.
+- No valid official RSS/Atom endpoint was found for either provider. Perplexity
+  monthly changelog blocks use month-end dates only after the month completes;
+  ElevenLabs blog posts retain their exact article publication dates.
+- Source-page classification now requires a product signal in the headline and rejects
+  corporate expansion/partnership announcements that mention products only in body text.
+- Review regression coverage confirms current-month changelog blocks remain excluded on
+  the final day; all 56 pipeline tests, Ruff, and touched-file compilation pass.
 - `origin` should point to `https://github.com/AjinkyaPawale1/ai-news-artifact.git`
   after the repository rename.
 - Remote branch currently published: `main`.

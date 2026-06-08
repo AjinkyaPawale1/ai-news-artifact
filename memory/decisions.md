@@ -380,3 +380,36 @@ Impact:
   source succeeds.
 - Historical outputs are static Pages assets fetched only when selected and cached for
   the browser session; archive count no longer increases the initial JavaScript bundle.
+
+## 2026-06-08 - Add Perplexity and ElevenLabs as permanent official source pages
+Status: accepted
+
+Reason:
+- Guessed official RSS/Atom endpoints either returned Cloudflare blocks, HTML, or 404s.
+- Perplexity publishes a machine-readable official API changelog, and ElevenLabs
+  publishes release posts with exact article dates on its official blog.
+- Unofficial RSS mirrors would weaken source provenance and reliability.
+
+Impact:
+- Added both providers to the protected permanent source-page list rather than
+  the rotating emerging-feed list.
+- Perplexity completed monthly changelog blocks produce dated release candidates
+  using month-end, avoiding invented intra-month publication dates.
+- Release-style source-page headlines can use verified article body signals for
+  deterministic classification, while integration, endpoint, and Agent API
+  announcements remain in the tool/service lane.
+
+## 2026-06-08 - Require completed months and product-focused source headlines
+Status: accepted
+
+Reason:
+- A month-end timestamp becomes earlier than the current time during the final day,
+  even though the provider can still add entries before the month closes.
+- Generic release words plus model/tool mentions in article body text admitted corporate
+  expansion and partnership announcements that did not ship a product.
+
+Impact:
+- Monthly changelog blocks remain ineligible throughout their labeled calendar month and
+  become eligible on the first day of the following month.
+- Source-page candidates require a product-focused headline; corporate expansion and
+  partnership headlines are rejected even when their body mentions models or platforms.

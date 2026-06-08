@@ -11,9 +11,14 @@ from unittest.mock import patch
 
 from news_pipeline.agents import model_tools_dynamic, model_tools_graph
 from news_pipeline import push_to_artifact
+from news_pipeline.model_tools_config import MODEL_TOOL_SOURCE_PAGES
 
 
 class ModelToolsDynamicTests(unittest.TestCase):
+    def test_permanent_source_pages_include_perplexity_and_elevenlabs(self) -> None:
+        self.assertIn("https://docs.perplexity.ai/docs/resources/changelog.md", MODEL_TOOL_SOURCE_PAGES)
+        self.assertIn("https://elevenlabs.io/blog/", MODEL_TOOL_SOURCE_PAGES)
+
     def test_bounded_rotation_replaces_only_the_allowed_number(self) -> None:
         rotated, metadata = model_tools_dynamic._bounded_rotation(
             ["feed-a", "feed-b", "feed-c"],
@@ -189,6 +194,85 @@ class DashboardArtifactTests(unittest.TestCase):
 
 
 class ModelToolsClassificationTests(unittest.TestCase):
+    def test_markdown_changelog_emits_dated_release_candidates(self) -> None:
+        markdown = """
+<Update label="May 2026" tags={["Agent API", "Tools"]}>
+  **Finance Search: Now Available**
+
+  The `finance_search` tool is now available in the Agent API.
+
+  **Highlights:**
+
+  * Structured market data
+</Update>
+"""
+        with patch.object(model_tools_graph, "datetime") as mocked_datetime:
+            mocked_datetime.strptime.side_effect = datetime.strptime
+            mocked_datetime.now.return_value = datetime(2026, 6, 8, tzinfo=timezone.utc)
+            entries = model_tools_graph._fetch_markdown_changelog_entries(
+                "https://docs.perplexity.ai/docs/resources/changelog.md",
+                markdown,
+            )
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0]["source"], "Perplexity")
+        self.assertEqual(entries[0]["title"], "Finance Search: Now Available")
+        self.assertEqual(entries[0]["published_date"], "2026-05-31T00:00:00+00:00")
+
+    def test_markdown_changelog_waits_until_month_has_completed(self) -> None:
+        with patch.object(model_tools_graph, "datetime") as mocked_datetime:
+            mocked_datetime.strptime.side_effect = datetime.strptime
+            mocked_datetime.now.return_value = datetime(2026, 5, 31, 18, 0, tzinfo=timezone.utc)
+            published_date = model_tools_graph._month_end_date("May 2026")
+
+        self.assertEqual(published_date, "")
+
+    def test_source_page_release_uses_article_body_for_focus_signal(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "ElevenLabs",
+                "title": "Introducing Dubbing v2",
+                "content": "Today we are launching Dubbing v2, a new AI dubbing model.",
+                "url": "https://elevenlabs.io/blog/introducing-dubbing-v2",
+                "source_page": True,
+            },
+            model_terms=["model"],
+            tool_terms=["platform"],
+        )
+
+        self.assertEqual(release["kind"], "model")
+        self.assertEqual(release["org"], "ElevenLabs")
+
+    def test_source_page_rejects_corporate_expansion_announcement(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "ElevenLabs",
+                "title": "ElevenLabs announces new expansion in Australia and New Zealand",
+                "content": "The company provides speech models and an AI voice platform.",
+                "url": "https://elevenlabs.io/blog/australia-new-zealand-expansion",
+                "source_page": True,
+            },
+            model_terms=["model"],
+            tool_terms=["platform"],
+        )
+
+        self.assertIsNone(release)
+
+    def test_source_page_rejects_partnership_announcement(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "ElevenLabs",
+                "title": "Announcing a new partnership with Example Corp",
+                "content": "The partnership will use ElevenLabs speech models and platform.",
+                "url": "https://elevenlabs.io/blog/example-partnership",
+                "source_page": True,
+            },
+            model_terms=["model"],
+            tool_terms=["platform"],
+        )
+
+        self.assertIsNone(release)
+
     def test_classifier_rejects_guide_without_release_headline(self) -> None:
         release = model_tools_graph._classify_entry(
             {
@@ -227,6 +311,21 @@ class ModelToolsClassificationTests(unittest.TestCase):
             },
             model_terms=["model", "foundation model", "nexus"],
             tool_terms=["deployment", "sagemaker", "jumpstart"],
+        )
+
+        self.assertEqual(release["kind"], "tool_service")
+
+    def test_classifier_keeps_model_catalog_integration_as_tool_service(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "Perplexity",
+                "title": "New Integration: n8n",
+                "content": "The integration adds Agent API and model catalog support.",
+                "url": "https://example.com/n8n",
+                "source_page": True,
+            },
+            model_terms=["model"],
+            tool_terms=["integration", "api"],
         )
 
         self.assertEqual(release["kind"], "tool_service")
