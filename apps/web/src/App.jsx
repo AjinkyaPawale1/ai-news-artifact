@@ -1,4 +1,4 @@
-import Dashboard from "./ey-fso-ai-brief.jsx";
+import Dashboard from "./ai-intelligence-brief.jsx";
 
 export default function App() {
   return <Dashboard />;

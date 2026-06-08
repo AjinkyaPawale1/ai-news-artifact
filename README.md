@@ -13,6 +13,7 @@ Public dashboard: https://ajinkyapawale1.github.io/ai-news-artifact/
 - Tracks trending GitHub repos, model releases, and AI tools/services in separate drill-down views.
 - Shows repo recommended actions and clean release CTAs so each expanded card has a next step.
 - Shows a compact `Weekly Snapshot` with one featured paper, repo descriptions, release previews, and source health.
+- Lets readers switch between the current brief and the three preceding weekly editions.
 - Keeps AI Pulse, Social Pulse, and Enterprise Focus as explicit coming-soon placeholders.
 - Keeps the frontend simple: it reads generated data from `data/output.json`.
 
@@ -67,8 +68,11 @@ npm run preview    # preview the production build
 ## Deployment
 
 The dashboard deploys to GitHub Pages from `main` through
-`.github/workflows/deploy-pages.yml`. The workflow runs `npm ci`, builds the static
-dashboard with the GitHub Pages base path, and publishes `dist`.
+`.github/workflows/deploy-pages.yml`. Pushes build and publish the current artifact.
+Every Monday at 10:00 AM America/New_York, the workflow also runs the pipeline, archives
+the edition, validates all required source lanes and minimum content, commits generated
+artifacts, and publishes the refreshed dashboard. Failed or incomplete runs stop before
+commit and deployment, preserving the previously published edition.
 
 Local builds use `/` as the Vite base path. Pages builds set `GITHUB_PAGES=true` and use
 `/ai-news-artifact/`.
@@ -99,9 +103,13 @@ The pipeline writes:
 
 - `data/output.json` - dashboard content
 - `data/health.json` - source health from the latest run
+- `data/archive/YYYY-MM-DD/` - Monday-keyed weekly output and health snapshots
+- `data/archive/index.json` - newest-first archive manifest used by the dashboard
 
 The React app treats `data/output.json` as read-only generated data. The current public
 contract includes `papers`, `repos`, `models`, `toolsServices`, `blogs`, and `socialPosts`.
+The archive manifest is bundled, while individual historical outputs are deployed as
+static JSON and downloaded only when a reader selects that edition.
 
 ## More Context
 

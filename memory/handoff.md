@@ -1,6 +1,6 @@
 # Handoff Notes
 
-Last updated: 2026-06-03
+Last updated: 2026-06-08
 Owner: AI agent (Codex)
 
 ## Completed
@@ -43,7 +43,7 @@ Owner: AI agent (Codex)
 - Added deterministic paper action extraction with LangGraph fallback semantics.
 - Wired paper metadata into dashboard paper cards and top action items.
 - Added focused unittest coverage for paper action metadata and artifact mapping.
-- Replaced FSO-specific paper enrichment with generic AI/ML capability and domain taxonomies.
+- Replaced financial-services-specific paper enrichment with generic AI/ML capability and domain taxonomies.
 - Added deterministic paper `research_score` components, visible research signals, and independent top-eight paper ranking.
 - Added a generic `action_score` retained for paper action metadata.
 - Made arXiv extraction preserve partial category results and emit paper diagnostics.
@@ -59,11 +59,11 @@ Owner: AI agent (Codex)
 - Made OpenAI paper summaries the default when a key exists, added two transient retries, and recorded summary attempts, retries, successes, fallbacks, and disable reasons.
 - Tightened deterministic paper labels with weighted phrase matching, word boundaries, overlap suppression, and `Other` for weak or tied domains.
 - Added visible paper priority chips and expanded-card `RECOMMENDED ACTIONS`.
-- Replaced the FSO-specific dashboard shell with the neutral `AI Intelligence Brief`.
+- Replaced the legacy branded dashboard shell with the neutral `AI Intelligence Brief`.
 - Reworked the UI into Weekly Snapshot, Research, Repos, Releases, Signals, and Pipeline
   tabs. The snapshot is concise, Signals is explicitly placeholder-only, and Pipeline
   renders the current multi-source flow plus live health cards.
-- Replaced the misleading `FSO-RELEVANT` stat with truthful paper, repo, release, and
+- Replaced the misleading legacy relevance stat with truthful paper, repo, release, and
   healthy-source snapshot metrics.
 - Changed RSS collection to round-robin selection across official feeds and added per-feed
   health diagnostics.
@@ -103,6 +103,18 @@ Owner: AI agent (Codex)
   Vite now binds to `127.0.0.1`, uses esbuild JSX handling instead of the React Babel
   plugin, Lucide icons are imported directly to avoid barrel prebundling, and stale
   orphaned Vite/esbuild plus headless automation processes were cleaned up.
+- Renamed the dashboard module to `ai-intelligence-brief.jsx` and removed the obsolete
+  relevance flag from the generated contract.
+- Added Monday-keyed repository archives under `data/archive/`, with idempotent same-week
+  replacement and a newest-first manifest.
+- Added a header edition selector that shows the current brief plus the three preceding
+  archives and updates all tabs from the selected dataset.
+- Extended the Pages workflow to refresh, validate, archive, commit, build, and deploy
+  every Monday at 10:00 AM America/New_York.
+- Added a tested publication gate that blocks commit and deployment on failed required
+  sources, empty core lanes, or current/archive mismatch.
+- Replaced eager archive imports with static `dist/archive/` assets and on-demand,
+  session-cached fetching for the selected edition.
 
 ## Current State
 - Project runs via Vite from `apps/web` using root npm scripts.
@@ -171,6 +183,10 @@ Owner: AI agent (Codex)
 - Optional model/tool LLM behavior is bounded: it proposes emerging feed/keyword rotations from a candidate catalog and classifies only limited candidate entries.
 - `429 insufficient_quota` from OpenAI is an API billing/quota issue, not a normal transient rate limit; see `memory/errors.md` before retry loops.
 - Root `data/output.json` is a shared interface; keep pipeline-owned writes and frontend reads separate.
+- Full pipeline runs also update `data/archive/index.json`; paper-only refreshes intentionally
+  update only the current artifact and do not create a weekly archive.
+- A failed scheduled publication gate leaves generated changes uncommitted on the
+  disposable runner, so the existing public Pages edition remains live.
 - Paper research metadata and scores are deterministic keyword logic; adjust keyword groups and score weights carefully if dashboard labels or ranking feel too broad or too narrow.
 - arXiv runs intentionally add three-second spacing between category requests to reduce avoidable `429` responses.
 - If installed binaries hang on macOS, clear quarantine metadata from `node_modules` with `xattr -dr com.apple.quarantine node_modules`.

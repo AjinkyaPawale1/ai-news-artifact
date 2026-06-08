@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import Activity from "lucide-react/dist/esm/icons/activity.js";
 import ArrowRight from "lucide-react/dist/esm/icons/arrow-right.js";
 import BookOpen from "lucide-react/dist/esm/icons/book-open.js";
@@ -16,7 +16,10 @@ import Server from "lucide-react/dist/esm/icons/server.js";
 import Sparkles from "lucide-react/dist/esm/icons/sparkles.js";
 import Star from "lucide-react/dist/esm/icons/star.js";
 import Wrench from "lucide-react/dist/esm/icons/wrench.js";
-import pipelineData from "../../../data/output.json";
+import archiveIndex from "../../../data/archive/index.json";
+import currentData from "../../../data/output.json";
+
+const BriefDataContext = createContext(currentData);
 
 const THEME = {
   bg: "#f7f8fb",
@@ -52,11 +55,6 @@ const TYPE = {
   nav: { fontSize: 12, lineHeight: 1, letterSpacing: "0.04em", fontWeight: 500 },
 };
 
-const REPOS = pipelineData.repos ?? [];
-const MODELS = pipelineData.models ?? [];
-const TOOLS_SERVICES = pipelineData.toolsServices ?? [];
-const PAPERS = pipelineData.papers ?? [];
-const HEALTH = pipelineData.health ?? [];
 const DEFAULT_MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations";
 const ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models";
 const KNOWN_MODEL_BENCHMARK_URLS = {
@@ -80,6 +78,35 @@ function getIsoWeekLabel(value) {
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
   const week = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
   return `WEEK ${String(week).padStart(2, "0")} · ${date.getUTCFullYear()}`;
+}
+
+function getPublicationMonday(value) {
+  const input = new Date(value);
+  if (Number.isNaN(input.getTime())) return "";
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(input);
+  const values = Object.fromEntries(parts.map(({ type, value: partValue }) => [type, partValue]));
+  const localDate = new Date(`${values.year}-${values.month}-${values.day}T12:00:00Z`);
+  const day = localDate.getUTCDay() || 7;
+  localDate.setUTCDate(localDate.getUTCDate() - day + 1);
+  return localDate.toISOString().slice(0, 10);
+}
+
+function formatEditionDate(value) {
+  return new Date(`${value}T12:00:00Z`).toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function useBriefData() {
+  return useContext(BriefDataContext);
 }
 
 function Tag({ children, color = THEME.muted, backgroundColor = "transparent" }) {
@@ -226,6 +253,7 @@ function ActionList({ actions }) {
 }
 
 function StatsBar() {
+  const pipelineData = useBriefData();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px border mb-8" style={{ borderColor: "#d8dee8", backgroundColor: "#d8dee8" }}>
       {(pipelineData.stats ?? []).map((stat) => (
@@ -308,15 +336,20 @@ function FeaturedResearch({ paper, onNavigate }) {
 }
 
 function WeeklySnapshot({ onNavigate }) {
+  const pipelineData = useBriefData();
+  const repos = pipelineData.repos ?? [];
+  const models = pipelineData.models ?? [];
+  const toolsServices = pipelineData.toolsServices ?? [];
+  const papers = pipelineData.papers ?? [];
   return (
     <div>
       <StatsBar />
       <SectionHeader title="THIS WEEK" sub="A DECISION-FIRST VIEW OF THE SIGNALS WORTH OPENING" />
-      <FeaturedResearch paper={PAPERS[0]} onNavigate={() => onNavigate("research")} />
+      <FeaturedResearch paper={papers[0]} onNavigate={() => onNavigate("research")} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <SnapshotList title="TRENDING REPOS" icon={Boxes} items={REPOS} getTitle={(item) => item.name} getSummary={(item) => item.desc} getMeta={(item) => `${item.stars} stars · ${item.bestFor}`} onNavigate={() => onNavigate("repos")} />
-        <SnapshotList title="MODEL RELEASES" icon={Sparkles} items={MODELS} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
-        <SnapshotList title="TOOLS & SERVICES" icon={Wrench} items={TOOLS_SERVICES} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
+        <SnapshotList title="TRENDING REPOS" icon={Boxes} items={repos} getTitle={(item) => item.name} getSummary={(item) => item.desc} getMeta={(item) => `${item.stars} stars · ${item.bestFor}`} onNavigate={() => onNavigate("repos")} />
+        <SnapshotList title="MODEL RELEASES" icon={Sparkles} items={models} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
+        <SnapshotList title="TOOLS & SERVICES" icon={Wrench} items={toolsServices} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
       </div>
     </div>
   );
@@ -391,10 +424,11 @@ function PaperCard({ paper }) {
 }
 
 function ResearchTab({ weekLabel }) {
+  const papers = useBriefData().papers ?? [];
   return (
     <div>
       <SectionHeader title="RESEARCH" sub={`7-DAY WINDOW · 14-DAY BACKFILL ONLY IF NEEDED · ${weekLabel}`} />
-      <div className="space-y-3">{PAPERS.map((paper) => <PaperCard key={paper.title} paper={paper} />)}</div>
+      <div className="space-y-3">{papers.map((paper) => <PaperCard key={paper.title} paper={paper} />)}</div>
     </div>
   );
 }
@@ -412,7 +446,7 @@ function repoActionItems(repo) {
   ];
 }
 
-function RepoList({ items = REPOS }) {
+function RepoList({ items }) {
   const [openRepo, setOpenRepo] = useState(items[0]?.name ?? "");
   return (
     <div className="border" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
@@ -458,7 +492,8 @@ function RepoList({ items = REPOS }) {
 }
 
 function ReposTab() {
-  return <div><SectionHeader title="REPOS" sub="TRENDING OPEN-SOURCE PROJECTS · EXPAND FOR WHY THEY MATTER" /><RepoList /></div>;
+  const repos = useBriefData().repos ?? [];
+  return <div><SectionHeader title="REPOS" sub="TRENDING OPEN-SOURCE PROJECTS · EXPAND FOR WHY THEY MATTER" /><RepoList items={repos} /></div>;
 }
 
 function releaseLinksForItem(item, kind) {
@@ -509,10 +544,13 @@ function ReleaseList({ items, kind, emptyLabel }) {
 }
 
 function ReleasesTab() {
+  const pipelineData = useBriefData();
+  const models = pipelineData.models ?? [];
+  const toolsServices = pipelineData.toolsServices ?? [];
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={MODELS} kind="model" emptyLabel="No recent model releases found." /></div>
-      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={TOOLS_SERVICES} kind="tool" emptyLabel="No recent tool or service releases found." /></div>
+      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={models} kind="model" emptyLabel="No recent model releases found." /></div>
+      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={toolsServices} kind="tool" emptyLabel="No recent tool or service releases found." /></div>
     </div>
   );
 }
@@ -549,6 +587,7 @@ function healthDetail(entry) {
 }
 
 function PipelineTab() {
+  const health = useBriefData().health ?? [];
   const fetchers = [
     { name: "Papers", sub: "arXiv · ranked research", icon: BookOpen },
     { name: "Repos", sub: "GitHub · dynamic discovery", icon: Boxes },
@@ -579,7 +618,7 @@ function PipelineTab() {
       <div>
         <SectionHeader title="LATEST SOURCE HEALTH" sub="LIVE DATA FROM DATA/HEALTH.JSON" />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {HEALTH.map((entry) => <div key={entry.source} className="border p-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}><div className="flex items-center justify-between"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.text }}>{entry.source.toUpperCase()}</div><CheckCircle size={13} style={{ color: entry.status === "ok" ? "#15803d" : "#b42318" }} /></div><div className="mt-4" style={{ fontSize: 26, lineHeight: 1, color: THEME.heading, fontWeight: 650, letterSpacing: "-0.03em" }}>{entry.item_count}</div><div className="ai-mono mt-1" style={{ ...TYPE.meta, fontSize: 10 }}>{healthDetail(entry)}</div><div className="ai-mono mt-3" style={{ ...TYPE.label, fontSize: 9 }}>{entry.duration_ms} MS</div></div>)}
+          {health.map((entry) => <div key={entry.source} className="border p-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}><div className="flex items-center justify-between"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.text }}>{entry.source.toUpperCase()}</div><CheckCircle size={13} style={{ color: entry.status === "ok" ? "#15803d" : "#b42318" }} /></div><div className="mt-4" style={{ fontSize: 26, lineHeight: 1, color: THEME.heading, fontWeight: 650, letterSpacing: "-0.03em" }}>{entry.item_count}</div><div className="ai-mono mt-1" style={{ ...TYPE.meta, fontSize: 10 }}>{healthDetail(entry)}</div><div className="ai-mono mt-3" style={{ ...TYPE.label, fontSize: 9 }}>{entry.duration_ms} MS</div></div>)}
         </div>
       </div>
       <div className="border p-4 flex items-start gap-3 min-w-0" style={{ borderColor: "#d8dee8", backgroundColor: "#ffffff" }}><FileJson size={16} className="shrink-0 mt-0.5" style={{ color: ACCENT_GOLD }} /><div className="min-w-0"><div style={TYPE.compactTitle}>Stable frontend contract</div><div className="ai-mono mt-1 break-words" style={{ ...TYPE.label, fontSize: 9 }}>DATA/OUTPUT.JSON · PAPERS · REPOS · MODELS · TOOLSERVICES · BLOGS · SOCIALPOSTS</div></div></div>
@@ -589,6 +628,58 @@ function PipelineTab() {
 
 export default function Dashboard() {
   const [tab, setTab] = useState("snapshot");
+  const [edition, setEdition] = useState("current");
+  const [pipelineData, setPipelineData] = useState(currentData);
+  const [editionLoading, setEditionLoading] = useState(false);
+  const [editionNotice, setEditionNotice] = useState("");
+  const archiveCache = useRef(new Map());
+  const currentEditionDate = getPublicationMonday(currentData.generatedAt);
+  const previousEditions = (archiveIndex.editions ?? [])
+    .filter((entry) => entry.date !== currentEditionDate)
+    .slice(0, 3);
+  useEffect(() => {
+    if (edition === "current") {
+      setPipelineData(currentData);
+      setEditionLoading(false);
+      return undefined;
+    }
+
+    const selected = previousEditions.find((entry) => entry.date === edition);
+    if (!selected) {
+      setEdition("current");
+      return undefined;
+    }
+
+    const cached = archiveCache.current.get(edition);
+    if (cached) {
+      setPipelineData(cached);
+      setEditionLoading(false);
+      return undefined;
+    }
+
+    const controller = new AbortController();
+    setEditionLoading(true);
+    fetch(`${import.meta.env.BASE_URL}${selected.outputPath}`, { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error(`Archive request failed with ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        if (!data?.generatedAt) throw new Error("Archive payload is invalid");
+        archiveCache.current.set(edition, data);
+        setPipelineData(data);
+        setEditionLoading(false);
+      })
+      .catch((error) => {
+        if (error.name === "AbortError") return;
+        setPipelineData(currentData);
+        setEditionLoading(false);
+        setEditionNotice("ARCHIVE UNAVAILABLE · SHOWING CURRENT WEEK");
+        setEdition("current");
+      });
+
+    return () => controller.abort();
+  }, [edition]);
   const generatedAt = pipelineData.generatedAt;
   const refreshedAt = generatedAt
     ? new Date(generatedAt).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })
@@ -610,7 +701,28 @@ export default function Dashboard() {
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5 sm:mb-6">
             <div><div style={TYPE.appTitle}>AI Intelligence Brief</div><div className="ai-mono mt-1" style={TYPE.label}>WEEKLY ENTERPRISE AI SIGNALS</div></div>
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-              <button type="button" disabled className="ai-mono px-3 py-2 border" style={{ borderColor: "#d8dee8", color: "#667085", ...TYPE.nav, fontSize: 11 }}>ENTERPRISE FOCUS · COMING SOON</button>
+              <label className="edition-select">
+                <span className="ai-mono" style={{ ...TYPE.label, fontSize: 9 }}>EDITION</span>
+                <select
+                  aria-label="Select weekly edition"
+                  value={edition}
+                  onChange={(event) => {
+                    setEditionNotice("");
+                    setEdition(event.target.value);
+                  }}
+                  disabled={previousEditions.length === 0 || editionLoading}
+                >
+                  <option value="current">Current week</option>
+                  {previousEditions.map((entry) => (
+                    <option key={entry.date} value={entry.date}>Week of {formatEditionDate(entry.date)}</option>
+                  ))}
+                </select>
+                {(editionLoading || editionNotice) && (
+                  <span className="ai-mono edition-status">
+                    {editionLoading ? "LOADING EDITION" : editionNotice}
+                  </span>
+                )}
+              </label>
               <div className="sm:text-right"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.muted }}>{weekLabel}</div><div className="ai-mono mt-1" style={{ ...TYPE.label, fontSize: 9 }}>REFRESHED {refreshedAt}</div></div>
             </div>
           </div>
@@ -620,14 +732,16 @@ export default function Dashboard() {
           </nav>
         </div>
       </header>
-      <main className="max-w-[1400px] mx-auto px-4 sm:px-8 py-6 sm:py-10">
-        {tab === "snapshot" && <WeeklySnapshot onNavigate={setTab} />}
-        {tab === "research" && <ResearchTab weekLabel={weekLabel} />}
-        {tab === "repos" && <ReposTab />}
-        {tab === "releases" && <ReleasesTab />}
-        {tab === "signals" && <SignalsTab />}
-        {tab === "pipeline" && <PipelineTab />}
-      </main>
+      <BriefDataContext.Provider value={pipelineData}>
+        <main key={edition} className="max-w-[1400px] mx-auto px-4 sm:px-8 py-6 sm:py-10">
+          {tab === "snapshot" && <WeeklySnapshot onNavigate={setTab} />}
+          {tab === "research" && <ResearchTab weekLabel={weekLabel} />}
+          {tab === "repos" && <ReposTab />}
+          {tab === "releases" && <ReleasesTab />}
+          {tab === "signals" && <SignalsTab />}
+          {tab === "pipeline" && <PipelineTab />}
+        </main>
+      </BriefDataContext.Provider>
       <footer className="border-t mt-16 sm:mt-20" style={{ borderColor: "#d8dee8" }}><div className="ai-mono max-w-[1400px] mx-auto px-4 sm:px-8 py-5 flex flex-col sm:flex-row gap-2 sm:justify-between" style={{ ...TYPE.label, fontSize: 9 }}><div>AI INTELLIGENCE BRIEF · LOCAL ARTIFACT</div><div>{weekLabel} · GENERATED {refreshedAt}</div></div></footer>
     </div>
   );

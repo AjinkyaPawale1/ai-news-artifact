@@ -11,10 +11,10 @@ Read it before making changes, then read the files under `memory/`.
 ## Project Snapshot
 - Stack: React 18, Vite 5, lucide-react, JSX.
 - Frontend app: `apps/web`.
-- Main dashboard component: `apps/web/src/ey-fso-ai-brief.jsx`.
+- Main dashboard component: `apps/web/src/ai-intelligence-brief.jsx`.
 - App bootstrap: `apps/web/src/main.jsx` and `apps/web/src/App.jsx`.
 - Pipeline package: `apps/pipeline/src/news_pipeline`.
-- Shared artifacts: `data/output.json` and `data/health.json`.
+- Shared artifacts: `data/output.json`, `data/health.json`, and `data/archive/`.
 - Styling: utility classes plus `apps/web/src/styles.css`.
 
 ## Runbook

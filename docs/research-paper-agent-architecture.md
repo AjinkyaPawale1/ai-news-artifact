@@ -83,7 +83,7 @@ flowchart TD
     P --> Q[push_to_artifact.py]
     Q --> R[data/output.json<br/>papers + actionItems]
     K --> S[data/health.json<br/>paper fetch diagnostics]
-    R --> T[apps/web/src/ey-fso-ai-brief.jsx<br/>research paper cards]
+    R --> T[apps/web/src/ai-intelligence-brief.jsx<br/>research paper cards]
 ```
 
 ## Source Configuration

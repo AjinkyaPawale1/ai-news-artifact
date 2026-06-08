@@ -1,0 +1,10 @@
+{
+  "editions": [
+    {
+      "date": "2026-06-01",
+      "generatedAt": "2026-06-04T00:34:06.758885+00:00",
+      "outputPath": "archive/2026-06-01/output.json",
+      "healthPath": "archive/2026-06-01/health.json"
+    }
+  ]
+}

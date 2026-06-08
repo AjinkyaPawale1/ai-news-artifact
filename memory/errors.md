@@ -74,7 +74,7 @@ Status: resolved
 
 What failed:
 - `npm run dev` left a Vite process listening on `5173`, but `/` and
-  `/src/ey-fso-ai-brief.jsx` requests timed out with no HTTP status.
+  the main dashboard module requests timed out with no HTTP status.
 - Killing and restarting with `--force` was not enough while the orphaned Vite/esbuild
   process still held the port.
 - Browser automation also exposed a loopback mismatch: Vite was listening on IPv6

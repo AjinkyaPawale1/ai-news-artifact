@@ -25,6 +25,7 @@ fetch agents
   -> quality gate
   -> summarize
   -> write data/output.json and data/health.json
+  -> archive the Monday edition under data/archive/
   -> React dashboard reads generated artifact
 ```
 
@@ -33,10 +34,14 @@ fetch agents
 - Location: `apps/web`
 - Runtime: Vite + React
 - Entry point: `apps/web/src/main.jsx`
-- Dashboard component: `apps/web/src/ey-fso-ai-brief.jsx`
-- Shared artifact import: `data/output.json`
+- Dashboard component: `apps/web/src/ai-intelligence-brief.jsx`
+- Shared artifact imports: `data/output.json` and `data/archive/index.json`
 
-The frontend treats `data/output.json` as a read-only contract and does not call pipeline internals directly.
+The frontend treats generated JSON as a read-only contract and does not call pipeline internals directly.
+It defaults to the current artifact and exposes the three preceding weekly editions through
+the header selector when those archives exist. Historical output files are copied to
+`dist/archive/` as static assets and fetched only when selected; they are not included in
+the initial JavaScript bundle.
 Its neutral `AI Intelligence Brief` shell uses six views:
 
 - `Weekly Snapshot` for a decision-first overview with one full-width featured-paper banner
@@ -63,7 +68,33 @@ Local Vite builds use `/` as the base path. The Pages workflow sets
   - `news_pipeline.agents.fetch_rss`
   - `news_pipeline.agents.model_tools_graph`
 
-The pipeline owns `data/output.json` and `data/health.json`. No API service is part of the current architecture.
+The pipeline owns `data/output.json`, `data/health.json`, and `data/archive/`. A successful
+full run writes an idempotent Monday-keyed snapshot and updates `data/archive/index.json`.
+No API service is part of the current architecture.
+
+## Weekly Automation and Archives
+
+GitHub Actions runs the full pipeline every Monday at 10:00 AM America/New_York, commits
+the generated current and archive artifacts, builds the dashboard, and deploys GitHub
+Pages. Two UTC schedules cover daylight-saving changes; a timezone gate allows only the
+10:00 AM Eastern run to proceed.
+
+Before commit or deployment, `news_pipeline.publication_gate` requires one healthy
+top-level result for papers, GitHub, RSS, and model/tools, plus non-empty paper, repo,
+blog, and combined release sections. Internal partial paper-category recovery remains
+allowed when the top-level paper workflow succeeds. A failed gate leaves the previously
+published Pages edition unchanged.
+
+Each weekly edition contains:
+
+- `data/archive/YYYY-MM-DD/output.json`
+- `data/archive/YYYY-MM-DD/health.json`
+- one corresponding entry in `data/archive/index.json`
+
+Rerunning the pipeline during the same publication week replaces that Monday's snapshot.
+Older editions remain versioned in Git, while the UI limits its selector to the three
+immediately preceding editions. Selected archives are cached in memory for the browser
+session; failed requests fall back to the current edition.
 
 ## Paper Discovery Methodology
 

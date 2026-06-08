@@ -128,7 +128,7 @@ llm-news-artifact/
         App.jsx
         main.jsx
         styles.css
-        ey-fso-ai-brief.jsx
+        ai-intelligence-brief.jsx
     pipeline/
       requirements.txt
       tests/

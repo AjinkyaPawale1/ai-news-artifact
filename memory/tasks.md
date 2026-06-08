@@ -31,7 +31,7 @@ Last updated: 2026-06-03
 - [x] Publish the current project state to the private GitHub repository `AjinkyaPawale1/llm-news-artifact`.
 - [x] Add deterministic arXiv paper action metadata and artifact mapping.
 - [x] Add focused tests for paper action extraction.
-- [x] Replace FSO-specific paper enrichment with generic AI/ML metadata.
+- [x] Replace financial-services-specific paper enrichment with generic AI/ML metadata.
 - [x] Add independent deterministic paper research ranking and top-eight artifact mapping.
 - [x] Preserve partial arXiv category results and publish paper fetch diagnostics.
 - [x] Keep the retained paper action metadata scoring generic.
@@ -62,6 +62,11 @@ Last updated: 2026-06-03
 - [x] Fix local Vite dev-server hang on `5173` by using esbuild JSX, binding to
       `127.0.0.1`, importing Lucide icons directly, and clearing stale
       Vite/esbuild/headless-browser processes.
+- [x] Remove remaining legacy branding fields, filenames, and documentation references.
+- [x] Add repository-backed weekly archives and a current/previous-edition dashboard selector.
+- [x] Schedule Monday 10:00 AM Eastern pipeline refreshes and GitHub Pages deployment.
+- [x] Block incomplete source refreshes before automated commit and deployment.
+- [x] Load only the selected historical edition instead of bundling every archive.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.

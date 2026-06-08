@@ -1,13 +1,23 @@
-name: Deploy GitHub Pages
+name: Refresh and Deploy GitHub Pages
 
 on:
   push:
     branches:
       - main
+  schedule:
+    # Run both possible UTC offsets, then gate on 10:00 America/New_York.
+    - cron: "0 14 * * 1"
+    - cron: "0 15 * * 1"
   workflow_dispatch:
+    inputs:
+      refresh_data:
+        description: Refresh and archive pipeline data before deploying
+        required: true
+        default: true
+        type: boolean
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -16,11 +26,86 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.schedule.outputs.proceed }}
+      refresh: ${{ steps.schedule.outputs.refresh }}
+    steps:
+      - name: Check publication window
+        id: schedule
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_REFRESH: ${{ inputs.refresh_data }}
+          SCHEDULE: ${{ github.event.schedule }}
+        run: |
+          if [[ "$EVENT_NAME" == "schedule" ]]; then
+            eastern_offset="$(TZ=America/New_York date +%z)"
+            if [[
+              ( "$eastern_offset" == "-0400" && "$SCHEDULE" == "0 14 * * 1" ) ||
+              ( "$eastern_offset" == "-0500" && "$SCHEDULE" == "0 15 * * 1" )
+            ]]; then
+              echo "proceed=true" >> "$GITHUB_OUTPUT"
+              echo "refresh=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "proceed=false" >> "$GITHUB_OUTPUT"
+              echo "refresh=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+            if [[ "$EVENT_NAME" == "workflow_dispatch" && "$MANUAL_REFRESH" == "true" ]]; then
+              echo "refresh=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "refresh=false" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
   build:
+    needs: gate
+    if: needs.gate.outputs.proceed == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        if: needs.gate.outputs.refresh == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/pipeline/requirements.txt
+
+      - name: Install pipeline dependencies
+        if: needs.gate.outputs.refresh == 'true'
+        run: python -m pip install -r apps/pipeline/requirements.txt
+
+      - name: Refresh weekly artifact
+        if: needs.gate.outputs.refresh == 'true'
+        run: npm run pipeline
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Validate weekly archive
+        if: needs.gate.outputs.refresh == 'true'
+        run: |
+          PYTHONPATH=apps/pipeline/src python -m unittest discover -s apps/pipeline/tests
+          python -m ruff check apps/pipeline/src apps/pipeline/tests
+          PYTHONPATH=apps/pipeline/src python -m news_pipeline.publication_gate
+
+      - name: Commit refreshed artifacts
+        if: needs.gate.outputs.refresh == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/output.json data/health.json data/archive
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive weekly AI intelligence brief"
+            git push
+          fi
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -28,7 +113,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Install frontend dependencies
         run: npm ci
 
       - name: Configure Pages
@@ -38,6 +123,11 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: "true"
+
+      - name: Verify archive assets
+        run: |
+          test -f dist/archive/index.json
+          test -f "dist/$(python -c 'import json; print(json.load(open("data/archive/index.json"))["editions"][0]["outputPath"])')"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

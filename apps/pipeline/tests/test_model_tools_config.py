@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -44,6 +46,34 @@ class ModelToolsDynamicTests(unittest.TestCase):
 
 
 class DashboardArtifactTests(unittest.TestCase):
+    def test_weekly_archive_replaces_same_date_and_keeps_newest_first(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            archive_dir = Path(temp_dir) / "archive"
+            index_path = archive_dir / "index.json"
+            with (
+                patch.object(push_to_artifact, "ARCHIVE_DIR", archive_dir),
+                patch.object(push_to_artifact, "ARCHIVE_INDEX_PATH", index_path),
+            ):
+                first = {"generatedAt": "2026-06-01T14:00:00+00:00", "papers": [{"title": "First"}]}
+                replacement = {"generatedAt": "2026-06-01T15:00:00+00:00", "papers": [{"title": "Replacement"}]}
+                newer = {"generatedAt": "2026-06-08T14:00:00+00:00", "papers": [{"title": "Newer"}]}
+
+                push_to_artifact.archive_dashboard_payload(first, [{"source": "papers"}])
+                push_to_artifact.archive_dashboard_payload(replacement, [{"source": "papers"}])
+                push_to_artifact.archive_dashboard_payload(newer, [{"source": "github"}])
+
+            index = json.loads(index_path.read_text(encoding="utf-8"))
+            archived = json.loads((archive_dir / "2026-06-01" / "output.json").read_text(encoding="utf-8"))
+
+        self.assertEqual([entry["date"] for entry in index["editions"]], ["2026-06-08", "2026-06-01"])
+        self.assertEqual(archived["papers"][0]["title"], "Replacement")
+        self.assertEqual(len(index["editions"]), 2)
+
+    def test_publication_monday_uses_new_york_date(self) -> None:
+        generated_at = datetime(2026, 6, 8, 14, 0, tzinfo=timezone.utc).isoformat()
+
+        self.assertEqual(push_to_artifact._publication_monday(generated_at), "2026-06-08")
+
     def test_shared_model_tool_limit_controls_each_release_category(self) -> None:
         items = [
             {"source_type": "model", "title": f"Model {index}", "url": f"https://example.com/model-{index}"}

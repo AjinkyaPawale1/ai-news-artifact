@@ -4,13 +4,17 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from .model_tools_config import MODEL_TOOL_KNOWN_BENCHMARK_URLS, MODEL_TOOL_MAX_ITEMS
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
+ARCHIVE_DIR = DATA_DIR / "archive"
+ARCHIVE_INDEX_PATH = ARCHIVE_DIR / "index.json"
+PUBLICATION_TIMEZONE = ZoneInfo("America/New_York")
 MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations"
 ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models"
 
@@ -34,6 +38,42 @@ def _format_count(value: int | str | None) -> str:
     if value >= 1_000:
         return f"{value / 1_000:.1f}k"
     return str(value)
+
+
+def _publication_monday(generated_at: str) -> str:
+    generated = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+    local_date = generated.astimezone(PUBLICATION_TIMEZONE).date()
+    return (local_date - timedelta(days=local_date.weekday())).isoformat()
+
+
+def archive_dashboard_payload(payload: dict, health: list[dict]) -> dict:
+    """Store an idempotent weekly snapshot and refresh the archive manifest."""
+    archive_date = _publication_monday(payload["generatedAt"])
+    edition_dir = ARCHIVE_DIR / archive_date
+    edition_dir.mkdir(parents=True, exist_ok=True)
+
+    output_path = edition_dir / "output.json"
+    health_path = edition_dir / "health.json"
+    output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    health_path.write_text(json.dumps(health, indent=2), encoding="utf-8")
+
+    existing = []
+    if ARCHIVE_INDEX_PATH.exists():
+        parsed = json.loads(ARCHIVE_INDEX_PATH.read_text(encoding="utf-8"))
+        existing = parsed.get("editions", []) if isinstance(parsed, dict) else []
+
+    edition = {
+        "date": archive_date,
+        "generatedAt": payload["generatedAt"],
+        "outputPath": f"archive/{archive_date}/output.json",
+        "healthPath": f"archive/{archive_date}/health.json",
+    }
+    editions = [entry for entry in existing if entry.get("date") != archive_date]
+    editions.append(edition)
+    editions.sort(key=lambda entry: entry.get("date", ""), reverse=True)
+    index = {"editions": editions}
+    ARCHIVE_INDEX_PATH.write_text(json.dumps(index, indent=2), encoding="utf-8")
+    return edition
 
 
 def _normalized_benchmark_name(name: str) -> str:
@@ -62,7 +102,6 @@ def _to_action_item(item: dict, priority: str) -> dict:
         ),
         "tags": item.get("tags") or [item.get("source_type", "AI")],
         "score": item.get("action_score", item.get("score", 50)),
-        "fsoRelevant": True,
         "url": item.get("url", ""),
     }
 
@@ -79,7 +118,6 @@ def _to_paper(item: dict) -> dict:
         "researchScore": metadata.get("research_score", 0),
         "priority": metadata.get("priority", "READ"),
         "tags": metadata.get("paper_tags") or ["AI Research"],
-        "fsoRelevant": True,
         "abstract": item.get("raw_content") or item.get("summary") or "No abstract available.",
         "takeaways": metadata.get("takeaways")
         or [item.get("summary") or "Review this paper for potential relevance."],
@@ -98,7 +136,6 @@ def _to_blog(item: dict) -> dict:
         "title": item.get("title", "Untitled"),
         "tag": (item.get("tags") or ["AI"])[0][:14].upper(),
         "date": _format_date(item.get("published_date", "")),
-        "fsoRelevant": True,
         "takeaways": [item.get("summary") or item.get("raw_content") or "Review this update."],
         "url": item.get("url", ""),
     }
@@ -248,8 +285,10 @@ def update_papers_in_payload(payload: dict, papers: list[dict], health: list[dic
 def push_to_artifact(items: list[dict], health: list[dict] | None = None) -> dict:
     """Write final dashboard payload to data/output.json."""
     DATA_DIR.mkdir(exist_ok=True)
-    payload = build_dashboard_payload(items, health)
+    health_entries = health or []
+    payload = build_dashboard_payload(items, health_entries)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    archive_dashboard_payload(payload, health_entries)
     return payload
 
 

@@ -237,7 +237,7 @@ Status: accepted
 
 Reason:
 - The previous weekly page repeated the Research tab and overloaded the landing view with full lists.
-- FSO branding and domain-injection copy no longer matched the generic AI intelligence goal.
+- Financial-services branding and domain-injection copy no longer matched the generic AI intelligence goal.
 - RSS ordering and permissive release classification created avoidable source imbalance and noisy cards.
 
 Impact:
@@ -349,3 +349,34 @@ Impact:
   are rejected from model releases.
 - The frontend no longer loads Tailwind CDN or Google Fonts at runtime; needed layout
   utilities are local CSS, and production build verification passes again.
+
+## 2026-06-08 - Archive weekly editions and publish Monday mornings
+Status: accepted
+
+Reason:
+- Readers need access to recent briefs without introducing a database or separate service.
+- The existing static artifact and GitHub Pages architecture can support versioned editions.
+- Publication must remain at 10:00 AM Eastern across daylight-saving changes.
+
+Impact:
+- Full pipeline runs write an idempotent Monday-keyed output and health snapshot under
+  `data/archive/` and update a newest-first manifest.
+- The dashboard offers the current edition plus the three preceding archives from its header.
+- GitHub Actions runs both possible UTC offsets and uses an America/New_York gate before
+  refreshing, validating, committing generated artifacts, and deploying Pages.
+
+## 2026-06-08 - Fail closed on incomplete refreshes and fetch archives on demand
+Status: accepted
+
+Reason:
+- Source agents can preserve pipeline execution while reporting a failed top-level lane,
+  which must not become a public weekly edition.
+- Eagerly importing every archive makes the initial JavaScript payload grow every week.
+
+Impact:
+- A tested publication gate blocks commits and deployment when required source health,
+  minimum content, or current/archive consistency checks fail.
+- Partial internal paper-category recovery remains publishable when the top-level paper
+  source succeeds.
+- Historical outputs are static Pages assets fetched only when selected and cached for
+  the browser session; archive count no longer increases the initial JavaScript bundle.

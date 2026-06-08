@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-06-03
+Last updated: 2026-06-08
 
 ## Purpose
 A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
@@ -9,9 +9,11 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Repository style: lightweight monorepo.
 - Frontend runtime: Vite + React (ES modules) under `apps/web`.
 - Agent pipeline runtime: Python 3 package under `apps/pipeline/src/news_pipeline`.
-- Primary dashboard component: `apps/web/src/ey-fso-ai-brief.jsx` (default export Dashboard).
+- Primary dashboard component: `apps/web/src/ai-intelligence-brief.jsx` (default export Dashboard).
 - Dashboard data artifact: `data/output.json`.
 - Pipeline health artifact: `data/health.json`.
+- Weekly archive manifest: `data/archive/index.json`.
+- Weekly snapshots: `data/archive/YYYY-MM-DD/output.json` and `health.json`.
 - Python pipeline entry point: `news_pipeline.supervisor`.
 - Fetch agents:
   - `news_pipeline.agents.fetch_papers` for arXiv.
@@ -35,6 +37,8 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Dashboard utility classes are implemented in local `apps/web/src/styles.css`; do not
   rely on runtime Tailwind CDN for local or production rendering.
 - Dashboard imports generated pipeline data from root `data/output.json`.
+- Dashboard bundles only archive metadata; archived outputs are copied to `dist/archive/`
+  and fetched on demand. The header selector exposes the three previous editions.
 - Public GitHub Pages URL is `https://ajinkyapawale1.github.io/ai-news-artifact/`.
 - Local Vite builds use `/`; the GitHub Pages workflow sets `GITHUB_PAGES=true` so Vite
   builds with `/ai-news-artifact/`.
@@ -108,4 +112,7 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - npm run dev
 - npm run build
 - GitHub Pages workflow: `.github/workflows/deploy-pages.yml`
+- Scheduled publication: Monday at 10:00 AM America/New_York.
+- Scheduled publication is blocked unless `news_pipeline.publication_gate` finds one
+  healthy top-level entry for every required source and non-empty core content lanes.
 - npm run preview
