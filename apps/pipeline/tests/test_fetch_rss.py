@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+from datetime import datetime, timezone
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -10,10 +11,11 @@ from news_pipeline.agents import fetch_rss
 
 
 def _entry(title: str, url: str) -> SimpleNamespace:
+    now = datetime.now(timezone.utc)
     return SimpleNamespace(
         title=title,
         link=url,
-        published_parsed=(2026, 6, 2, 12, 0, 0),
+        published_parsed=(now.year, now.month, now.day, now.hour, now.minute, now.second),
         tags=[],
         summary=f"Summary for {title}",
         author="Author",
