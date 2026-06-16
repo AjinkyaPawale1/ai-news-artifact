@@ -3,17 +3,22 @@
 from __future__ import annotations
 
 import unittest
+from datetime import datetime, timezone
 from types import SimpleNamespace
 from unittest.mock import patch
 
 from news_pipeline.agents import fetch_rss
+
+# Fixed cutoff used in tests: entries dated after this will pass the date filter.
+_FIXED_CUTOFF = datetime(2026, 6, 1, 0, 0, 0, tzinfo=timezone.utc)
+_ENTRY_DATE = (2026, 6, 2, 12, 0, 0)
 
 
 def _entry(title: str, url: str) -> SimpleNamespace:
     return SimpleNamespace(
         title=title,
         link=url,
-        published_parsed=(2026, 6, 2, 12, 0, 0),
+        published_parsed=_ENTRY_DATE,
         tags=[],
         summary=f"Summary for {title}",
         author="Author",
@@ -35,6 +40,7 @@ class RssCollectionTests(unittest.TestCase):
             patch.object(fetch_rss, "RSS_FEEDS", feeds),
             patch.object(fetch_rss, "MAX_ITEMS_PER_SOURCE", 4),
             patch.object(fetch_rss.feedparser, "parse", side_effect=parse),
+            patch.object(fetch_rss, "window_start", return_value=_FIXED_CUTOFF),
         ):
             items = fetch_rss.fetch_rss()
             diagnostics = fetch_rss.get_last_diagnostics()
