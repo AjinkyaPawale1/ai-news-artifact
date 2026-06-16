@@ -9,13 +9,15 @@ from unittest.mock import patch
 
 from news_pipeline.agents import fetch_rss
 
+_NOW = datetime.now(timezone.utc)
+_PUBLISHED = (_NOW.year, _NOW.month, _NOW.day, _NOW.hour, _NOW.minute, _NOW.second)
+
 
 def _entry(title: str, url: str) -> SimpleNamespace:
-    now = datetime.now(timezone.utc)
     return SimpleNamespace(
         title=title,
         link=url,
-        published_parsed=(now.year, now.month, now.day, now.hour, now.minute, now.second),
+        published_parsed=_PUBLISHED,
         tags=[],
         summary=f"Summary for {title}",
         author="Author",
