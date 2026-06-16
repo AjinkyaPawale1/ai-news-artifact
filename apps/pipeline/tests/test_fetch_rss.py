@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import unittest
+from datetime import datetime, timezone
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -35,6 +36,7 @@ class RssCollectionTests(unittest.TestCase):
             patch.object(fetch_rss, "RSS_FEEDS", feeds),
             patch.object(fetch_rss, "MAX_ITEMS_PER_SOURCE", 4),
             patch.object(fetch_rss.feedparser, "parse", side_effect=parse),
+            patch.object(fetch_rss, "window_start", return_value=datetime(2000, 1, 1, tzinfo=timezone.utc)),
         ):
             items = fetch_rss.fetch_rss()
             diagnostics = fetch_rss.get_last_diagnostics()
