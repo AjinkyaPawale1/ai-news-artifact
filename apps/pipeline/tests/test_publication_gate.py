@@ -10,8 +10,15 @@ def _healthy_fixture() -> tuple[dict, list[dict], dict, dict]:
         "generatedAt": "2026-06-08T14:00:00+00:00",
         "papers": [{"title": "Paper"}],
         "repos": [{"name": "org/repo"}],
-        "blogs": [{"title": "Update"}],
-        "models": [],
+        "blogs": [
+            {
+                "title": "Update",
+                "url": "https://example.com/update",
+                "linkVerified": True,
+                "takeaways": ["A sufficiently detailed AI release update with production, deployment, and evaluation implications for enterprise teams."],
+            }
+        ],
+        "models": [{"name": "Model"}],
         "toolsServices": [{"name": "Tool"}],
     }
     health = [
@@ -61,7 +68,7 @@ class PublicationGateTests(unittest.TestCase):
         self.assertIn("expected exactly one health entry for rss, found 0", errors)
         self.assertIn("required source model_tools is not healthy", errors)
 
-    def test_rejects_empty_required_sections_and_releases(self) -> None:
+    def test_rejects_empty_required_sections_and_each_release_category(self) -> None:
         current, health, archive_index, archived = _healthy_fixture()
         current.update({"papers": [], "repos": [], "blogs": [], "models": [], "toolsServices": []})
         archived = dict(current)
@@ -71,7 +78,24 @@ class PublicationGateTests(unittest.TestCase):
         self.assertIn("current artifact has no papers", errors)
         self.assertIn("current artifact has no repos", errors)
         self.assertIn("current artifact has no blogs", errors)
-        self.assertIn("current artifact has no model or tool/service releases", errors)
+        self.assertIn("current artifact has no models", errors)
+        self.assertIn("current artifact has no toolsServices", errors)
+
+    def test_rejects_stale_fallback_provenance(self) -> None:
+        current, health, archive_index, archived = _healthy_fixture()
+        current["fallbackSections"] = {
+            "models": {
+                "editionDate": "2026-05-04",
+                "generatedAt": "2026-05-04T14:00:00+00:00",
+                "reason": "no_current_valid_items",
+            }
+        }
+        archived = dict(current)
+
+        self.assertIn(
+            "fallback section models is outside the allowed age window",
+            validate_publication(current, health, archive_index, archived),
+        )
 
     def test_rejects_archive_mismatch(self) -> None:
         current, health, archive_index, archived = _healthy_fixture()
@@ -79,6 +103,28 @@ class PublicationGateTests(unittest.TestCase):
 
         self.assertIn(
             "latest archive does not match current output",
+            validate_publication(current, health, archive_index, archived),
+        )
+
+    def test_rejects_unverified_or_sparse_blog_content(self) -> None:
+        current, health, archive_index, archived = _healthy_fixture()
+        current["blogs"] = [{"title": "Weak", "url": "https://example.com/weak", "linkVerified": False, "takeaways": ["Too short."]}]
+        archived = dict(current)
+
+        errors = validate_publication(current, health, archive_index, archived)
+
+        self.assertIn("blog 1 has an unverified link", errors)
+        self.assertIn("blog 1 has an insufficient summary", errors)
+
+    def test_rejects_blog_copy_cut_mid_sentence(self) -> None:
+        current, health, archive_index, archived = _healthy_fixture()
+        current["blogs"][0]["takeaways"] = [
+            "A detailed AI release update with production deployment and evaluation information that ends without a completed sentence"
+        ]
+        archived = dict(current)
+
+        self.assertIn(
+            "blog 1 has an insufficient summary",
             validate_publication(current, health, archive_index, archived),
         )
 

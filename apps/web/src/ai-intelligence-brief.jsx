@@ -126,7 +126,18 @@ function Tag({ children, color = THEME.muted, backgroundColor = "transparent" })
   );
 }
 
-function SectionHeader({ title, sub, action }) {
+function FallbackEditionLabel({ fallback }) {
+  if (!fallback?.editionDate) return null;
+  return (
+    <div className="ai-mono mt-1" style={{ ...TYPE.label, fontSize: 9, color: THEME.accent }}>
+      PREVIOUS VERIFIED EDITION · {formatEditionDate(fallback.editionDate).toUpperCase()}
+    </div>
+  );
+}
+
+function SectionHeader({ title, sub, action, fallbackSection }) {
+  const pipelineData = useBriefData();
+  const fallback = fallbackSection ? pipelineData.fallbackSections?.[fallbackSection] : null;
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-3">
       <div>
@@ -140,6 +151,7 @@ function SectionHeader({ title, sub, action }) {
             {sub}
           </div>
         )}
+        <FallbackEditionLabel fallback={fallback} />
       </div>
       {action}
     </div>
@@ -278,7 +290,7 @@ function StatsBar() {
   );
 }
 
-function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary, onNavigate }) {
+function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary, onNavigate, fallback }) {
   return (
     <div className="border p-4 h-full min-w-0" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
       <div className="flex items-center justify-between gap-3 mb-3">
@@ -288,6 +300,7 @@ function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary,
         </div>
         <TextButton onClick={onNavigate}>VIEW ALL</TextButton>
       </div>
+      <FallbackEditionLabel fallback={fallback} />
       <div className="space-y-2.5">
         {items.slice(0, 3).map((item) => (
           <div key={getTitle(item)} className="border-t pt-2.5" style={{ borderColor: "#e7ebf2" }}>
@@ -301,7 +314,7 @@ function SnapshotList({ title, icon: Icon, items, getTitle, getMeta, getSummary,
   );
 }
 
-function FeaturedResearch({ paper, onNavigate }) {
+function FeaturedResearch({ paper, onNavigate, fallback }) {
   if (!paper) return null;
   return (
     <div className="border p-4 sm:p-6 mb-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
@@ -310,6 +323,7 @@ function FeaturedResearch({ paper, onNavigate }) {
           <div className="ai-mono mb-3" style={{ ...TYPE.label, color: ACCENT_GOLD }}>
             FEATURED RESEARCH PICK
           </div>
+          <FallbackEditionLabel fallback={fallback} />
           <h3 className="mb-2" style={{ ...TYPE.cardTitle, fontSize: 22 }}>{paper.title}</h3>
           <div className="ai-mono mb-3" style={TYPE.meta}>{paper.date} · {paper.org}</div>
           <TakeawayList takeaways={paper.takeaways} limit={2} />
@@ -341,15 +355,16 @@ function WeeklySnapshot({ onNavigate }) {
   const models = pipelineData.models ?? [];
   const toolsServices = pipelineData.toolsServices ?? [];
   const papers = pipelineData.papers ?? [];
+  const fallbackSections = pipelineData.fallbackSections ?? {};
   return (
     <div>
       <StatsBar />
       <SectionHeader title="THIS WEEK" sub="A DECISION-FIRST VIEW OF THE SIGNALS WORTH OPENING" />
-      <FeaturedResearch paper={papers[0]} onNavigate={() => onNavigate("research")} />
+      <FeaturedResearch paper={papers[0]} onNavigate={() => onNavigate("research")} fallback={fallbackSections.papers} />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <SnapshotList title="TRENDING REPOS" icon={Boxes} items={repos} getTitle={(item) => item.name} getSummary={(item) => item.desc} getMeta={(item) => `${item.stars} stars · ${item.bestFor}`} onNavigate={() => onNavigate("repos")} />
-        <SnapshotList title="MODEL RELEASES" icon={Sparkles} items={models} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
-        <SnapshotList title="TOOLS & SERVICES" icon={Wrench} items={toolsServices} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} />
+        <SnapshotList title="TRENDING REPOS" icon={Boxes} items={repos} getTitle={(item) => item.name} getSummary={(item) => item.desc} getMeta={(item) => `${item.stars} stars · ${item.bestFor}`} onNavigate={() => onNavigate("repos")} fallback={fallbackSections.repos} />
+        <SnapshotList title="MODEL RELEASES" icon={Sparkles} items={models} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} fallback={fallbackSections.models} />
+        <SnapshotList title="TOOLS & SERVICES" icon={Wrench} items={toolsServices} getTitle={(item) => item.name} getMeta={(item) => `${item.org} · ${item.date}`} onNavigate={() => onNavigate("releases")} fallback={fallbackSections.toolsServices} />
       </div>
     </div>
   );
@@ -427,7 +442,7 @@ function ResearchTab({ weekLabel }) {
   const papers = useBriefData().papers ?? [];
   return (
     <div>
-      <SectionHeader title="RESEARCH" sub={`7-DAY WINDOW · 14-DAY BACKFILL ONLY IF NEEDED · ${weekLabel}`} />
+      <SectionHeader title="RESEARCH" sub={`7-DAY WINDOW · 14-DAY BACKFILL ONLY IF NEEDED · ${weekLabel}`} fallbackSection="papers" />
       <div className="space-y-3">{papers.map((paper) => <PaperCard key={paper.title} paper={paper} />)}</div>
     </div>
   );
@@ -493,7 +508,7 @@ function RepoList({ items }) {
 
 function ReposTab() {
   const repos = useBriefData().repos ?? [];
-  return <div><SectionHeader title="REPOS" sub="TRENDING OPEN-SOURCE PROJECTS · EXPAND FOR WHY THEY MATTER" /><RepoList items={repos} /></div>;
+  return <div><SectionHeader title="REPOS" sub="TRENDING OPEN-SOURCE PROJECTS · EXPAND FOR WHY THEY MATTER" fallbackSection="repos" /><RepoList items={repos} /></div>;
 }
 
 function releaseLinksForItem(item, kind) {
@@ -549,8 +564,8 @@ function ReleasesTab() {
   const toolsServices = pipelineData.toolsServices ?? [];
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={models} kind="model" emptyLabel="No recent model releases found." /></div>
-      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" /><ReleaseList items={toolsServices} kind="tool" emptyLabel="No recent tool or service releases found." /></div>
+      <div><SectionHeader title="MODEL RELEASES" sub="RECENT TRUSTED ANNOUNCEMENTS" fallbackSection="models" /><ReleaseList items={models} kind="model" emptyLabel="No recent model releases found." /></div>
+      <div><SectionHeader title="TOOLS & SERVICES" sub="RECENT TRUSTED ANNOUNCEMENTS" fallbackSection="toolsServices" /><ReleaseList items={toolsServices} kind="tool" emptyLabel="No recent tool or service releases found." /></div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-06-04T00:31:00.105521+00:00",
-  "source": "llm",
+  "updated_at": "2026-07-17T18:53:41.555996+00:00",
+  "source": "persisted",
   "core_feeds": [
     "https://openai.com/news/rss.xml",
     "https://developers.openai.com/rss.xml",
@@ -24,7 +24,9 @@
     "https://ai.google.dev/gemini-api/docs/changelog",
     "https://ai.meta.com/blog/",
     "https://mistral.ai/news/",
-    "https://cohere.com/blog/"
+    "https://cohere.com/blog/",
+    "https://docs.perplexity.ai/docs/resources/changelog.md",
+    "https://elevenlabs.io/blog/"
   ],
   "emerging_feeds": [
     "https://cloud.google.com/blog/feed/",
@@ -44,46 +46,11 @@
   "refresh": {
     "auto_update_enabled": true,
     "used_persisted_state": true,
-    "updated": true,
-    "source": "llm",
-    "feed_rotation": {
-      "replacements": 2,
-      "added": [
-        "https://blog.google/rss/",
-        "https://cloud.google.com/blog/feed/"
-      ],
-      "removed": [
-        "https://blogs.microsoft.com/ai/feed/",
-        "https://blog.google/technology/ai/rss/"
-      ]
-    },
-    "model_term_rotation": {
-      "replacements": 4,
-      "added": [
-        "gemini flash",
-        "codey",
-        "gemma",
-        "gpt-5"
-      ],
-      "removed": [
-        "mellum 2",
-        "gemini 3.5",
-        "nvidia cosmos 3",
-        "claude opus 4.8"
-      ]
-    },
-    "tool_term_rotation": {
-      "replacements": 3,
-      "added": [
-        "agentcore",
-        "codex",
-        "bedrock agents"
-      ],
-      "removed": [
-        "nemoclaw",
-        "agentcore",
-        "codex"
-      ]
-    }
+    "updated": false,
+    "source": "persisted",
+    "llm_status": "unavailable_or_invalid",
+    "llm_error_code": "missing_api_key",
+    "llm_error_type": "configuration",
+    "llm_error_status": null
   }
 }

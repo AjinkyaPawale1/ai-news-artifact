@@ -1,57 +1,9 @@
 [
   {
-    "source": "rss",
-    "status": "ok",
-    "item_count": 20,
-    "duration_ms": 3999,
-    "fetch_diagnostics": {
-      "strategy": "round_robin",
-      "feeds_requested": 5,
-      "selected": 20,
-      "feeds": [
-        {
-          "feed_url": "https://openai.com/news/rss.xml",
-          "source": "OpenAI News",
-          "fetched": 20,
-          "eligible": 12,
-          "selected": 8
-        },
-        {
-          "feed_url": "https://www.anthropic.com/news/rss.xml",
-          "source": "https://www.anthropic.com/news/rss.xml",
-          "fetched": 0,
-          "eligible": 0,
-          "selected": 0
-        },
-        {
-          "feed_url": "https://huggingface.co/blog/feed.xml",
-          "source": "Hugging Face - Blog",
-          "fetched": 20,
-          "eligible": 8,
-          "selected": 8
-        },
-        {
-          "feed_url": "https://research.google/blog/rss/",
-          "source": "The latest research from Google",
-          "fetched": 20,
-          "eligible": 2,
-          "selected": 2
-        },
-        {
-          "feed_url": "https://www.microsoft.com/en-us/research/feed/",
-          "source": "Microsoft Research",
-          "fetched": 10,
-          "eligible": 2,
-          "selected": 2
-        }
-      ]
-    }
-  },
-  {
     "source": "papers",
     "status": "ok",
-    "item_count": 65,
-    "duration_ms": 8018,
+    "item_count": 62,
+    "duration_ms": 6616,
     "fetch_diagnostics": {
       "categories": [
         {
@@ -87,35 +39,103 @@
       "fourteen_day_count": 75,
       "backfill_count": 0,
       "selected_window_days": 7,
-      "deduplicated_count": 65,
+      "deduplicated_count": 62,
       "displayed_count": 8,
       "request_attempts": 3,
       "retry_count": 0,
       "summary_diagnostics": {
-        "attempted_papers": 8,
-        "request_attempts": 8,
+        "attempted_papers": 0,
+        "request_attempts": 0,
         "retry_count": 0,
-        "successes": 8,
-        "fallbacks": 0,
+        "successes": 0,
+        "fallbacks": 8,
         "disabled": false,
-        "skip_reason": ""
+        "skip_reason": "missing_api_key"
       },
       "action_diagnostics": {
-        "attempted_papers": 8,
-        "request_attempts": 8,
+        "attempted_papers": 0,
+        "request_attempts": 0,
         "retry_count": 0,
-        "successes": 8,
-        "fallbacks": 0,
+        "successes": 0,
+        "fallbacks": 8,
         "disabled": false,
-        "skip_reason": ""
+        "skip_reason": "missing_api_key"
       }
+    }
+  },
+  {
+    "source": "rss",
+    "status": "ok",
+    "item_count": 2,
+    "duration_ms": 12416,
+    "fetch_diagnostics": {
+      "strategy": "round_robin",
+      "feeds_requested": 5,
+      "selected": 2,
+      "feeds": [
+        {
+          "feed_url": "https://openai.com/news/rss.xml",
+          "source": "OpenAI News",
+          "fetched": 20,
+          "eligible": 1,
+          "selected": 1,
+          "verified": 1,
+          "rejected": {
+            "customer_story_or_case_study": 1,
+            "missing_ai_signal": 2,
+            "missing_decision_signal": 3,
+            "tutorial_or_onboarding": 1
+          }
+        },
+        {
+          "feed_url": "https://www.anthropic.com/news/rss.xml",
+          "source": "https://www.anthropic.com/news/rss.xml",
+          "fetched": 0,
+          "eligible": 0,
+          "selected": 0,
+          "verified": 0,
+          "rejected": {}
+        },
+        {
+          "feed_url": "https://huggingface.co/blog/feed.xml",
+          "source": "Hugging Face - Blog",
+          "fetched": 20,
+          "eligible": 0,
+          "selected": 0,
+          "verified": 0,
+          "rejected": {
+            "missing_ai_signal": 2,
+            "missing_decision_signal": 5
+          }
+        },
+        {
+          "feed_url": "https://research.google/blog/rss/",
+          "source": "The latest research from Google",
+          "fetched": 20,
+          "eligible": 0,
+          "selected": 0,
+          "verified": 0,
+          "rejected": {
+            "missing_decision_signal": 1
+          }
+        },
+        {
+          "feed_url": "https://www.microsoft.com/en-us/research/feed/",
+          "source": "Microsoft Research",
+          "fetched": 10,
+          "eligible": 1,
+          "selected": 1,
+          "verified": 1,
+          "rejected": {}
+        }
+      ]
     }
   },
   {
     "source": "github",
     "status": "ok",
     "item_count": 20,
-    "duration_ms": 57294,
+    "duration_ms": 33881,
     "query_mode": "core+emerging",
     "search_diagnostics": {
       "queries": [
@@ -128,7 +148,7 @@
         {
           "query": "topic:agents language:python",
           "fetched": 8,
-          "added": 5,
+          "added": 6,
           "failed": false
         },
         {
@@ -152,7 +172,7 @@
         {
           "query": "memory llm language:python stars:>20",
           "fetched": 8,
-          "added": 4,
+          "added": 5,
           "failed": false
         },
         {
@@ -162,28 +182,28 @@
           "failed": false
         },
         {
-          "query": "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20",
+          "query": "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
+          "query": "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
+          "query": "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
+          "query": "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
           "fetched": 0,
           "added": 0,
-          "failed": false
+          "failed": true
         }
       ],
       "watch_repos": [
@@ -237,124 +257,66 @@
           "kind": "evergreen"
         },
         {
-          "repo": "agentlas-ai/Hephaestus",
+          "repo": "microsoft/graphrag",
           "added": 0,
           "failed": false,
+          "skipped_old": true,
+          "kind": "emerging"
+        },
+        {
+          "repo": "ZepAI/zep",
+          "added": 0,
+          "failed": true,
           "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "MarcoPorcellato/matryca-plumber",
+          "repo": "supermemoryai/supermemory",
           "added": 0,
           "failed": false,
-          "skipped_old": false,
+          "skipped_old": true,
           "kind": "emerging"
         },
         {
-          "repo": "oleksiijko/pmb",
+          "repo": "open-webui/open-webui",
           "added": 0,
           "failed": false,
-          "skipped_old": false,
-          "kind": "emerging"
-        },
-        {
-          "repo": "StarTrail-org/PixelRAG",
-          "added": 1,
-          "failed": false,
-          "skipped_old": false,
+          "skipped_old": true,
           "kind": "emerging"
         }
       ],
-      "pushed_cutoff": "2026-07-06",
-      "created_cutoff": "2026-05-14",
+      "pushed_cutoff": "2026-07-10",
+      "created_cutoff": "2026-05-18",
       "dynamic_config": {
-        "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
         "active_emerging_watch_repos": 4,
         "auto_update_enabled": true,
         "used_persisted_state": true,
-        "updated": true,
-        "source": "llm",
-        "query_rotation": {
-          "replacements": 4,
-          "added": [
-            "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
-            "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
-            "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
-            "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20"
-          ],
-          "removed": [
-            "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
-            "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
-            "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
-            "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
-          ]
-        },
-        "watch_rotation": {
-          "replacements": 4,
-          "added": [
-            "StarTrail-org/PixelRAG",
-            "oleksiijko/pmb",
-            "MarcoPorcellato/matryca-plumber",
-            "agentlas-ai/Hephaestus"
-          ],
-          "removed": [
-            "open-webui/open-webui",
-            "supermemoryai/supermemory",
-            "ZepAI/zep",
-            "microsoft/graphrag"
-          ]
-        }
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid"
       },
-      "total_unique_candidates": 47,
+      "total_unique_candidates": 48,
       "dynamic_refresh": {
-        "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
         "active_emerging_watch_repos": 4,
         "auto_update_enabled": true,
         "used_persisted_state": true,
-        "updated": true,
-        "source": "llm",
-        "query_rotation": {
-          "replacements": 4,
-          "added": [
-            "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
-            "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
-            "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
-            "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20"
-          ],
-          "removed": [
-            "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
-            "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
-            "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
-            "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
-          ]
-        },
-        "watch_rotation": {
-          "replacements": 4,
-          "added": [
-            "StarTrail-org/PixelRAG",
-            "oleksiijko/pmb",
-            "MarcoPorcellato/matryca-plumber",
-            "agentlas-ai/Hephaestus"
-          ],
-          "removed": [
-            "open-webui/open-webui",
-            "supermemoryai/supermemory",
-            "ZepAI/zep",
-            "microsoft/graphrag"
-          ]
-        }
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid"
       }
     }
   },
   {
     "source": "model_tools",
     "status": "ok",
-    "item_count": 9,
-    "duration_ms": 98190,
+    "item_count": 5,
+    "duration_ms": 104294,
     "dynamic_config": {
-      "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
+      "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/model_tools_dynamic_config.json",
       "active_core_feeds": 14,
       "active_emerging_feeds": 4,
       "active_source_pages": 8,
@@ -362,66 +324,35 @@
       "active_emerging_tool_terms": 1,
       "auto_update_enabled": true,
       "used_persisted_state": true,
-      "updated": true,
-      "source": "llm",
-      "feed_rotation": {
-        "replacements": 2,
-        "added": [
-          "https://aws.amazon.com/blogs/machine-learning/feed/",
-          "https://blogs.microsoft.com/ai/feed/"
-        ],
-        "removed": [
-          "https://developer.nvidia.com/blog/feed/",
-          "https://github.blog/category/ai-and-ml/feed/"
-        ]
-      },
-      "model_term_rotation": {
-        "replacements": 4,
-        "added": [
-          "minimax m3",
-          "claude",
-          "llama",
-          "qwen"
-        ],
-        "removed": [
-          "gemini flash",
-          "codey",
-          "gemma",
-          "gpt-5"
-        ]
-      },
-      "tool_term_rotation": {
-        "replacements": 1,
-        "added": [
-          "lsp setup skill"
-        ],
-        "removed": [
-          "bedrock agents"
-        ]
-      }
+      "updated": false,
+      "source": "persisted",
+      "llm_status": "unavailable_or_invalid",
+      "llm_error_code": "missing_api_key",
+      "llm_error_type": "configuration",
+      "llm_error_status": null
     },
     "extraction_diagnostics": {
-      "feeds_requested": 16,
+      "feeds_requested": 17,
       "source_pages_requested": 8,
-      "entries_fetched": 184,
-      "classified": 9,
-      "selected": 9,
-      "llm_classification_attempts": 18,
+      "entries_fetched": 174,
+      "classified": 5,
+      "selected": 5,
+      "llm_classification_attempts": 0,
       "llm_classification_failures": 0,
-      "llm_classification_disabled": false,
-      "llm_classification_skip_reason": "",
+      "llm_classification_disabled": true,
+      "llm_classification_skip_reason": "missing_api_key",
       "classification_diagnostics": {
-        "entries_considered": 184,
+        "entries_considered": 174,
         "rejected_duplicate_url": 3,
-        "rejected_missing_or_stale_date": 85,
+        "rejected_missing_or_stale_date": 88,
         "rejected_non_release": 78,
-        "rejected_by_llm": 9
+        "rejected_by_llm": 0
       },
       "selection_diagnostics": {
         "rejected_near_duplicate": 0
       },
       "dynamic_config": {
-        "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
         "active_source_pages": 8,
@@ -429,43 +360,12 @@
         "active_emerging_tool_terms": 1,
         "auto_update_enabled": true,
         "used_persisted_state": true,
-        "updated": true,
-        "source": "llm",
-        "feed_rotation": {
-          "replacements": 2,
-          "added": [
-            "https://aws.amazon.com/blogs/machine-learning/feed/",
-            "https://blogs.microsoft.com/ai/feed/"
-          ],
-          "removed": [
-            "https://developer.nvidia.com/blog/feed/",
-            "https://github.blog/category/ai-and-ml/feed/"
-          ]
-        },
-        "model_term_rotation": {
-          "replacements": 4,
-          "added": [
-            "minimax m3",
-            "claude",
-            "llama",
-            "qwen"
-          ],
-          "removed": [
-            "gemini flash",
-            "codey",
-            "gemma",
-            "gpt-5"
-          ]
-        },
-        "tool_term_rotation": {
-          "replacements": 1,
-          "added": [
-            "lsp setup skill"
-          ],
-          "removed": [
-            "bedrock agents"
-          ]
-        }
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid",
+        "llm_error_code": "missing_api_key",
+        "llm_error_type": "configuration",
+        "llm_error_status": null
       }
     }
   }

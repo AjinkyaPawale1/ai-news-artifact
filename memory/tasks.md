@@ -70,12 +70,19 @@ Last updated: 2026-06-08
 - [x] Load only the selected historical edition instead of bundling every archive.
 - [x] Reject non-product source-page announcements and defer monthly changelog blocks
       until the following calendar month.
+- [x] Filter public RSS cards for editorial relevance, complete canonical summaries, and
+      verified source links.
+- [x] Add current-publication validation for verified, sentence-complete RSS summaries.
+- [x] Cap agent-memory repository concentration and tighten model/tool release signals.
+- [x] Reuse a four-week validated section only when a current dashboard section is empty,
+      with visible provenance and original dates.
 
 ## Todo
 - [ ] Day 2: Implement fuzzy deduplication and related links.
 - [ ] Day 2: Improve normalization validation.
 - [ ] Day 2: Improve scoring dimensions and weights.
-- [ ] Day 3: Strengthen quality gate and dashboard mapping.
+- [ ] Day 3: Extend the quality gate to papers, repos, and model/tool cards without
+      relying on the legacy generic score floor.
 - [ ] Add README screenshots when the dashboard UI stabilizes.
 - [ ] Add CI for build validation.
 - [ ] Consider migrating from Tailwind CDN to local Tailwind pipeline.
@@ -84,6 +91,8 @@ Last updated: 2026-06-08
 - [ ] Add provider-specific article extraction rules if source-page cards show repeated generic vendor copy.
 - [ ] Improve paper `has_code` by extracting explicit repository/code links from arXiv metadata or paper pages.
 - [ ] Design broader enterprise credibility, actionability, and personalization scoring.
+- [ ] Configure `GITHUB_TOKEN` for scheduled pipeline runs and surface partial GitHub
+      enrichment as a failed top-level health state.
 
 ## In Progress
 - [ ] None
