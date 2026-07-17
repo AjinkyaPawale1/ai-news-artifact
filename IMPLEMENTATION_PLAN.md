@@ -1,6 +1,6 @@
 # LLM News Artifact - Implementation Plan
 
-**Updated:** 2026-06-02
+**Updated:** 2026-07-17
 **Repository shape:** Monorepo Lite
 **Goal:** Maintain a neutral `AI Intelligence Brief` dashboard backed by a Python artifact
 pipeline that keeps enterprise users current on credible, actionable AI developments.
@@ -26,7 +26,8 @@ parallel fetch agents
   -> normalize
   -> score and gate
   -> summarize/enrich
-  -> write data/output.json + data/health.json
+  -> fill empty sections from eligible prior editions
+  -> write data/output.json + data/health.json + weekly archive
   -> React dashboard renders the brief
 ```
 
@@ -38,12 +39,12 @@ parallel fetch agents
 | Weekly Snapshot | Done | Full-width featured paper banner plus equal-width repo/model/tool previews |
 | Research papers | Done | arXiv seven-day-first ranking, 14-day backfill, paper-only refresh path |
 | GitHub repos | Done | LangGraph discovery with dynamic queries, repo summaries/actions, and deterministic `bestFor` labels |
-| Model/tool releases | Done | Official feeds/source pages, release-specific filtering, bounded LLM classification, clean release/benchmark CTAs |
-| RSS articles | Done | Official feed collection with round-robin selection and feed diagnostics |
+| Model/tool releases | Done | Official feeds/source pages, headline release checks, bounded LLM classification, and release/model-directory CTAs |
+| RSS articles | Done | Official feed collection with editorial relevance, canonical-summary recovery, verified links, and feed diagnostics |
 | Placeholder streams | Done | AI Pulse, Social Pulse, and Enterprise Focus render as coming-soon placeholders |
-| Artifact generation | Done | Stable frontend contract in `data/output.json`; source health in `data/health.json` |
+| Artifact generation | Done | Stable contract, four-week section fallbacks with provenance, source health, and weekly archives |
 | GitHub Pages | Done | Static dashboard deploys from `main` to `https://ajinkyapawale1.github.io/ai-news-artifact/` |
-| Scheduled refresh automation | Todo | No scheduled pipeline refresh workflow yet |
+| Scheduled refresh automation | Done | Monday 10:00 AM America/New_York refresh, validation, archive commit, and Pages deployment |
 
 ## Artifact Contract
 
@@ -55,6 +56,7 @@ The current dashboard contract preserves these top-level arrays:
 - `toolsServices`
 - `blogs`
 - `socialPosts`
+- `fallbackSections` (additive provenance for reused sections)
 
 Snapshot stats describe the generated artifact directly:
 
@@ -86,8 +88,10 @@ Snapshot stats describe the generated artifact directly:
 ### 4. Automation
 
 - Keep the existing GitHub Pages workflow publishing the static dashboard from `main`.
-- Add a separate GitHub Actions workflow for manual and scheduled data refreshes.
-- Install Node and Python dependencies in CI.
+- Maintain the Monday refresh gate: a new edition must have healthy required sources,
+  non-empty dashboard sections, and valid four-week fallback provenance when reuse occurs.
+- Configure `GITHUB_TOKEN` for scheduled runs so GitHub rate limiting does not reduce
+  repository enrichment coverage.
 - Run the pipeline and commit updated generated artifacts only when the artifact changes.
 - Use repository secrets for `OPENAI_API_KEY` and `GITHUB_TOKEN` when needed.
 

@@ -109,8 +109,9 @@ The pipeline writes:
 The React app treats `data/output.json` as read-only generated data. The current public
 contract includes `papers`, `repos`, `models`, `toolsServices`, `blogs`, `socialPosts`,
 and additive `fallbackSections` provenance. When a current section has no valid items,
-the pipeline may reuse its most recent validated section from the previous four weeks;
-the dashboard retains original card dates and labels the reused section.
+the pipeline may reuse its most recent structurally valid, source-healthy section from
+the previous four weeks; the dashboard retains original card dates and labels the reused
+section.
 The archive manifest is bundled, while individual historical outputs are deployed as
 static JSON and downloaded only when a reader selects that edition.
 

@@ -168,7 +168,8 @@ Known risk:
   used when the API is unavailable or the artifact has not been refreshed.
 - Model/tool cards no longer expose RSS/source feed buttons in the UI. Model cards use
   verified Artificial Analysis model URLs when known; otherwise they link to
-  `https://artificialanalysis.ai/models` as `Benchmarks` to avoid 404s.
+  `https://artificialanalysis.ai/models` as `Model directory` to avoid implying a
+  model-specific benchmark.
 - Perplexity's official API changelog Markdown and the ElevenLabs blog are now
   permanent model/tool source pages. Live checks on 2026-06-08 extracted
   Perplexity Finance Search and Agent API updates plus ElevenLabs Dubbing v2,
