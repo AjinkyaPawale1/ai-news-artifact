@@ -209,6 +209,24 @@ The snapshot stats describe the artifact contract directly:
 
 Broader enterprise credibility and actionability scoring remains a later pipeline phase.
 
+## Enterprise Relevance Positioning
+
+The brief is designed for enterprise AI experimentation and adoption decisions, but it is
+not a personalized enterprise recommender. The current controls establish a reliable
+baseline:
+
+- RSS cards must be AI-relevant, decision-relevant, summary-complete, and link-verified;
+  tutorials, customer stories, and onboarding content are excluded.
+- Model and tool/service cards require concrete release or availability signals in their
+  headlines. Consumer-rollout and education announcements are excluded unless they
+  describe a concrete enterprise product change.
+- Papers are ranked by generic research signals, and repositories by engineering traction
+  and diversity. Neither lane currently applies organization-specific business context,
+  risk posture, or adoption priorities.
+
+Broader enterprise credibility, actionability, and personalization scoring remains an
+explicit next phase rather than an implied property of every card.
+
 ## Commands
 
 Run from the repository root:

@@ -69,8 +69,12 @@ Snapshot stats describe the generated artifact directly:
 
 ### 1. Broader Enterprise Scoring
 
-- Design credibility, actionability, and personalization scoring before coding.
-- Keep this separate from the already implemented release-noise and RSS-fairness fixes.
+- Preserve the current enterprise-oriented baseline: decision-relevant, verified RSS
+  cards and concrete enterprise release/availability headlines.
+- Design organization-specific credibility, actionability, and personalization scoring
+  before applying an enterprise rank to papers and repositories.
+- Keep this separate from the already implemented release-noise, RSS-quality, and
+  section-fallback controls.
 - Avoid exposing internal scoring rationale in user-facing dashboard copy.
 
 ### 2. Cross-Source Linking And Deduplication

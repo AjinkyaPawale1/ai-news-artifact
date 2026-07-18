@@ -4,6 +4,9 @@ Last updated: 2026-06-08
 
 ## Purpose
 A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
+The brief is enterprise-oriented rather than personalized: RSS and release lanes enforce
+enterprise relevance controls, while paper and repository ranking remains generic until
+broader credibility, actionability, and personalization scoring is implemented.
 
 ## Architecture
 - Repository style: lightweight monorepo.

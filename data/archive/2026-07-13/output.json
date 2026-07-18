@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T18:55:25.869650+00:00",
+  "generatedAt": "2026-07-18T00:19:21.944289+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
@@ -117,7 +117,7 @@
       ],
       "createdAt": "May 29, 2026",
       "lastUpdated": "Jul 16, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "MCP Tooling",
       "bullets": [
         "The end of web parsing. The beginning of scalable pixel-native search. link: https://pixelrag.ai/.",
@@ -136,7 +136,7 @@
     },
     {
       "name": "oleksiijko/pmb",
-      "stars": "310",
+      "stars": "311",
       "desc": "Local-first persistent memory for AI coding agents (Claude Code, Cursor, Codex) over MCP. Decisions, lessons and facts live in one SQLite file on your disk. Offline, multilingual.",
       "url": "https://github.com/oleksiijko/pmb",
       "language": "Python",
@@ -164,7 +164,7 @@
       ],
       "createdAt": "May 25, 2026",
       "lastUpdated": "Jul 13, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
         "Local-first persistent memory for AI coding agents (Claude Code, Cursor, Codex) over MCP. Decisions, lessons and facts live in one SQLite file on your disk. Offline, multilingual.",
@@ -206,8 +206,8 @@
         "sandbox"
       ],
       "createdAt": "Jun 11, 2026",
-      "lastUpdated": "Jul 17, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "lastUpdated": "Jul 18, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
         "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.",
@@ -226,7 +226,7 @@
     },
     {
       "name": "CyberSunil/LLMVault",
-      "stars": "143",
+      "stars": "151",
       "desc": "An intentionally vulnerable OWASP LLM Top 10 training platform for AI Security, Prompt Injection, RAG Security, Agent Security, and GenAI penetration testing.",
       "url": "https://github.com/CyberSunil/LLMVault",
       "language": "Python",
@@ -254,7 +254,7 @@
       ],
       "createdAt": "Jul 15, 2026",
       "lastUpdated": "Jul 17, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
         "An intentionally vulnerable OWASP LLM Top 10 training platform for AI Security, Prompt Injection, RAG Security, Agent Security, and GenAI penetration testing.",
@@ -273,7 +273,7 @@
     },
     {
       "name": "theteatoast/local-vuln-research-pipeline",
-      "stars": "162",
+      "stars": "163",
       "desc": "Fully local vulnerability research pipeline - 14B code-specialized LLM reviews every source file exhaustively.",
       "url": "https://github.com/theteatoast/local-vuln-research-pipeline",
       "language": "Python",
@@ -288,7 +288,7 @@
       ],
       "createdAt": "Jul 9, 2026",
       "lastUpdated": "Jul 11, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "Agent Security",
       "bullets": [
         "Fully local vulnerability research pipeline - 14B code-specialized LLM reviews every source file exhaustively.",
@@ -333,7 +333,7 @@
       ],
       "createdAt": "Jun 14, 2026",
       "lastUpdated": "Jul 16, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
         "World's fastest and most compact embedded vector database: exact by default, multimodal, local-first, and GPU-accelerated.",
@@ -352,7 +352,7 @@
     },
     {
       "name": "SmileLikeYe/agent-chief",
-      "stars": "834",
+      "stars": "812",
       "desc": "Attention is your scarcest resource. Chief is the local-first layer that guards it \u2014 turning every agent, alert, and feed into one honest call: interrupt, or not.",
       "url": "https://github.com/SmileLikeYe/agent-chief",
       "language": "Python",
@@ -364,7 +364,7 @@
       ],
       "createdAt": "Jul 4, 2026",
       "lastUpdated": "Jul 14, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
         "Attention is your scarcest resource. Chief is the local-first layer that guards it \u2014 turning every agent, alert, and feed into one honest call: interrupt, or not.",
@@ -382,40 +382,42 @@
       "license": "MIT"
     },
     {
-      "name": "Francis1998/scholar-rag-agent",
-      "stars": "44",
-      "desc": "Production-grade Agentic RAG for scientific literature \u2014 multi-hop reasoning, GraphRAG, and multi-LLM routing",
-      "url": "https://github.com/Francis1998/scholar-rag-agent",
+      "name": "kldhsh123/Afterglow",
+      "stars": "223",
+      "desc": "\u4f7f\u7528\u793e\u4ea4\u8f6f\u4ef6\u804a\u5929\u8bb0\u5f55\u7ed3\u5408\u5411\u91cf\u6570\u636e\u5e93\u8ba9AI\u66f4\u597d\u7684\u626e\u6f14\u5bf9\u65b9\u7684\u89d2\u8272\uff0c\u5728\u4e0d\u5fae\u8c03\u6a21\u578b\u7684\u60c5\u51b5\u4e0b\u53ef\u4ee5\u8fbe\u5230\u53ef\u89c2\u7684\u6548\u679c\u3002\u628a\u66fe\u7ecf\u7684\u7f8e\u597d\uff0c\u7eed\u6210\u5f80\u540e\u7684\u966a\u4f34\u3002",
+      "url": "https://github.com/kldhsh123/Afterglow",
       "language": "Python",
       "topics": [
-        "agentic-rag",
-        "anthropic",
-        "graphrag",
-        "langgraph",
-        "llm-agents",
-        "multi-hop-reasoning",
-        "openai",
-        "retrieval-augmented-generation",
-        "scientific-ai"
+        "afterglow",
+        "ai-companion",
+        "digital-companion",
+        "lancedb",
+        "llm",
+        "python",
+        "qq-chat",
+        "rag",
+        "semantic-search",
+        "vector-database",
+        "vue"
       ],
-      "createdAt": "Jun 21, 2026",
-      "lastUpdated": "Jul 16, 2026",
-      "fetchedAt": "Jul 17, 2026",
+      "createdAt": "May 22, 2026",
+      "lastUpdated": "Jul 15, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Production-grade Agentic RAG for scientific literature \u2014 multi-hop reasoning, GraphRAG, and multi-LLM routing.",
-        "Primarily Python, with topics such as agentic-rag, anthropic, graphrag.",
-        "Recent activity tracked from 2026-07-16."
+        "\u4f7f\u7528\u793e\u4ea4\u8f6f\u4ef6\u804a\u5929\u8bb0\u5f55\u7ed3\u5408\u5411\u91cf\u6570\u636e\u5e93\u8ba9AI\u66f4\u597d\u7684\u626e\u6f14\u5bf9\u65b9\u7684\u89d2\u8272\uff0c\u5728\u4e0d\u5fae\u8c03\u6a21\u578b\u7684\u60c5\u51b5\u4e0b\u53ef\u4ee5\u8fbe\u5230\u53ef\u89c2\u7684\u6548\u679c\u3002\u628a\u66fe\u7ecf\u7684\u7f8e\u597d\uff0c\u7eed\u6210\u5f80\u540e\u7684\u966a\u4f34\u3002.",
+        "Primarily Python, with topics such as afterglow, ai-companion, digital-companion.",
+        "Latest release v0.3.1 signals active maintenance."
       ],
       "actionItems": [
-        "Clone Francis1998/scholar-rag-agent and run the README quickstart with a small Python smoke test.",
+        "Clone kldhsh123/Afterglow and run the README quickstart with a small Python smoke test.",
         "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
-        "Review recent commit history, open issues, and license before deciding on a deeper benchmark or pilot."
+        "Review v0.3.1, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
-      "latestRelease": "",
-      "latestReleaseUrl": "",
-      "homepage": "",
-      "license": "NOASSERTION"
+      "latestRelease": "v0.3.1",
+      "latestReleaseUrl": "https://github.com/kldhsh123/Afterglow/releases/tag/v0.3.1",
+      "homepage": "https://afterglow.kldhsh.top",
+      "license": "AGPL-3.0"
     }
   ],
   "models": [
@@ -900,74 +902,10 @@
   "trending": [],
   "health": [
     {
-      "source": "papers",
-      "status": "ok",
-      "item_count": 62,
-      "duration_ms": 6616,
-      "fetch_diagnostics": {
-        "categories": [
-          {
-            "category": "cs.AI",
-            "status": "ok",
-            "raw_count": 25,
-            "seven_day_count": 25,
-            "fourteen_day_count": 25,
-            "request_attempts": 1,
-            "retry_count": 0
-          },
-          {
-            "category": "cs.CL",
-            "status": "ok",
-            "raw_count": 25,
-            "seven_day_count": 25,
-            "fourteen_day_count": 25,
-            "request_attempts": 1,
-            "retry_count": 0
-          },
-          {
-            "category": "cs.LG",
-            "status": "ok",
-            "raw_count": 25,
-            "seven_day_count": 25,
-            "fourteen_day_count": 25,
-            "request_attempts": 1,
-            "retry_count": 0
-          }
-        ],
-        "raw_count": 75,
-        "seven_day_count": 75,
-        "fourteen_day_count": 75,
-        "backfill_count": 0,
-        "selected_window_days": 7,
-        "deduplicated_count": 62,
-        "displayed_count": 8,
-        "request_attempts": 3,
-        "retry_count": 0,
-        "summary_diagnostics": {
-          "attempted_papers": 0,
-          "request_attempts": 0,
-          "retry_count": 0,
-          "successes": 0,
-          "fallbacks": 8,
-          "disabled": false,
-          "skip_reason": "missing_api_key"
-        },
-        "action_diagnostics": {
-          "attempted_papers": 0,
-          "request_attempts": 0,
-          "retry_count": 0,
-          "successes": 0,
-          "fallbacks": 8,
-          "disabled": false,
-          "skip_reason": "missing_api_key"
-        }
-      }
-    },
-    {
       "source": "rss",
       "status": "ok",
       "item_count": 2,
-      "duration_ms": 12416,
+      "duration_ms": 3845,
       "fetch_diagnostics": {
         "strategy": "round_robin",
         "feeds_requested": 5,
@@ -1032,10 +970,74 @@
       }
     },
     {
+      "source": "papers",
+      "status": "ok",
+      "item_count": 62,
+      "duration_ms": 6701,
+      "fetch_diagnostics": {
+        "categories": [
+          {
+            "category": "cs.AI",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25,
+            "request_attempts": 1,
+            "retry_count": 0
+          },
+          {
+            "category": "cs.CL",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25,
+            "request_attempts": 1,
+            "retry_count": 0
+          },
+          {
+            "category": "cs.LG",
+            "status": "ok",
+            "raw_count": 25,
+            "seven_day_count": 25,
+            "fourteen_day_count": 25,
+            "request_attempts": 1,
+            "retry_count": 0
+          }
+        ],
+        "raw_count": 75,
+        "seven_day_count": 75,
+        "fourteen_day_count": 75,
+        "backfill_count": 0,
+        "selected_window_days": 7,
+        "deduplicated_count": 62,
+        "displayed_count": 8,
+        "request_attempts": 3,
+        "retry_count": 0,
+        "summary_diagnostics": {
+          "attempted_papers": 0,
+          "request_attempts": 0,
+          "retry_count": 0,
+          "successes": 0,
+          "fallbacks": 8,
+          "disabled": false,
+          "skip_reason": "missing_api_key"
+        },
+        "action_diagnostics": {
+          "attempted_papers": 0,
+          "request_attempts": 0,
+          "retry_count": 0,
+          "successes": 0,
+          "fallbacks": 8,
+          "disabled": false,
+          "skip_reason": "missing_api_key"
+        }
+      }
+    },
+    {
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 33881,
+      "duration_ms": 31909,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1066,7 +1068,7 @@
           {
             "query": "reasoning language:python stars:>30",
             "fetched": 8,
-            "added": 8,
+            "added": 7,
             "failed": false
           },
           {
@@ -1185,8 +1187,8 @@
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-07-10",
-        "created_cutoff": "2026-05-18",
+        "pushed_cutoff": "2026-07-11",
+        "created_cutoff": "2026-05-19",
         "dynamic_config": {
           "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1197,7 +1199,7 @@
           "source": "persisted",
           "llm_status": "unavailable_or_invalid"
         },
-        "total_unique_candidates": 48,
+        "total_unique_candidates": 47,
         "dynamic_refresh": {
           "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1214,7 +1216,7 @@
       "source": "model_tools",
       "status": "ok",
       "item_count": 5,
-      "duration_ms": 104294,
+      "duration_ms": 96690,
       "dynamic_config": {
         "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
@@ -1234,7 +1236,7 @@
       "extraction_diagnostics": {
         "feeds_requested": 17,
         "source_pages_requested": 8,
-        "entries_fetched": 174,
+        "entries_fetched": 173,
         "classified": 5,
         "selected": 5,
         "llm_classification_attempts": 0,
@@ -1242,10 +1244,10 @@
         "llm_classification_disabled": true,
         "llm_classification_skip_reason": "missing_api_key",
         "classification_diagnostics": {
-          "entries_considered": 174,
+          "entries_considered": 173,
           "rejected_duplicate_url": 3,
           "rejected_missing_or_stale_date": 88,
-          "rejected_non_release": 78,
+          "rejected_non_release": 77,
           "rejected_by_llm": 0
         },
         "selection_diagnostics": {
