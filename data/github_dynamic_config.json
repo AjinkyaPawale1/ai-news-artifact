@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "updated_at": "2026-06-04T00:30:59.885451+00:00",
-  "source": "llm",
+  "updated_at": "2026-07-18T00:17:45.235049+00:00",
+  "source": "persisted",
   "emerging_queries": [
     "reasoning language:python stars:>30",
     "memory llm language:python stars:>20",
@@ -20,37 +20,8 @@
   "refresh": {
     "auto_update_enabled": true,
     "used_persisted_state": true,
-    "updated": true,
-    "source": "llm",
-    "query_rotation": {
-      "replacements": 4,
-      "added": [
-        "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
-        "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
-        "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
-        "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
-      ],
-      "removed": [
-        "(\"agent memory\" OR \"long-term memory\" OR \"episodic memory\") language:python stars:>20",
-        "(\"memory management\" OR \"context management\") (llm OR agent) language:python stars:>20",
-        "(\"knowledge graph\" OR graph) (agent OR llm OR rag) language:python stars:>30",
-        "(\"MCP server\" OR mcp) (memory OR knowledge OR rag) language:python stars:>20"
-      ]
-    },
-    "watch_rotation": {
-      "replacements": 4,
-      "added": [
-        "open-webui/open-webui",
-        "supermemoryai/supermemory",
-        "ZepAI/zep",
-        "microsoft/graphrag"
-      ],
-      "removed": [
-        "mem0ai/mem0",
-        "phidatahq/phidata",
-        "crewAIInc/crewAI",
-        "modelcontextprotocol/servers"
-      ]
-    }
+    "updated": false,
+    "source": "persisted",
+    "llm_status": "unavailable_or_invalid"
   }
 }

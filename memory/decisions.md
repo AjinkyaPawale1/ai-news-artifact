@@ -413,3 +413,35 @@ Impact:
   become eligible on the first day of the following month.
 - Source-page candidates require a product-focused headline; corporate expansion and
   partnership headlines are rejected even when their body mentions models or platforms.
+
+## 2026-07-17 - Fail closed on public RSS quality
+Status: accepted
+
+Reason:
+- The weekly artifact included title-only, tutorial, customer-story, and weakly relevant
+  RSS entries, which weakens a public enterprise brief even when their source is official.
+- A readable source URL and a complete, decision-useful takeaway are minimum publication
+  requirements rather than presentation enhancements.
+
+Impact:
+- RSS candidates must pass deterministic editorial relevance checks, canonical metadata
+  recovery when needed, and link verification before they can pass scoring or selection.
+- Publication is blocked when a current RSS card lacks a verified URL or a complete
+  summary. This introduces the additive `blogs[].linkVerified` field without changing
+  the dashboard's existing card shape.
+
+## 2026-07-17 - Reuse validated sections when a weekly lane is empty
+Status: accepted
+
+Reason:
+- An empty dashboard section makes a temporary upstream gap appear as missing product
+  capability, even when the previous edition contains valid, recent material.
+
+Impact:
+- The artifact writer preserves non-empty current sections and falls back only for an
+  entirely empty section. It selects the newest structurally valid prior section within
+  four weeks, stores additive `fallbackSections` provenance, and keeps original dates.
+- The dashboard labels reused sections as a previous verified edition. Partially filled
+  current sections are never padded with older cards.
+- Publication now requires both model and tool/service sections independently, so a
+  missing fallback blocks the new edition instead of publishing an empty release column.

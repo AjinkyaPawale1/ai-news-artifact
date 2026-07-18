@@ -107,6 +107,19 @@ NON_RELEASE_HEADLINE_TERMS = [
     "build ",
     "building ",
 ]
+CONSUMER_HEADLINE_TERMS = [
+    "for teachers",
+    "for educators",
+    "for students",
+    "in chrome",
+    "waze",
+]
+TITLE_AVAILABILITY_TERMS = [
+    "now supports",
+    "now available",
+    "on amazon bedrock",
+    "on sagemaker",
+]
 NON_PRODUCT_ANNOUNCEMENT_TERMS = [
     "acquires ",
     "acquisition",
@@ -554,7 +567,7 @@ def _clean_name(title: str) -> str:
         flags=re.IGNORECASE,
     )
     name = re.split(r"\s+[-:|]\s+", name, maxsplit=1)[0].strip()
-    return name[:80] or title[:80]
+    return name or title.strip()
 
 
 def _model_tag(text: str) -> str:
@@ -633,6 +646,9 @@ def _classify_entry(
     title_model_score = _term_count(title_text, model_terms)
     title_tool_score = _term_count(title_text, tool_terms)
     title_has_release_signal = _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
+    title_has_availability_signal = _contains_any(title_text, TITLE_AVAILABILITY_TERMS)
+    if _contains_any(title_text, CONSUMER_HEADLINE_TERMS):
+        return None
     if entry.get("source_page") and not _source_page_title_has_product_signal(
         title_text,
         title_model_score=title_model_score,
@@ -644,7 +660,7 @@ def _classify_entry(
         if not entry.get("source_page") or not title_has_release_signal or not content_has_focus:
             return None
 
-    has_release_signal = title_has_release_signal or _contains_any(text, MODEL_TOOL_RELEASE_TERMS)
+    has_release_signal = title_has_release_signal or title_has_availability_signal
     looks_like_non_release_article = any(term in title_text for term in NON_RELEASE_HEADLINE_TERMS)
     if looks_like_non_release_article and not title_has_release_signal:
         return None

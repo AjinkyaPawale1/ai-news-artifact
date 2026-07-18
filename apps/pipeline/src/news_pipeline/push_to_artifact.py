@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -17,6 +17,14 @@ ARCHIVE_INDEX_PATH = ARCHIVE_DIR / "index.json"
 PUBLICATION_TIMEZONE = ZoneInfo("America/New_York")
 MODEL_BENCHMARK_URL = "https://artificialanalysis.ai/evaluations"
 ARTIFICIAL_ANALYSIS_MODELS_URL = "https://artificialanalysis.ai/models"
+FALLBACK_MAX_AGE_DAYS = 28
+FALLBACK_SECTIONS = {
+    "papers": "papers",
+    "repos": "github",
+    "models": "model_tools",
+    "toolsServices": "model_tools",
+    "blogs": "rss",
+}
 
 
 def _format_date(value: str) -> str:
@@ -76,6 +84,139 @@ def archive_dashboard_payload(payload: dict, health: list[dict]) -> dict:
     return edition
 
 
+def _load_payload(path: Path) -> dict | None:
+    try:
+        parsed = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return parsed if isinstance(parsed, dict) else None
+
+
+def _fallback_candidates() -> list[dict]:
+    """Return the current artifact then archived editions, newest first."""
+    candidates: list[dict] = []
+    seen_generated_at: set[str] = set()
+
+    def add(path: Path) -> None:
+        payload = _load_payload(path)
+        generated_at = payload.get("generatedAt") if payload else ""
+        if not payload or not generated_at or generated_at in seen_generated_at:
+            return
+        seen_generated_at.add(generated_at)
+        candidates.append(payload)
+
+    if OUTPUT_PATH.exists():
+        add(OUTPUT_PATH)
+    index = _load_payload(ARCHIVE_INDEX_PATH) or {}
+    editions = index.get("editions") if isinstance(index, dict) else []
+    for edition in editions if isinstance(editions, list) else []:
+        if not isinstance(edition, dict):
+            continue
+        output_path = edition.get("outputPath")
+        if isinstance(output_path, str):
+            add(DATA_DIR / output_path)
+    return candidates
+
+
+def _valid_fallback_item(section: str, item: object) -> bool:
+    if not isinstance(item, dict):
+        return False
+    if section == "papers":
+        return bool(item.get("title") and item.get("url"))
+    if section == "repos":
+        return bool(item.get("name") and item.get("url"))
+    if section in {"models", "toolsServices"}:
+        return bool(item.get("name") and item.get("url") and item.get("note"))
+    if section == "blogs":
+        summary = " ".join(item.get("takeaways") or [])
+        normalized_summary = " ".join(summary.split())
+        return bool(
+            item.get("title")
+            and item.get("url")
+            and item.get("linkVerified")
+            and len(normalized_summary) >= 120
+            and normalized_summary.endswith((".", "!", "?"))
+        )
+    return False
+
+
+def _fallback_section_items(payload: dict, section: str) -> list[dict]:
+    items = payload.get(section)
+    if not isinstance(items, list):
+        return []
+    return [item for item in items if _valid_fallback_item(section, item)]
+
+
+def _source_was_healthy(payload: dict, section: str) -> bool:
+    existing_fallbacks = payload.get("fallbackSections") or {}
+    if isinstance(existing_fallbacks, dict) and isinstance(existing_fallbacks.get(section), dict):
+        return True
+    source = FALLBACK_SECTIONS[section]
+    return any(
+        entry.get("source") == source and entry.get("status") == "ok"
+        for entry in payload.get("health") or []
+        if isinstance(entry, dict)
+    )
+
+
+def _fallback_provenance(payload: dict, section: str) -> dict | None:
+    existing_fallbacks = payload.get("fallbackSections") or {}
+    existing = existing_fallbacks.get(section) if isinstance(existing_fallbacks, dict) else None
+    if isinstance(existing, dict) and existing.get("editionDate") and existing.get("generatedAt"):
+        return {
+            "editionDate": existing["editionDate"],
+            "generatedAt": existing["generatedAt"],
+        }
+    generated_at = payload.get("generatedAt")
+    if not isinstance(generated_at, str):
+        return None
+    try:
+        return {
+            "editionDate": _publication_monday(generated_at),
+            "generatedAt": generated_at,
+        }
+    except ValueError:
+        return None
+
+
+def _is_within_fallback_window(current_date: str, provenance: dict) -> bool:
+    try:
+        current = date.fromisoformat(current_date)
+        source = date.fromisoformat(provenance["editionDate"])
+    except (KeyError, TypeError, ValueError):
+        return False
+    age = (current - source).days
+    return 0 <= age <= FALLBACK_MAX_AGE_DAYS
+
+
+def apply_section_fallbacks(payload: dict) -> dict:
+    """Fill empty dashboard sections from the latest structurally valid prior artifact."""
+    updated = dict(payload)
+    fallback_sections: dict[str, dict] = {}
+    current_edition_date = _publication_monday(payload["generatedAt"])
+    candidates = _fallback_candidates()
+
+    for section in FALLBACK_SECTIONS:
+        if _fallback_section_items(payload, section):
+            continue
+        for candidate in candidates:
+            if not _source_was_healthy(candidate, section):
+                continue
+            provenance = _fallback_provenance(candidate, section)
+            items = _fallback_section_items(candidate, section)
+            if not provenance or not items or not _is_within_fallback_window(current_edition_date, provenance):
+                continue
+            updated[section] = items
+            fallback_sections[section] = {
+                **provenance,
+                "reason": "no_current_valid_items",
+            }
+            break
+
+    updated["fallbackSections"] = fallback_sections
+    return updated
+
+
 def _normalized_benchmark_name(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", name.lower()).strip()
 
@@ -131,6 +272,7 @@ def _to_paper(item: dict) -> dict:
 
 
 def _to_blog(item: dict) -> dict:
+    metadata = item.get("metadata") or {}
     return {
         "source": item.get("source", "RSS"),
         "title": item.get("title", "Untitled"),
@@ -138,6 +280,7 @@ def _to_blog(item: dict) -> dict:
         "date": _format_date(item.get("published_date", "")),
         "takeaways": [item.get("summary") or item.get("raw_content") or "Review this update."],
         "url": item.get("url", ""),
+        "linkVerified": bool(metadata.get("link_verified")),
     }
 
 
@@ -175,7 +318,7 @@ def _to_release(item: dict) -> dict:
     if release_url:
         links.append({"label": "Read release", "url": release_url})
     if item.get("source_type") == "model" and benchmark_url:
-        benchmark_label = "Benchmarks" if benchmark_url == ARTIFICIAL_ANALYSIS_MODELS_URL else "Benchmark"
+        benchmark_label = "Model directory" if benchmark_url == ARTIFICIAL_ANALYSIS_MODELS_URL else "Benchmark"
         links.append({"label": benchmark_label, "url": benchmark_url})
     return {
         "name": name,
@@ -189,6 +332,34 @@ def _to_release(item: dict) -> dict:
         "benchmarkUrl": benchmark_url,
         "links": links,
     }
+
+
+def _repo_cluster(item: dict) -> str:
+    text = " ".join(
+        [
+            item.get("title", ""),
+            item.get("raw_content", ""),
+            " ".join(item.get("tags") or []),
+        ]
+    ).lower()
+    if any(term in text for term in ("memory", "knowledge graph", "knowledge management", "second brain")):
+        return "agent_memory"
+    return ""
+
+
+def _select_diverse_repos(items: list[dict], limit: int = 8) -> list[dict]:
+    selected: list[dict] = []
+    cluster_counts: dict[str, int] = {}
+    for item in items:
+        cluster = _repo_cluster(item)
+        if cluster and cluster_counts.get(cluster, 0) >= 2:
+            continue
+        selected.append(item)
+        if cluster:
+            cluster_counts[cluster] = cluster_counts.get(cluster, 0) + 1
+        if len(selected) >= limit:
+            break
+    return selected
 
 
 def build_dashboard_payload(items: list[dict], health: list[dict] | None = None) -> dict:
@@ -238,11 +409,12 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
             _to_action_item(item, priorities[index % len(priorities)])
             for index, item in enumerate(top_papers)
         ],
-        "repos": [_to_repo(item) for item in github[:8]],
+        "repos": [_to_repo(item) for item in _select_diverse_repos(github)],
         "models": [_to_release(item) for item in models[:MODEL_TOOL_MAX_ITEMS]],
         "toolsServices": [_to_release(item) for item in tools_services[:MODEL_TOOL_MAX_ITEMS]],
         "papers": [_to_paper(item) for item in papers[:8]],
         "blogs": [_to_blog(item) for item in rss[:10]],
+        "fallbackSections": {},
         "socialPosts": [],
         "trending": [],
         "health": health_entries,
@@ -286,7 +458,7 @@ def push_to_artifact(items: list[dict], health: list[dict] | None = None) -> dic
     """Write final dashboard payload to data/output.json."""
     DATA_DIR.mkdir(exist_ok=True)
     health_entries = health or []
-    payload = build_dashboard_payload(items, health_entries)
+    payload = apply_section_fallbacks(build_dashboard_payload(items, health_entries))
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     archive_dashboard_payload(payload, health_entries)
     return payload

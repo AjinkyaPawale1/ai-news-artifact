@@ -14,15 +14,19 @@ def _count_matches(text: str, keywords: list[str]) -> int:
 
 
 def score_items(items: list[Item]) -> list[dict]:
-    """Attach a simple Day 1 score to each item."""
+    """Attach source-aware scores used by the shared quality gate."""
     scored: list[dict] = []
     for item in items:
         text = f"{item.title} {item.raw_content} {' '.join(item.tags)}"
         domain = min(_count_matches(text, DOMAIN_KEYWORDS) * 2, 10)
         ai = min(_count_matches(text, AI_KEYWORDS) * 2, 10)
-        score = max(40, int((domain * 0.4 + ai * 0.6) * 10))
         record = item.to_dict()
-        record["score"] = min(score, 100)
+        if item.source_type == "rss":
+            metadata = record.get("metadata") or {}
+            record["score"] = 60 if metadata.get("editorial_status") == "eligible" else 0
+        else:
+            score = max(40, int((domain * 0.4 + ai * 0.6) * 10))
+            record["score"] = min(score, 100)
         scored.append(record)
     return sorted(scored, key=lambda item: item["score"], reverse=True)
 

@@ -9,6 +9,9 @@ Public dashboard: https://ajinkyapawale1.github.io/ai-news-artifact/
 ## What It Does
 
 - Fetches recent AI/LLM papers, repositories, releases, and blog updates.
+- Prioritizes enterprise-useful RSS and release signals: decision-relevant AI updates,
+  concrete shipped capabilities, verified source links, and no tutorial, customer-story,
+  consumer-rollout, or education-announcement noise.
 - Ranks papers with generic AI/ML research signals and keeps full paper cards under `Research`.
 - Tracks trending GitHub repos, model releases, and AI tools/services in separate drill-down views.
 - Shows repo recommended actions and clean release CTAs so each expanded card has a next step.
@@ -16,6 +19,11 @@ Public dashboard: https://ajinkyapawale1.github.io/ai-news-artifact/
 - Lets readers switch between the current brief and the three preceding weekly editions.
 - Keeps AI Pulse, Social Pulse, and Enterprise Focus as explicit coming-soon placeholders.
 - Keeps the frontend simple: it reads generated data from `data/output.json`.
+
+The brief is enterprise-oriented, not yet personalized. RSS and release selection enforce
+enterprise relevance controls, while paper and repository ranking remains a general
+research/engineering signal until broader credibility, actionability, and personalization
+scoring is implemented.
 
 ## Project Layout
 
@@ -107,7 +115,11 @@ The pipeline writes:
 - `data/archive/index.json` - newest-first archive manifest used by the dashboard
 
 The React app treats `data/output.json` as read-only generated data. The current public
-contract includes `papers`, `repos`, `models`, `toolsServices`, `blogs`, and `socialPosts`.
+contract includes `papers`, `repos`, `models`, `toolsServices`, `blogs`, `socialPosts`,
+and additive `fallbackSections` provenance. When a current section has no valid items,
+the pipeline may reuse its most recent structurally valid, source-healthy section from
+the previous four weeks; the dashboard retains original card dates and labels the reused
+section.
 The archive manifest is bundled, while individual historical outputs are deployed as
 static JSON and downloaded only when a reader selects that edition.
 

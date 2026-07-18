@@ -1,7 +1,27 @@
 # Handoff Notes
 
-Last updated: 2026-06-08
+Last updated: 2026-07-17
 Owner: AI agent (Codex)
+
+## 2026-07-17 Update
+- Implemented deterministic public-quality controls for RSS: editorial rejection,
+  canonical metadata recovery, link verification, and a stricter RSS scoring path.
+- Strengthened the publication gate to require verified RSS links and complete
+  sentence-ended summaries. Added additive artifact field `blogs[].linkVerified`.
+- Added a two-item agent-memory repository diversity cap and tightened release
+  classification to reject consumer/education noise and require headline signals.
+- Added four-week, section-level artifact fallbacks for empty papers, repos, models,
+  tools/services, and RSS sections. Reused data must be structurally valid, preserves
+  original edition provenance in `fallbackSections`, and is visibly labeled in the UI.
+- Regenerated the active weekly artifact. It now has 8 papers, 8 repos, 4 fallback
+  model cards from July 6, 5 current tool/service releases, and 2 verified RSS items.
+- Verified with the complete Python test suite (70 tests), Ruff, Vite production build,
+  live pipeline refresh, publication gate, `git diff --check`, and a local HTTP check.
+
+Known risk:
+- Anonymous GitHub API quota limited 11 watched-repository enrichments during the refresh.
+  Configure `GITHUB_TOKEN` for scheduled/public runs and improve top-level GitHub health
+  semantics before relying on every enrichment as complete.
 
 ## Completed
 - Established standalone git repo for this project directory.
@@ -148,7 +168,8 @@ Owner: AI agent (Codex)
   used when the API is unavailable or the artifact has not been refreshed.
 - Model/tool cards no longer expose RSS/source feed buttons in the UI. Model cards use
   verified Artificial Analysis model URLs when known; otherwise they link to
-  `https://artificialanalysis.ai/models` as `Benchmarks` to avoid 404s.
+  `https://artificialanalysis.ai/models` as `Model directory` to avoid implying a
+  model-specific benchmark.
 - Perplexity's official API changelog Markdown and the ElevenLabs blog are now
   permanent model/tool source pages. Live checks on 2026-06-08 extracted
   Perplexity Finance Search and Agent API updates plus ElevenLabs Dubbing v2,

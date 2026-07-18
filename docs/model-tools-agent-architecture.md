@@ -346,7 +346,9 @@ High-level logic:
    case studies, customer stories, and implementation advice unless the headline clearly
    announces a concrete shipped release. Source-page headlines must contain a model/tool,
    product capability, version, or explicit product-availability signal; corporate expansion
-   and partnership announcements cannot qualify from body text alone.
+   and partnership announcements cannot qualify from body text alone. Consumer-rollout and
+   education announcements are excluded unless the headline itself describes a concrete
+   enterprise product release or availability change.
 3. Choose `kind = model` or `kind = tool_service` based on the stronger score.
 4. Derive presentation fields:
    - `name`: cleaned title without generic prefixes
@@ -526,7 +528,7 @@ Final artifact fields:
 - `toolsServices`: first `MODEL_TOOL_MAX_ITEMS` `source_type == "tool_service"` items mapped through `_to_release(...)`
 - model cards include a yellow `Read release` CTA and a blue benchmark CTA; verified
   Artificial Analysis model pages are labeled `Benchmark`, while unverified models link
-  to the Artificial Analysis models directory as `Benchmarks`
+  to the Artificial Analysis models directory as `Model directory`
 - tool/service cards include only the yellow `Read release` CTA
 - RSS feed and source-page URLs remain in `sourceUrl`/`sourceLabel` metadata but are not rendered as release-card CTAs
 - hosted-model distribution announcements such as Bedrock, SageMaker JumpStart, Foundry,

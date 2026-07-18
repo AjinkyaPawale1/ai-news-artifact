@@ -51,6 +51,152 @@ class ModelToolsDynamicTests(unittest.TestCase):
 
 
 class DashboardArtifactTests(unittest.TestCase):
+    @staticmethod
+    def _fallback_payload(generated_at: str, **sections: object) -> dict:
+        return {
+            "generatedAt": generated_at,
+            "health": [
+                {"source": "papers", "status": "ok"},
+                {"source": "github", "status": "ok"},
+                {"source": "rss", "status": "ok"},
+                {"source": "model_tools", "status": "ok"},
+            ],
+            "papers": [],
+            "repos": [],
+            "models": [],
+            "toolsServices": [],
+            "blogs": [],
+            **sections,
+        }
+
+    def _apply_fallback(self, current: dict, archived: dict, archive_date: str) -> dict:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = Path(temp_dir) / "data"
+            archive_dir = data_dir / "archive"
+            archive_path = archive_dir / archive_date / "output.json"
+            archive_path.parent.mkdir(parents=True)
+            archive_path.write_text(json.dumps(archived), encoding="utf-8")
+            index_path = archive_dir / "index.json"
+            index_path.write_text(
+                json.dumps({"editions": [{"date": archive_date, "outputPath": f"archive/{archive_date}/output.json"}]}),
+                encoding="utf-8",
+            )
+            with (
+                patch.object(push_to_artifact, "DATA_DIR", data_dir),
+                patch.object(push_to_artifact, "OUTPUT_PATH", data_dir / "output.json"),
+                patch.object(push_to_artifact, "ARCHIVE_DIR", archive_dir),
+                patch.object(push_to_artifact, "ARCHIVE_INDEX_PATH", index_path),
+            ):
+                return push_to_artifact.apply_section_fallbacks(current)
+
+    def test_empty_model_section_uses_latest_valid_prior_models_only(self) -> None:
+        current = self._fallback_payload(
+            "2026-07-13T14:00:00+00:00",
+            toolsServices=[{"name": "Current Tool", "url": "https://example.com/tool", "note": "Current release."}],
+        )
+        archived = self._fallback_payload(
+            "2026-07-06T14:00:00+00:00",
+            models=[{"name": "Prior Model", "url": "https://example.com/model", "note": "Prior release."}],
+        )
+
+        updated = self._apply_fallback(current, archived, "2026-07-06")
+
+        self.assertEqual([item["name"] for item in updated["models"]], ["Prior Model"])
+        self.assertEqual([item["name"] for item in updated["toolsServices"]], ["Current Tool"])
+        self.assertEqual(
+            updated["fallbackSections"]["models"],
+            {
+                "editionDate": "2026-07-06",
+                "generatedAt": "2026-07-06T14:00:00+00:00",
+                "reason": "no_current_valid_items",
+            },
+        )
+
+    def test_fallback_rejects_stale_historical_sections(self) -> None:
+        current = self._fallback_payload("2026-07-13T14:00:00+00:00")
+        stale = self._fallback_payload(
+            "2026-06-01T14:00:00+00:00",
+            models=[{"name": "Old Model", "url": "https://example.com/model", "note": "Old release."}],
+        )
+
+        updated = self._apply_fallback(current, stale, "2026-06-01")
+
+        self.assertEqual(updated["models"], [])
+        self.assertEqual(updated["fallbackSections"], {})
+
+    def test_fallback_rejects_invalid_historical_blog(self) -> None:
+        current = self._fallback_payload("2026-07-13T14:00:00+00:00")
+        archived = self._fallback_payload(
+            "2026-07-06T14:00:00+00:00",
+            blogs=[
+                {
+                    "title": "Unverified",
+                    "url": "https://example.com/blog",
+                    "linkVerified": False,
+                    "takeaways": ["A sufficiently detailed but unverified AI update that should not enter a public brief."],
+                }
+            ],
+        )
+
+        updated = self._apply_fallback(current, archived, "2026-07-06")
+
+        self.assertEqual(updated["blogs"], [])
+        self.assertNotIn("blogs", updated["fallbackSections"])
+
+    def test_fallback_preserves_original_provenance_across_same_week_reruns(self) -> None:
+        current = self._fallback_payload("2026-07-13T17:00:00+00:00")
+        previous_run = self._fallback_payload(
+            "2026-07-13T14:00:00+00:00",
+            models=[{"name": "Prior Model", "url": "https://example.com/model", "note": "Prior release."}],
+            fallbackSections={
+                "models": {
+                    "editionDate": "2026-07-06",
+                    "generatedAt": "2026-07-06T14:00:00+00:00",
+                    "reason": "no_current_valid_items",
+                }
+            },
+        )
+
+        updated = self._apply_fallback(current, previous_run, "2026-07-13")
+
+        self.assertEqual(updated["fallbackSections"]["models"]["editionDate"], "2026-07-06")
+        self.assertEqual(updated["fallbackSections"]["models"]["generatedAt"], "2026-07-06T14:00:00+00:00")
+
+    def test_fallback_ignores_malformed_archive_index_entries(self) -> None:
+        current = self._fallback_payload("2026-07-13T14:00:00+00:00")
+        archived = self._fallback_payload(
+            "2026-07-06T14:00:00+00:00",
+            models=[{"name": "Prior Model", "url": "https://example.com/model", "note": "Prior release."}],
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            data_dir = Path(temp_dir) / "data"
+            archive_dir = data_dir / "archive"
+            archive_path = archive_dir / "2026-07-06" / "output.json"
+            archive_path.parent.mkdir(parents=True)
+            archive_path.write_text(json.dumps(archived), encoding="utf-8")
+            index_path = archive_dir / "index.json"
+            index_path.write_text(
+                json.dumps(
+                    {
+                        "editions": [
+                            None,
+                            "invalid",
+                            {"date": "2026-07-06", "outputPath": "archive/2026-07-06/output.json"},
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with (
+                patch.object(push_to_artifact, "DATA_DIR", data_dir),
+                patch.object(push_to_artifact, "OUTPUT_PATH", data_dir / "output.json"),
+                patch.object(push_to_artifact, "ARCHIVE_DIR", archive_dir),
+                patch.object(push_to_artifact, "ARCHIVE_INDEX_PATH", index_path),
+            ):
+                updated = push_to_artifact.apply_section_fallbacks(current)
+
+        self.assertEqual([item["name"] for item in updated["models"]], ["Prior Model"])
+
     def test_weekly_archive_replaces_same_date_and_keeps_newest_first(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             archive_dir = Path(temp_dir) / "archive"
@@ -137,6 +283,30 @@ class DashboardArtifactTests(unittest.TestCase):
 
         self.assertEqual(payload["repos"][0]["actionItems"], ["Run quickstart.", "Benchmark one task.", "Review issues."])
 
+    def test_repo_selection_limits_agent_memory_cluster(self) -> None:
+        items = [
+            {
+                "source_type": "github",
+                "title": f"org/memory-{index}",
+                "raw_content": "A long-term memory and knowledge graph system for AI agents.",
+                "metadata": {"item_kind": "repo", "traction_score": 100 - index},
+            }
+            for index in range(3)
+        ]
+        items += [
+            {
+                "source_type": "github",
+                "title": f"org/tool-{index}",
+                "raw_content": "An AI evaluation and deployment tool.",
+                "metadata": {"item_kind": "repo", "traction_score": 90 - index},
+            }
+            for index in range(2)
+        ]
+
+        payload = push_to_artifact.build_dashboard_payload(items)
+
+        self.assertEqual([repo["name"] for repo in payload["repos"]], ["org/memory-0", "org/memory-1", "org/tool-0", "org/tool-1"])
+
     def test_model_release_links_hide_source_feed_and_add_benchmark(self) -> None:
         payload = push_to_artifact.build_dashboard_payload(
             [
@@ -174,7 +344,7 @@ class DashboardArtifactTests(unittest.TestCase):
             payload["models"][0]["links"],
             [
                 {"label": "Read release", "url": "https://example.com/mellum2"},
-                {"label": "Benchmarks", "url": "https://artificialanalysis.ai/models"},
+                {"label": "Model directory", "url": "https://artificialanalysis.ai/models"},
             ],
         )
 
@@ -300,6 +470,34 @@ class ModelToolsClassificationTests(unittest.TestCase):
         )
 
         self.assertEqual(release["kind"], "model")
+
+    def test_classifier_rejects_consumer_or_education_announcements(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "Google",
+                "title": "We’re expanding Gemini in Chrome to users in the U.K.",
+                "content": "Google is rolling out AI features to more consumer Chrome users.",
+                "url": "https://example.com/gemini-chrome",
+            },
+            model_terms=["gemini", "model"],
+            tool_terms=["platform"],
+        )
+
+        self.assertIsNone(release)
+
+    def test_classifier_requires_a_release_signal_in_the_headline(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "Google",
+                "title": "Systems Engineering Playbook: Optimizing Qwen 3.5 on TPUs",
+                "content": "The Qwen model release explains deployment and inference optimization.",
+                "url": "https://example.com/qwen-playbook",
+            },
+            model_terms=["qwen", "model"],
+            tool_terms=["deployment", "inference"],
+        )
+
+        self.assertIsNone(release)
 
     def test_classifier_moves_hosted_model_availability_to_tools(self) -> None:
         release = model_tools_graph._classify_entry(

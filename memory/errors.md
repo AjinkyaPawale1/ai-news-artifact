@@ -100,3 +100,20 @@ Notes for next time:
 - After the Lucide direct-import change, normal cached `npm run dev` startup measured
   about 130-184 ms, `/` responded in about 68 ms, and the main dashboard JSX module
   responded in about 32 ms. A forced dependency rebuild can still take much longer.
+
+### 2026-07-17 - GitHub anonymous API quota during quality refresh
+Status: unresolved externally, surfaced in diagnostics
+
+What failed:
+- The unauthenticated GitHub client hit rate limiting while enriching watched repositories;
+  11 watched-repository requests failed during the final artifact refresh.
+
+What worked:
+- Search-derived repository candidates still produced an eight-card dashboard section,
+  and all pipeline, artifact, and publication-gate checks completed successfully.
+
+Notes for next time:
+- Configure `GITHUB_TOKEN` for scheduled/public runs before treating repository
+  enrichment as complete.
+- Improve top-level GitHub health semantics so partial watched-repository failures can
+  block publication when full enrichment is required.

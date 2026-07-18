@@ -4,6 +4,9 @@ Last updated: 2026-06-08
 
 ## Purpose
 A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
+The brief is enterprise-oriented rather than personalized: RSS and release lanes enforce
+enterprise relevance controls, while paper and repository ranking remains generic until
+broader credibility, actionability, and personalization scoring is implemented.
 
 ## Architecture
 - Repository style: lightweight monorepo.
@@ -120,3 +123,26 @@ A single-page dashboard UI for a weekly enterprise AI intelligence brief focused
 - Scheduled publication is blocked unless `news_pipeline.publication_gate` finds one
   healthy top-level entry for every required source and non-empty core content lanes.
 - npm run preview
+
+## 2026-07-17 Public Content Controls
+- RSS candidates are filtered before selection: tutorials, customer stories, weak AI
+  relevance, and weak decision relevance are rejected. Sparse feed excerpts are
+  enriched from canonical Open Graph/description metadata, and only verified links are
+  emitted to the public artifact.
+- `blogs[].linkVerified` is an additive pipeline-to-frontend contract field. The
+  publication gate requires current RSS cards to have verified URLs and complete,
+  sentence-ended summaries of at least 120 characters.
+- RSS scoring is no longer protected by the generic score floor: ineligible or
+  unverified RSS candidates receive a zero score and fail the shared quality gate.
+- Repository display selection caps the agent-memory/knowledge-management cluster at
+  two cards, preserving room for distinct weekly engineering signals.
+- Model/tool classification now requires a release or availability signal in the
+  headline and rejects consumer/education headlines. Generic Artificial Analysis CTAs
+  are labeled `Model directory`, rather than misleadingly claiming a benchmark.
+- Artifact generation fills an entirely empty `papers`, `repos`, `models`,
+  `toolsServices`, or `blogs` section from the newest structurally valid prior artifact
+  within four weeks. `fallbackSections` records original edition provenance, and the UI
+  keeps original card dates while labeling the reused section.
+- The publication gate requires each display section, including `models` and
+  `toolsServices` independently, to be non-empty. If a valid fallback cannot satisfy a
+  section, scheduled publication preserves the last public edition instead.

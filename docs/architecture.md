@@ -81,9 +81,16 @@ Pages. Two UTC schedules cover daylight-saving changes; a timezone gate allows o
 
 Before commit or deployment, `news_pipeline.publication_gate` requires one healthy
 top-level result for papers, GitHub, RSS, and model/tools, plus non-empty paper, repo,
-blog, and combined release sections. Internal partial paper-category recovery remains
+blog, model, and tool/service sections. Internal partial paper-category recovery remains
 allowed when the top-level paper workflow succeeds. A failed gate leaves the previously
 published Pages edition unchanged.
+
+Before writing a weekly artifact, the pipeline preserves current valid content and fills
+only an entirely empty dashboard section from the newest structurally valid, source-healthy
+prior edition within four weeks. Reused data is recorded in additive
+`fallbackSections` provenance, retains its original card dates, and is labeled in the
+dashboard as a previous verified edition. Partially populated sections are never padded
+with historical cards.
 
 Each weekly edition contains:
 
@@ -176,15 +183,18 @@ For full flowcharts and draw.io-style diagrams, see:
 ## RSS Collection Methodology
 
 The RSS collector reads configured official feeds independently, filters each feed to
-the active date window, then selects entries round-robin within the shared RSS cap. This
-prevents an early high-volume feed from consuming the complete visible article budget.
-The latest run stores per-feed fetched, eligible, and selected counts under the RSS
-entry in `data/health.json`.
+the active date window, rejects tutorial, customer-story, and weakly decision-relevant
+items, then selects entries round-robin within the shared RSS cap. Sparse feed excerpts
+are enriched from canonical page metadata and visible URLs are verified before an item
+can enter the public artifact. This prevents an early high-volume feed from consuming
+the complete visible article budget while keeping the visible RSS lane decision-useful.
+The latest run stores per-feed fetched, eligible, verified, rejected, and selected counts
+under the RSS entry in `data/health.json`.
 
 Model/tool release cards do not render RSS or source-page feed links. Model cards show
 a yellow `Read release` CTA plus a blue benchmark CTA only after mapping to a verified
 Artificial Analysis model page; unverified models link to the Artificial Analysis models
-directory as `Benchmarks` instead of inventing a model URL. Tool/service cards show only
+directory as `Model directory` instead of inventing a model URL. Tool/service cards show only
 the yellow `Read release` CTA. Source URLs remain in the artifact metadata for audit
 and diagnostics.
 
@@ -198,6 +208,24 @@ The snapshot stats describe the artifact contract directly:
 - `HEALTHY SOURCES` from the latest `data/health.json` statuses.
 
 Broader enterprise credibility and actionability scoring remains a later pipeline phase.
+
+## Enterprise Relevance Positioning
+
+The brief is designed for enterprise AI experimentation and adoption decisions, but it is
+not a personalized enterprise recommender. The current controls establish a reliable
+baseline:
+
+- RSS cards must be AI-relevant, decision-relevant, summary-complete, and link-verified;
+  tutorials, customer stories, and onboarding content are excluded.
+- Model and tool/service cards require concrete release or availability signals in their
+  headlines. Consumer-rollout and education announcements are excluded unless they
+  describe a concrete enterprise product change.
+- Papers are ranked by generic research signals, and repositories by engineering traction
+  and diversity. Neither lane currently applies organization-specific business context,
+  risk posture, or adoption priorities.
+
+Broader enterprise credibility, actionability, and personalization scoring remains an
+explicit next phase rather than an implied property of every card.
 
 ## Commands
 

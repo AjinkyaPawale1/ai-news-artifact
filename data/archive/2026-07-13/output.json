@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-13T15:08:06.774745+00:00",
+  "generatedAt": "2026-07-18T00:19:21.944289+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
-      "value": "65",
+      "value": "62",
       "sub": "8 selected"
     },
     {
@@ -13,8 +13,8 @@
     },
     {
       "label": "RELEASES TRACKED",
-      "value": "9",
-      "sub": "4 models \u00b7 5 tools"
+      "value": "5",
+      "sub": "0 models \u00b7 5 tools"
     },
     {
       "label": "HEALTHY SOURCES",
@@ -25,82 +25,119 @@
   ],
   "actionItems": [
     {
-      "priority": "READ",
-      "title": "Review the TSAI-MetaFraud benchmark scope and task definitions to determine which of the four benchmark tasks and which data modalities align with your current fraud analytics pipeline.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jul 10, 2026",
-      "why": "Introduces TSAI-MetaFraud, a multimodal, multi-task benchmark dataset for fraud analytics in metaverse virtual economies, combining behavioral, transactional, and graph-structured data.",
-      "tags": [
-        "cs.LG",
-        "cs.CR",
-        "cs.DB",
-        "cs.SI"
-      ],
-      "score": 63,
-      "url": "https://arxiv.org/pdf/2607.09528v1"
-    },
-    {
       "priority": "EXPERIMENT",
-      "title": "Review the Freya-TR-Eval benchmark setup and band-matched WER/CER calculation to verify that the reported 8.0% WER and 3.0% CER are directly comparable across the released evaluation conditions.",
+      "title": "Review Symbal: Detecting Systematic Misalignments in Model-Generated Captions and flag the core method, evidence, and assumptions for the research brief.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jul 10, 2026",
-      "why": "Freya-TTS is a compact, Turkish-first, tokenizer-free text-to-speech model that uses a 183.2M-parameter non-autoregressive conditional flow-matching DiT in a frozen AudioVAE2 latent space.",
-      "tags": [
-        "cs.CL"
-      ],
-      "score": 89,
-      "url": "https://arxiv.org/pdf/2607.09530v1"
-    },
-    {
-      "priority": "READ",
-      "title": "Review the cross-modal state reasoning design in 4DR360, focusing on how State-guided BEV Enhancement and Doppler-guided Temporal Fusion are used to propagate semantic occupancy as a persistent scene state.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jul 10, 2026",
-      "why": "Proposes 4DR360, a 4D radar-camera 360\u00b0 full-scene perception framework that treats semantic occupancy as a persistent scene state and jointly targets 3D detection and occupancy prediction.",
+      "date": "Jul 16, 2026",
+      "why": "Multimodal large language models (MLLMs) often introduce errors when generating image captions, resulting in misaligned image-text pairs.",
       "tags": [
         "cs.CV",
         "cs.AI"
       ],
-      "score": 62,
-      "url": "https://arxiv.org/pdf/2607.09629v1"
+      "score": 77,
+      "url": "https://arxiv.org/pdf/2607.15216v1"
     },
     {
-      "priority": "EXPERIMENT",
-      "title": "Review the process-oriented failure framework and the 14 findings to identify which failure onset, evolution, and recovery signals are most relevant for your CLI coding-agent dashboard.",
+      "priority": "WATCH",
+      "title": "Review MM-IssueLoc: A Controlled Benchmark for Evaluating Visual Evidence in Multimodal Repository-Level Issue Localization and flag the core method, evidence, and assumptions for the research brief.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jul 10, 2026",
-      "why": "Introduces a process-oriented framework for CLI coding-agent failures, analyzing failure onset, evolution, and recovery rather than treating failure as only a final outcome.",
+      "date": "Jul 16, 2026",
+      "why": "Real repository issues routinely include visual evidence such as screenshots, error dialogs, rendered UI states, and logs, yet repository-level issue localization is evaluated mostly as a text-only task.",
       "tags": [
         "cs.SE",
         "cs.AI"
       ],
-      "score": 61,
-      "url": "https://arxiv.org/pdf/2607.09510v1"
+      "score": 64,
+      "url": "https://arxiv.org/pdf/2607.15205v1"
     },
     {
       "priority": "READ",
-      "title": "Review the CSB dataset design and the 2017\u20132025 model-vs-human comparison setup, including the gold-standard labeling and the two evaluation corpora (CSB and MS-COCO).",
+      "title": "Review Can We Trust Item Response Theory for AI Evaluation? and flag the core method, evidence, and assumptions for the research brief.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jul 10, 2026",
-      "why": "Introduces the Complex Social Behavior (CSB) dataset of 100 images to evaluate VLM scene descriptions on complex human interactions and track 2017\u20132025 model progress against human descriptions.",
+      "date": "Jul 16, 2026",
+      "why": "AI benchmarks increasingly leverage item-level statistical models, particularly item response theory (IRT), to estimate model capabilities, rank systems, select informative examples, and diagnose benchmark quality.",
       "tags": [
-        "cs.CV",
         "cs.AI"
       ],
-      "score": 63,
-      "url": "https://arxiv.org/pdf/2607.09654v1"
+      "score": 68,
+      "url": "https://arxiv.org/pdf/2607.15190v1"
+    },
+    {
+      "priority": "WATCH",
+      "title": "Review Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation and flag the core method, evidence, and assumptions for the research brief.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jul 16, 2026",
+      "why": "Annotation quality is a major bottleneck in building reliable and explainable artificial intelligence (XAI) systems for mental health research.",
+      "tags": [
+        "cs.AI",
+        "cs.HC",
+        "cs.MA",
+        "cs.MM"
+      ],
+      "score": 66,
+      "url": "https://arxiv.org/pdf/2607.15202v1"
+    },
+    {
+      "priority": "READ",
+      "title": "Review Does generative AI supersede supervised XMLC? A Benchmark Study on Automated Subject Indexing with German Scientific Literature and flag the core method, evidence, and assumptions for the research brief.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jul 16, 2026",
+      "why": "With a large controlled vocabulary as the label set, the task of automated subject indexing in a library can be understood as a multi-label classification task.",
+      "tags": [
+        "cs.IR",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "score": 61,
+      "url": "https://arxiv.org/pdf/2607.14882v1"
     }
   ],
   "repos": [
     {
+      "name": "StarTrail-org/PixelRAG",
+      "stars": "6.7k",
+      "desc": "The end of web parsing. The beginning of scalable pixel-native search. link: https://pixelrag.ai/",
+      "url": "https://github.com/StarTrail-org/PixelRAG",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "ai",
+        "memory",
+        "multimodal",
+        "rag",
+        "search",
+        "searchengine",
+        "vision",
+        "vlm"
+      ],
+      "createdAt": "May 29, 2026",
+      "lastUpdated": "Jul 16, 2026",
+      "fetchedAt": "Jul 18, 2026",
+      "bestFor": "MCP Tooling",
+      "bullets": [
+        "The end of web parsing. The beginning of scalable pixel-native search. link: https://pixelrag.ai/.",
+        "Primarily Python, with topics such as agent, ai, memory.",
+        "Latest release v0.4.0 signals active maintenance."
+      ],
+      "actionItems": [
+        "Clone StarTrail-org/PixelRAG and run the README quickstart with a small Python smoke test.",
+        "Map one mcp tooling use case to the repo APIs, inputs, and required integrations.",
+        "Review v0.4.0, open issues, and license before deciding on a deeper benchmark or pilot."
+      ],
+      "latestRelease": "v0.4.0",
+      "latestReleaseUrl": "https://github.com/StarTrail-org/PixelRAG/releases/tag/v0.4.0",
+      "homepage": "https://arxiv.org/pdf/2606.28344",
+      "license": "Apache-2.0"
+    },
+    {
       "name": "oleksiijko/pmb",
-      "stars": "305",
-      "desc": "Local-first persistent memory layer for AI coding agents via MCP, storing decisions/facts in a single SQLite-backed workspace with offline semantic and keyword search.",
+      "stars": "311",
+      "desc": "Local-first persistent memory for AI coding agents (Claude Code, Cursor, Codex) over MCP. Decisions, lessons and facts live in one SQLite file on your disk. Offline, multilingual.",
       "url": "https://github.com/oleksiijko/pmb",
       "language": "Python",
       "topics": [
@@ -127,17 +164,17 @@
       ],
       "createdAt": "May 25, 2026",
       "lastUpdated": "Jul 13, 2026",
-      "fetchedAt": "Jul 13, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "SQLite as source of truth; no cloud or API keys",
-        "MCP-native memory for Claude Code, Cursor, Codex",
-        "Hybrid retrieval with BM25, vectors, and knowledge graph"
+        "Local-first persistent memory for AI coding agents (Claude Code, Cursor, Codex) over MCP. Decisions, lessons and facts live in one SQLite file on your disk. Offline, multilingual.",
+        "Primarily Python, with topics such as ai-agents, ai-memory, bm25.",
+        "Latest release v1.2.2 signals active maintenance."
       ],
       "actionItems": [
-        "Run a fresh-agent session and verify prior decisions are recalled after restart",
-        "Benchmark retrieval quality: exact keyword vs semantic vs hybrid on the same memory set",
-        "Test multilingual memory recall by storing facts in two languages and querying both"
+        "Clone oleksiijko/pmb and run the README quickstart with a small Python smoke test.",
+        "Map one coding workflow use case to the repo APIs, inputs, and required integrations.",
+        "Review v1.2.2, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
       "latestRelease": "v1.2.2",
       "latestReleaseUrl": "https://github.com/oleksiijko/pmb/releases/tag/v1.2.2",
@@ -145,229 +182,133 @@
       "license": "Apache-2.0"
     },
     {
-      "name": "Tencent-Hunyuan/Hy3",
-      "stars": "457",
-      "desc": "Tencent Hy3 is a 295B-parameter MoE reasoning/agent model with 21B active params, positioned for strong cost-efficient inference and product use. The repo includes model docs plus deployment, vLLM/SGLang, finetuning, and quantization guidance.",
-      "url": "https://github.com/Tencent-Hunyuan/Hy3",
-      "language": "Python",
-      "topics": [],
-      "createdAt": "Jul 2, 2026",
-      "lastUpdated": "Jul 6, 2026",
-      "fetchedAt": "Jul 13, 2026",
-      "bestFor": "Model Serving",
-      "bullets": [
-        "295B MoE with 21B active parameters and 256K context",
-        "Targets reasoning and agent workflows with cost efficiency",
-        "Supports deployment, finetuning, and quantization paths"
-      ],
-      "actionItems": [
-        "Run a 1k-prompt reasoning benchmark vs a similar-size open model",
-        "Deploy Hy3 in vLLM and measure tokens/sec, latency, and VRAM",
-        "Test 4-bit/8-bit quantization and compare task accuracy drops"
-      ],
-      "latestRelease": "",
-      "latestReleaseUrl": "",
-      "homepage": "",
-      "license": "NOASSERTION"
-    },
-    {
-      "name": "StarTrail-org/PixelRAG",
-      "stars": "6.6k",
-      "desc": "PixelRAG is a Python visual retrieval-augmented generation stack that indexes documents/pages as screenshots and searches by layout and appearance instead of plain text. It ships with a live demo, hosted API, and an Apache-2.0 codebase tied to the PIXELRAG paper.",
-      "url": "https://github.com/StarTrail-org/PixelRAG",
+      "name": "omnigent-ai/omnigent",
+      "stars": "7.4k",
+      "desc": "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.",
+      "url": "https://github.com/omnigent-ai/omnigent",
       "language": "Python",
       "topics": [
-        "agent",
+        "agent-framework",
+        "agent-governance",
+        "agent-orchestration",
+        "agents",
         "ai",
-        "memory",
-        "multimodal",
-        "rag",
-        "search",
-        "searchengine",
-        "vision",
-        "vlm"
+        "ai-agent",
+        "ai-agents",
+        "claude-code",
+        "codex",
+        "coding-agents",
+        "developer-tools",
+        "llm",
+        "ml",
+        "multi-agent",
+        "python",
+        "sandbox"
       ],
-      "createdAt": "May 29, 2026",
-      "lastUpdated": "Jun 30, 2026",
-      "fetchedAt": "Jul 13, 2026",
-      "bestFor": "MCP Tooling",
+      "createdAt": "Jun 11, 2026",
+      "lastUpdated": "Jul 18, 2026",
+      "fetchedAt": "Jul 18, 2026",
+      "bestFor": "Coding Workflow",
       "bullets": [
-        "Screenshot-native retrieval for RAG",
-        "Hosted API plus CLI tooling",
-        "Research-to-product repo with active releases"
+        "Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, and custom agents \u2014 swap harnesses without rewriting, enforce policies and sandboxing, and collaborate in real time from any device.",
+        "Primarily Python, with topics such as agent-framework, agent-governance, agent-orchestration.",
+        "Latest release v0.5.1 signals active maintenance."
       ],
       "actionItems": [
-        "Run pixelshot on a small doc set and compare recall vs text BM25",
-        "Benchmark top-k retrieval quality on PDFs with tables, charts, and dense layouts",
-        "Test the hosted API latency and cost against a local index workflow"
+        "Clone omnigent-ai/omnigent and run the README quickstart with a small Python smoke test.",
+        "Map one coding workflow use case to the repo APIs, inputs, and required integrations.",
+        "Review v0.5.1, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
-      "latestRelease": "v0.3.0",
-      "latestReleaseUrl": "https://github.com/StarTrail-org/PixelRAG/releases/tag/v0.3.0",
-      "homepage": "https://arxiv.org/pdf/2606.28344",
+      "latestRelease": "v0.5.1",
+      "latestReleaseUrl": "https://github.com/omnigent-ai/omnigent/releases/tag/v0.5.1",
+      "homepage": "https://omnigent.ai",
       "license": "Apache-2.0"
     },
     {
-      "name": "Sibyl-Labs/Sibyl-Memory",
-      "stars": "94",
-      "desc": "Durable local-first long-term memory for AI agents, delivered as a five-package Python family (SDK, CLI, MCP, Hermes, LangGraph) built on SQLite/FTS5 with no embeddings or vector DB.",
-      "url": "https://github.com/Sibyl-Labs/Sibyl-Memory",
+      "name": "CyberSunil/LLMVault",
+      "stars": "151",
+      "desc": "An intentionally vulnerable OWASP LLM Top 10 training platform for AI Security, Prompt Injection, RAG Security, Agent Security, and GenAI penetration testing.",
+      "url": "https://github.com/CyberSunil/LLMVault",
       "language": "Python",
       "topics": [
-        "agent-memory",
-        "ai-agents",
-        "claude",
-        "langgraph",
+        "agent-security",
+        "ai-security",
+        "ai-security-tool",
+        "artificial-intelligence",
+        "ctf",
+        "docker",
+        "genai",
+        "large-language-models",
         "llm",
-        "long-term-memory",
-        "mcp",
+        "llm-security",
+        "llm-security-testing",
+        "owasp",
+        "owasp-llm-top-10",
+        "penetration-testing",
+        "prompt-injection",
+        "prompt-injection-llm-security",
+        "python",
         "rag",
-        "retrieval",
-        "sqlite"
+        "red-team",
+        "vulnerable-lab"
       ],
-      "createdAt": "May 20, 2026",
-      "lastUpdated": "Jul 6, 2026",
-      "fetchedAt": "Jul 13, 2026",
+      "createdAt": "Jul 15, 2026",
+      "lastUpdated": "Jul 17, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Single-file, file-based memory store",
-        "Local-first privacy; minimal outbound checks",
-        "Multi-surface integrations: MCP, Hermes, LangGraph"
+        "An intentionally vulnerable OWASP LLM Top 10 training platform for AI Security, Prompt Injection, RAG Security, Agent Security, and GenAI penetration testing.",
+        "Primarily Python, with topics such as agent-security, ai-security, ai-security-tool.",
+        "Latest release v1.0.0 signals active maintenance."
       ],
       "actionItems": [
-        "Benchmark recall vs a vector-memory baseline on LongMemEval-style prompts",
-        "Run the MCP server with Claude Code and test write/read latency",
-        "Inspect SQLite/FTS5 schema behavior under multi-tenant concurrent writes"
+        "Clone CyberSunil/LLMVault and run the README quickstart with a small Python smoke test.",
+        "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
+        "Review v1.0.0, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
-      "latestRelease": "v0.1.0",
-      "latestReleaseUrl": "https://github.com/Sibyl-Labs/Sibyl-Memory/releases/tag/v0.1.0",
-      "homepage": "https://sibyllabs.org/plugin",
+      "latestRelease": "v1.0.0",
+      "latestReleaseUrl": "https://github.com/CyberSunil/LLMVault/releases/tag/v1.0.0",
+      "homepage": "",
       "license": "MIT"
     },
     {
-      "name": "MarcoPorcellato/matryca-plumber",
-      "stars": "81",
-      "desc": "Local-first Python daemon for Logseq OG Markdown that performs background semantic indexing, link hygiene, and MCP/CLI operations entirely on disk.",
-      "url": "https://github.com/MarcoPorcellato/matryca-plumber",
-      "language": "Python",
-      "topics": [
-        "agentic-memory",
-        "ai-agents",
-        "andrej-karpathy",
-        "autonomous-agents",
-        "fastmcp",
-        "knowledge-graph",
-        "llm",
-        "llm-wiki",
-        "llm-wiki-karpathy",
-        "local-first",
-        "logseq",
-        "markdown",
-        "matryca",
-        "mcp",
-        "model-context-protocol",
-        "outliner",
-        "pkm",
-        "python",
-        "rag",
-        "second-brain"
-      ],
-      "createdAt": "May 17, 2026",
-      "lastUpdated": "Jul 13, 2026",
-      "fetchedAt": "Jul 13, 2026",
-      "bestFor": "Knowledge Management",
-      "bullets": [
-        "100% offline, edits Markdown directly",
-        "MCP stdio server for agent tool use",
-        "Built for Logseq/PKM second-brain workflows"
-      ],
-      "actionItems": [
-        "Run MCP tool calls against a test vault and verify read/write behavior",
-        "Benchmark semantic indexing on a 1k-note Markdown corpus",
-        "Test link hygiene fixes on broken/cyclic wiki links and measure diffs"
-      ],
-      "latestRelease": "v1.13.1",
-      "latestReleaseUrl": "https://github.com/MarcoPorcellato/matryca-plumber/releases/tag/v1.13.1",
-      "homepage": "",
-      "license": "Apache-2.0"
-    },
-    {
-      "name": "frenzymath/Danus",
-      "stars": "59",
-      "desc": "Danus is a Python multi-agent math-reasoning system that uses a planner/worker/verifier loop plus a content-addressed fact-graph memory to produce checked proofs and polished reports or LaTeX papers.",
-      "url": "https://github.com/frenzymath/Danus",
+      "name": "theteatoast/local-vuln-research-pipeline",
+      "stars": "163",
+      "desc": "Fully local vulnerability research pipeline - 14B code-specialized LLM reviews every source file exhaustively.",
+      "url": "https://github.com/theteatoast/local-vuln-research-pipeline",
       "language": "Python",
       "topics": [
         "agents",
-        "ai4math",
-        "automated-reasoning",
-        "claude-code",
-        "codex",
-        "llm",
-        "mathematics",
-        "multi-agent"
+        "ai",
+        "offensive-security",
+        "pentest",
+        "qwen",
+        "redteam",
+        "vulnerability-research"
       ],
-      "createdAt": "Jul 7, 2026",
+      "createdAt": "Jul 9, 2026",
       "lastUpdated": "Jul 11, 2026",
-      "fetchedAt": "Jul 13, 2026",
-      "bestFor": "AI Agent Apps",
+      "fetchedAt": "Jul 18, 2026",
+      "bestFor": "Agent Security",
       "bullets": [
-        "Claude Code orchestrates Codex workers for proof search",
-        "Verifier is the sole authority; only passed facts enter memory",
-        "Built for math research workflows with report/paper generation"
+        "Fully local vulnerability research pipeline - 14B code-specialized LLM reviews every source file exhaustively.",
+        "Primarily Python, with topics such as agents, ai, offensive-security.",
+        "Recent activity tracked from 2026-07-11."
       ],
       "actionItems": [
-        "Run a small theorem suite and measure verify-pass rate vs baseline agents",
-        "Trace fact-graph growth on a multi-step proof to inspect reuse and pruning",
-        "Compare end-to-end solve quality with and without the strategy-loop planner"
-      ],
-      "latestRelease": "v0.1.0",
-      "latestReleaseUrl": "https://github.com/frenzymath/Danus/releases/tag/v0.1.0",
-      "homepage": "",
-      "license": "Apache-2.0"
-    },
-    {
-      "name": "ardhaecosystem/synapse",
-      "stars": "70",
-      "desc": "Synapse is a self-hosted temporal knowledge-graph memory layer for AI agents, using FalkorDB + Graphiti and a hippocampus-style scoring/forgetting pipeline.",
-      "url": "https://github.com/ardhaecosystem/synapse",
-      "language": "Python",
-      "topics": [
-        "ai-agents",
-        "ai-memory",
-        "artificial-intelligence",
-        "falkordb",
-        "graphiti",
-        "hermes",
-        "hippocampus",
-        "knowledge-graph",
-        "llm",
-        "memory",
-        "self-hosted",
-        "temporal"
-      ],
-      "createdAt": "Jun 26, 2026",
-      "lastUpdated": "Jul 6, 2026",
-      "fetchedAt": "Jul 13, 2026",
-      "bestFor": "Knowledge Management",
-      "bullets": [
-        "Temporal memory for agents, not flat chat logs",
-        "Self-hosted FalkorDB with provider-agnostic LLMs",
-        "Hippocampus-like consolidation, importance scoring, forgetting"
-      ],
-      "actionItems": [
-        "Run a local Docker setup and measure ingest/query latency on sample conversations",
-        "Compare recall quality vs a naive vector-store memory baseline on time-sensitive facts",
-        "Test with Ollama, OpenAI, and OpenRouter to verify provider-agnostic behavior"
+        "Clone theteatoast/local-vuln-research-pipeline and run the README quickstart with a small Python smoke test.",
+        "Map one agent security use case to the repo APIs, inputs, and required integrations.",
+        "Review recent commit history, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
       "latestRelease": "",
       "latestReleaseUrl": "",
       "homepage": "",
-      "license": "MIT"
+      "license": ""
     },
     {
       "name": "Egoist-Machines/LodeDB",
-      "stars": "80",
-      "desc": "LodeDB is an Apache-2.0 embedded vector database for local-first, exact-by-default semantic and multimodal search, with Python as the primary interface and GPU-accelerated batched retrieval.",
+      "stars": "81",
+      "desc": "World's fastest and most compact embedded vector database: exact by default, multimodal, local-first, and GPU-accelerated",
       "url": "https://github.com/Egoist-Machines/LodeDB",
       "language": "Python",
       "topics": [
@@ -391,460 +332,427 @@
         "vector-database"
       ],
       "createdAt": "Jun 14, 2026",
-      "lastUpdated": "Jul 13, 2026",
-      "fetchedAt": "Jul 13, 2026",
+      "lastUpdated": "Jul 16, 2026",
+      "fetchedAt": "Jul 18, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Embedded vector DB for RAG, memory, and local search",
-        "Claims extreme speed, compact on-disk footprint, and durable writes",
-        "Supports multimodal, ANN/IVF, hybrid search, and GPU acceleration"
+        "World's fastest and most compact embedded vector database: exact by default, multimodal, local-first, and GPU-accelerated.",
+        "Primarily Python, with topics such as ann, clip, db.",
+        "Latest release v1.3.2 signals active maintenance."
       ],
       "actionItems": [
-        "Run a LangChain/LlamaIndex swap test and compare retrieval latency plus memory use",
-        "Benchmark CPU single-query vs GPU batch-64 search on a fixed embedding corpus",
-        "Test exact vs ANN recall on text and image embeddings with hybrid search enabled"
+        "Clone Egoist-Machines/LodeDB and run the README quickstart with a small Python smoke test.",
+        "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
+        "Review v1.3.2, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
-      "latestRelease": "v1.3.1",
-      "latestReleaseUrl": "https://github.com/Egoist-Machines/LodeDB/releases/tag/v1.3.1",
+      "latestRelease": "v1.3.2",
+      "latestReleaseUrl": "https://github.com/Egoist-Machines/LodeDB/releases/tag/v1.3.2",
       "homepage": "",
       "license": "Apache-2.0"
+    },
+    {
+      "name": "SmileLikeYe/agent-chief",
+      "stars": "812",
+      "desc": "Attention is your scarcest resource. Chief is the local-first layer that guards it \u2014 turning every agent, alert, and feed into one honest call: interrupt, or not.",
+      "url": "https://github.com/SmileLikeYe/agent-chief",
+      "language": "Python",
+      "topics": [
+        "harness",
+        "harness-engineering",
+        "llm",
+        "local-first"
+      ],
+      "createdAt": "Jul 4, 2026",
+      "lastUpdated": "Jul 14, 2026",
+      "fetchedAt": "Jul 18, 2026",
+      "bestFor": "AI Agent Apps",
+      "bullets": [
+        "Attention is your scarcest resource. Chief is the local-first layer that guards it \u2014 turning every agent, alert, and feed into one honest call: interrupt, or not.",
+        "Primarily Python, with topics such as harness, harness-engineering, llm.",
+        "Latest release v0.5.0 signals active maintenance."
+      ],
+      "actionItems": [
+        "Clone SmileLikeYe/agent-chief and run the README quickstart with a small Python smoke test.",
+        "Map one ai agent apps use case to the repo APIs, inputs, and required integrations.",
+        "Review v0.5.0, open issues, and license before deciding on a deeper benchmark or pilot."
+      ],
+      "latestRelease": "v0.5.0",
+      "latestReleaseUrl": "https://github.com/SmileLikeYe/agent-chief/releases/tag/v0.5.0",
+      "homepage": "https://smileflow.cn/",
+      "license": "MIT"
+    },
+    {
+      "name": "kldhsh123/Afterglow",
+      "stars": "223",
+      "desc": "\u4f7f\u7528\u793e\u4ea4\u8f6f\u4ef6\u804a\u5929\u8bb0\u5f55\u7ed3\u5408\u5411\u91cf\u6570\u636e\u5e93\u8ba9AI\u66f4\u597d\u7684\u626e\u6f14\u5bf9\u65b9\u7684\u89d2\u8272\uff0c\u5728\u4e0d\u5fae\u8c03\u6a21\u578b\u7684\u60c5\u51b5\u4e0b\u53ef\u4ee5\u8fbe\u5230\u53ef\u89c2\u7684\u6548\u679c\u3002\u628a\u66fe\u7ecf\u7684\u7f8e\u597d\uff0c\u7eed\u6210\u5f80\u540e\u7684\u966a\u4f34\u3002",
+      "url": "https://github.com/kldhsh123/Afterglow",
+      "language": "Python",
+      "topics": [
+        "afterglow",
+        "ai-companion",
+        "digital-companion",
+        "lancedb",
+        "llm",
+        "python",
+        "qq-chat",
+        "rag",
+        "semantic-search",
+        "vector-database",
+        "vue"
+      ],
+      "createdAt": "May 22, 2026",
+      "lastUpdated": "Jul 15, 2026",
+      "fetchedAt": "Jul 18, 2026",
+      "bestFor": "RAG Infrastructure",
+      "bullets": [
+        "\u4f7f\u7528\u793e\u4ea4\u8f6f\u4ef6\u804a\u5929\u8bb0\u5f55\u7ed3\u5408\u5411\u91cf\u6570\u636e\u5e93\u8ba9AI\u66f4\u597d\u7684\u626e\u6f14\u5bf9\u65b9\u7684\u89d2\u8272\uff0c\u5728\u4e0d\u5fae\u8c03\u6a21\u578b\u7684\u60c5\u51b5\u4e0b\u53ef\u4ee5\u8fbe\u5230\u53ef\u89c2\u7684\u6548\u679c\u3002\u628a\u66fe\u7ecf\u7684\u7f8e\u597d\uff0c\u7eed\u6210\u5f80\u540e\u7684\u966a\u4f34\u3002.",
+        "Primarily Python, with topics such as afterglow, ai-companion, digital-companion.",
+        "Latest release v0.3.1 signals active maintenance."
+      ],
+      "actionItems": [
+        "Clone kldhsh123/Afterglow and run the README quickstart with a small Python smoke test.",
+        "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
+        "Review v0.3.1, open issues, and license before deciding on a deeper benchmark or pilot."
+      ],
+      "latestRelease": "v0.3.1",
+      "latestReleaseUrl": "https://github.com/kldhsh123/Afterglow/releases/tag/v0.3.1",
+      "homepage": "https://afterglow.kldhsh.top",
+      "license": "AGPL-3.0"
     }
   ],
   "models": [
     {
-      "name": "Nemotron 3 Ultra",
-      "org": "NVIDIA",
-      "date": "Jul 8, 2026",
-      "note": "NVIDIA says Nemotron 3 Ultra reached benchmark-leading Deep Agents results with LangChain, delivering higher throughput and about 10x lower inference cost per run than leading closed models.",
-      "tag": "MODEL",
-      "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/",
-      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blogs.nvidia.com/blog/nemotron-langchain-agents-open-stack/"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
-      "name": "GPT-Live",
-      "org": "OpenAI",
-      "date": "Jul 8, 2026",
-      "note": "OpenAI introduced GPT-Live, a new generation of voice models now powering ChatGPT Voice, which matters for more natural human-AI conversation.",
-      "tag": "MODEL",
-      "url": "https://openai.com/index/introducing-gpt-live",
-      "sourceUrl": "https://openai.com/news/rss.xml",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://openai.com/index/introducing-gpt-live"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
-      "name": "NVIDIA Isaac GR00T 1.7",
-      "org": "NVIDIA",
-      "date": "Jul 7, 2026",
-      "note": "NVIDIA is bringing the open GR00T 1.7 reasoning vision-language-action model and Isaac Teleop framework into Hugging Face LeRobot, giving robotics developers shared tools to train and evaluate robots in an open workflow.",
-      "tag": "OPEN",
-      "url": "https://blogs.nvidia.com/blog/hugging-face-lerobot-models-frameworks-open-robotics/",
-      "sourceUrl": "https://feeds.feedburner.com/nvidiablog",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blogs.nvidia.com/blog/hugging-face-lerobot-models-frameworks-open-robotics/"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
-      "name": "Gemini 3.5 Flash",
+      "name": "TabFM: A zero-shot foundation model for tabular data",
       "org": "Google",
-      "date": "Jul 6, 2026",
-      "note": "Gemini 3.5 Flash is now generally available and ready for scaled production use, bringing stronger agentic execution, coding, and long-horizon task performance at scale.",
-      "tag": "API",
-      "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5",
-      "sourceUrl": "https://ai.google.dev/gemini-api/docs/changelog",
-      "sourceLabel": "Source page",
-      "benchmarkUrl": "https://artificialanalysis.ai/models/gemini-3-5-flash",
+      "date": "Jun 30, 2026",
+      "note": "Google introduced TabFM, a zero-shot foundation model for tabular data, which matters because it can generalize to tabular tasks without task-specific training.",
+      "tag": "MODEL",
+      "url": "https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/",
+      "sourceUrl": "https://research.google/blog/rss/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
       "links": [
         {
           "label": "Read release",
-          "url": "https://ai.google.dev/gemini-api/docs/whats-new-gemini-3.5"
+          "url": "https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/"
         },
         {
-          "label": "Benchmark",
-          "url": "https://artificialanalysis.ai/models/gemini-3-5-flash"
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ]
+    },
+    {
+      "name": "Claude Fable 5",
+      "org": "Anthropic",
+      "date": "Jul 1, 2026",
+      "note": "Anthropic\u2019s Claude Fable 5 is now available again on Amazon Bedrock with stronger guardrails to help customers use the model with added misuse protection.",
+      "tag": "API",
+      "url": "https://aws.amazon.com/blogs/machine-learning/safely-releasing-frontier-models-to-customers/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/safely-releasing-frontier-models-to-customers/"
+        },
+        {
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ]
+    },
+    {
+      "name": "Gemini Spark",
+      "org": "Google",
+      "date": "Jun 30, 2026",
+      "note": "Gemini Spark now ships on macOS, with connected app integrations and real-time topic tracking, expanding where users can run and connect the tool.",
+      "tag": "MODEL",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/",
+      "sourceUrl": "https://blog.google/rss/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/"
+        },
+        {
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ]
+    },
+    {
+      "name": "Claude Sonnet 5",
+      "org": "Anthropic",
+      "date": "Jun 30, 2026",
+      "note": "Anthropic released Claude Sonnet 5, a more agentic Sonnet model with stronger coding, tool use, and autonomous task performance at lower cost than Opus-class models.",
+      "tag": "MODEL",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "sourceUrl": "https://www.anthropic.com/news",
+      "sourceLabel": "Source page",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://www.anthropic.com/news/claude-sonnet-5"
+        },
+        {
+          "label": "Benchmarks",
+          "url": "https://artificialanalysis.ai/models"
         }
       ]
     }
   ],
   "toolsServices": [
     {
-      "name": "Amazon SageMaker AI serverless model customization for NVIDIA Nemotron 3",
+      "name": "Transform your sales organization with Amazon Quick: your new agentic AI teammate",
       "org": "AWS",
-      "date": "Jul 10, 2026",
-      "note": "AWS introduced serverless model customization in Amazon SageMaker AI for NVIDIA Nemotron 3 models, enabling SFT, RLVR, and RLAIF fine-tuning without managing infrastructure.",
-      "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/fine-tune-nvidia-nemotron-3-models-with-amazon-sagemaker-ai-serverless-model-customization/",
+      "date": "Jul 17, 2026",
+      "note": "The average sales rep spends only 40% of their time actually selling . The rest is eaten up by necessary, but lower-value work: customer relationship management (CRM) updates, prospect research, email drafting, and endless context-switching between tools.",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/transform-your-sales-organization-with-amazon-quick-your-new-agentic-ai-teammate/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/fine-tune-nvidia-nemotron-3-models-with-amazon-sagemaker-ai-serverless-model-customization/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/transform-your-sales-organization-with-amazon-quick-your-new-agentic-ai-teammate/"
         }
       ]
     },
     {
-      "name": "Microsoft Foundry GPT-5.6, APAC Data Zone, and hosted agents",
-      "org": "Microsoft",
-      "date": "Jul 9, 2026",
-      "note": "Microsoft Foundry now generally available with GPT-5.6, an Asia-Pacific Data Zone, and hosted agents in Foundry Agent Service, giving teams a production platform for frontier models and deployable agents.",
-      "tag": "PLATFORM",
-      "url": "https://azure.microsoft.com/en-us/blog/frontier-models-and-production-agents-advancing-microsoft-foundry-for-the-agentic-era/",
-      "sourceUrl": "https://azure.microsoft.com/en-us/blog/feed/",
+      "name": "Grok on Amazon Bedrock",
+      "org": "AWS",
+      "date": "Jul 16, 2026",
+      "note": "This post is co-written with Eric Jiang from xAI (SpaceXAI). xAI\u2019s Grok 4.3 is now generally available on Amazon Bedrock, giving teams that build agents and AI workflows a model that reasons reliably over long inputs.",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-grok-on-amazon-bedrock/",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://azure.microsoft.com/en-us/blog/frontier-models-and-production-agents-advancing-microsoft-foundry-for-the-agentic-era/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-grok-on-amazon-bedrock/"
         }
       ]
     },
     {
-      "name": "LiteRT.js",
+      "name": "Expanding Choice in Gemini Enterprise Agent Platform: Introducing Grounding with Parallel Web Search",
       "org": "Google",
-      "date": "Jul 9, 2026",
-      "note": "Google shipped LiteRT.js, a JavaScript binding of LiteRT for running AI directly in the browser with local inference and hardware acceleration, which brings high-performance on-device model execution to web apps.",
-      "tag": "PLATFORM",
-      "url": "https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference/",
+      "date": "Jul 16, 2026",
+      "note": "As generative AI evolves from simple chat interfaces to agents executing complex tasks like automated Know Your Customer (KYC) checks, catalog data enrichment, real-time news analysis, and corporate due diligence, the need for factual accuracy has never been h",
+      "tag": "CLOUD",
+      "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search/",
       "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://developers.googleblog.com/litertjs-googles-high-performance-web-ai-inference/"
+          "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search/"
         }
       ]
     },
     {
-      "name": "Claude apps gateway for AWS",
-      "org": "AWS",
-      "date": "Jul 8, 2026",
-      "note": "AWS announced Claude apps gateway for AWS, a self-hosted control plane for Claude Code and Claude Desktop that centralizes access, cost, and policy management for enterprise deployments.",
+      "name": "Evolving Spec-Driven Development: Conductor Now Supports Antigravity",
+      "org": "Google",
+      "date": "Jul 16, 2026",
+      "note": "We introduced Conductor last year to bring spec-driven development directly to your terminal. By shifting project awareness out of ephemeral chat logs and into persistent, version-controlled markdown files, Conductor has helped developers globally plan their a",
       "tag": "CLI",
-      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-claude-apps-gateway-for-aws/",
+      "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/"
+        }
+      ]
+    },
+    {
+      "name": "OpenAI GPT-5.6 Sol, Terra, and Luna are now generally available on Amazon Bedrock",
+      "org": "AWS",
+      "date": "Jul 13, 2026",
+      "note": "Build with the smartest family of models from OpenAI yet, on Amazon Bedrock\u2019s next-generation inference engine. Organizations scaling autonomous agents and AI-powered products need frontier intelligence that performs reliably across hundreds of steps, from cod",
+      "tag": "CLOUD",
+      "url": "https://aws.amazon.com/blogs/machine-learning/openai-gpt-5-6-sol-terra-and-luna-are-now-generally-available-on-amazon-bedrock/",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-claude-apps-gateway-for-aws/"
-        }
-      ]
-    },
-    {
-      "name": "Managed Agents in Gemini API",
-      "org": "Google",
-      "date": "Jul 7, 2026",
-      "note": "Google expanded Managed Agents in the Gemini API with new capabilities like background tasks and remote MCP, making it more practical to build reliable production-ready agents.",
-      "tag": "API",
-      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
-      "sourceUrl": "https://blog.google/technology/ai/rss/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/"
+          "url": "https://aws.amazon.com/blogs/machine-learning/openai-gpt-5-6-sol-terra-and-luna-are-now-generally-available-on-amazon-bedrock/"
         }
       ]
     }
   ],
   "papers": [
     {
-      "title": "TSAI-MetaFraud: A Benchmark Dataset for Financial Fraud Transaction and Behavioral Risk Detection in Metaverse Ecosystems",
-      "authors": "Refat Ishrak Hemel, Ehsan Hallaji, Roozbeh Razavi-Far",
+      "title": "Symbal: Detecting Systematic Misalignments in Model-Generated Captions",
+      "authors": "Maya Varma, Jean-Benoit Delbrouck, Sophie Ostmeier, Akshay Chaudhari, Curtis Langlotz",
       "org": "arXiv",
-      "date": "Jul 10, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 68,
-      "priority": "READ",
-      "tags": [
-        "Classical ML and Predictive Modeling",
-        "Finance and Economics"
-      ],
-      "abstract": "The emergence of metaverse platforms has created virtual economies that introduce new challenges related to fraud, bot activity, and illicit financial behavior. Despite growing interest in trustworthy metaverse analytics, existing datasets typically focus on user behavior, authentication, or financial transactions in isolation, limiting the development and reproducible evaluation of multimodal fraud detection methods. To address this gap, we present TSAI-MetaFraud, a multimodal, multi-task benchmark dataset for fraud analytics in virtual economies. TSAI-MetaFraud integrates behavioral, transactional, and graph-structured information while incorporating realistic fraud and automated bot scenarios. We define benchmark tasks including transaction fraud detection, cross-modal node classification, temporal link prediction, and weakly supervised fraud detection, and provide baseline evaluations using machine learning models and graph neural networks. By jointly capturing behavioral activity, financial interactions, and relational structure within a unified virtual economy, TSAI-MetaFraud provides a benchmark for advancing multimodal learning, graph mining, fraud analytics, and trustworthy AI in emerging metaverse ecosystems.",
-      "takeaways": [
-        "Introduces TSAI-MetaFraud, a multimodal, multi-task benchmark dataset for fraud analytics in metaverse virtual economies, combining behavioral, transactional, and graph-structured data.",
-        "Defines benchmark tasks for transaction fraud detection, cross-modal node classification, temporal link prediction, and weakly supervised fraud detection, with baseline evaluations using machine learning models and graph neural networks.",
-        "Provides a reproducible testbed for developing and comparing multimodal fraud detection, graph mining, and trustworthy AI methods in emerging metaverse ecosystems."
-      ],
-      "actionItems": [
-        "Review the TSAI-MetaFraud benchmark scope and task definitions to determine which of the four benchmark tasks and which data modalities align with your current fraud analytics pipeline.",
-        "Plan a baseline comparison on the dataset's transaction fraud detection, cross-modal node classification, temporal link prediction, and weakly supervised fraud detection tasks using the reported machine learning and graph neural network setups.",
-        "Assess whether your intended metaverse fraud use case can realistically match the dataset's multimodal, graph-structured setting and whether the dataset's low applicability/reproducibility signals affect adoption."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "High"
-      },
-      "capability": "Classical ML and Predictive Modeling",
-      "domain": "Finance and Economics",
-      "url": "https://arxiv.org/pdf/2607.09528v1"
-    },
-    {
-      "title": "FreyaTTS Technical Report",
-      "authors": "Ahmet Erdem Pamuk, \u00d6mer Yent\u00fcr, Ahmet Tunga Bayrak, Yavuz Alp Sencer \u00d6zt\u00fcrk, Mustafa Yavuz",
-      "org": "arXiv",
-      "date": "Jul 10, 2026",
+      "date": "Jul 16, 2026",
       "hasCode": true,
       "stars": 0,
-      "researchScore": 64,
+      "researchScore": 66,
       "priority": "EXPERIMENT",
-      "tags": [
-        "Evaluation and Benchmarks",
-        "Other"
-      ],
-      "abstract": "We introduce Freya-TTS, a compact, tokenizer-free, Turkish-first text-to-speech model designed for highly reliable and efficient conversational synthesis. Freya-TTS is a 183.2M-parameter non-autoregressive conditional flow-matching Diffusion Transformer (DiT) that operates in the frozen continuous latent space of AudioVAE2 (16 kHz encode, 48 kHz decode), allowing the model to focus its capacity on text-to-latent mapping while inheriting high-quality 48 kHz reconstruction. We advance the framework along three key dimensions: (1) rule-free end-to-end modeling from a 92-symbol Turkish character vocabulary without a phonemizer, grapheme-to-phoneme frontend, or discrete speech tokenizer; (2) non-autoregressive parallel denoising, which predicts the entire latent sequence simultaneously over a predicted duration; and (3) a production-oriented two-stage post-training recipe consisting of single-speaker voice locking and short-utterance coverage, improving speaker consistency and robustness on short inputs. On the Freya-TR-Eval benchmark, Freya-TTS achieves a band-matched word error rate (WER) of 8.0% and character error rate (CER) of 3.0%, outperforming substantially larger open-source systems while using a fraction of their parameters. The model achieves a real-time factor of 0.11 on consumer GPUs and runs faster than real time on a laptop CPU, making it well suited for resource-constrained edge deployment. We release the model weights, training and inference code, and evaluation benchmark under the Apache-2.0 license.",
-      "takeaways": [
-        "Freya-TTS is a compact, Turkish-first, tokenizer-free text-to-speech model that uses a 183.2M-parameter non-autoregressive conditional flow-matching DiT in a frozen AudioVAE2 latent space.",
-        "The report evaluates Freya-TTS on Freya-TR-Eval, where it reaches 8.0% band-matched WER and 3.0% CER, with a two-stage post-training recipe for single-speaker voice locking and short-utterance coverage.",
-        "The model is positioned for efficient deployment: it runs at 0.11 real-time factor on consumer GPUs, faster than real time on a laptop CPU, and the authors release weights, code, and benchmark under Apache-2.0."
-      ],
-      "actionItems": [
-        "Review the Freya-TR-Eval benchmark setup and band-matched WER/CER calculation to verify that the reported 8.0% WER and 3.0% CER are directly comparable across the released evaluation conditions.",
-        "Run an ablation or replication focused on the two-stage post-training recipe, comparing single-speaker voice locking and short-utterance coverage against the base model on speaker consistency, short-input robustness, and WER/CER.",
-        "Assess whether the tokenizer-free Turkish-first design and frozen AudioVAE2 latent-space dependency generalize to non-Turkish or broader deployment settings, especially for edge use cases."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "High",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.09530v1"
-    },
-    {
-      "title": "4DR360: State Reasoning for Joint 3D Detection and Occupancy Prediction in 4D Radar-Camera Full-Scene Perception",
-      "authors": "Xiaokai Bai, Lianqing Zheng, Runwei Guan, Songkai Wang, Siyuan Cao, Hui-liang Shen",
-      "org": "arXiv",
-      "date": "Jul 10, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 60,
-      "priority": "READ",
-      "tags": [
-        "Reasoning and Planning",
-        "Other"
-      ],
-      "abstract": "Reliable autonomous driving requires full-scene perception that couples foreground objects with dense semantic layout. Recently, 4D millimeter-wave radar has emerged as a robust and affordable sensor, yet its sparse returns make radar-camera fusion necessary for comprehensive scene understanding. Existing radar-camera methods mainly optimize detection, while dual-task systems usually decode boxes and occupancy with limited interaction. To address this gap and advance radar-based multi-task learning, we propose \\method, a 4D radar-camera framework for 360$^\\circ$ full-scene perception, which models semantic occupancy as a persistent scene state rather than a terminal output. \\method{} follows a cross-modal state reasoning paradigm, where the occupancy state is modeled and propagated through stages for coarse-to-fine feature aggregation. Specifically, State-guided BEV Enhancement (SBE) strengthens intra-frame BEV representation, while Doppler-guided Temporal Fusion (DTF) preserves state evidence over longer temporal horizons. Beyond the model, we further extend ManTruckScenes with satellite-map-based generated occupancy labels and pair it with OmniHD-Scenes in a unified cross-dataset detection-and-occupancy protocol. The resulting experiments cover accuracy, robustness, ablation, and efficiency under one radar-camera multi-task evaluation framework. Code and labels will be released upon acceptance.",
-      "takeaways": [
-        "Proposes 4DR360, a 4D radar-camera 360\u00b0 full-scene perception framework that treats semantic occupancy as a persistent scene state and jointly targets 3D detection and occupancy prediction.",
-        "Uses cross-modal state reasoning with State-guided BEV Enhancement for intra-frame feature aggregation and Doppler-guided Temporal Fusion to carry occupancy evidence across time; evaluates on a unified cross-dataset protocol.",
-        "Practical implication: aims to improve radar-based autonomous driving perception beyond box detection alone, with added occupancy labels for ManTruckScenes and reported experiments on accuracy, robustness, ablation, and efficiency."
-      ],
-      "actionItems": [
-        "Review the cross-modal state reasoning design in 4DR360, focusing on how State-guided BEV Enhancement and Doppler-guided Temporal Fusion are used to propagate semantic occupancy as a persistent scene state.",
-        "Run a cross-dataset evaluation that checks both 3D detection and occupancy prediction on the unified ManTruckScenes and OmniHD-Scenes protocol, including accuracy, robustness, ablation, and efficiency comparisons.",
-        "Assess whether the added occupancy labels and 360\u00b0 radar-camera pipeline can be adopted in your driving stack, especially given the need for satellite-map-generated labels and the stated low applicability outside radar-based autonomous driving perception."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Medium",
-        "novelty": "Medium"
-      },
-      "capability": "Reasoning and Planning",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.09629v1"
-    },
-    {
-      "title": "Failure as a Process: An Anatomy of CLI Coding Agent Trajectories",
-      "authors": "Xiangxin Zhao, Han Li, Shuaiting Li, Tianyi Zhao, Earl T. Barr, Federica Sarro, He Ye",
-      "org": "arXiv",
-      "date": "Jul 10, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 58,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Foundation Models and Generative AI",
-        "AI Engineering and Developer Tools"
-      ],
-      "abstract": "Large language model (LLM) coding agents are increasingly deployed to autonomously perform software engineering tasks in terminal-based environments, making their reliability a growing concern. Existing empirical studies investigate why coding agents fail, yet they largely treat failure as a final outcome rather than a temporal process, providing limited insight into how failures emerge, evolve, and become unrecoverable. We present the first large-scale empirical study of CLI coding-agent failure trajectories, introducing a process-oriented framework that analyzes failure through its onset, evolution, and recovery across execution trajectories. We first collect 3,843 execution trajectories generated by seven frontier models across three coding-agent scaffolds (OpenHands, MiniSWE, and Terminus2) on Terminal-Bench, then carefully filter them to obtain 1,794 complete and valid trajectories for manual annotation (over 63,000 execution steps), from which we derive 14 findings spanning failure occurrence, root causes, recovery, and cross-system consistency. Our findings show that coding-agent failures are predominantly driven by epistemic errors, typically begin within the first few execution steps, and often remain hidden until recovery is no longer possible, suggesting that improving coding-agent reliability requires earlier validation and intervention rather than relying solely on final-outcome evaluation.",
-      "takeaways": [
-        "Introduces a process-oriented framework for CLI coding-agent failures, analyzing failure onset, evolution, and recovery rather than treating failure as only a final outcome.",
-        "Studies 3,843 trajectories from seven frontier models across OpenHands, MiniSWE, and Terminus2 on Terminal-Bench, filtering to 1,794 valid trajectories and 63,000+ annotated steps to derive 14 findings.",
-        "Shows failures are mainly driven by epistemic errors, usually start in the first few steps, and can stay hidden until recovery is impossible, implying earlier validation and intervention are needed."
-      ],
-      "actionItems": [
-        "Review the process-oriented failure framework and the 14 findings to identify which failure onset, evolution, and recovery signals are most relevant for your CLI coding-agent dashboard.",
-        "Run a trajectory-level evaluation on Terminal-Bench-style logs that flags early-step epistemic errors and compares whether early validation/intervention reduces unrecoverable failures across OpenHands, MiniSWE, and Terminus2.",
-        "Ask whether your adoption workflow can support earlier validation and intervention in terminal-based coding agents, given that failures may remain hidden until recovery is no longer possible."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "Medium",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "AI Engineering and Developer Tools",
-      "url": "https://arxiv.org/pdf/2607.09510v1"
-    },
-    {
-      "title": "Evolution of Accuracy and Visual-Cognitive Errors in a Decade of Vision-Language AI Models",
-      "authors": "Shravan Murlidaran, Miguel P. Eckstein",
-      "org": "arXiv",
-      "date": "Jul 10, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 57,
-      "priority": "READ",
-      "tags": [
-        "Multimodal AI",
-        "Other"
-      ],
-      "abstract": "Vision language models (VLMs) have made remarkable progress in visual reasoning during the last decade. Most evaluations have used simple scenes (MS-COCO) that do not showcase complex human interactions or behaviors, only a handful of non-curated human descriptions as a benchmark, and have not focused on understanding the model's error types. Here, we introduce the Complex Social Behavior (CSB) dataset, containing 100 images depicting complex social interactions/behaviors. We analyze the progression of scene descriptions over a decade (2017-2025) of VLMs (four pre-Multimodal Large Language Models, MLLMs, and five MLLMs). We evaluate the accuracy of the models and 20 human descriptions relative to a gold standard on the CSB dataset and on a sample from MS-COCO. We analyzed five visual-cognitive error types: object detection, recognition, hallucination, scene understanding, and spatial dependence. The CSB dataset showed a more pronounced improvement than MS-COCO in scene description accuracy, with pre-MLLMs achieving much lower accuracy than the bottom-ranked human descriptions and MLLMs attaining accuracies similar to the top-ranked human descriptions. We show that MLLMs have eliminated the gap in scene description accuracy between simpler MS-COCO scenes and scenes depicting complex behaviors (CSB). MLLMs have almost eliminated all error types in our tested datasets, except for occasionally relying on different image regions for scene descriptions than humans do (spatial dependence error). We also show that detection, recognition, and hallucination errors have the highest impact on scene description accuracy. Together, our findings provide a more thorough evaluation of how visual language models have advanced over the last decade.",
-      "takeaways": [
-        "Introduces the Complex Social Behavior (CSB) dataset of 100 images to evaluate VLM scene descriptions on complex human interactions and track 2017\u20132025 model progress against human descriptions.",
-        "Compares four pre-MLLMs, five MLLMs, and 20 human descriptions on CSB and MS-COCO, analyzing accuracy plus five visual-cognitive error types: object detection, recognition, hallucination, scene understanding, and spatial dependence.",
-        "Finds MLLMs match top human description accuracy on CSB and largely remove the CSB\u2013MS-COCO gap, suggesting improved evaluation of complex social scenes while spatial dependence remains a residual issue."
-      ],
-      "actionItems": [
-        "Review the CSB dataset design and the 2017\u20132025 model-vs-human comparison setup, including the gold-standard labeling and the two evaluation corpora (CSB and MS-COCO).",
-        "Re-run or replicate the accuracy and five error-type analysis on the 100-image CSB set, with special attention to how object detection, recognition, hallucination, scene understanding, and spatial dependence are scored.",
-        "Assess whether the remaining spatial dependence error would affect adoption in tasks that require human-like attention to image regions, even when overall description accuracy matches top human descriptions."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Multimodal AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.09654v1"
-    },
-    {
-      "title": "MedRealMM: A Real-World Multimodal Benchmark for Chinese Online Medical Consultation",
-      "authors": "Runhan Shi, Quan Zhou, Yuqian Xu, Shuai Yang, Xin Wu, Zitong Zhou, Hui Liu, Bin Cha, Zheming Wang, Liya Li, Wei Wei, Haoyuan Hu, Jun Xu",
-      "org": "arXiv",
-      "date": "Jul 10, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 56,
-      "priority": "SHARE",
       "tags": [
         "Multimodal AI",
         "Healthcare and Life Sciences"
       ],
-      "abstract": "Large language models (LLMs) are increasingly deployed in online medical consultation, yet existing benchmarks remain poorly aligned with real clinical practice. Many rely on synthetic conversations or patient simulators, omit patient-uploaded medical images, or evaluate open-ended clinical responses using multiple-choice or lexical-overlap metrics that poorly reflect clinical quality. We introduce \\textbf{MedRealMM}, a large-scale benchmark for multimodal online medical consultation built from de-identified patient-doctor interactions collected from a nationwide Chinese internet hospital. MedRealMM uses a Multimodal Clinical Challenge Point (MCCP) extraction framework to identify clinically demanding moments in authentic consultation trajectories and converts each into a standardized next-response generation task while preserving the preceding text-image context. Each instance is paired with a case-specific rubric refined by physicians that rewards clinically desirable behaviors and penalizes unsafe, unsupported, or contradictory responses. The current release contains 5,620 real-world multimodal cases spanning 64 clinical departments. We evaluate 19 general-purpose and medical-specialized LLMs, including text-only and multimodal systems. Our results show that image information is critical for reliable clinical performance and that current frontier models remain below the online physician response. Although some frontier models satisfy as many or more positive clinical criteria than physicians, they trigger more negative criteria, indicating that safety-sensitive error avoidance remains a central bottleneck. MedRealMM offers a realistic and reproducible benchmark for evaluating multimodal medical reasoning in real-world online consultation. The dataset will be publicly available on Hugging Face at https://huggingface.co/datasets/jdh-algo/MedRealMM.",
+      "abstract": "Multimodal large language models (MLLMs) often introduce errors when generating image captions, resulting in misaligned image-text pairs. Our work focuses on a class of captioning errors that we refer to as systematic misalignments, where a recurring error in MLLM-generated captions is closely associated with the presence of a specific visual feature in the paired image. Given a vision-language dataset with MLLM-generated captions, our aim in this work is to detect such errors, a task we refer to as systematic misalignment detection. As our first key contribution, we present Symbal, which utilizes a structured, dual-stage setup with off-the-shelf foundation models to identify systematic misalignments and summarize results in natural language. As our second key contribution, we introduce SymbalBench, a benchmark designed to evaluate automated methods on our proposed task. SymbalBench consists of 1.7 million image-text pairs from two domains (natural and medical images), organized into 420 vision-language datasets with annotated systematic misalignments. Symbal exhibits strong performance on this benchmark, correctly identifying systematic misalignments in 63.8% of datasets, a nearly 4x improvement over the closest baseline. We supplement our evaluations on SymbalBench with real-world evaluations, showing that (1) Symbal can accurately surface systematic misalignments in captions generated by four MLLMs and (2) Symbal is a powerful tool for auditing off-the-shelf image-caption datasets. Ultimately, our novel task, method, and benchmark can aid users with auditing MLLM-generated captions and identifying critical errors, without requiring access to the underlying MLLM. Code is available at https://github.com/Stanford-AIMI/Symbal.",
       "takeaways": [
-        "Introduces MedRealMM, a large-scale real-world multimodal benchmark for Chinese online medical consultation built from de-identified doctor-patient interactions and case-specific physician rubrics.",
-        "Uses an MCCP extraction framework to turn authentic text-image consultation histories into next-response generation tasks; evaluates 19 general-purpose and medical LLMs on 5,620 cases across 64 departments.",
-        "Finds patient-uploaded images are critical and current frontier models still trail physicians, with safety-sensitive negative errors remaining a key bottleneck for deployment."
+        "Multimodal large language models (MLLMs) often introduce errors when generating image captions, resulting in misaligned image-text pairs.",
+        "Our work focuses on a class of captioning errors that we refer to as systematic misalignments, where a recurring error in MLLM-generated captions is closely associated with the presence of a specific visual feature in the paired image.",
+        "Given a vision-language dataset with MLLM-generated captions, our aim in this work is to detect such errors, a task we refer to as systematic misalignment detection."
       ],
       "actionItems": [
-        "Review MedRealMM\u2019s MCCP next-response setup and physician-refined rubrics to see how closely the benchmark matches your intended multimodal medical consultation evaluation needs.",
-        "Run a comparative evaluation on the 5,620-case benchmark with and without patient-uploaded images to quantify how image context changes model performance and negative error rates.",
-        "Assess whether the benchmark\u2019s safety-sensitive error profile and Chinese online-hospital setting are appropriate for your deployment target before using results to support adoption decisions."
+        "Review Symbal: Detecting Systematic Misalignments in Model-Generated Captions and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether multimodal ai improves a relevant healthcare and life sciences workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
       ],
       "researchSignals": {
         "evidence": "High",
         "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "Medium"
+        "reproducibility": "High",
+        "novelty": "High"
       },
       "capability": "Multimodal AI",
       "domain": "Healthcare and Life Sciences",
-      "url": "https://arxiv.org/pdf/2607.09142v1"
+      "url": "https://arxiv.org/pdf/2607.15216v1"
     },
     {
-      "title": "Multimodal Scenario Similarity Search for Autonomous Driving",
-      "authors": "Tam\u00e1s Matuszka, Andr\u00e1s Tam\u00e1sy, Bal\u00e1zs Szol\u00e1r",
+      "title": "MM-IssueLoc: A Controlled Benchmark for Evaluating Visual Evidence in Multimodal Repository-Level Issue Localization",
+      "authors": "Shaoxiong Zhan, Shi Hu, Boyu Feng, Hai Lin, Andrew Gong, Zhengda Zhou, Jiaying Zhou, Yunyun Hou, Hao Su, Hai-Tao Zheng",
       "org": "arXiv",
-      "date": "Jul 10, 2026",
+      "date": "Jul 16, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 52,
+      "researchScore": 59,
       "priority": "WATCH",
       "tags": [
         "Multimodal AI",
         "Other"
       ],
-      "abstract": "Large-scale autonomous-driving datasets contain vast numbers of recorded scenarios, creating a need for efficient retrieval methods that can identify situations similar to a given query. Existing approaches typically rely on either visual representations or motion-based descriptions, making it difficult to understand their relative strengths and limitations for scenario retrieval. In this work, we present a multimodal framework for autonomous-driving scenario retrieval that combines visual and trajectory-based representations within a unified retrieval pipeline. We investigate two trajectory-based approaches: Exo-Trajectory, an explicit matching method based on surrounding-agent motion, and ScenarioFormer, a transformer-based representation learned from object trajectories using contrastive learning. We compare these approaches against strong vision-based baselines and analyze their behavior across a diverse set of driving scenarios. Experimental results show that trajectory representations provide strong retrieval performance for motion-centric events such as cut-ins, turning maneuvers, and traffic queueing, while visual embeddings excel when appearance cues are informative. Most importantly, combining visual and trajectory information consistently improves retrieval quality, yielding the best overall performance. These findings demonstrate that appearance and motion capture are complementary notions of scenario similarity and motivate multimodal retrieval systems for autonomous-driving data mining, dataset curation, and scenario-based validation.",
+      "abstract": "Real repository issues routinely include visual evidence such as screenshots, error dialogs, rendered UI states, and logs, yet repository-level issue localization is evaluated mostly as a text-only task. Existing multimodal SE benchmarks evaluate end-to-end repair, entangling localization with patch synthesis and obscuring whether visual input helped, hurt, or was ignored. We introduce \\textbf{MM-IssueLoc}, a controlled benchmark and evaluation protocol for repository-level localization with visual evidence. MM-IssueLoc contains 652 issue-PR instances across 23 languages, with annotations for 7 image categories and 4 relevance levels. It provides file-level and function-level gold labels, paired text-only and with-image evaluation, and VCE-based diagnostics that convert images into structured textual evidence. We evaluate LLM-based and retrieval-based systems, including MM-IssueLoc-VL-Emb as a controlled multimodal retriever. Results show that existing systems remain far from reliable multimodal repository localization: the strongest agent reaches 38.96 file Acc@5 and 22.45 function Acc@10, while the strongest retriever reaches 33.86 function Acc@10. Cross-benchmark comparisons show that high localization scores on text-dominant SWE benchmarks do not transfer cleanly to multimodal issue localization. MM-IssueLoc turns visual evidence into an explicit evaluation variable, enabling future work to test whether systems improve by using visual evidence for localization, rather than by relying on text-only cues or downstream patch-generation effects.",
       "takeaways": [
-        "Proposes a multimodal autonomous-driving scenario retrieval framework that unifies visual and trajectory-based representations to search large-scale recorded driving datasets.",
-        "Compares two trajectory methods\u2014Exo-Trajectory and ScenarioFormer\u2014against vision-based baselines, finding trajectory features work best for motion-centric events while visual embeddings help when appearance cues matter; combining both gives the best retrieval quality.",
-        "Suggests that appearance and motion are complementary for scenario similarity, supporting multimodal tools for data mining, dataset curation, and scenario-based validation."
+        "Real repository issues routinely include visual evidence such as screenshots, error dialogs, rendered UI states, and logs, yet repository-level issue localization is evaluated mostly as a text-only task.",
+        "Existing multimodal SE benchmarks evaluate end-to-end repair, entangling localization with patch synthesis and obscuring whether visual input helped, hurt, or was ignored.",
+        "We introduce \\textbf{MM-IssueLoc}, a controlled benchmark and evaluation protocol for repository-level localization with visual evidence."
       ],
       "actionItems": [
-        "Review the multimodal retrieval pipeline design and the reported comparison between Exo-Trajectory, ScenarioFormer, and vision-based baselines to map which representation is used for motion-centric versus appearance-centric scenario search.",
-        "Run an evaluation that reproduces the retrieval comparison on driving scenarios, checking whether combining visual and trajectory information consistently improves quality over single-modality baselines across cut-ins, turning maneuvers, and traffic queueing cases.",
-        "Ask whether the multimodal scenario similarity approach is practical for data mining, dataset curation, and scenario-based validation in your setting, given the paper\u2019s low applicability and low reproducibility signals."
+        "Review MM-IssueLoc: A Controlled Benchmark for Evaluating Visual Evidence in Multimodal Repository-Level Issue Localization and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether multimodal ai improves a relevant other workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2607.15205v1"
+    },
+    {
+      "title": "Can We Trust Item Response Theory for AI Evaluation?",
+      "authors": "Han Jiang, Sunbeom Kwon, Jinwen Luo, Ziang Xiao, Susu Zhang",
+      "org": "arXiv",
+      "date": "Jul 16, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 59,
+      "priority": "READ",
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Other"
+      ],
+      "abstract": "AI benchmarks increasingly leverage item-level statistical models, particularly item response theory (IRT), to estimate model capabilities, rank systems, select informative examples, and diagnose benchmark quality. However, AI benchmark data often departs from the data regime of human testing, for which standard IRT estimation tools were originally developed: benchmarks typically involve fewer evaluated models, far more items, and capability distributions that may be skewed, clustered, or multimodal. We examine how these regime mismatches challenge the reliability of IRT modeling for AI evaluation. Using item parameters and capability distributions derived from six widely used LLM benchmarks, we simulate response matrices under three common IRT models and compare four estimation tools used in recent benchmark studies: marginal maximum likelihood, Markov chain Monte Carlo, variational inference, and a neural pseudo-Siamese estimator. Across 18,000 simulation conditions, we systematically evaluate computational feasibility, scalability, and the reliability of IRT inferences about model rankings, predicted performance, and item characteristics. Results show that classical estimators can become infeasible in large benchmark settings, whereas scalable estimators can produce unreliable item-level and ranking inferences with small or nonnormally distributed model sets. This study identifies when latent trait models reliably support or risk distorting AI benchmarking claims, and what sample sizes and diagnostics are needed for trustworthy use.",
+      "takeaways": [
+        "AI benchmarks increasingly leverage item-level statistical models, particularly item response theory (IRT), to estimate model capabilities, rank systems, select informative examples, and diagnose benchmark quality.",
+        "However, AI benchmark data often departs from the data regime of human testing, for which standard IRT estimation tools were originally developed: benchmarks typically involve fewer evaluated models, far more items, and capability distributions that may be skewed, clustered, or multimodal.",
+        "We examine how these regime mismatches challenge the reliability of IRT modeling for AI evaluation."
+      ],
+      "actionItems": [
+        "Review Can We Trust Item Response Theory for AI Evaluation? and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether evaluation and benchmarks improves a relevant other workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Low"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2607.15190v1"
+    },
+    {
+      "title": "Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation",
+      "authors": "Hoang-Loc Cao, Van Pham, Truong Thanh Hung Nguyen, Phuc Truong Loc Nguyen, Phuc Ho, Veronica Whitford, Hung Cao",
+      "org": "arXiv",
+      "date": "Jul 16, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 54,
+      "priority": "WATCH",
+      "tags": [
+        "Foundation Models and Generative AI",
+        "Healthcare and Life Sciences"
+      ],
+      "abstract": "Annotation quality is a major bottleneck in building reliable and explainable artificial intelligence (XAI) systems for mental health research. In depression-related datasets, labels are often assigned without structured evidence, symptom-level justification, or traceable alignment with the criteria of the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR), limiting both transparency and downstream model interpretability. We propose a self-evolving, expert-in-the-loop annotation framework for Major Depressive Disorder (MDD) that combines large language model (LLM)-assisted labeling with expert verification. The framework is intended to support the construction of explainable, DSM-5-TR-aligned datasets rather than to perform clinical diagnosis. It operates in three stages: candidate evidence selection from textual records, criterion-level DSM-5-TR analysis, and case-level synthesis that produces label-level diagnostic and severity annotations. A dual-memory architecture, composed of Example Memory and Reflection Memory, is designed to internalize expert feedback and iteratively improve future annotations without retraining. We describe this mechanism and leave its evaluation across multiple feedback cycles to future work. In addition to final labels, the framework exports clinical evidence, reasoning traces, and edit histories, enabling comprehensive auditability. In a pilot study using expert-reviewed samples, the proposed approach improves annotation consistency and explainability while reducing manual revision effort.",
+      "takeaways": [
+        "Annotation quality is a major bottleneck in building reliable and explainable artificial intelligence (XAI) systems for mental health research.",
+        "In depression-related datasets, labels are often assigned without structured evidence, symptom-level justification, or traceable alignment with the criteria of the Diagnostic and Statistical Manual of Mental Disorders, Fifth Edition, Text Revision (DSM-5-TR), limiting both transparency and downstream model interpretability.",
+        "We propose a self-evolving, expert-in-the-loop annotation framework for Major Depressive Disorder (MDD) that combines large language model (LLM)-assisted labeling with expert verification."
+      ],
+      "actionItems": [
+        "Review Self-Evolving Human-Centered Framework for Explainable Depression Symptom Annotation and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether foundation models and generative ai improves a relevant healthcare and life sciences workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
       ],
       "researchSignals": {
         "evidence": "Medium",
         "applicability": "Low",
         "reproducibility": "Low",
-        "novelty": "Low"
+        "novelty": "Medium"
       },
-      "capability": "Multimodal AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.09428v1"
+      "capability": "Foundation Models and Generative AI",
+      "domain": "Healthcare and Life Sciences",
+      "url": "https://arxiv.org/pdf/2607.15202v1"
     },
     {
-      "title": "Letting the Data Speak: Extracting Keywords from Crowdsourced Collections with AI",
-      "authors": "Miguel Arana-Catania, Catherine Conisbee, Matthew Kidd",
+      "title": "Does generative AI supersede supervised XMLC? A Benchmark Study on Automated Subject Indexing with German Scientific Literature",
+      "authors": "Maximilian K\u00e4hler, Katja Konermann, Lisa Kluge, Markus Schumacher",
       "org": "arXiv",
-      "date": "Jul 10, 2026",
+      "date": "Jul 16, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 52,
+      "researchScore": 54,
       "priority": "READ",
       "tags": [
         "Foundation Models and Generative AI",
-        "Other"
+        "Science and Research"
       ],
-      "abstract": "Identifying and assigning keywords at scale is a technical, practical, and ethical challenge for crowdsourced collections. This article reports the findings of the \"Extracting Keywords from Crowdsourced Collections\" project, which used the Their Finest Hour Online Archive, a crowdsourced Second World War digital collection hosted by the University of Oxford, as a case study. The project evaluated three Natural Language Processing approaches to automate keyword extraction: Named Entity Recognition, Keyword Extraction, and Topic Modelling. It tested these approaches across a range of artificial intelligence techniques, from traditional statistical methods to modern GenAI neural networks. Our quantitative and qualitative findings indicate that Natural Language Processing approaches offer real potential for keyword extraction at scale in crowdsourced collections, but that no single method offers a complete solution and that model choice significantly shapes results. We argue that in crowdsourced collections, where metadata is the direct product of engagement with living contributors, automated keyword extraction raises distinct stewardship responsibilities that must be addressed alongside technical performance. Open-weight, extractive models emerge from our evaluation as best placed to support responsible deployment, while generative AI, despite its abstractive potential, introduces accountability risks that anyone managing crowdsourced collections should weigh carefully.",
+      "abstract": "With a large controlled vocabulary as the label set, the task of automated subject indexing in a library can be understood as a multi-label classification task. If the set of subject terms is large, the problem fits the Extreme Multi-Label Classification (XMLC) objective. In this study, we apply a selection of specialised supervised XMLC methods to the test case of subject indexing contemporary German scientific literature, collected at the German National Library (DNB). We contrast these results by including a classical lexical matching baseline and three of our own recently developed LLM-based methods into the benchmark. Algorithms are evaluated and compared in several metrics. This includes binary relevance comparisons with previously indexed material, as well as graded relevance ratings by professional subject librarians. A challenge for all methods is to reliably make suggestions from the long tail of the subject vocabulary. We find that supervised XMLC algorithms relying on transformer-based dense features give best results in terms of overall binary relevance metrics. However, focusing on graded relevance and performance in the long tail of our subject vocabulary, the LLM-based generative methods give better results, making them a promising alternative for future productive use.",
       "takeaways": [
-        "Case study of a University of Oxford crowdsourced WWII archive shows NLP can help extract keywords at scale, but no single method fully solves the problem and model choice materially changes results.",
-        "The project compared three approaches\u2014Named Entity Recognition, Keyword Extraction, and Topic Modelling\u2014across methods from traditional statistical techniques to GenAI neural networks, using quantitative and qualitative evaluation.",
-        "Practical takeaway: open-weight, extractive models are presented as the safest option for responsible deployment, while generative AI may improve abstraction but raises accountability and stewardship risks for crowdsourced collections."
+        "With a large controlled vocabulary as the label set, the task of automated subject indexing in a library can be understood as a multi-label classification task.",
+        "If the set of subject terms is large, the problem fits the Extreme Multi-Label Classification (XMLC) objective.",
+        "In this study, we apply a selection of specialised supervised XMLC methods to the test case of subject indexing contemporary German scientific literature, collected at the German National Library (DNB)."
       ],
       "actionItems": [
-        "Review the full methodology and evaluation criteria used to compare Named Entity Recognition, keyword extraction, and topic modelling on the Their Finest Hour Online Archive case study, with attention to how model choice changed results.",
-        "Plan a follow-up benchmark that reproduces the three approaches across both traditional statistical methods and GenAI neural networks, using quantitative and qualitative measures to compare keyword quality at scale.",
-        "Ask whether a crowdsourced collection can support deployment of open-weight extractive models without creating stewardship or accountability issues for contributor-generated metadata, especially if generative AI is considered."
+        "Review Does generative AI supersede supervised XMLC? A Benchmark Study on Automated Subject Indexing with German Scientific Literature and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether foundation models and generative ai improves a relevant science and research workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -853,159 +761,210 @@
         "novelty": "Low"
       },
       "capability": "Foundation Models and Generative AI",
+      "domain": "Science and Research",
+      "url": "https://arxiv.org/pdf/2607.14882v1"
+    },
+    {
+      "title": "OmniaBench: Benchmarking General AI Agents Across Diverse Scenarios",
+      "authors": "Chengyu Shen, Yujie Fu, Gangtao Xin, Yanheng Hou, Wenlong Fei, Guojie Zhu, Jiawei Li, Hongcheng Gao, Runming He, Zhen Hao Wong, Meiyi Qiang, Hao Liang, Zhao Cao, Hao Jiang, Chong Chen, Wentao Zhang",
+      "org": "arXiv",
+      "date": "Jul 16, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 53,
+      "priority": "WATCH",
+      "tags": [
+        "Agentic AI",
+        "Other"
+      ],
+      "abstract": "Large language models are increasingly evolving from text generators into general agents capable of understanding user requests, invoking external tools, and completing complex tasks through interaction. However, existing agent benchmarks often focus on limited scenarios, tool ecosystems, or interaction formats, making it difficult to systematically characterize model capabilities across heterogeneous application settings. We introduce OmniaBench, a benchmark for evaluating general agents across diverse scenarios with explicit state spaces. We derive application-oriented scenario knowledge from app stores, product documents, industry resources, Web retrieval, and human refinement, forming a hierarchical taxonomy that spans ToC, ToB and ToE with 90 level-1 and 354 level-2 domains. Based on this taxonomy, we construct executable environments and synthesize single-turn and multi-turn tasks through four complementary routes: DAG, DAG-S, Solver, and Program. OmniaBench further introduces a ten-dimensional capability taxonomy and eight compositional atomic difficulty factors to support fine-grained evaluation and analysis. The resulting dataset contains 1,431 tasks, together with a challenging subset of 644 tasks designed to reduce evaluation cost and mitigate potential contamination of the full set after public release. The bench presents substantial challenges to current frontier models, with even Claude-Sonnet-5 and GPT-5.6-Sol achieving Overall Pass@1 scores of only 58.54 and 57.14, respectively. Further analyses reveal clear differences across domains and capabilities, as well as persistent limitations in planning, constraint maintenance, and adaptive correction. OmniaBench provides a broad and diagnostic benchmark for characterizing the capability boundaries of general agents.",
+      "takeaways": [
+        "Large language models are increasingly evolving from text generators into general agents capable of understanding user requests, invoking external tools, and completing complex tasks through interaction.",
+        "However, existing agent benchmarks often focus on limited scenarios, tool ecosystems, or interaction formats, making it difficult to systematically characterize model capabilities across heterogeneous application settings.",
+        "We introduce OmniaBench, a benchmark for evaluating general agents across diverse scenarios with explicit state spaces."
+      ],
+      "actionItems": [
+        "Review OmniaBench: Benchmarking General AI Agents Across Diverse Scenarios and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether agentic ai improves a relevant other workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Agentic AI",
       "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.09324v1"
+      "url": "https://arxiv.org/pdf/2607.14989v1"
+    },
+    {
+      "title": "Plover: Steering GUI Agents through Plan-Centric Interaction",
+      "authors": "Madhumitha Venkatesan, Shicheng Wen, Jiajing Guo, Jorge Piazentin Ono, Liu Ren, Dongyu Liu",
+      "org": "arXiv",
+      "date": "Jul 16, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 53,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Agentic AI",
+        "Other"
+      ],
+      "abstract": "Graphical user interface (GUI) automation remains challenging in real-world environments, where dynamic layouts, unexpected dialogs, and evolving interface states can cause autonomous agents to drift from user intent. Recent vision-based multimodal agents improve flexibility by operating directly over screenshots and natural language instructions, but planning and adaptation often remain internal, limiting users' ability to inspect, supervise, or correct system behavior. We present Plover, a plan-centric vision-based GUI automation system that externalizes task plans and replanning as persistent, inspectable, and revisable artifacts. Through a planner--executor architecture, Plover supports explicit supervision of evolving execution, localized correction through editable plans, natural-language guidance, and screenshot-grounded interventions, while preserving prior progress during repair. A formative study with six participants informed the interaction design. We then evaluate Plover through benchmark failure-case repair and scenario-based workflow analyses. Our results show that many autonomous GUI-agent failures are structurally repairable when plans remain visible and interventions are localized, and that explicit replanning helps make GUI automation more transparent, controllable, and adaptable.",
+      "takeaways": [
+        "Graphical user interface (GUI) automation remains challenging in real-world environments, where dynamic layouts, unexpected dialogs, and evolving interface states can cause autonomous agents to drift from user intent.",
+        "Recent vision-based multimodal agents improve flexibility by operating directly over screenshots and natural language instructions, but planning and adaptation often remain internal, limiting users' ability to inspect, supervise, or correct system behavior.",
+        "We present Plover, a plan-centric vision-based GUI automation system that externalizes task plans and replanning as persistent, inspectable, and revisable artifacts."
+      ],
+      "actionItems": [
+        "Review Plover: Steering GUI Agents through Plan-Centric Interaction and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether agentic ai improves a relevant other workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "Low"
+      },
+      "capability": "Agentic AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/pdf/2607.15193v1"
+    },
+    {
+      "title": "Benchmarking Multimodal Large Language Models for Scientific Visualization Literacy",
+      "authors": "Patrick Phuoc Do, Chau M. Ta, Chaoli Wang",
+      "org": "arXiv",
+      "date": "Jul 16, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 51,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Multimodal AI",
+        "Science and Research"
+      ],
+      "abstract": "Multimodal large language models (MLLMs) are increasingly used to interpret visualizations, yet current evaluations remain largely chart-centric and provide limited evidence of understanding of scientific visualization (SciVis). We benchmark six MLLMs on the scientific visualization literacy assessment test, a standardized SciVis literacy assessment comprising 49 items based on 18 scientific visualizations and illustrations, spanning 8 techniques and 11 task types. We evaluate three closed-source and three open-source models under a closed-world protocol and compare their performance using data from 485 human participants. Results show that current MLLMs do not exhibit uniform SciVis literacy. Gemini is the strongest model overall, exceeding the human mean across the evaluated subsets, whereas the open-source models remain below the human baseline. Performance is highly uneven across techniques and tasks: models perform best on scientific illustration, search, and spatial understanding, but struggle on texture-based and integration-based visualizations and on quantitative estimation. Error analysis reveals recurring failures in fine-grained quantitative estimation, flow-direction interpretation, and grounded encoding interpretation. These findings position SciVis literacy as a necessary benchmark dimension for evaluating multimodal AI systems. Our code and model outputs are publicly available at https://github.com/patdmp/mllm-scivis-lit-benchmark.",
+      "takeaways": [
+        "Multimodal large language models (MLLMs) are increasingly used to interpret visualizations, yet current evaluations remain largely chart-centric and provide limited evidence of understanding of scientific visualization (SciVis).",
+        "We benchmark six MLLMs on the scientific visualization literacy assessment test, a standardized SciVis literacy assessment comprising 49 items based on 18 scientific visualizations and illustrations, spanning 8 techniques and 11 task types.",
+        "We evaluate three closed-source and three open-source models under a closed-world protocol and compare their performance using data from 485 human participants."
+      ],
+      "actionItems": [
+        "Review Benchmarking Multimodal Large Language Models for Scientific Visualization Literacy and flag the core method, evidence, and assumptions for the research brief.",
+        "Run a small evaluation to test whether multimodal ai improves a relevant science and research workflow.",
+        "Ask what adoption risk, data constraint, or governance question would block a responsible pilot."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "High",
+        "novelty": "Low"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Science and Research",
+      "url": "https://arxiv.org/pdf/2607.15176v1"
     }
   ],
   "blogs": [
     {
-      "source": "Microsoft Research",
-      "title": "Flint: A visualization language for the AI era",
-      "tag": "RESEARCH BLOG",
-      "date": "Jul 8, 2026",
-      "takeaways": [
-        "At a glance Polished charts from simple specs . Flint allows AI agents to reliably generate expressive, visually polished charts from simple, human-editable specifications. Semantic types guide design . Flint leverages semantic data types t"
-      ],
-      "url": "https://www.microsoft.com/en-us/research/blog/flint-a-visualization-language-for-the-ai-era/"
-    },
-    {
       "source": "OpenAI News",
-      "title": "How Deutsche Telekom is rewiring telecommunications with AI",
-      "tag": "AI",
-      "date": "Jul 10, 2026",
+      "title": "The US is advancing AI safety through state and federal action",
+      "tag": "GLOBAL AFFAIRS",
+      "date": "Jul 15, 2026",
       "takeaways": [
-        "How Deutsche Telekom is becoming an AI-native telco with OpenAI-transforming customer service, employee workflows, network operations, and the future of voice."
+        "OpenAI outlines a \u201creverse federalism\u201d approach to AI governance, where state laws help build a national framework for safe, democratic AI."
       ],
-      "url": "https://openai.com/index/deutsche-telekom"
-    },
-    {
-      "source": "Hugging Face - Blog",
-      "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
-      "tag": "AI",
-      "date": "Jul 10, 2026",
-      "takeaways": [
-        "Profiling in PyTorch (Part 3): Attention is all you profile"
-      ],
-      "url": "https://huggingface.co/blog/torch-attention-profile"
-    },
-    {
-      "source": "The latest research from Google",
-      "title": "SensorFM: Towards a general intelligence and interface for wearable health data",
-      "tag": "GENERATIVE AI",
-      "date": "Jul 9, 2026",
-      "takeaways": [
-        "Generative AI"
-      ],
-      "url": "https://research.google/blog/sensorfm-towards-a-general-intelligence-and-interface-for-wearable-health-data/"
+      "url": "https://openai.com/index/advancing-ai-safety-through-state-and-federal-action",
+      "linkVerified": true
     },
     {
       "source": "Microsoft Research",
-      "title": "Aurora 1.5: Extending open foundation models for weather and Earth-system applications",
+      "title": "Verifying Rust cryptography in SymCrypt, from standards to code",
       "tag": "RESEARCH BLOG",
-      "date": "Jul 9, 2026",
+      "date": "Jul 13, 2026",
       "takeaways": [
-        "At a glance Aurora 1.5 is a major extension of Microsoft\u2019s Aurora Earth System foundation model that adds 22 more weather variables relevant to energy, agriculture, transport, and climate risk, along with hourly temporal resolution and prob"
+        "How Rust, Lean, Aeneas, and AI agents are helping scale formal verification for production cryptographic algorithms At a glance SymCrypt develops new verified cryptography using Rust, Aeneas, and Lean to provide higher security assurance. We prove that their code safely and correctly implements standard algorithms, notably for post-quantum cryptography."
       ],
-      "url": "https://www.microsoft.com/en-us/research/blog/aurora-1-5-extending-open-foundation-models-for-weather-and-earth-system-applications/"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Getting started with ChatGPT",
-      "tag": "OPENAI ACADEMY",
-      "date": "Jul 10, 2026",
-      "takeaways": [
-        "Learn how to use ChatGPT, start your first conversation, and discover simple ways to write, brainstorm, and solve problems with AI."
-      ],
-      "url": "https://openai.com/academy/getting-started"
-    },
-    {
-      "source": "Hugging Face - Blog",
-      "title": "Data for Agents",
-      "tag": "AI",
-      "date": "Jul 8, 2026",
-      "takeaways": [
-        "Data for Agents"
-      ],
-      "url": "https://huggingface.co/blog/nvidia/open-data-for-agents"
-    },
-    {
-      "source": "The latest research from Google",
-      "title": "The power of collaboration: How we can reduce traffic congestion",
-      "tag": "ALGORITHMS & T",
-      "date": "Jul 7, 2026",
-      "takeaways": [
-        "Algorithms & Theory"
-      ],
-      "url": "https://research.google/blog/the-power-of-collaboration-how-we-can-reduce-traffic-congestion/"
-    },
-    {
-      "source": "OpenAI News",
-      "title": "GPT-5.6 is now the preferred model in Microsoft 365 Copilot",
-      "tag": "PRODUCT",
-      "date": "Jul 9, 2026",
-      "takeaways": [
-        "Learn how GPT-5.6 powers Microsoft 365 Copilot with stronger AI capabilities across Word, Excel, PowerPoint, Chat, and Cowork for faster, higher-quality work."
-      ],
-      "url": "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot"
-    },
-    {
-      "source": "Hugging Face - Blog",
-      "title": "Native-speed vLLM transformers modeling backend",
-      "tag": "AI",
-      "date": "Jul 8, 2026",
-      "takeaways": [
-        "Native-speed vLLM transformers modeling backend"
-      ],
-      "url": "https://huggingface.co/blog/native-speed-vllm-transformers-backend"
+      "url": "https://www.microsoft.com/en-us/research/blog/verifying-rust-cryptography-in-symcrypt-from-standards-to-code/",
+      "linkVerified": true
     }
   ],
+  "fallbackSections": {
+    "models": {
+      "editionDate": "2026-07-06",
+      "generatedAt": "2026-07-06T15:13:38.403364+00:00",
+      "reason": "no_current_valid_items"
+    }
+  },
   "socialPosts": [],
   "trending": [],
   "health": [
     {
       "source": "rss",
       "status": "ok",
-      "item_count": 20,
-      "duration_ms": 3999,
+      "item_count": 2,
+      "duration_ms": 3845,
       "fetch_diagnostics": {
         "strategy": "round_robin",
         "feeds_requested": 5,
-        "selected": 20,
+        "selected": 2,
         "feeds": [
           {
             "feed_url": "https://openai.com/news/rss.xml",
             "source": "OpenAI News",
             "fetched": 20,
-            "eligible": 12,
-            "selected": 8
+            "eligible": 1,
+            "selected": 1,
+            "verified": 1,
+            "rejected": {
+              "customer_story_or_case_study": 1,
+              "missing_ai_signal": 2,
+              "missing_decision_signal": 3,
+              "tutorial_or_onboarding": 1
+            }
           },
           {
             "feed_url": "https://www.anthropic.com/news/rss.xml",
             "source": "https://www.anthropic.com/news/rss.xml",
             "fetched": 0,
             "eligible": 0,
-            "selected": 0
+            "selected": 0,
+            "verified": 0,
+            "rejected": {}
           },
           {
             "feed_url": "https://huggingface.co/blog/feed.xml",
             "source": "Hugging Face - Blog",
             "fetched": 20,
-            "eligible": 8,
-            "selected": 8
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {
+              "missing_ai_signal": 2,
+              "missing_decision_signal": 5
+            }
           },
           {
             "feed_url": "https://research.google/blog/rss/",
             "source": "The latest research from Google",
             "fetched": 20,
-            "eligible": 2,
-            "selected": 2
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {
+              "missing_decision_signal": 1
+            }
           },
           {
             "feed_url": "https://www.microsoft.com/en-us/research/feed/",
             "source": "Microsoft Research",
             "fetched": 10,
-            "eligible": 2,
-            "selected": 2
+            "eligible": 1,
+            "selected": 1,
+            "verified": 1,
+            "rejected": {}
           }
         ]
       }
@@ -1013,8 +972,8 @@
     {
       "source": "papers",
       "status": "ok",
-      "item_count": 65,
-      "duration_ms": 8018,
+      "item_count": 62,
+      "duration_ms": 6701,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -1050,27 +1009,27 @@
         "fourteen_day_count": 75,
         "backfill_count": 0,
         "selected_window_days": 7,
-        "deduplicated_count": 65,
+        "deduplicated_count": 62,
         "displayed_count": 8,
         "request_attempts": 3,
         "retry_count": 0,
         "summary_diagnostics": {
-          "attempted_papers": 8,
-          "request_attempts": 8,
+          "attempted_papers": 0,
+          "request_attempts": 0,
           "retry_count": 0,
-          "successes": 8,
-          "fallbacks": 0,
+          "successes": 0,
+          "fallbacks": 8,
           "disabled": false,
-          "skip_reason": ""
+          "skip_reason": "missing_api_key"
         },
         "action_diagnostics": {
-          "attempted_papers": 8,
-          "request_attempts": 8,
+          "attempted_papers": 0,
+          "request_attempts": 0,
           "retry_count": 0,
-          "successes": 8,
-          "fallbacks": 0,
+          "successes": 0,
+          "fallbacks": 8,
           "disabled": false,
-          "skip_reason": ""
+          "skip_reason": "missing_api_key"
         }
       }
     },
@@ -1078,7 +1037,7 @@
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 57294,
+      "duration_ms": 31909,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1091,7 +1050,7 @@
           {
             "query": "topic:agents language:python",
             "fetched": 8,
-            "added": 5,
+            "added": 6,
             "failed": false
           },
           {
@@ -1109,13 +1068,13 @@
           {
             "query": "reasoning language:python stars:>30",
             "fetched": 8,
-            "added": 8,
+            "added": 7,
             "failed": false
           },
           {
             "query": "memory llm language:python stars:>20",
             "fetched": 8,
-            "added": 4,
+            "added": 5,
             "failed": false
           },
           {
@@ -1125,28 +1084,28 @@
             "failed": false
           },
           {
-            "query": "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20",
+            "query": "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
+            "query": "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
+            "query": "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
+            "query": "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
             "fetched": 0,
             "added": 0,
-            "failed": false
+            "failed": true
           }
         ],
         "watch_repos": [
@@ -1200,124 +1159,66 @@
             "kind": "evergreen"
           },
           {
-            "repo": "agentlas-ai/Hephaestus",
+            "repo": "microsoft/graphrag",
             "added": 0,
             "failed": false,
+            "skipped_old": true,
+            "kind": "emerging"
+          },
+          {
+            "repo": "ZepAI/zep",
+            "added": 0,
+            "failed": true,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "MarcoPorcellato/matryca-plumber",
+            "repo": "supermemoryai/supermemory",
             "added": 0,
             "failed": false,
-            "skipped_old": false,
+            "skipped_old": true,
             "kind": "emerging"
           },
           {
-            "repo": "oleksiijko/pmb",
+            "repo": "open-webui/open-webui",
             "added": 0,
             "failed": false,
-            "skipped_old": false,
-            "kind": "emerging"
-          },
-          {
-            "repo": "StarTrail-org/PixelRAG",
-            "added": 1,
-            "failed": false,
-            "skipped_old": false,
+            "skipped_old": true,
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-07-06",
-        "created_cutoff": "2026-05-14",
+        "pushed_cutoff": "2026-07-11",
+        "created_cutoff": "2026-05-19",
         "dynamic_config": {
-          "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
           "used_persisted_state": true,
-          "updated": true,
-          "source": "llm",
-          "query_rotation": {
-            "replacements": 4,
-            "added": [
-              "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
-              "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
-              "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
-              "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20"
-            ],
-            "removed": [
-              "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
-              "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
-              "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
-              "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
-            ]
-          },
-          "watch_rotation": {
-            "replacements": 4,
-            "added": [
-              "StarTrail-org/PixelRAG",
-              "oleksiijko/pmb",
-              "MarcoPorcellato/matryca-plumber",
-              "agentlas-ai/Hephaestus"
-            ],
-            "removed": [
-              "open-webui/open-webui",
-              "supermemoryai/supermemory",
-              "ZepAI/zep",
-              "microsoft/graphrag"
-            ]
-          }
+          "updated": false,
+          "source": "persisted",
+          "llm_status": "unavailable_or_invalid"
         },
         "total_unique_candidates": 47,
         "dynamic_refresh": {
-          "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
           "active_emerging_watch_repos": 4,
           "auto_update_enabled": true,
           "used_persisted_state": true,
-          "updated": true,
-          "source": "llm",
-          "query_rotation": {
-            "replacements": 4,
-            "added": [
-              "(\"spatial reasoning\" OR \"world model\" OR \"4d understanding\") (agent OR llm) language:python stars:>15",
-              "(\"cognitive architecture\" OR \"memory architecture\" OR \"mirror memory\") language:python stars:>15",
-              "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
-              "(\"knowledge graph\" OR graph) (memory OR recall OR retrieval) language:python stars:>20"
-            ],
-            "removed": [
-              "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
-              "(\"MCP\" OR \"model context protocol\") (memory OR \"long-term memory\" OR recall) language:python stars:>15",
-              "(\"agentic rag\" OR \"graph rag\" OR graphrag) language:python stars:>20",
-              "(\"context engineering\" OR \"context management\") (agent OR llm) language:python stars:>25"
-            ]
-          },
-          "watch_rotation": {
-            "replacements": 4,
-            "added": [
-              "StarTrail-org/PixelRAG",
-              "oleksiijko/pmb",
-              "MarcoPorcellato/matryca-plumber",
-              "agentlas-ai/Hephaestus"
-            ],
-            "removed": [
-              "open-webui/open-webui",
-              "supermemoryai/supermemory",
-              "ZepAI/zep",
-              "microsoft/graphrag"
-            ]
-          }
+          "updated": false,
+          "source": "persisted",
+          "llm_status": "unavailable_or_invalid"
         }
       }
     },
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 9,
-      "duration_ms": 98190,
+      "item_count": 5,
+      "duration_ms": 96690,
       "dynamic_config": {
-        "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
+        "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
         "active_source_pages": 8,
@@ -1325,66 +1226,35 @@
         "active_emerging_tool_terms": 1,
         "auto_update_enabled": true,
         "used_persisted_state": true,
-        "updated": true,
-        "source": "llm",
-        "feed_rotation": {
-          "replacements": 2,
-          "added": [
-            "https://aws.amazon.com/blogs/machine-learning/feed/",
-            "https://blogs.microsoft.com/ai/feed/"
-          ],
-          "removed": [
-            "https://developer.nvidia.com/blog/feed/",
-            "https://github.blog/category/ai-and-ml/feed/"
-          ]
-        },
-        "model_term_rotation": {
-          "replacements": 4,
-          "added": [
-            "minimax m3",
-            "claude",
-            "llama",
-            "qwen"
-          ],
-          "removed": [
-            "gemini flash",
-            "codey",
-            "gemma",
-            "gpt-5"
-          ]
-        },
-        "tool_term_rotation": {
-          "replacements": 1,
-          "added": [
-            "lsp setup skill"
-          ],
-          "removed": [
-            "bedrock agents"
-          ]
-        }
+        "updated": false,
+        "source": "persisted",
+        "llm_status": "unavailable_or_invalid",
+        "llm_error_code": "missing_api_key",
+        "llm_error_type": "configuration",
+        "llm_error_status": null
       },
       "extraction_diagnostics": {
-        "feeds_requested": 16,
+        "feeds_requested": 17,
         "source_pages_requested": 8,
-        "entries_fetched": 184,
-        "classified": 9,
-        "selected": 9,
-        "llm_classification_attempts": 18,
+        "entries_fetched": 173,
+        "classified": 5,
+        "selected": 5,
+        "llm_classification_attempts": 0,
         "llm_classification_failures": 0,
-        "llm_classification_disabled": false,
-        "llm_classification_skip_reason": "",
+        "llm_classification_disabled": true,
+        "llm_classification_skip_reason": "missing_api_key",
         "classification_diagnostics": {
-          "entries_considered": 184,
+          "entries_considered": 173,
           "rejected_duplicate_url": 3,
-          "rejected_missing_or_stale_date": 85,
-          "rejected_non_release": 78,
-          "rejected_by_llm": 9
+          "rejected_missing_or_stale_date": 88,
+          "rejected_non_release": 77,
+          "rejected_by_llm": 0
         },
         "selection_diagnostics": {
           "rejected_near_duplicate": 0
         },
         "dynamic_config": {
-          "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
+          "state_path": "/Users/ajinkyapawale/ai-news-artifact/data/model_tools_dynamic_config.json",
           "active_core_feeds": 14,
           "active_emerging_feeds": 4,
           "active_source_pages": 8,
@@ -1392,43 +1262,12 @@
           "active_emerging_tool_terms": 1,
           "auto_update_enabled": true,
           "used_persisted_state": true,
-          "updated": true,
-          "source": "llm",
-          "feed_rotation": {
-            "replacements": 2,
-            "added": [
-              "https://aws.amazon.com/blogs/machine-learning/feed/",
-              "https://blogs.microsoft.com/ai/feed/"
-            ],
-            "removed": [
-              "https://developer.nvidia.com/blog/feed/",
-              "https://github.blog/category/ai-and-ml/feed/"
-            ]
-          },
-          "model_term_rotation": {
-            "replacements": 4,
-            "added": [
-              "minimax m3",
-              "claude",
-              "llama",
-              "qwen"
-            ],
-            "removed": [
-              "gemini flash",
-              "codey",
-              "gemma",
-              "gpt-5"
-            ]
-          },
-          "tool_term_rotation": {
-            "replacements": 1,
-            "added": [
-              "lsp setup skill"
-            ],
-            "removed": [
-              "bedrock agents"
-            ]
-          }
+          "updated": false,
+          "source": "persisted",
+          "llm_status": "unavailable_or_invalid",
+          "llm_error_code": "missing_api_key",
+          "llm_error_type": "configuration",
+          "llm_error_status": null
         }
       }
     }
