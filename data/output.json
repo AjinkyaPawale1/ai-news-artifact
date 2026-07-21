@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-07-20T14:51:45.671013+00:00",
+  "generatedAt": "2026-07-21T01:54:48.563933+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
-      "value": "59",
+      "value": "71",
       "sub": "8 selected"
     },
     {
@@ -13,8 +13,8 @@
     },
     {
       "label": "RELEASES TRACKED",
-      "value": "2",
-      "sub": "0 models \u00b7 2 tools"
+      "value": "4",
+      "sub": "2 models \u00b7 2 tools"
     },
     {
       "label": "HEALTHY SOURCES",
@@ -26,82 +26,81 @@
   "actionItems": [
     {
       "priority": "READ",
-      "title": "Review the HCIG and GCCN architectures to confirm how token-, phrase-, and global-level cross-modal incongruity are modeled and combined before relying on the reported gains.",
+      "title": "Review the two-axis Efficiency/Style trajectory scoring setup and the CE-loss-first-action proxy validation before using it to filter code-agent trajectories for LoRA fine-tuning.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jul 19, 2026",
+      "why": "Introduces a two-axis trajectory quality scoring framework (Efficiency and Style) to study how filtering expert code-agent trajectories affects LoRA fine-tuning of Qwen2.5-Coder-7B-Instruct on SWE-trajectory.",
+      "tags": [
+        "cs.AI",
+        "cs.SE"
+      ],
+      "score": 78,
+      "url": "https://arxiv.org/abs/2607.17205"
+    },
+    {
+      "priority": "READ",
+      "title": "Review the HCIG and GCCN architectures for how they model text-image incongruity at token, phrase, and global levels, and compare that design against standard fusion or cross-modal attention baselines.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
       "date": "Jul 17, 2026",
-      "why": "Introduces HCIG, a hierarchical cross-modal incongruity graph network, and GCCN, a graph-based cross-modal contradiction model, to detect sarcasm and cyberbullying from text-image mismatches.",
+      "why": "Proposes HCIG, a hierarchical cross-modal incongruity graph network that models text-image inconsistencies at token, phrase, and global levels for multimodal sarcasm and cyberbullying detection, with GCCN as a complementary graph-based contradiction reasoning architecture.",
       "tags": [
         "cs.CV",
         "cs.AI",
         "cs.CL"
       ],
-      "score": 70,
-      "url": "https://arxiv.org/pdf/2607.16076v1"
+      "score": 67,
+      "url": "https://arxiv.org/abs/2607.16076"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Review the TopOp to TpuOp lowering path and confirm which model-semantic operators and hardware-specific decisions are handled at each compilation stage.",
+      "title": "Review the DaoQL verified storage layer and explicit Eval path claims to confirm the stated rule-independence, deterministic evaluation, and fixed conflict-resolution assumptions before treating the explicit world model guarantee as established.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jul 17, 2026",
-      "why": "Presents an MLIR-based compilation flow for LLM deployment on specialized hardware, using TopOp for model semantics and TpuOp for hardware-specific decisions.",
+      "date": "Jul 19, 2026",
+      "why": "Proposes a data-first ontology with an explicit world model in DaoQL, moving deterministic knowledge out of LLM weights to reduce hallucination, frozen knowledge, weak explainability, and poor modifiability in high-precision domains.",
       "tags": [
-        "cs.CL"
-      ],
-      "score": 76,
-      "url": "https://arxiv.org/pdf/2607.15865v1"
-    },
-    {
-      "priority": "WATCH",
-      "title": "Review the ASAP 2.0 setup and hybrid AES pipeline to confirm how controlled-length GPT-5 summaries are combined with handcrafted linguistic features before scoring.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jul 17, 2026",
-      "why": "Proposes a generative AI-assisted summarization framework for automated essay scoring that compresses long essays while preserving scoring reliability, using controlled-length GPT-5-generated summaries plus handcrafted linguistic features from full essays.",
-      "tags": [
-        "cs.CL",
-        "cs.LG"
-      ],
-      "score": 59,
-      "url": "https://arxiv.org/pdf/2607.15829v1"
-    },
-    {
-      "priority": "EXPERIMENT",
-      "title": "Review the DPNeXt decoder design and MTBG supervision details to verify how the multi-scale fusion and symmetric boundary-focused loss are implemented for frozen ViT-based multi-task dense prediction.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jul 17, 2026",
-      "why": "DPNeXt is a lightweight multi-scale feature fusion decoder for ViT-based multi-task dense prediction, aiming to improve semantic segmentation and depth estimation in robotics perception.",
-      "tags": [
-        "cs.CV",
         "cs.AI",
-        "cs.RO"
+        "cs.DB"
       ],
       "score": 79,
-      "url": "https://arxiv.org/pdf/2607.16012v1"
+      "url": "https://arxiv.org/abs/2607.17269"
     },
     {
-      "priority": "EXPERIMENT",
-      "title": "Review the paper\u2019s FRS, Daubert, and NIST SP 800-86 evaluation setup for KGW, Unigram, and MarkLLM SynthID-Text, with attention to the 15-prompts-per-method paraphrase protocol and the reported false-negative/false-positive measurements.",
+      "priority": "READ",
+      "title": "Review the DoG pipeline components in detail, especially the UKG-tailored heuristic search and how confidence scores are used to select question-relevant subgraphs.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Jul 17, 2026",
-      "why": "Paper argues current LLM watermarking is not forensic-ready, because detection evidence does not meet Daubert-style evidentiary expectations or the paper's proposed forensic readiness criteria.",
+      "date": "Jul 19, 2026",
+      "why": "Proposes Debate-on-Graph (DoG), a framework for reliable, adaptive LLM reasoning over uncertain knowledge graphs by combining LLMs with confidence-scored KG evidence.",
       "tags": [
-        "cs.CR",
         "cs.CL",
-        "cs.CY"
+        "cs.AI"
       ],
-      "score": 63,
-      "url": "https://arxiv.org/pdf/2607.16010v1"
+      "score": 84,
+      "url": "https://arxiv.org/abs/2607.17266"
+    },
+    {
+      "priority": "READ",
+      "title": "Review the Distilled RL objective and its three components\u2014reverse importance sampling with clipping, negative sample reset, and sequence-level geometric normalization\u2014to assess how teacher supervision is integrated into post-training.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jul 19, 2026",
+      "why": "Introduces Distilled Reinforcement Learning, a post-training method that injects teacher supervision into RL to provide fine-grained guidance, selectively transfer new knowledge, and avoid unconditional imitation.",
+      "tags": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 61,
+      "url": "https://arxiv.org/abs/2607.17247"
     }
   ],
   "repos": [
     {
       "name": "StarTrail-org/PixelRAG",
-      "stars": "6.9k",
-      "desc": "PixelRAG is a Python visual retrieval-augmented search system that indexes and searches documents by screenshots/layout instead of extracted text, aimed at improving RAG and web/document retrieval.",
+      "stars": "7.0k",
+      "desc": "PixelRAG is a Python-based visual retrieval and RAG system that indexes documents as screenshots/tiles so search works on layout, figures, and visual cues rather than only extracted text.",
       "url": "https://github.com/StarTrail-org/PixelRAG",
       "language": "Python",
       "topics": [
@@ -117,17 +116,17 @@
       ],
       "createdAt": "May 29, 2026",
       "lastUpdated": "Jul 16, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "MCP Tooling",
       "bullets": [
-        "Screenshot-native retrieval over text-only parsing",
-        "Python package with render/search pipelines",
-        "Backed by a paper, live demo, and hosted API"
+        "Screenshot-native retrieval for docs and web pages",
+        "Targets multimodal RAG, search, and agent memory",
+        "Apache-2.0 repo with live demo and hosted API"
       ],
       "actionItems": [
-        "Run pixelshot on a PDF and compare retrieval vs text BM25",
-        "Benchmark answer quality on a screenshot index against a standard text RAG stack",
-        "Test latency and recall on the hosted Wikipedia API with 100 mixed visual queries"
+        "Run pixelshot on a corpus and compare recall vs text BM25",
+        "Benchmark answer quality using screenshot index vs text-only RAG",
+        "Test latency/cost for indexing and querying 1k, 10k, 100k pages"
       ],
       "latestRelease": "v0.4.0",
       "latestReleaseUrl": "https://github.com/StarTrail-org/PixelRAG/releases/tag/v0.4.0",
@@ -135,72 +134,59 @@
       "license": "Apache-2.0"
     },
     {
-      "name": "oleksiijko/pmb",
-      "stars": "313",
-      "desc": "PMB is a local-first persistent memory layer for MCP-capable coding agents, storing decisions, lessons, facts, and project context in a single SQLite-backed workspace with offline semantic/BM25 search.",
-      "url": "https://github.com/oleksiijko/pmb",
+      "name": "nossa-y/activity-frames",
+      "stars": "180",
+      "desc": "Local-first episodic memory for AI agents that records screen activity, compiles it into structured frames, and exposes them over MCP without cloud or LLM dependencies.",
+      "url": "https://github.com/nossa-y/activity-frames",
       "language": "Python",
       "topics": [
+        "agent-memory",
         "ai-agents",
-        "ai-memory",
-        "bm25",
-        "claude-code",
-        "codex",
-        "cursor",
-        "knowledge-graph",
-        "lancedb",
+        "computer-use",
+        "context-engineering",
+        "episodic-memory",
         "llm",
-        "local-first",
-        "mcp",
-        "memory",
-        "model-context-protocol",
-        "privacy",
-        "python",
-        "rag",
-        "semantic-search",
-        "sentence-transformers",
-        "sqlite",
-        "vector-search"
+        "mcp"
       ],
-      "createdAt": "May 25, 2026",
-      "lastUpdated": "Jul 13, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "createdAt": "Jul 4, 2026",
+      "lastUpdated": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "SQLite source of truth; local-first, no cloud",
-        "MCP-native memory for Claude Code, Cursor, Codex",
-        "Hybrid search: BM25, vectors, knowledge graph"
+        "Records desktop activity locally and turns snapshots into bounded episodes.",
+        "Serves agent-readable context via MCP for retrieval and prompting.",
+        "MIT-licensed Python project with recent release and active development."
       ],
       "actionItems": [
-        "Run PMB with Claude Code and verify recall across fresh sessions",
-        "Benchmark retrieval quality: BM25 vs vector vs hybrid on a seeded memory set",
-        "Test offline multilingual memory ingestion and search on mixed-language notes"
+        "Run aframes record for a work session, then inspect the generated frames and context output.",
+        "Connect an MCP client to the server and verify an agent can retrieve recent activity blocks.",
+        "Compare a prompt with and without activity-frames context on a task requiring session recall."
       ],
-      "latestRelease": "v1.2.2",
-      "latestReleaseUrl": "https://github.com/oleksiijko/pmb/releases/tag/v1.2.2",
-      "homepage": "https://pypi.org/project/pmb-ai/",
-      "license": "Apache-2.0"
+      "latestRelease": "v0.2.0",
+      "latestReleaseUrl": "https://github.com/nossa-y/activity-frames/releases/tag/v0.2.0",
+      "homepage": "",
+      "license": "MIT"
     },
     {
       "name": "Tencent-Hunyuan/Hy3",
-      "stars": "521",
-      "desc": "Tencent Hy3 is a large MoE reasoning and agent model repo for deploying, fine-tuning, quantizing, and serving a 295B/21B-active model with strong cost efficiency.",
+      "stars": "524",
+      "desc": "Tencent Hunyuan Hy3 is a 295B-parameter MoE reasoning-and-agent model with 21B active params, positioned for strong cost efficiency and product-grade utility.",
       "url": "https://github.com/Tencent-Hunyuan/Hy3",
       "language": "Python",
       "topics": [],
       "createdAt": "Jul 2, 2026",
       "lastUpdated": "Jul 17, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "Model Serving",
       "bullets": [
-        "295B MoE with 21B active params targets high reasoning quality per dollar.",
-        "Repo centers on practical serving paths: vLLM, SGLang, deployment, quantization.",
-        "Post-training, RL, and finetuning docs suggest it is meant for adaptation and product use."
+        "295B MoE with 21B active parameters and a 3.8B MTP layer.",
+        "Targets reasoning and agent workflows, emphasizing productivity and utility.",
+        "Includes deployment, vLLM, SGLang, finetuning, RL post-training, and quantization guidance."
       ],
       "actionItems": [
-        "Run a vLLM benchmark on 5 reasoning prompts and measure latency/throughput.",
-        "Test 4-bit and 8-bit quantized checkpoints for quality drop on agent tasks.",
-        "Finetune on a small instruction set and compare tool-use success before/after."
+        "Run a side-by-side benchmark against a smaller dense model on reasoning and tool-use tasks.",
+        "Test vLLM and SGLang serving throughput/latency with different batch sizes and quantization modes.",
+        "Reproduce one finetuning or RL post-training example and measure gains on a domain-specific eval set."
       ],
       "latestRelease": "",
       "latestReleaseUrl": "",
@@ -209,8 +195,8 @@
     },
     {
       "name": "omnigent-ai/omnigent",
-      "stars": "7.5k",
-      "desc": "Open-source meta-harness for orchestrating multiple AI coding agents with policy enforcement, sandboxing, and live cross-device collaboration.",
+      "stars": "7.6k",
+      "desc": "Open-source Python meta-harness for orchestrating multiple AI coding agents with policy enforcement, sandboxing, and real-time cross-device collaboration.",
       "url": "https://github.com/omnigent-ai/omnigent",
       "language": "Python",
       "topics": [
@@ -232,18 +218,18 @@
         "sandbox"
       ],
       "createdAt": "Jun 11, 2026",
-      "lastUpdated": "Jul 20, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "lastUpdated": "Jul 21, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Unifies Claude Code, Codex, Cursor, Pi, and custom agents.",
-        "Swaps harnesses without rewriting workflows.",
-        "Supports real-time sessions across terminal, browser, phone, and desktop."
+        "Unifies Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and custom agents.",
+        "Swaps harnesses without rewriting workflows or agent definitions.",
+        "Supports shared sessions, sandboxes, and device-to-device continuity."
       ],
       "actionItems": [
-        "Run one task through two different agents and compare outputs.",
-        "Test policy/sandbox settings on a repo-editing workflow.",
-        "Fork a live session and verify sync across desktop and mobile."
+        "Run a mixed-agent session: assign one coding task to Claude Code and another to Codex, then compare outputs.",
+        "Test policy enforcement by blocking a risky shell command and verifying the sandbox stops it.",
+        "Create a custom YAML-defined agent and swap it into an existing session without changing the workflow."
       ],
       "latestRelease": "v0.5.1",
       "latestReleaseUrl": "https://github.com/omnigent-ai/omnigent/releases/tag/v0.5.1",
@@ -252,8 +238,8 @@
     },
     {
       "name": "CyberSunil/LLMVault",
-      "stars": "210",
-      "desc": "Deliberately vulnerable Python/Docker training range for OWASP LLM Top 10 and GenAI red-teaming, with 25 hands-on labs across core, advanced, and expert tiers.",
+      "stars": "214",
+      "desc": "Intentionally vulnerable OWASP LLM Top 10 training range for AI security, prompt injection, RAG, and agent red-teaming, with 25 CTF-style labs and paired defenses.",
       "url": "https://github.com/CyberSunil/LLMVault",
       "language": "Python",
       "topics": [
@@ -280,17 +266,17 @@
       ],
       "createdAt": "Jul 15, 2026",
       "lastUpdated": "Jul 18, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "CTF-style labs for prompt injection, RAG, agents, and supply-chain risks",
-        "Pairs each exploit path with a defense in the private solutions guide",
-        "MIT-licensed, Docker-ready, and aimed at authorized self-hosted training"
+        "25 labs across core, advanced, and expert tiers",
+        "Covers prompt injection, RAG, agents, model extraction, poisoning",
+        "Dockerized Python 3.10+ lab platform, MIT licensed"
       ],
       "actionItems": [
-        "Run the core tier locally and verify each lab\u2019s exploit/flag flow end to end",
-        "Try a multi-turn jailbreak or data-poisoning path in an advanced lab and document the bypass",
-        "Rebuild one vulnerable lab with a mitigation patch, then regression-test the attack still fails"
+        "Run the core tier and verify each lab\u2019s intended exploit path",
+        "Test a prompt-injection payload against the RAG and agent labs",
+        "Containerize and score one lab as a repeatable security benchmark"
       ],
       "latestRelease": "v1.0.0",
       "latestReleaseUrl": "https://github.com/CyberSunil/LLMVault/releases/tag/v1.0.0",
@@ -299,8 +285,8 @@
     },
     {
       "name": "frenzymath/Danus",
-      "stars": "85",
-      "desc": "Python multi-agent framework for mathematical reasoning, where Claude Code coordinates Codex workers, a verifier gates every claim, and verified facts are stored in a content-addressed fact graph for later report or LaTeX generation.",
+      "stars": "86",
+      "desc": "Danus is a Python framework for multi-agent mathematical reasoning: a planner agent coordinates Codex/Claude workers, a stateless verifier gates every claim, and accepted facts are stored in a content-addressed fact graph that can generate reports or LaTeX papers.",
       "url": "https://github.com/frenzymath/Danus",
       "language": "Python",
       "topics": [
@@ -315,17 +301,17 @@
       ],
       "createdAt": "Jul 7, 2026",
       "lastUpdated": "Jul 14, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
-        "Verifier-only truth model with content-addressed fact graph",
-        "Main agent steers autonomous proof-search worker swarm",
-        "Targets research-grade math tasks with paper/report output"
+        "Verifier-only correctness gate for all claims",
+        "Fact-graph memory as shared source of truth",
+        "Multi-agent math workflows with report generation"
       ],
       "actionItems": [
-        "Run a small theorem-proving benchmark and measure verifier pass rate",
-        "Swap the strategy model and compare decomposition quality",
-        "Replay one case study end-to-end and inspect fact-graph reuse"
+        "Run a small theorem-solving benchmark with verifier on/off",
+        "Replay the six case studies and measure pass rates",
+        "Test fact-graph reuse on related math problems"
       ],
       "latestRelease": "v0.1.0",
       "latestReleaseUrl": "https://github.com/frenzymath/Danus/releases/tag/v0.1.0",
@@ -348,7 +334,7 @@
       ],
       "createdAt": "Jun 10, 2026",
       "lastUpdated": "Jul 18, 2026",
-      "fetchedAt": "Jul 20, 2026",
+      "fetchedAt": "Jul 21, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
         "SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning.",
@@ -366,132 +352,71 @@
       "license": "NOASSERTION"
     },
     {
-      "name": "Egoist-Machines/LodeDB",
-      "stars": "83",
-      "desc": "World's fastest and most compact embedded vector database: exact by default, multimodal, local-first, and GPU-accelerated",
-      "url": "https://github.com/Egoist-Machines/LodeDB",
+      "name": "ZJU-REAL/HugAgentOS",
+      "stars": "46",
+      "desc": "HugAgentOS: The Enterprise AgentOS for Ontology-Grounded Trustworthy Reasoning",
+      "url": "https://github.com/ZJU-REAL/HugAgentOS",
       "language": "Python",
-      "topics": [
-        "ann",
-        "clip",
-        "db",
-        "embeddings",
-        "gpu-acceleration",
-        "hybrid-search",
-        "image-search",
-        "ivf",
-        "local-first",
-        "multimodal",
-        "onnx",
-        "privacy",
-        "rag",
-        "rust",
-        "semantic-search",
-        "swift",
-        "turbovec",
-        "vector-database"
-      ],
-      "createdAt": "Jun 14, 2026",
-      "lastUpdated": "Jul 19, 2026",
-      "fetchedAt": "Jul 20, 2026",
-      "bestFor": "RAG Infrastructure",
+      "topics": [],
+      "createdAt": "Jul 19, 2026",
+      "lastUpdated": "Jul 21, 2026",
+      "fetchedAt": "Jul 21, 2026",
+      "bestFor": "AI Agent Apps",
       "bullets": [
-        "World's fastest and most compact embedded vector database: exact by default, multimodal, local-first, and GPU-accelerated.",
-        "Primarily Python, with topics such as ann, clip, db.",
-        "Latest release v1.3.2 signals active maintenance."
+        "HugAgentOS: The Enterprise AgentOS for Ontology-Grounded Trustworthy Reasoning.",
+        "Primarily Python, with topics such as AI engineering.",
+        "Recent activity tracked from 2026-07-21."
       ],
       "actionItems": [
-        "Clone Egoist-Machines/LodeDB and run the README quickstart with a small Python smoke test.",
-        "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
-        "Review v1.3.2, open issues, and license before deciding on a deeper benchmark or pilot."
+        "Clone ZJU-REAL/HugAgentOS and run the README quickstart with a small Python smoke test.",
+        "Map one ai agent apps use case to the repo APIs, inputs, and required integrations.",
+        "Review recent commit history, open issues, and license before deciding on a deeper benchmark or pilot."
       ],
-      "latestRelease": "v1.3.2",
-      "latestReleaseUrl": "https://github.com/Egoist-Machines/LodeDB/releases/tag/v1.3.2",
+      "latestRelease": "",
+      "latestReleaseUrl": "",
       "homepage": "",
-      "license": "Apache-2.0"
+      "license": "NOASSERTION"
     }
   ],
   "models": [
     {
-      "name": "TabFM: A zero-shot foundation model for tabular data",
-      "org": "Google",
-      "date": "Jun 30, 2026",
-      "note": "Google introduced TabFM, a zero-shot foundation model for tabular data, which matters because it can generalize to tabular tasks without task-specific training.",
-      "tag": "MODEL",
-      "url": "https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/",
-      "sourceUrl": "https://research.google/blog/rss/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://research.google/blog/introducing-tabfm-a-zero-shot-foundation-model-for-tabular-data/"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
-      "name": "Claude Fable 5",
-      "org": "Anthropic",
-      "date": "Jul 1, 2026",
-      "note": "Anthropic\u2019s Claude Fable 5 is now available again on Amazon Bedrock with stronger guardrails to help customers use the model with added misuse protection.",
-      "tag": "API",
-      "url": "https://aws.amazon.com/blogs/machine-learning/safely-releasing-frontier-models-to-customers/",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/safely-releasing-frontier-models-to-customers/"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
-      "name": "Gemini Spark",
-      "org": "Google",
-      "date": "Jun 30, 2026",
-      "note": "Gemini Spark now ships on macOS, with connected app integrations and real-time topic tracking, expanding where users can run and connect the tool.",
-      "tag": "MODEL",
-      "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/",
-      "sourceUrl": "https://blog.google/rss/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-spark-updates-june-2026/"
-        },
-        {
-          "label": "Benchmarks",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ]
-    },
-    {
       "name": "Claude Sonnet 5",
       "org": "Anthropic",
       "date": "Jun 30, 2026",
-      "note": "Anthropic released Claude Sonnet 5, a more agentic Sonnet model with stronger coding, tool use, and autonomous task performance at lower cost than Opus-class models.",
+      "note": "Anthropic released Claude Sonnet 5, a more agentic Sonnet model with stronger coding, tool use, reasoning, and autonomous workflow performance at lower cost than larger models.",
       "tag": "MODEL",
-      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "url": "https://anthropic.com/news/claude-sonnet-5",
       "sourceUrl": "https://www.anthropic.com/news",
       "sourceLabel": "Source page",
       "benchmarkUrl": "https://artificialanalysis.ai/models",
       "links": [
         {
           "label": "Read release",
-          "url": "https://www.anthropic.com/news/claude-sonnet-5"
+          "url": "https://anthropic.com/news/claude-sonnet-5"
         },
         {
-          "label": "Benchmarks",
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ]
+    },
+    {
+      "name": "GPT-5.6",
+      "org": "OpenAI",
+      "date": "Jul 9, 2026",
+      "note": "OpenAI released GPT-5.6, a frontier model that delivers more intelligence per token and better performance per dollar for demanding tasks.",
+      "tag": "MODEL",
+      "url": "https://openai.com/index/gpt-5-6",
+      "sourceUrl": "https://openai.com/news/rss.xml",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://openai.com/index/gpt-5-6"
+        },
+        {
+          "label": "Model directory",
           "url": "https://artificialanalysis.ai/models"
         }
       ]
@@ -499,19 +424,19 @@
   ],
   "toolsServices": [
     {
-      "name": "Parallel Web Search grounding for Gemini Enterprise Agent Platform",
+      "name": "Grounding with Parallel Web Search",
       "org": "Google",
       "date": "Jul 16, 2026",
-      "note": "Google added Parallel Web Systems as a native web-grounding provider in Gemini Enterprise Agent Platform, with availability in the Gemini API, Agent Studio, and Google Cloud Marketplace to give agents real-time, citation-backed web results.",
+      "note": "Google announced native integration of Parallel Web Systems as a web grounding provider for Gemini Enterprise Agent Platform, giving agents real-time, cited web results across Gemini API, Agent Studio, and Google Cloud Marketplace.",
       "tag": "CLOUD",
-      "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search/",
+      "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search",
       "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search/"
+          "url": "https://developers.googleblog.com/expanding-choice-in-gemini-enterprise-agent-platform-introducing-grounding-with-parallel-web-search"
         }
       ]
     },
@@ -519,21 +444,55 @@
       "name": "Conductor Plugin",
       "org": "Google",
       "date": "Jul 16, 2026",
-      "note": "Google announced Conductor\u2019s shift from a Gemini CLI extension to a portable plugin, adding support for Antigravity CLI and bundled skills, rules, MCP servers, and hooks.",
-      "tag": "PLATFORM",
-      "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/",
+      "note": "Google announced that Conductor is now a plugin, making its spec-driven development workflow portable across tools like Antigravity CLI while preserving persistent Markdown specs and plans.",
+      "tag": "CLI",
+      "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity",
       "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity/"
+          "url": "https://developers.googleblog.com/evolving-spec-driven-development-conductor-now-supports-antigravity"
         }
       ]
     }
   ],
   "papers": [
+    {
+      "title": "A Systematic Evaluation of Trajectory Data Curation for LoRA Fine-Tuning of Code Agents",
+      "authors": "Yunze Han",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 66,
+      "priority": "READ",
+      "tags": [
+        "Agentic AI",
+        "Other"
+      ],
+      "abstract": "Supervised fine-tuning (SFT) of open-weight LLMs on expert agent trajectories has emerged as a prominent approach to building capable code agents without reliance on proprietary models. A central yet underexplored question is how trajectory quality and quantity jointly shape model performance. We present a systematic empirical study of trajectory data filtering for LoRA fine-tuning of Qwen2.5-Coder-7B-Instruct on the SWE-trajectory dataset (67,074 trajectories, of which 32,161 are resolved). We propose a two-axis quality scoring framework -- Efficiency and Style -- and evaluate it through 16 controlled experiments spanning strategy, scale, and ablation analyses. Since 7B-scale models attain near-zero SWE-bench resolve rates, we adopt cross-entropy (CE) loss on held-out trajectories as the primary metric, validated via first-action generation: CE loss and ROUGE-L are perfectly rank-correlated (Spearman $\u03c1$ = -1.00), with limited-sample evidence supporting but not conclusively establishing this proxy. Our results reveal a scale-dependent quality-quantity trade-off: at small scales, doubling the dataset (500 to 1,000) yields ~12.7% CE-loss reduction whereas the TopQ-Random gap stays <1% (Mann-Whitney p > 0.10); at 2,000 trajectories this same gap widens to 3.6% (p = 0.016). Ablation further identifies error-retry rate as the dominant sub-dimension, performing comparably to the full composite ($\u0394$ < 0.2%). Together, these findings establish trajectory-level quality scoring as a viable but scale-sensitive lever for code-agent SFT and offer a proxy-validated evaluation protocol for the regime where end-to-end resolve rate is statistically infeasible.",
+      "takeaways": [
+        "Introduces a two-axis trajectory quality scoring framework (Efficiency and Style) to study how filtering expert code-agent trajectories affects LoRA fine-tuning of Qwen2.5-Coder-7B-Instruct on SWE-trajectory.",
+        "Runs 16 controlled experiments with scale, strategy, and ablation analyses; uses held-out cross-entropy loss, validated by first-action generation where CE loss and ROUGE-L are perfectly rank-correlated (Spearman \u03c1 = -1.00).",
+        "Finds a scale-dependent quality-quantity trade-off and highlights error-retry rate as the strongest sub-dimension, implying trajectory-level quality scoring is useful but its gains depend on dataset scale."
+      ],
+      "actionItems": [
+        "Review the two-axis Efficiency/Style trajectory scoring setup and the CE-loss-first-action proxy validation before using it to filter code-agent trajectories for LoRA fine-tuning.",
+        "Run a scale-by-scale evaluation that compares TopQ versus Random filtering at 500, 1,000, and 2,000 trajectories, and test whether error-retry rate alone matches the full composite under held-out CE loss.",
+        "Ask whether the proxy-based evaluation and trajectory-quality filtering remain reliable when end-to-end SWE-bench resolve rate is near zero, especially as dataset scale increases."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Agentic AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/abs/2607.17205"
+    },
     {
       "title": "HCIG: A Hierarchical Cross-Modal Incongruity Graph Network for Multimodal Sarcasm and Cyberbullying Detection",
       "authors": "Bhavana Verma, Priyanka Meel, Dinesh Kumar Vishwakarma",
@@ -541,7 +500,7 @@
       "date": "Jul 17, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 67,
+      "researchScore": 66,
       "priority": "READ",
       "tags": [
         "Multimodal AI",
@@ -549,14 +508,14 @@
       ],
       "abstract": "Multimodal sarcasm and cyberbullying detection remain challenging because the intended meaning often emerges from incongruity between textual and visual information rather than from either modality alone. Existing multimodal approaches primarily rely on feature fusion or cross-modal attention, which may not effectively capture hierarchical semantic inconsistencies across different levels of representation. To address this limitation, this paper proposes HCIG (Hierarchical Cross-modal Incongruity Graph Network), a novel framework that models cross-modal incongruity at token, phrase, and global levels using graph attention networks and adaptively integrates these representations through a learned hierarchical attention mechanism. As a complementary architecture, we also introduce GCCN (Graph-based Cross-modal Contradiction Network), which performs graph-based reasoning using contradiction-aware pooling for efficient multimodal interaction learning. The proposed models are evaluated on the MMSD sarcasm benchmark and the MultiBully cyberbullying dataset, together with comprehensive ablation studies and cross-task transfer experiments. Experimental results demonstrate that HCIG achieves the best performance on MMSD with 85.74% accuracy and 85.29% macro-F1, while GCCN attains the highest macro-F1 (68.66%) on MultiBully and HCIG achieves the highest accuracy (69.62%) and bullying-class F1 (74.90%). The findings demonstrate that hierarchical multi-granularity incongruity modeling provides more effective multimodal reasoning than conventional fusion strategies, offering a robust framework for sarcasm and cyberbullying detection in social media.",
       "takeaways": [
-        "Introduces HCIG, a hierarchical cross-modal incongruity graph network, and GCCN, a graph-based cross-modal contradiction model, to detect sarcasm and cyberbullying from text-image mismatches.",
-        "Uses graph attention at token, phrase, and global levels with learned hierarchical attention; evaluates on MMSD and MultiBully with ablations and cross-task transfer experiments.",
-        "Suggests that multi-granularity incongruity modeling can outperform conventional fusion strategies for more robust multimodal reasoning in social media moderation tasks."
+        "Proposes HCIG, a hierarchical cross-modal incongruity graph network that models text-image inconsistencies at token, phrase, and global levels for multimodal sarcasm and cyberbullying detection, with GCCN as a complementary graph-based contradiction reasoning architecture.",
+        "Evaluates on MMSD and MultiBully with ablations and cross-task transfer experiments; HCIG reaches 85.74% accuracy and 85.29% macro-F1 on MMSD, while GCCN and HCIG achieve top results on MultiBully (68.66% macro-F1 and 69.62% accuracy, respectively).",
+        "Suggests that hierarchical, multi-granularity incongruity modeling is more effective than conventional fusion or cross-modal attention, making it a practical approach for social media moderation tasks involving sarcasm and bullying."
       ],
       "actionItems": [
-        "Review the HCIG and GCCN architectures to confirm how token-, phrase-, and global-level cross-modal incongruity are modeled and combined before relying on the reported gains.",
-        "Reproduce the MMSD and MultiBully evaluations, including the ablation studies and cross-task transfer experiments, to check whether the stated accuracy and macro-F1 improvements hold under the same setup.",
-        "Assess whether the low reproducibility and low applicability signals make the models suitable for deployment in social-media moderation, given their focus on text-image mismatch and task-specific benchmarks."
+        "Review the HCIG and GCCN architectures for how they model text-image incongruity at token, phrase, and global levels, and compare that design against standard fusion or cross-modal attention baselines.",
+        "Check the reported MMSD and MultiBully results, ablations, and cross-task transfer setup to see whether the gains are consistent across both sarcasm and cyberbullying detection tasks.",
+        "Ask whether the low reproducibility and low applicability signals, along with the social-media moderation use case, create deployment or generalization risks beyond the evaluated datasets."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -566,7 +525,177 @@
       },
       "capability": "Multimodal AI",
       "domain": "Media and Creative",
-      "url": "https://arxiv.org/pdf/2607.16076v1"
+      "url": "https://arxiv.org/abs/2607.16076"
+    },
+    {
+      "title": "An Explicit World Model Based on Data-First Ontology: DaoQL Multimodal Storage Validation and Counterfactual Reasoning Evaluation",
+      "authors": "Zhanbo Li, Shifeng Wu, Xiangjin Meng, Wenjie Cai",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 64,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Multimodal AI",
+        "Finance and Economics"
+      ],
+      "abstract": "Large language models encode world models implicitly in neural weights, which exposes four structural risks in high-precision domains such as medicine and finance: hallucination, frozen knowledge, poor explainability, and poor modifiability. This paper proposes data-first ontology: LLMs are treated as reasoning and language engines, while deterministic knowledge is moved into an explicit multimodal database, DaoQL. We formalize an explicit world model and show that, under rule independence, deterministic evaluation, and fixed conflict resolution, explicit models provide a sufficient condition for composable counterfactual decomposability; implicit models lack atomic read/delta semantics and therefore provide no comparable architectural guarantee. The implemented system focuses on DaoQL's verified storage layer and explicit Eval path, integrating graph, column, vector, and full-text engines within one process. KVCache graph nodes, expert hot updates, and the DaoQL-Agent runtime remain future work. On an embedded same-machine setup, DaoQL reports graph BFS at 1.20 ms, HNSW at 83.1 us, and a Fluent hybrid query at 105.8 us; these results indicate engineering potential but must be interpreted with deployment-shape differences from client-server systems. Exploratory measurements on LDBC SNB SF1 and ANN-Benchmarks further show 34/34 query coverage with interactive-class queries mostly in the sub-millisecond to millisecond range, but only 1.8 QPS overall due to long-tail BI/IC queries; ANN-Benchmarks reaches Recall@10 >= 99% at thousand-level QPS after a bridge-edge protection fix. In a five-domain counterfactual experiment (n = 1250), DaoQL+GPT-4o achieves 94% composable counterfactual decomposability, 49 percentage points above GPT-4o alone. The paper explicitly separates provable structure, preliminary empirical evidence, and architectural roadmap claims.",
+      "takeaways": [
+        "Proposes a data-first ontology with an explicit world model in DaoQL, moving deterministic knowledge out of LLM weights to reduce hallucination, frozen knowledge, weak explainability, and poor modifiability in high-precision domains.",
+        "Validates a verified multimodal storage and explicit evaluation path integrating graph, column, vector, and full-text engines; reports embedded same-machine latency results, 34/34 query coverage on LDBC SNB SF1, and 94% composable counterfactual decomposability in a five-domain experiment (n=1250) with DaoQL+GPT-4o.",
+        "Practical implication: explicit models can provide a sufficient architectural basis for composable counterfactual reasoning, though the paper notes this is supported by preliminary empirical evidence and that KVCache graph nodes, expert hot updates, and DaoQL-Agent runtime remain future work."
+      ],
+      "actionItems": [
+        "Review the DaoQL verified storage layer and explicit Eval path claims to confirm the stated rule-independence, deterministic evaluation, and fixed conflict-resolution assumptions before treating the explicit world model guarantee as established.",
+        "Run a follow-up evaluation that separates embedded same-machine latency from client-server deployment, and reproduce the five-domain counterfactual experiment plus LDBC SNB SF1/ANN-Benchmarks results to test whether the reported 94% decomposability and sub-millisecond query coverage hold under the same conditions.",
+        "Ask whether the current DaoQL-only evidence is sufficient for finance and economics adoption given that KVCache graph nodes, expert hot updates, and the DaoQL-Agent runtime are still future work."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Finance and Economics",
+      "url": "https://arxiv.org/abs/2607.17269"
+    },
+    {
+      "title": "Debate-on-Graph: Reliable and Adaptive Reasoning of Large Language Model on Uncertain Knowledge Graph",
+      "authors": "Peiji Yu, Xin Chen, Tianxing Wu",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 64,
+      "priority": "READ",
+      "tags": [
+        "Foundation Models and Generative AI",
+        "Other"
+      ],
+      "abstract": "Large language models (LLMs) have demonstrated remarkable capabilities in natural language processing. However, LLMs often suffer from hallucinations and lack of relevant knowledge when dealing with question answering (QA) tasks. To mitigate these issues, knowledge graphs (KGs) have been utilized to enhance LLM reasoning. Nevertheless, KGs often contain noise and errors, while existing KG-enhanced LLM approaches are generally unable to identify and filter such noisy and erroneous content, which can instead amplify hallucinations and pose challenges for reliable reasoning. Uncertain knowledge graphs (UKGs), which associate each triple with a confidence score to quantify uncertainty, offer a promising direction to address this challenge. Compared with prior work, we investigate how to leverage UKGs to support LLMs for QA. We propose Debate-on-Graph (DoG), a new framework that enables LLMs and UKGs to collaborate adaptively for reliable reasoning. Specifically, we first design a heuristic search algorithm tailored for UKGs to extract reliable and question-relevant subgraphs, thereby reducing noise and errors in retrieved knowledge. We then introduce a Multi-Agent Debate mechanism, which yields reliable answers through adaptive adversarial debates, aiming to fully exploit the knowledge in UKGs while preserving the reliability of retrieved evidence. Extensive experiments on four benchmark QA datasets show that DoG achieves state-of-the-art performance over existing LLM reasoning methods and KG-based baselines, while enabling reliable and adaptive reasoning. Our code is available at https://github.com/seucoin/Debate-on-Graph.",
+      "takeaways": [
+        "Proposes Debate-on-Graph (DoG), a framework for reliable, adaptive LLM reasoning over uncertain knowledge graphs by combining LLMs with confidence-scored KG evidence.",
+        "Uses a UKG-tailored heuristic search to extract question-relevant, reliable subgraphs and a multi-agent debate mechanism to filter noisy triples and produce answers.",
+        "Reports state-of-the-art results on four QA benchmarks, suggesting UKGs can improve LLM question answering while reducing hallucinations from noisy graph knowledge."
+      ],
+      "actionItems": [
+        "Review the DoG pipeline components in detail, especially the UKG-tailored heuristic search and how confidence scores are used to select question-relevant subgraphs.",
+        "Compare the reported QA results against the listed LLM reasoning methods and KG-based baselines, and assess whether the multi-agent debate contributes beyond the retrieval step.",
+        "Ask whether the approach depends on the availability and quality of confidence-scored knowledge graphs, and how it would behave when UKG uncertainty estimates are sparse or unreliable."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/abs/2607.17266"
+    },
+    {
+      "title": "Distilled Reinforcement Learning for LLM Post-training",
+      "authors": "Chen Wang, Zhaochun Li, Jionghao Bai, Yining Zhang, Hexuan Deng, Ge Lan, Yue Wang",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 59,
+      "priority": "READ",
+      "tags": [
+        "Training and Fine-Tuning",
+        "Education"
+      ],
+      "abstract": "Large language model (LLM) post-training is essential for improving reasoning, adaptation, and alignment. Existing methods mainly follow two paradigms: reinforcement learning (RL) and on-policy distillation (OPD). However, RL relies on coarse-grained outcome supervision, resulting in difficult credit assignment and limited capability to acquire new knowledge. OPD, meanwhile, unconditionally matches teacher logits through KL divergence, which creates a dilemma: similar teachers provide little new knowledge, while substantially different teachers often yield ineffective guidance, largely restricting OPD to within-family distillation. We propose Distilled Reinforcement Learning (Distilled RL), which integrates teacher supervision into the RL objective to provide fine-grained guidance, selectively transfer new knowledge and avoid unconditional imitation. Distilled RL contains three components: reverse importance sampling with clipping, negative sample reset, and sequence-level geometric normalization. Through a concise and interpretable case study, we demonstrate that Distilled RL can effectively transfer previously unavailable knowledge from a teacher model to a student model. Extensive experiments across both within-family and cross-family distillation settings show that Distilled RL substantially outperforms standard RL and OPD in terms of both pass@1 and pass@k. Our code is available at https://github.com/597358816/Distilled-RL.",
+      "takeaways": [
+        "Introduces Distilled Reinforcement Learning, a post-training method that injects teacher supervision into RL to provide fine-grained guidance, selectively transfer new knowledge, and avoid unconditional imitation.",
+        "Uses reverse importance sampling with clipping, negative sample reset, and sequence-level geometric normalization; a case study and extensive experiments compare within-family and cross-family distillation against standard RL and OPD.",
+        "Reportedly improves pass@1 and pass@k over standard RL and OPD, suggesting a practical way to transfer knowledge to student LLMs beyond the limits of within-family distillation."
+      ],
+      "actionItems": [
+        "Review the Distilled RL objective and its three components\u2014reverse importance sampling with clipping, negative sample reset, and sequence-level geometric normalization\u2014to assess how teacher supervision is integrated into post-training.",
+        "Evaluate the method on a student-teacher setup using both within-family and cross-family distillation, tracking pass@1 and pass@k against standard RL and OPD baselines.",
+        "Question whether the reported knowledge transfer and gains depend on the specific teacher-student pairing and whether the approach is practical for educational LLM post-training given the low evidence and low applicability signals."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Training and Fine-Tuning",
+      "domain": "Education",
+      "url": "https://arxiv.org/abs/2607.17247"
+    },
+    {
+      "title": "A Large-Scale Measurement of AI Bill of Materials Completeness in Hugging Face Models",
+      "authors": "Md Erfan, Ahmed Ryan, Md Rayhanur Rahman",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 59,
+      "priority": "SHARE",
+      "tags": [
+        "Safety, Alignment and Governance",
+        "Other"
+      ],
+      "abstract": "Pretrained machine learning (ML) models help developers build ML-intensive software systems without training models from scratch. However, model repositories often provide incomplete machine-readable documentation about model provenance, licenses, datasets, limitations, and external references, creating transparency and governance gaps across the AI supply chain. Artificial Intelligence Bills of Materials (AIBOMs) address these gaps by documenting AI artifacts, including models, metadata, licenses, datasets, model-card information, and external references. Taking public Hugging Face (HF) model repositories as a case study, this paper empirically investigates AIBOM completeness, defined as the extent to which repositories provide AIBOM-relevant information for machine-readable AI supply-chain documentation. We examine approximately 97.5K AIBOM artifacts to assess the extent to which generated AIBOMs: (i) contain required structural and metadata fields, (ii) represent model identity, license, and external-reference information, (iii) capture model-card documentation such as datasets, limitations, safety-risk assessment, and environmental information, and (iv) vary in documentation coverage across repository and artifact characteristics such as task, license availability, dataset declaration, model family, and paper reference. Results indicate that generated AIBOMs provide complete coverage of required AIBOM structure but limited AI-specific documentation completeness. Required fields are fully represented, but model-card, metadata, responsible-use, environmental, limitation, and meaningful-description fields remain weakly represented or missing across generated artifacts. Our findings motivate improved model-card practices, repository-level traceability, and automated AIBOM validation to advance the generation and adoption of more complete AIBOMs.",
+      "takeaways": [
+        "Empirically measures AI Bill of Materials (AIBOM) completeness for public Hugging Face models, finding full coverage of required structural fields but weak AI-specific documentation.",
+        "Analyzes ~97.5K AIBOM artifacts, checking identity, license, external references, model-card details, and how coverage varies by repository/artifact characteristics.",
+        "Suggests improving model-card practices, repository traceability, and automated AIBOM validation to support more complete machine-readable AI supply-chain documentation."
+      ],
+      "actionItems": [
+        "Review the AIBOM generation pipeline for Hugging Face model repositories and identify which AI-specific fields are missing or weakly represented, especially model-card, metadata, responsible-use, environmental, and limitation information.",
+        "Run a coverage analysis on a representative subset of the ~97.5K AIBOM artifacts to compare documentation completeness by task, license availability, dataset declaration, model family, and paper reference.",
+        "Assess whether incomplete AI-specific documentation creates adoption or governance risk for downstream users, given that required structural fields are complete but provenance and model-card details are often missing."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "Low"
+      },
+      "capability": "Safety, Alignment and Governance",
+      "domain": "Other",
+      "url": "https://arxiv.org/abs/2607.17242"
+    },
+    {
+      "title": "Fourier Geometric Wind Power Forecasting with Numerical Weather Prediction",
+      "authors": "Shiyuan Piao, Fan Zehui, Yang Liu, Hong Cheng, Juepeng Zheng, Jie Zhou, Fugee Tsung",
+      "org": "arXiv",
+      "date": "Jul 19, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 58,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Multimodal AI",
+        "Other"
+      ],
+      "abstract": "Accurate short-term wind power forecasting is essential for grid stability and operational planning, yet remains challenging due to the complex interactions between atmospheric conditions and turbine dynamics. However, existing methods fail to effectively incorporate weather forecasting with wind turbine data (i.e., SCADA), leading to suboptimal solutions. To address this, we introduce a multimodal framework that integrates historical point-based SCADA data with grid-based Numerical Weather Prediction (NWP) forecasts, which is challenging due to heterogeneous input and the complex physical wind-turbine interactions. Our approach first explicitly decomposes inputs into scalar and vector features to better capture both site-specific and geometric dependencies and then incorporates a geometric encoder to extract rotation-invariant features from wind vectors. We further leverages a Fourier Neural Operator (FNO) architecture, which performs global convolutions in the frequency domain to efficiently model long-range spatiotemporal relationships. Extensive experiments on three real-world wind farms, with weather forecasting data, demonstrate that our model consistently outperforms state-of-the-art baselines, highlighting the effectiveness of its physically-informed design. The core implementation of our method is publicly available at: https://github.com/shawn-sypiao/GWPF.",
+      "takeaways": [
+        "Introduces a multimodal wind power forecasting framework that fuses historical SCADA data with grid-based Numerical Weather Prediction to better model weather\u2013turbine interactions.",
+        "Uses scalar/vector feature decomposition, a geometric encoder for rotation-invariant wind-vector features, and a Fourier Neural Operator to capture long-range spatiotemporal relationships.",
+        "Reports consistent gains over state-of-the-art baselines on three real-world wind farms, suggesting a physically informed design can improve short-term grid and operational planning."
+      ],
+      "actionItems": [
+        "Review the GWPF pipeline design for how it aligns SCADA point measurements with grid-based NWP inputs, especially the scalar/vector feature split and rotation-invariant geometric encoding.",
+        "Compare the reported gains against state-of-the-art baselines on the three wind farms by checking whether the evaluation covers short-term horizons and whether ablations isolate the contributions of the geometric encoder and FNO.",
+        "Assess adoption risk by asking whether the multimodal NWP+SCADA setup is practical when weather forecasts or turbine data are incomplete, delayed, or site-specific at new wind farms."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Medium",
+        "reproducibility": "Medium",
+        "novelty": "High"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Other",
+      "url": "https://arxiv.org/abs/2607.17095"
     },
     {
       "title": "An MLIR-Based Compilation Method for Large Language Models",
@@ -583,14 +712,14 @@
       ],
       "abstract": "Large Language Models (LLMs) have become the dominant workload on modern AI accelerators, yet deploying them on specialized hardware still faces two core challenges: how to import a trained model into a compiler-friendly intermediate representation, and how to efficiently schedule the autoregressive inference loop under limited on-chip memory. This paper presents an MLIR (Multi-Level Intermediate Representation) based compilation method for large language models, illustrated using two dialects of operators, TopOp and TpuOp. TopOp serves as a high-level graph dialect that is independent of both the source framework and the target chip, and is responsible for expressing model semantics; TpuOp serves as the target hardware dialect, carrying chip-related decisions such as quantization, layer groups, and memory layout. A model is first represented as TopOp, then lowered layer by layer to TpuOp, and finally a deployable binary is generated. In addition, each Transformer layer is split into three stages for static compilation: prefill, prefill_kv (prefill with historical key-value cache), and decode, so as to accommodate the different computational characteristics of prompt-parallel processing and per-token generation. The method has been implemented in the TPU-MLIR compiler{https://github.com/sophgo/tpu-mlir} and the LLM-TPU deployment project\\footnote{https://github.com/sophgo/LLM-TPU}, supporting a variety of generative models including the Qwen, Llama, InternVL, and MiniCPM-V series, as well as multiple quantization and deployment forms such as GPTQ, AWQ, and AutoRound.",
       "takeaways": [
-        "Presents an MLIR-based compilation flow for LLM deployment on specialized hardware, using TopOp for model semantics and TpuOp for hardware-specific decisions.",
-        "Uses layer-by-layer lowering from TopOp to TpuOp and splits each Transformer layer into prefill, prefill_kv, and decode stages to support static compilation of autoregressive inference under limited on-chip memory.",
-        "Implemented in TPU-MLIR and LLM-TPU, with support for models such as Qwen, Llama, InternVL, and MiniCPM-V plus GPTQ, AWQ, and AutoRound deployment forms."
+        "Proposes an MLIR-based compilation flow for LLMs that uses TopOp for framework/chip-agnostic model semantics and TpuOp for hardware-specific decisions.",
+        "Describes a layer-by-layer lowering pipeline to a deployable binary, including static splitting of each Transformer layer into prefill, prefill_kv, and decode stages to handle autoregressive inference under limited on-chip memory.",
+        "Implemented in TPU-MLIR and LLM-TPU, with support for Qwen, Llama, InternVL, MiniCPM-V, and deployment/quantization modes such as GPTQ, AWQ, and AutoRound."
       ],
       "actionItems": [
-        "Review the TopOp to TpuOp lowering path and confirm which model-semantic operators and hardware-specific decisions are handled at each compilation stage.",
-        "Evaluate the static prefill, prefill_kv, and decode split on a representative supported model by comparing compile success and inference behavior under constrained on-chip memory.",
-        "Assess whether the TPU-MLIR/LLM-TPU workflow and supported quantization forms (GPTQ, AWQ, AutoRound) are portable to other accelerators or remain tightly coupled to the target chip assumptions."
+        "Review the TopOp-to-TpuOp lowering path to verify how model semantics are preserved while chip-specific choices like quantization, layer groups, and memory layout are introduced.",
+        "Benchmark the static prefill, prefill_kv, and decode stage split against a non-split compilation flow on supported models to compare inference performance and memory use under limited on-chip memory.",
+        "How sensitive is the deployment flow to the chosen quantization and model family, given the reported support for GPTQ, AWQ, AutoRound, Qwen, Llama, InternVL, and MiniCPM-V?"
       ],
       "researchSignals": {
         "evidence": "Low",
@@ -600,214 +729,21 @@
       },
       "capability": "Foundation Models and Generative AI",
       "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.15865v1"
-    },
-    {
-      "title": "Cost-efficient generative AI summarization for scalable automated essay scoring in educational assessment",
-      "authors": "Haowei Hua",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 56,
-      "priority": "WATCH",
-      "tags": [
-        "Foundation Models and Generative AI",
-        "Other"
-      ],
-      "abstract": "Automated essay scoring (AES) enables scalable assessment and timely feedback but remains challenged by transformer input-length limitations, which can cause information loss when processing long essays. This study proposes a generative AI-assisted summarization framework to improve long-form essay representation while maintaining scoring reliability. Using the ASAP 2.0 dataset, we generate controlled-length summaries with three GPT-5 variants (GPT-5, GPT-5 mini, and GPT-5 nano) and use them as inputs for downstream AES models. To preserve original writing signals, handcrafted linguistic features extracted from full essays are integrated with summary representations to form a hybrid framework. The approach is evaluated in terms of scoring performance, summarization quality, and computational cost. Scoring reliability is measured using quadratic weighted kappa (QWK), while summary quality is assessed through lexical overlap, semantic similarity, information retention, and redundancy metrics. Results show that GPT-5 mini achieves the highest agreement with human ratings, whereas GPT-5 produces the strongest summarization quality. Summary quality decreases for higher-scoring essays, indicating that more complex writing is more difficult to compress without information loss. These findings reveal trade-offs among model capacity, summary fidelity, cost efficiency, and preservation of educational constructs. This study provides an initial controlled evaluation of GPT-based summarization for AES and identifies important baselines and ablation studies required for future generalization. Overall, generative AI summarization offers a promising approach for scalable writing assessment while requiring careful validation of information preservation and fairness.",
-      "takeaways": [
-        "Proposes a generative AI-assisted summarization framework for automated essay scoring that compresses long essays while preserving scoring reliability, using controlled-length GPT-5-generated summaries plus handcrafted linguistic features from full essays.",
-        "Evaluates the approach on ASAP 2.0 with GPT-5, GPT-5 mini, and GPT-5 nano, measuring QWK for scoring reliability alongside summary quality and computational cost; GPT-5 mini yields the highest agreement with human ratings, while GPT-5 gives the best summarization quality.",
-        "Suggests a practical path to more scalable essay assessment under transformer length limits, but highlights trade-offs among cost, fidelity, and preservation of educational constructs, especially for higher-scoring essays that are harder to summarize without information loss."
-      ],
-      "actionItems": [
-        "Review the ASAP 2.0 setup and hybrid AES pipeline to confirm how controlled-length GPT-5 summaries are combined with handcrafted linguistic features before scoring.",
-        "Run a comparison ablation across GPT-5, GPT-5 mini, and GPT-5 nano on QWK, summarization quality, and computational cost, including a no-summary or summary-only baseline.",
-        "Ask whether the summarization step preserves educational constructs and fairness consistently for higher-scoring essays that appear harder to compress without information loss."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Low",
-        "novelty": "Low"
-      },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.15829v1"
-    },
-    {
-      "title": "DPNeXt: A Lightweight Multi-Scale Feature Fusion Framework for Efficient ViT-Based Multi-Task Dense Prediction",
-      "authors": "Jehun Kang, Jungha Wang, Youngjun Hwang, David Hyunchul Shim",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 54,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Inference and Model Efficiency",
-        "Robotics and Autonomous Systems"
-      ],
-      "abstract": "Multi-Task Learning (MTL) in robotics perception systems supports comprehensive 3D spatial scene understanding by integrating semantic segmentation and depth estimation. While Vision Foundation Models (VFMs) are increasingly adopted as robust feature encoders, existing decoding strategies present a critical bottleneck. To address this, we propose DPNeXt, a streamlined multi-scale feature fusion decoder and efficient alternative to the standard Dense Prediction Transformer (DPT). DPNeXt uses dual depthwise separable inverted bottlenecks to improve frozen VFM utilization through fusion-centric decoding and independent task modularization. To further mitigate negative inductive transfer between tasks, we introduce the Multi-Task Boundary Guidance (MTBG) strategy. Unlike prior boundary-aware methods that add fusion modules or gating, MTBG applies symmetric boundary-focused supervision to encourage geometric consistency without extra annotation or inference cost. Experiments on Cityscapes show that DPNeXt-S outperforms prior state-of-the-art (SOTA) MTL models, while DPNeXt-B further improves the overall performance and achieves the best results among the compared methods. On NYUv2, DPNeXt-B also achieves the best semantic segmentation and depth estimation results among the compared methods while requiring substantially fewer trainable parameters than prior large-scale MTL models. Compared with the standard DPT, DPNeXt-S reduces trainable parameters by 78.6% and achieves the fastest inference speed among the compared models on resource-constrained laptop hardware. The source code, model checkpoints, and a demo video will be made available at https://github.com/kangjehun/DPNeXt.",
-      "takeaways": [
-        "DPNeXt is a lightweight multi-scale feature fusion decoder for ViT-based multi-task dense prediction, aiming to improve semantic segmentation and depth estimation in robotics perception.",
-        "The paper evaluates DPNeXt on Cityscapes and NYUv2, reporting SOTA or best-in-comparison results, while DPNeXt-S cuts trainable parameters by 78.6% versus standard DPT and runs fastest on resource-constrained laptop hardware.",
-        "Practically, DPNeXt offers a more efficient alternative to standard DPT for frozen VFM-based multi-task learning, with MTBG adding boundary-focused supervision without extra annotation or inference cost."
-      ],
-      "actionItems": [
-        "Review the DPNeXt decoder design and MTBG supervision details to verify how the multi-scale fusion and symmetric boundary-focused loss are implemented for frozen ViT-based multi-task dense prediction.",
-        "Benchmark DPNeXt-S and DPNeXt-B against standard DPT on your own robotics perception setup, measuring semantic segmentation, depth estimation, trainable parameter count, and inference speed under the same hardware constraints.",
-        "Assess whether the efficiency gains and boundary-guidance strategy introduce any adoption risk for your tasks, especially if boundary supervision data quality or task transfer effects differ from Cityscapes and NYUv2."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "Medium",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Inference and Model Efficiency",
-      "domain": "Robotics and Autonomous Systems",
-      "url": "https://arxiv.org/pdf/2607.16012v1"
-    },
-    {
-      "title": "AI Watermark Evidence Fails Forensic Readiness: An Empirical Evaluation",
-      "authors": "Saifur Rahman Tamim, Amir Labib Khan",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 54,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Foundation Models and Generative AI",
-        "Other"
-      ],
-      "abstract": "Governments are increasingly mandating that LLM-generated content carry watermarks. The EU AI Act calls for markings that are \"sufficiently reliable and robust.\" California's SB 942 requires disclosure that is \"permanent or extraordinarily difficult to remove.\" Both mandates rest on an untested assumption: that watermark detection yields evidence reliable enough for courts. This paper tests that assumption directly. We evaluate three representative LLM watermarking methods -- KGW, Unigram, and the MarkLLM implementation of SynthID-Text -- against the Daubert admissibility criteria and the NIST SP 800-86 digital forensic process. To structure this evaluation, we propose a Forensic Readiness Score (FRS) framework with 12 criteria, three mandatory gates, and a 60-point scoring system. We focus on meaning-preserving paraphrase as the attack vector, since it is both legally realistic and difficult to dismiss as evidence tampering. The results raise serious evidentiary concerns. Out of 846 valid paraphrase runs across 15 diverse prompts per method, every single initially-detected KGW and Unigram text lost its watermark after paraphrasing -- 100% conditional removal. SynthID fared only slightly better at 98.3%. Even before any attack, false-negative rates were already high: 70% for KGW, 83% for Unigram, 80% for SynthID. The SynthID configuration also flagged 5.4% of paraphrased human-written controls as AI-generated and showed an 18.6% paradox rate, with 80% of its own pristine watermarked output landing in the uncertainty deadband. None of the three methods satisfy more than two of five Daubert factors. We also find that the FRS point-based scoring system, despite working as designed, cannot fully capture forensic uselessness -- a limitation worth noting for future framework design. These configurations, as tested, do not meet the evidentiary bar that courts require.",
-      "takeaways": [
-        "Paper argues current LLM watermarking is not forensic-ready, because detection evidence does not meet Daubert-style evidentiary expectations or the paper's proposed forensic readiness criteria.",
-        "Methodologically, it evaluates KGW, Unigram, and MarkLLM SynthID-Text under a 12-criterion Forensic Readiness Score plus NIST SP 800-86 and Daubert, using meaning-preserving paraphrase attacks across 846 valid runs.",
-        "Practically, the tested watermarks are easily removed by paraphrase and show high false negatives and some false positives, so courts and regulators should not treat these detections as reliable proof of AI generation."
-      ],
-      "actionItems": [
-        "Review the paper\u2019s FRS, Daubert, and NIST SP 800-86 evaluation setup for KGW, Unigram, and MarkLLM SynthID-Text, with attention to the 15-prompts-per-method paraphrase protocol and the reported false-negative/false-positive measurements.",
-        "Re-run or replicate the paraphrase attack evaluation on the three tested watermarking methods, checking whether the reported 100% conditional removal for KGW/Unigram and 98.3% for SynthID, plus the 70%/83%/80% pre-attack false negatives, hold across the same or comparable prompt set.",
-        "Ask whether current watermark detectors should be treated as admissible or deployment-ready evidence for courts and regulators when meaning-preserving paraphrase can remove the watermark and produce uncertainty or false positives in control text."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "High",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.16010v1"
-    },
-    {
-      "title": "Before the Action: Benchmarking LLMs on Prospective Hypothesis Discovery",
-      "authors": "Tianyun Zhong, Wangyi Jiang, Wei Wang, Xuanang Chen, Yaojie Lu, Shiwei Ye, Yuzhen Shi, Boyu Yang, Jinghang Wang, Han Li, Weiqi Zhai, Bing Zhao, Hu Wei, Haiyang Yu, Yongbin Li, Hongyu Lin, Le Sun, Xianpei Han",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 53,
-      "priority": "READ",
-      "tags": [
-        "Evaluation and Benchmarks",
-        "Science and Research"
-      ],
-      "abstract": "Large language models (LLMs) excel at answering pre-specified questions, yet their ability to navigate the open-ended, pre-conclusion stage of discovery remains largely unmeasured. We introduce Prospective Hypothesis Discovery (PHD), which asks models to autonomously construct grounded, discriminative, and testable hypothesis spaces from inconclusive evidence, including anomalous observations and fragmented records, to guide subsequent investigation. To evaluate this capability, we introduce HypoArena, comprising HypoData, a benchmark of 988 cases across six scientific and analytical domains, and HypoEval, an evaluation framework for open-ended hypothesis sets. To construct HypoData at scale, we propose Retrospective Context Regression, a Forge--Audit pipeline that reconstructs pre-conclusion contexts from completed expert documents by removing explicit conclusions, target hypotheses, and retrospective causal attributions while preserving the factual substrate. Because PHD admits multiple valid outputs, HypoEval combines bidirectional pairwise judgments with Bradley--Terry--Davidson aggregation for ranking and six-dimensional rubric scoring for diagnosis. Experiments on 15 frontier LLMs reveal clear capability stratification and model-dependent effects of structured analytical skills, with gains for several lower-performing models on HypoArena but regressions for other systems, including a top-performing model. Compared with absolute rubric scoring, arena evaluation resolves finer-grained differences among models, with aggregated rankings showing strong agreement with human experts and an independent judge. Together, these results support treating PHD as a distinct target for evaluating how LLMs formulate investigative directions when final conclusions are withheld. Our code and data are publicly available at github.com/SKYLENAGE-AI/HypoArena and github.com/SKYLENAGE-AI/HypoArena.",
-      "takeaways": [
-        "Introduces Prospective Hypothesis Discovery (PHD) and HypoArena to measure whether LLMs can generate grounded, discriminative, testable hypotheses before conclusions are known.",
-        "Uses a 988-case benchmark across six domains, built with a Forge\u2013Audit Retrospective Context Regression pipeline, and evaluates open-ended hypothesis sets via pairwise judgments, Bradley\u2013Terry\u2013Davidson aggregation, and six-dimensional rubric scoring.",
-        "Suggests PHD should be treated as a distinct evaluation target for models that support investigative reasoning, with arena-style ranking giving finer-grained differentiation than absolute scoring."
-      ],
-      "actionItems": [
-        "Review the HypoArena benchmark design and HypoEval protocol to verify how Retrospective Context Regression, pairwise judgments, and six-dimensional rubric scoring are constructed for open-ended hypothesis generation.",
-        "Run a replication-style evaluation on a small set of your target LLMs using HypoArena to compare arena rankings against absolute rubric scores and check whether model performance shifts align with the paper\u2019s reported stratification.",
-        "Ask whether PHD-style evaluation is appropriate for your deployment setting, given that it targets investigative reasoning before conclusions are known and may not transfer well to tasks that require single definitive answers."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Medium",
-        "novelty": "High"
-      },
-      "capability": "Evaluation and Benchmarks",
-      "domain": "Science and Research",
-      "url": "https://arxiv.org/pdf/2607.15766v1"
-    },
-    {
-      "title": "SciForge: An AI-Native, Multimodal Workbench for Scientific Discovery",
-      "authors": "SciForge Team, Zhangyang Gao, Minghao Fang, Yifei Liu, Hanhui Yang, Xinyu Gu, Shixiang Tang, Siqi Sun, Lei Bai, Cheng Tan, Mengdi Liu, Hao Wu, Shuizhou Chen",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 52,
-      "priority": "SHARE",
-      "tags": [
-        "Agentic AI",
-        "Science and Research"
-      ],
-      "abstract": "Scientific work increasingly spans heterogeneous artifacts -- papers, code, datasets, scientific file formats, model outputs, figures, manuscripts, and team decisions -- yet general-purpose AI assistants rarely preserve these objects as a coherent, auditable research state. We present SciForge, a multimodal research-native AI workbench that reserves the graphical interface for human judgment while search, parsing, model routing, workflow execution, plotting, writing, and presentation generation run as modular agent-accessible services. SciForge is built around five pillars: (i) \\emph{goal-scoped scientific decision governance} for \\textbf{goal-oriented} research, with review gates and shared review surfaces; (ii) \\emph{translate-then-reason} for \\textbf{multimodal} input, routing scientific objects through domain translators before the agent reasons; (iii) \\emph{evidence governance} for \\textbf{auditable} traceability, linking claims to provenance chains and audit findings; (iv) \\emph{collaborative team science} for \\textbf{collaborative} research, enabling multi-role decision governance, with shared team workspaces planned for future releases; and (v) \\emph{real-world application scenarios} for \\textbf{practical} impact, demonstrated through eight end-to-end user cases, with flagship demonstrations including multi-day agentic research sprints for gene discovery, AI-guided de novo protein design, molecular optimization, and genome-to-BGC discovery. The system combines a thin interaction layer, contextual research capability patterns, an Agent Runtime and Workflow Engine, an Evidence-DAG audit sidecar and a Scientific Model Router. SciForge currently runs as a desktop application, with mobile supervision support; future releases will deepen team collaboration. The system is open-source and available at https://github.com/AGI4Sci/SciForge",
-      "takeaways": [
-        "SciForge is a multimodal, research-native AI workbench that keeps human judgment in the UI while modular services handle search, parsing, routing, workflow execution, plotting, writing, and presentation generation.",
-        "Its design centers on goal-scoped decision governance, translate-then-reason processing, and evidence governance with provenance-linked audit trails, and the paper says it is demonstrated through eight end-to-end user cases.",
-        "Practical impact is an open-source desktop system for auditable scientific work, with example scenarios including gene discovery, de novo protein design, molecular optimization, and genome-to-BGC discovery."
-      ],
-      "actionItems": [
-        "Review the paper\u2019s architecture and workflow boundaries, focusing on how the thin UI, Agent Runtime, Workflow Engine, Scientific Model Router, and Evidence-DAG audit sidecar divide responsibilities across human judgment and agent-accessible services.",
-        "Evaluate SciForge on the eight end-to-end user cases and flagship demonstrations by checking whether the provenance-linked audit trails, goal-scoped review gates, and multimodal translate-then-reason flow are consistently preserved across scientific artifacts.",
-        "Assess adoption risk by asking whether the open-source desktop system with mobile supervision and planned future team collaboration can reliably support auditable scientific work in collaborative settings without weakening traceability or review governance."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "Medium",
-        "reproducibility": "High",
-        "novelty": "Low"
-      },
-      "capability": "Agentic AI",
-      "domain": "Science and Research",
-      "url": "https://arxiv.org/pdf/2607.16038v1"
-    },
-    {
-      "title": "CRAFT: Clustering Rubrics to Diagnose Weak LLM Capabilities and Generate Targeted Fine-Tuning Data",
-      "authors": "Vipul Gupta, Zihao Wang, Razvan-Gabriel Dumitru, MohammadHossein Rezaei, Aakash Sabharwal, Yunzhong He",
-      "org": "arXiv",
-      "date": "Jul 17, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 50,
-      "priority": "READ",
-      "tags": [
-        "Training and Fine-Tuning",
-        "Other"
-      ],
-      "abstract": "Evaluations should do more than measure a models current performance. They should tell us what to fix for the next model iteration and provide a way to generate targeted post training data. Most evaluation pipelines identify weak examples, topics, or categories, but they leave the underlying capability failure implicit: they say where a model fails, not why. We introduce CRAFT, a method that converts any rubric based evaluation dataset into a model specific diagnosis of weak capabilities. CRAFT treats each grading criterion as a capability probe: it extracts a capability description from every prompt rubric pair, clusters these descriptions into a hierarchical capability tree, scores the target model at every node, and selects low performing nodes dynamically across tree levels, at the granularity where each failure is clearest. The selected weak capabilities then direct the generation of targeted supervised finetuning data. Holding the data generation, finetuning, and evaluation setup fixed, we compare CRAFT against prompt level EvalTree clustering and untargeted random generation on four open source models, two professional domains (finance and legal), and 13 held out benchmarks disjoint from the diagnostic data. CRAFT achieves the strongest finance domain average for all four models under repeated temperature decoding; on legal domain, it is strongest for three of four models and remains within the decoding variance bands of the best baseline on the fourth. Diagnosing weaknesses at the level of rubric criteria, rather than prompts or categories, thus yields both a sharper picture of what a model cannot do and measurably better models after finetuning on that diagnosis.",
-      "takeaways": [
-        "Introduces CRAFT, which turns rubric-based evaluations into model-specific capability diagnoses by extracting capability descriptions from prompt-rubric pairs, clustering them into a hierarchical capability tree, and identifying weak nodes.",
-        "Method/evidence: scores the target model at each tree node and selects low-performing capabilities at the clearest granularity; compared with prompt-level EvalTree clustering and random generation on 4 open-source models across finance and legal domains, CRAFT performs best or near-best on held-out benchmarks.",
-        "Practical implication: rubric-criterion-level diagnosis can guide targeted supervised fine-tuning data generation, yielding stronger post-training models than untargeted generation in the reported settings."
-      ],
-      "actionItems": [
-        "Review the CRAFT pipeline details for rubric-to-capability extraction, hierarchical clustering, node scoring, and low-node selection to assess how easily it can be integrated into an existing rubric-based evaluation workflow.",
-        "Run a controlled comparison against prompt-level EvalTree clustering and untargeted random generation with the same data generation, fine-tuning, and evaluation setup to verify whether criterion-level diagnosis improves held-out benchmark performance for your target model.",
-        "Assess the adoption risk of whether your available evaluations are rubric-based enough to support CRAFT and whether the reported finance/legal gains would transfer to your own domain and decoding settings."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Low",
-        "reproducibility": "Medium",
-        "novelty": "Medium"
-      },
-      "capability": "Training and Fine-Tuning",
-      "domain": "Other",
-      "url": "https://arxiv.org/pdf/2607.16122v1"
+      "url": "https://arxiv.org/abs/2607.15865"
     }
   ],
   "blogs": [
+    {
+      "source": "OpenAI News",
+      "title": "Safety and alignment in an era of long-horizon models",
+      "tag": "SAFETY",
+      "date": "Jul 20, 2026",
+      "takeaways": [
+        "OpenAI shares lessons from deploying long-running AI models, highlighting new safety risks, observed failures, and improved safeguards through iterative deployment."
+      ],
+      "url": "https://openai.com/index/safety-alignment-long-horizon-models",
+      "linkVerified": true
+    },
     {
       "source": "OpenAI News",
       "title": "The US is advancing AI safety through state and federal action",
@@ -818,102 +754,17 @@
       ],
       "url": "https://openai.com/index/advancing-ai-safety-through-state-and-federal-action",
       "linkVerified": true
-    },
-    {
-      "source": "Microsoft Research",
-      "title": "Verifying Rust cryptography in SymCrypt, from standards to code",
-      "tag": "RESEARCH BLOG",
-      "date": "Jul 13, 2026",
-      "takeaways": [
-        "How Rust, Lean, Aeneas, and AI agents are helping scale formal verification for production cryptographic algorithms At a glance SymCrypt develops new verified cryptography using Rust, Aeneas, and Lean to provide higher security assurance. We prove that their code safely and correctly implements standard algorithms, notably for post-quantum cryptography."
-      ],
-      "url": "https://www.microsoft.com/en-us/research/blog/verifying-rust-cryptography-in-symcrypt-from-standards-to-code/",
-      "linkVerified": true
     }
   ],
-  "fallbackSections": {
-    "models": {
-      "editionDate": "2026-07-06",
-      "generatedAt": "2026-07-06T15:13:38.403364+00:00",
-      "reason": "no_current_valid_items"
-    }
-  },
+  "fallbackSections": {},
   "socialPosts": [],
   "trending": [],
   "health": [
     {
-      "source": "rss",
-      "status": "ok",
-      "item_count": 2,
-      "duration_ms": 3551,
-      "fetch_diagnostics": {
-        "strategy": "round_robin",
-        "feeds_requested": 5,
-        "selected": 2,
-        "feeds": [
-          {
-            "feed_url": "https://openai.com/news/rss.xml",
-            "source": "OpenAI News",
-            "fetched": 20,
-            "eligible": 1,
-            "selected": 1,
-            "verified": 1,
-            "rejected": {
-              "customer_story_or_case_study": 1,
-              "missing_ai_signal": 2,
-              "missing_decision_signal": 3,
-              "tutorial_or_onboarding": 1
-            }
-          },
-          {
-            "feed_url": "https://www.anthropic.com/news/rss.xml",
-            "source": "https://www.anthropic.com/news/rss.xml",
-            "fetched": 0,
-            "eligible": 0,
-            "selected": 0,
-            "verified": 0,
-            "rejected": {}
-          },
-          {
-            "feed_url": "https://huggingface.co/blog/feed.xml",
-            "source": "Hugging Face - Blog",
-            "fetched": 20,
-            "eligible": 0,
-            "selected": 0,
-            "verified": 0,
-            "rejected": {
-              "missing_ai_signal": 2,
-              "missing_decision_signal": 5
-            }
-          },
-          {
-            "feed_url": "https://research.google/blog/rss/",
-            "source": "The latest research from Google",
-            "fetched": 20,
-            "eligible": 0,
-            "selected": 0,
-            "verified": 0,
-            "rejected": {
-              "missing_decision_signal": 1
-            }
-          },
-          {
-            "feed_url": "https://www.microsoft.com/en-us/research/feed/",
-            "source": "Microsoft Research",
-            "fetched": 10,
-            "eligible": 1,
-            "selected": 1,
-            "verified": 1,
-            "rejected": {}
-          }
-        ]
-      }
-    },
-    {
       "source": "papers",
       "status": "ok",
-      "item_count": 59,
-      "duration_ms": 8505,
+      "item_count": 71,
+      "duration_ms": 7752,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -949,7 +800,7 @@
         "fourteen_day_count": 75,
         "backfill_count": 0,
         "selected_window_days": 7,
-        "deduplicated_count": 59,
+        "deduplicated_count": 71,
         "displayed_count": 8,
         "request_attempts": 3,
         "retry_count": 0,
@@ -974,10 +825,77 @@
       }
     },
     {
+      "source": "rss",
+      "status": "ok",
+      "item_count": 2,
+      "duration_ms": 8254,
+      "fetch_diagnostics": {
+        "strategy": "round_robin",
+        "feeds_requested": 5,
+        "selected": 2,
+        "feeds": [
+          {
+            "feed_url": "https://openai.com/news/rss.xml",
+            "source": "OpenAI News",
+            "fetched": 20,
+            "eligible": 2,
+            "selected": 2,
+            "verified": 2,
+            "rejected": {
+              "customer_story_or_case_study": 1,
+              "missing_decision_signal": 3,
+              "tutorial_or_onboarding": 1
+            }
+          },
+          {
+            "feed_url": "https://www.anthropic.com/news/rss.xml",
+            "source": "https://www.anthropic.com/news/rss.xml",
+            "fetched": 0,
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {}
+          },
+          {
+            "feed_url": "https://huggingface.co/blog/feed.xml",
+            "source": "Hugging Face - Blog",
+            "fetched": 20,
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {
+              "missing_ai_signal": 3,
+              "missing_decision_signal": 4
+            }
+          },
+          {
+            "feed_url": "https://research.google/blog/rss/",
+            "source": "The latest research from Google",
+            "fetched": 20,
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {
+              "missing_decision_signal": 1
+            }
+          },
+          {
+            "feed_url": "https://www.microsoft.com/en-us/research/feed/",
+            "source": "Microsoft Research",
+            "fetched": 10,
+            "eligible": 0,
+            "selected": 0,
+            "verified": 0,
+            "rejected": {}
+          }
+        ]
+      }
+    },
+    {
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 63737,
+      "duration_ms": 46768,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1008,13 +926,13 @@
           {
             "query": "reasoning language:python stars:>30",
             "fetched": 8,
-            "added": 6,
+            "added": 7,
             "failed": false
           },
           {
             "query": "memory llm language:python stars:>20",
             "fetched": 8,
-            "added": 5,
+            "added": 7,
             "failed": false
           },
           {
@@ -1024,25 +942,25 @@
             "failed": false
           },
           {
-            "query": "(\"persistent memory\" OR \"personal memory\") (chatbot OR agent OR llm) language:python stars:>10",
+            "query": "(\"context engineering\" OR \"prompt caching\" OR \"context window\") (agent OR llm) language:python stars:>25",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"knowledge memory\" OR \"working memory\") (llm OR agent) language:python stars:>10",
+            "query": "(\"graph memory\" OR \"knowledge graph memory\" OR \"memory graph\") language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"memory layer\" OR \"memory system\") (agent OR llm) language:python stars:>15",
+            "query": "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"agent memory\" OR \"long-term memory\" OR episodic memory) (llm OR agent) language:python stars:>20",
+            "query": "(\"reasoning model\" OR \"reasoning LLM\" OR \"test-time reasoning\") language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
@@ -1065,9 +983,9 @@
           },
           {
             "repo": "anthropics/anthropic-cookbook",
-            "added": 1,
+            "added": 0,
             "failed": false,
-            "skipped_old": false,
+            "skipped_old": true,
             "kind": "evergreen"
           },
           {
@@ -1099,17 +1017,17 @@
             "kind": "evergreen"
           },
           {
-            "repo": "langchain-ai/langgraph",
+            "repo": "crewAIInc/crewAI",
             "added": 0,
             "failed": false,
             "skipped_old": true,
             "kind": "emerging"
           },
           {
-            "repo": "agno-agi/agno",
+            "repo": "cohere-ai/aya",
             "added": 0,
-            "failed": false,
-            "skipped_old": true,
+            "failed": true,
+            "skipped_old": false,
             "kind": "emerging"
           },
           {
@@ -1127,8 +1045,8 @@
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-07-13",
-        "created_cutoff": "2026-05-21",
+        "pushed_cutoff": "2026-07-14",
+        "created_cutoff": "2026-05-22",
         "dynamic_config": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1140,10 +1058,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR episodic memory) (llm OR agent) language:python stars:>20",
-              "(\"memory layer\" OR \"memory system\") (agent OR llm) language:python stars:>15",
-              "(\"knowledge memory\" OR \"working memory\") (llm OR agent) language:python stars:>10",
-              "(\"persistent memory\" OR \"personal memory\") (chatbot OR agent OR llm) language:python stars:>10"
+              "(\"reasoning model\" OR \"reasoning LLM\" OR \"test-time reasoning\") language:python stars:>20",
+              "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
+              "(\"graph memory\" OR \"knowledge graph memory\" OR \"memory graph\") language:python stars:>15",
+              "(\"context engineering\" OR \"prompt caching\" OR \"context window\") (agent OR llm) language:python stars:>25"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1157,8 +1075,8 @@
             "added": [
               "mem0ai/mem0",
               "microsoft/semantic-kernel",
-              "agno-agi/agno",
-              "langchain-ai/langgraph"
+              "cohere-ai/aya",
+              "crewAIInc/crewAI"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1168,7 +1086,7 @@
             ]
           }
         },
-        "total_unique_candidates": 47,
+        "total_unique_candidates": 49,
         "dynamic_refresh": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1180,10 +1098,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR episodic memory) (llm OR agent) language:python stars:>20",
-              "(\"memory layer\" OR \"memory system\") (agent OR llm) language:python stars:>15",
-              "(\"knowledge memory\" OR \"working memory\") (llm OR agent) language:python stars:>10",
-              "(\"persistent memory\" OR \"personal memory\") (chatbot OR agent OR llm) language:python stars:>10"
+              "(\"reasoning model\" OR \"reasoning LLM\" OR \"test-time reasoning\") language:python stars:>20",
+              "(\"long-term memory\" OR \"episodic memory\" OR \"agent memory\") (llm OR agent) language:python stars:>20",
+              "(\"graph memory\" OR \"knowledge graph memory\" OR \"memory graph\") language:python stars:>15",
+              "(\"context engineering\" OR \"prompt caching\" OR \"context window\") (agent OR llm) language:python stars:>25"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1197,8 +1115,8 @@
             "added": [
               "mem0ai/mem0",
               "microsoft/semantic-kernel",
-              "agno-agi/agno",
-              "langchain-ai/langgraph"
+              "cohere-ai/aya",
+              "crewAIInc/crewAI"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1213,8 +1131,8 @@
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 2,
-      "duration_ms": 83164,
+      "item_count": 4,
+      "duration_ms": 100844,
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
@@ -1271,22 +1189,25 @@
       "extraction_diagnostics": {
         "feeds_requested": 16,
         "source_pages_requested": 8,
-        "entries_fetched": 172,
-        "classified": 2,
-        "selected": 2,
-        "llm_classification_attempts": 5,
+        "entries_fetched": 305,
+        "classified": 5,
+        "selected": 4,
+        "llm_classification_attempts": 7,
         "llm_classification_failures": 0,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
         "classification_diagnostics": {
-          "entries_considered": 172,
-          "rejected_duplicate_url": 3,
-          "rejected_missing_or_stale_date": 88,
-          "rejected_non_release": 76,
-          "rejected_by_llm": 3
+          "entries_considered": 305,
+          "rejected_duplicate_url": 6,
+          "rejected_missing_or_stale_date": 79,
+          "rejected_non_release": 213,
+          "rejected_by_llm": 2,
+          "major_model_carried_forward": 3
         },
         "selection_diagnostics": {
-          "rejected_near_duplicate": 0
+          "rejected_near_duplicate": 0,
+          "rejected_superseded_major_model": 1,
+          "major_models_selected": 2
         },
         "dynamic_config": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
