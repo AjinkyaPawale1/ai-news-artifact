@@ -29,6 +29,13 @@ fetch agents
   -> React dashboard reads generated artifact
 ```
 
+The shared deduplicator canonicalizes HTTP(S) URLs, removes tracking-only variants,
+normalizes arXiv and GitHub URL forms, and applies conservative fuzzy-title matching only
+within compatible paper, repository, or release families. When duplicate records point to
+different source URLs, the selected representative retains the others in `related_links`.
+Normalization then validates required fields and HTTP(S) URLs, standardizes dates and
+list fields, and drops records that cannot satisfy the shared `Item` contract.
+
 ## Frontend
 
 - Location: `apps/web`

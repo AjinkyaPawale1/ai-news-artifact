@@ -445,3 +445,38 @@ Impact:
   current sections are never padded with older cards.
 - Publication now requires both model and tool/service sections independently, so a
   missing fallback blocks the new edition instead of publishing an empty release column.
+
+## 2026-07-20 - Use conservative shared deduplication and fail-closed normalization
+Status: accepted
+
+Reason:
+- Tracking parameters and alternate arXiv/GitHub URL forms can make one source item look
+  unique even when it references the same underlying material.
+- Broad title similarity across unrelated source types risks hiding distinct papers,
+  repositories, and releases.
+- Malformed required fields should not reach scoring or artifact mapping.
+
+Impact:
+- Shared deduplication uses canonical URLs plus high-confidence multi-token title
+  similarity within compatible source families and preserves alternate URLs as related links.
+- Shared normalization now standardizes dates and list fields and drops items missing
+  required identifiers, source data, titles, supported source types, or valid HTTP(S) URLs.
+- Pull requests and feature branches validate the pipeline and dashboard through a
+  dedicated CI workflow before merge.
+
+## 2026-07-20 - Carry major official model launches for 28 days
+Status: accepted
+
+Reason:
+- A seven-day-only window and release-verb requirement rejected OpenAI's official July 9
+  GPT-5.6 launch headline even though it was a major, broadly applicable model family.
+- Ordinary product updates should remain weekly, but major model launches need a longer
+  review horizon so one missed run does not remove them from the current brief.
+
+Impact:
+- Official-provider headlines with a recognized versioned model family plus a concrete
+  flagship/frontier, availability, or launch signal can remain eligible for 28 days.
+- Ordinary model and tool/service candidates remain subject to the seven-day window.
+- Major models rank ahead of ordinary model noise, and a later family launch supersedes
+  an older preview. Diagnostics record carried and selected major models.
+- The complete deterministic source check selects GPT-5.6 from OpenAI's July 9 RSS entry.

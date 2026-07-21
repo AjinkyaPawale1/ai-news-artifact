@@ -1,7 +1,28 @@
 # Handoff Notes
 
-Last updated: 2026-07-17
+Last updated: 2026-07-20
 Owner: AI agent (Codex)
+
+## 2026-07-20 Update
+- Fast-forwarded local `main` to `origin/main` and created
+  `feature/dedup-normalization-ci`.
+- Reviewed two unmerged Copilot RSS-test branches; current `main` already has a stronger
+  dynamic-date fix, so neither patch was applied.
+- Added canonical URL and conservative fuzzy-title deduplication. Duplicate source URLs
+  are retained as related links, and source-specific model/tool records remain preferred
+  over generic RSS copies.
+- Strengthened shared normalization for required fields, HTTP(S) URLs, UTC dates,
+  whitespace, authors, tags, metadata, and related-link validation.
+- Added feature-branch and pull-request CI for Python tests, Ruff, compile checks, and the
+  Vite production build.
+- Verified 81 tests, Ruff, Python compilation, production build, and live pipeline/source runs.
+  The live run exposed an existing rejected `GITHUB_TOKEN`/health-semantics issue; its
+  generated artifact churn was discarded after validation.
+- Added the approved hybrid release policy: ordinary model/tool items stay within seven
+  days, while high-impact versioned model launches from official providers can remain for
+  28 days. Major launches rank ahead of ordinary model noise and supersede older previews.
+- Verified the complete configured source set deterministically: GPT-5.6 was selected as
+  the July 9 OpenAI major model release, alongside current seven-day tool/service items.
 
 ## 2026-07-17 Update
 - Implemented deterministic public-quality controls for RSS: editorial rejection,
@@ -186,8 +207,9 @@ Known risk:
 - Remote branch currently published: `main`.
 
 ## Next Recommended Actions
-1. Day 2: Improve dedup.py with fuzzy title matching and related_links.
-2. Day 2: Strengthen normalize.py validation and score.py relevance scoring.
+1. Fix GitHub credential handling and mark the top-level GitHub source unhealthy when all
+   searches and watched-repository enrichments fail.
+2. Design improved relevance scoring dimensions and weights before changing rankings.
 3. Add cross-source repo mention extraction so RSS/arXiv GitHub links influence traction scoring.
 4. Day 3: Implement stronger quality gate and final dashboard section mapping.
 5. Add screenshots to README when the dashboard UI stabilizes.

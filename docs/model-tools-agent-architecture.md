@@ -269,7 +269,8 @@ RSS handling:
 
 - Parsed with `feedparser`
 - Reads `published_parsed` or `updated_parsed` when present
-- Drops feed entries older than `window_start()` when a structured date exists
+- Drops ordinary feed entries older than `window_start()` when a structured date exists;
+  official high-impact model launches may use the bounded major-model window
 - Normalizes entry content via HTML stripping and whitespace collapse
 
 Source-page handling:
@@ -317,15 +318,20 @@ Structured date resolution order:
 
 Rules:
 
-- If the agent resolves a publish date and it is older than `window_start()`, the candidate is dropped.
-- If the agent cannot resolve a recent publish date at all, the candidate is dropped.
+- If the agent resolves a publish date and it is older than `window_start()`, an ordinary
+  candidate is dropped. A versioned official-provider model launch can remain eligible for
+  up to `MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS` when its headline signals flagship/frontier
+  importance, broad availability, or another concrete launch signal.
+- If the agent cannot resolve a publish date inside either applicable window, the candidate is dropped.
 - This intentionally favors fewer correct weekly cards over more noisy cards with `Unknown` or stale dates.
 
-Current weekly window control:
+Current window controls:
 
 | Parameter | Default | Env var | Meaning |
 | --- | ---: | --- | --- |
 | `DATE_WINDOW_DAYS` | `7` | `DATE_WINDOW_DAYS` | publish-date lower bound for eligible model/tool cards |
+| `MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS` | `28` | `MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS` | bounded carry-forward for high-impact official model launches |
+| `MODEL_TOOL_FEED_SCAN_LIMIT` | `64` | `MODEL_TOOL_FEED_SCAN_LIMIT` | maximum entries inspected per feed so the extended window is covered |
 
 ## Node 2: `classify_entries`
 
@@ -408,15 +414,16 @@ Purpose: keep only the most useful weekly cards per category.
 Selection rules:
 
 1. Split classified entries into `model` and `tool_service`.
-2. Sort each group by:
-   - resolved `published_date` descending
-   - `release_score` descending
+2. Sort model releases by major-release status, impact score, resolved date, then release
+   score. Tool/service releases remain ordered by resolved date and release score.
 3. Deduplicate by normalized release name.
 4. Collapse same-organization, same-kind, same-day near-duplicate product names while
    preserving distinct version announcements.
-5. Keep up to `MODEL_TOOL_MAX_ITEMS` per category.
+5. Collapse an older preview when a later launch exists for the same major model family.
+6. Keep up to `MODEL_TOOL_MAX_ITEMS` per category.
 
-This means recency is the primary weekly ranking signal once the item is trusted enough to classify.
+This keeps recency primary for ordinary weekly updates while preventing a widely applicable
+frontier model launch from disappearing before readers have had a reasonable review window.
 
 Control:
 
@@ -572,9 +579,14 @@ Current diagnostic shape:
     "llm_classification_failures": int,
     "llm_classification_disabled": bool,
     "llm_classification_skip_reason": str,
-    "classification_diagnostics": {...},
+    "classification_diagnostics": {
+        "major_model_carried_forward": int,
+        ...,
+    },
     "selection_diagnostics": {
+        "major_models_selected": int,
         "rejected_near_duplicate": int,
+        "rejected_superseded_major_model": int,
     },
     "dynamic_config": {...},
 }

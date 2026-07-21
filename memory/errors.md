@@ -1,6 +1,6 @@
 # Error Log
 
-Last updated: 2026-06-04
+Last updated: 2026-07-20
 
 Use this file for repeated failures, failed approaches, and final working fixes.
 Before proposing a solution for a similar issue later, check this file.
@@ -117,3 +117,22 @@ Notes for next time:
   enrichment as complete.
 - Improve top-level GitHub health semantics so partial watched-repository failures can
   block publication when full enrichment is required.
+
+### 2026-07-20 - Rejected GitHub token does not fail top-level source health
+Status: unresolved
+
+What failed:
+- A live validation run received HTTP 401 for every GitHub search and watched-repository
+  request, but the fetch agent returned an empty list without raising.
+- The supervisor recorded the top-level GitHub source as `ok`, and the publication gate
+  accepted the run by reusing a prior repository section.
+
+What worked:
+- Unit, lint, compile, build, and the remaining live pipeline lanes completed.
+- Generated JSON churn from the credential-failed diagnostic run was discarded rather
+  than retained as a candidate weekly artifact.
+
+Notes for next time:
+- Replace or remove the rejected local `GITHUB_TOKEN` before live refreshes.
+- Make all-search/all-watch failure produce an unhealthy top-level GitHub entry, then add
+  publication-gate regression coverage before relying on fallback content.

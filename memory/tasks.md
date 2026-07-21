@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-06-08
+Last updated: 2026-07-20
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -76,10 +76,12 @@ Last updated: 2026-06-08
 - [x] Cap agent-memory repository concentration and tighten model/tool release signals.
 - [x] Reuse a four-week validated section only when a current dashboard section is empty,
       with visible provenance and original dates.
+- [x] Implement canonical URL and conservative fuzzy-title deduplication with related links.
+- [x] Strengthen shared item normalization and validation.
+- [x] Add CI validation for pull requests and feature branches.
+- [x] Add a 28-day high-impact model carry-forward policy with GPT-5.6 regression coverage.
 
 ## Todo
-- [ ] Day 2: Implement fuzzy deduplication and related links.
-- [ ] Day 2: Improve normalization validation.
 - [ ] Day 2: Improve scoring dimensions and weights.
 - [ ] Day 3: Extend the quality gate to papers, repos, and model/tool cards without
       relying on the legacy generic score floor.
