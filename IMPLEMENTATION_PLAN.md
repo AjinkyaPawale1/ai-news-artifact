@@ -1,6 +1,6 @@
 # LLM News Artifact - Implementation Plan
 
-**Updated:** 2026-07-17
+**Updated:** 2026-07-20
 **Repository shape:** Monorepo Lite
 **Goal:** Maintain a neutral `AI Intelligence Brief` dashboard backed by a Python artifact
 pipeline that keeps enterprise users current on credible, actionable AI developments.
@@ -79,18 +79,28 @@ Snapshot stats describe the generated artifact directly:
 
 ### 2. Cross-Source Linking And Deduplication
 
-- Improve fuzzy deduplication across RSS, GitHub, and papers.
-- Add `related_links` when independent sources reference the same repo, paper, release, or provider announcement.
+- Canonical URL and conservative fuzzy-title deduplication now covers compatible paper,
+  repository, and release families without merging short generic titles.
+- Duplicate source URLs are retained in `related_links`, and shared normalization removes
+  invalid, primary-URL, and repeated related links.
 - Extract explicit GitHub/code links from paper metadata or paper pages so `has_code` is link-backed.
 
 ### 3. Source Coverage And Quality
 
+- Major versioned model launches from official providers use a conservative 28-day
+  carry-forward window when their headlines signal flagship/frontier importance or broad
+  availability. Ordinary model and tool/service updates remain on the seven-day window.
+- Major model families are ranked ahead of lower-impact release noise, and a later launch
+  supersedes an earlier preview for the same family.
 - Review `data/model_tools_dynamic_config.json` after weekly runs and tune candidate feeds only when low-yield patterns repeat.
 - Add provider-specific source-page extraction when official vendor pages produce sparse or generic text.
-- Preserve recent-date requirements for model/tool cards unless a stronger filtering strategy replaces them.
+- Preserve the seven-day default and the explicit 28-day major-model exception; do not
+  widen either window without a source-quality and ranking review.
 
 ### 4. Automation
 
+- Pull requests and feature-branch pushes run Python tests, Ruff, compile checks, and the
+  Vite production build through `.github/workflows/ci.yml`.
 - Keep the existing GitHub Pages workflow publishing the static dashboard from `main`.
 - Maintain the Monday refresh gate: a new edition must have healthy required sources,
   non-empty dashboard sections, and valid four-week fallback provenance when reuse occurs.

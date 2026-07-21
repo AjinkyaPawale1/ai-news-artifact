@@ -471,6 +471,76 @@ class ModelToolsClassificationTests(unittest.TestCase):
 
         self.assertEqual(release["kind"], "model")
 
+    def test_classifier_accepts_versioned_frontier_model_without_release_verb(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "OpenAI",
+                "title": "GPT-5.6: Frontier intelligence that scales with your ambition",
+                "content": "More intelligence from every token and stronger performance per dollar.",
+                "url": "https://openai.com/index/gpt-5-6",
+            },
+            model_terms=["model", "gpt"],
+            tool_terms=["api", "platform"],
+        )
+
+        self.assertEqual(release["kind"], "model")
+        self.assertTrue(release["major_release"])
+        self.assertEqual(release["major_model_family"], "gpt56")
+        self.assertGreaterEqual(release["impact_score"], 80)
+
+    def test_major_model_name_ignores_surrounding_source_page_copy(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "Anthropic",
+                "title": (
+                    "Product Jun 30, 2026 Introducing Claude Sonnet 5 "
+                    "Sonnet 5 delivers frontier performance across coding and agents."
+                ),
+                "content": "Claude Sonnet 5 is a frontier model for professional and enterprise users.",
+                "url": "https://www.anthropic.com/news/claude-sonnet-5",
+                "source_page": True,
+            },
+            model_terms=["model", "claude", "sonnet"],
+            tool_terms=["agent"],
+        )
+
+        self.assertEqual(release["name"], "Claude Sonnet 5")
+        self.assertTrue(release["major_release"])
+
+    @patch.dict("os.environ", {"OPENAI_API_KEY": ""})
+    def test_classifier_carries_major_models_but_not_ordinary_tools_for_28_days(self) -> None:
+        state = {
+            "entries": [
+                {
+                    "source": "OpenAI",
+                    "title": "GPT-5.6: Frontier intelligence that scales with your ambition",
+                    "content": "More intelligence from every token and stronger performance per dollar.",
+                    "url": "https://openai.com/index/gpt-5-6",
+                    "published_date": "2026-07-09T10:00:00+00:00",
+                },
+                {
+                    "source": "Google",
+                    "title": "Introducing Example Agent Platform 2",
+                    "content": "A new developer API and agent platform is available.",
+                    "url": "https://example.com/agent-platform-2",
+                    "published_date": "2026-07-09T10:00:00+00:00",
+                },
+            ],
+            "model_terms": [],
+            "tool_terms": [],
+        }
+
+        with patch.object(
+            model_tools_graph,
+            "window_start",
+            return_value=datetime(2026, 7, 13, tzinfo=timezone.utc),
+        ):
+            classified = model_tools_graph._classify_entries(state)
+
+        self.assertEqual([entry["name"] for entry in classified["classified"]], ["GPT-5.6"])
+        self.assertEqual(classified["classification_diagnostics"]["major_model_carried_forward"], 1)
+        self.assertEqual(classified["classification_diagnostics"]["rejected_missing_or_stale_date"], 1)
+
     def test_classifier_rejects_consumer_or_education_announcements(self) -> None:
         release = model_tools_graph._classify_entry(
             {
@@ -564,6 +634,51 @@ class ModelToolsClassificationTests(unittest.TestCase):
             "Codex 2.0",
         ])
         self.assertEqual(selected["selection_diagnostics"]["rejected_near_duplicate"], 1)
+
+    def test_selection_prioritizes_major_model_and_supersedes_its_preview(self) -> None:
+        state = {
+            "classified": [
+                {
+                    "kind": "model",
+                    "name": "Previewing GPT-5.6 Sol",
+                    "org": "OpenAI",
+                    "published_date": "2026-06-26T10:00:00+00:00",
+                    "release_score": 20,
+                    "major_release": True,
+                    "major_model_family": "gpt56",
+                    "impact_score": 55,
+                },
+                {
+                    "kind": "model",
+                    "name": "GPT-5.6",
+                    "org": "OpenAI",
+                    "published_date": "2026-07-09T10:00:00+00:00",
+                    "release_score": 12,
+                    "major_release": True,
+                    "major_model_family": "gpt56",
+                    "impact_score": 80,
+                },
+                {
+                    "kind": "model",
+                    "name": "Current specialist model",
+                    "org": "Example",
+                    "published_date": "2026-07-16T10:00:00+00:00",
+                    "release_score": 30,
+                    "major_release": False,
+                    "major_model_family": "",
+                    "impact_score": 0,
+                },
+            ]
+        }
+
+        selected = model_tools_graph._select_entries(state)
+
+        self.assertEqual(
+            [entry["name"] for entry in selected["selected"]],
+            ["GPT-5.6", "Current specialist model"],
+        )
+        self.assertEqual(selected["selection_diagnostics"]["major_models_selected"], 1)
+        self.assertEqual(selected["selection_diagnostics"]["rejected_superseded_major_model"], 1)
 
 
 if __name__ == "__main__":

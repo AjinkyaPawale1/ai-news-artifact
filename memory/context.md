@@ -1,6 +1,6 @@
 # Repository Context
 
-Last updated: 2026-06-08
+Last updated: 2026-07-20
 
 ## Purpose
 A single-page dashboard UI for a weekly enterprise AI intelligence brief focused on credible, actionable signals.
@@ -69,6 +69,13 @@ broader credibility, actionability, and personalization scoring is implemented.
 - Architecture details live in `docs/architecture.md`.
 - Agent operating guidance now lives in `AGENTS.md`.
 - Repository memory includes `memory/errors.md` for repeated failures and troubleshooting lessons.
+- Shared deduplication canonicalizes URL variants and uses conservative fuzzy-title
+  matching within compatible source families; duplicate source URLs are retained in
+  `Item.related_links`.
+- Shared normalization validates required fields and HTTP(S) URLs, normalizes dates and
+  list fields, and omits invalid records before scoring.
+- `.github/workflows/ci.yml` validates pull requests and feature branches with pipeline
+  tests, Ruff, compile checks, and a production dashboard build.
 - `models` and `toolsServices` are generated from classified pipeline items with `source_type` values `model` and `tool_service`.
 - Model/tool release discovery uses protected official core feeds, official source pages for providers without reliable RSS, plus bounded emerging feeds/terms; OpenAI can propose updates when `OPENAI_API_KEY` is present, but static fallbacks remain.
 - Perplexity's official API changelog and the ElevenLabs blog are permanent
@@ -86,6 +93,11 @@ broader credibility, actionability, and personalization scoring is implemented.
   corporate-announcement source pages unless the headline contains a concrete product
   signal. Selection also collapses same-day, same-organization near-duplicate product
   names while preserving distinct versions.
+- High-impact versioned model launches from official providers may remain eligible for 28
+  days when the headline signals flagship/frontier importance, broad availability, or a
+  concrete launch. Ordinary models and tool/service updates retain the seven-day window.
+- Major model selection uses an internal impact signal and collapses older previews when a
+  later launch for the same family is available; this internal logic is not exposed in UI copy.
 - RSS selection rotates across configured official feeds before applying the global cap;
   RSS health diagnostics include per-feed fetched, eligible, and selected counts.
 - arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,

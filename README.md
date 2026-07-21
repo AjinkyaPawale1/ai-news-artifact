@@ -82,6 +82,9 @@ the edition, validates all required source lanes and minimum content, commits ge
 artifacts, and publishes the refreshed dashboard. Failed or incomplete runs stop before
 commit and deployment, preserving the previously published edition.
 
+Pull requests and feature-branch pushes run `.github/workflows/ci.yml`, which installs
+both runtimes, tests, lints, and compiles the Python pipeline, and builds the dashboard.
+
 Local builds use `/` as the Vite base path. Pages builds set `GITHUB_PAGES=true` and use
 `/ai-news-artifact/`.
 
@@ -97,6 +100,8 @@ OPENAI_REPO_BRIEF_LIMIT=5  # caps repo brief/action calls per run
 OPENAI_PAPER_SUMMARY_LIMIT=8  # caps default paper summary calls per run
 OPENAI_PAPER_SUMMARY_MAX_RETRIES=2  # retries transient summary failures twice
 DATE_WINDOW_DAYS=7    # weekly activity window for news and repo freshness
+MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS=28  # carry-forward window for high-impact official model launches
+MODEL_TOOL_FEED_SCAN_LIMIT=64  # entries inspected per model/tool feed
 ARXIV_FALLBACK_WINDOW_DAYS=14  # used only when fewer than 8 recent papers exist
 ARXIV_MAX_RETRIES=2   # retries transient category failures twice
 ARXIV_REQUEST_INTERVAL_SECONDS=3  # respects arXiv request pacing guidance

@@ -8,7 +8,7 @@ import logging
 import os
 import re
 from calendar import monthrange
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from html import unescape
@@ -18,15 +18,17 @@ from urllib.parse import urljoin
 import feedparser
 import requests
 
-from ..config import window_start
+from ..config import DATE_WINDOW_DAYS, window_start
 from ..model_tools_config import (
     MODEL_TOOL_CORE_FEEDS,
     MODEL_TOOL_CORE_MODEL_TERMS,
     MODEL_TOOL_CORE_TOOL_SERVICE_TERMS,
+    MODEL_TOOL_FEED_SCAN_LIMIT,
     MODEL_TOOL_HOSTING_RELEASE_TERMS,
     MODEL_TOOL_LLM_CLASSIFY,
     MODEL_TOOL_LLM_CLASSIFY_LIMIT,
     MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS,
     MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS,
     MODEL_TOOL_RELEASE_TERMS,
     MODEL_TOOL_SOURCE_PAGES,
@@ -51,6 +53,15 @@ MARKDOWN_HEADING_RE = re.compile(r"^\s*\*\*(.+?)\*\*\s*$", flags=re.MULTILINE)
 PRODUCT_VERSION_RE = re.compile(r"\bv?\d+(?:\.\d+)*\b", flags=re.IGNORECASE)
 PRODUCT_AVAILABILITY_RE = re.compile(
     r":\s*(?:now\s+)?(?:available|released|preview|beta)\b",
+    flags=re.IGNORECASE,
+)
+MAJOR_MODEL_FAMILY_RE = re.compile(
+    r"\b(?:gpt|claude|gemini|llama|mistral|mixtral|command|grok|deepseek|qwen|phi|gemma|o[134])"
+    r"(?:[-\s]?[a-z]+){0,2}[-\s]?\d+(?:\.\d+)*\b",
+    flags=re.IGNORECASE,
+)
+MAJOR_MODEL_VARIANT_RE = re.compile(
+    r"^[-\s]+(?:sol|terra|luna|pro|flash|ultra|mini|nano|opus|sonnet|haiku)\b",
     flags=re.IGNORECASE,
 )
 OPENAI_RESPONSES_URL = "https://api.openai.com/v1/responses"
@@ -145,6 +156,36 @@ SOURCE_PAGE_PRODUCT_TERMS = [
     "search",
     "tool",
     "ui",
+]
+MAJOR_MODEL_ORGS = {
+    "Anthropic",
+    "Cohere",
+    "Google",
+    "Meta",
+    "Mistral AI",
+    "OpenAI",
+}
+MAJOR_MODEL_IMPACT_TERMS = [
+    "flagship",
+    "frontier",
+    "generally available",
+    "available to all",
+    "available to everyone",
+    "available in chatgpt",
+    "available via the api",
+    "model family",
+    "next-generation model",
+]
+MAJOR_MODEL_BROAD_REACH_TERMS = [
+    "api",
+    "business",
+    "chatgpt",
+    "consumer",
+    "developers",
+    "enterprise",
+    "production",
+    "public",
+    "users",
 ]
 
 
@@ -534,6 +575,54 @@ def _term_in_text(text: str, term: str) -> bool:
     return re.search(rf"(?<!\w){re.escape(term)}(?!\w)", text) is not None
 
 
+def _major_model_cutoff(standard_cutoff: datetime) -> datetime:
+    extension_days = max(0, MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS - DATE_WINDOW_DAYS)
+    return standard_cutoff - timedelta(days=extension_days)
+
+
+def _major_model_family(title: str) -> str:
+    match = MAJOR_MODEL_FAMILY_RE.search(title or "")
+    if not match:
+        return ""
+    return re.sub(r"[^a-z0-9]+", "", match.group(0).lower())
+
+
+def _major_model_name(title: str) -> str:
+    match = MAJOR_MODEL_FAMILY_RE.search(title or "")
+    if not match:
+        return ""
+    name = match.group(0)
+    variant = MAJOR_MODEL_VARIANT_RE.match(title[match.end() :])
+    if variant and variant.group(0).strip(" -").casefold() not in name.casefold().split():
+        name += variant.group(0)
+    return " ".join(name.split()).strip(" -:|")
+
+
+def _major_model_impact(entry: dict[str, Any], org: str) -> tuple[str, int]:
+    title = entry.get("title", "")
+    text = f"{title} {entry.get('content', '')}".lower()
+    family = _major_model_family(title)
+    if org not in MAJOR_MODEL_ORGS or not family:
+        return "", 0
+
+    title_text = title.lower()
+    impact_hits = _term_count(text, MAJOR_MODEL_IMPACT_TERMS)
+    broad_reach_hits = _term_count(text, MAJOR_MODEL_BROAD_REACH_TERMS)
+    headline_impact = _contains_any(title_text, MAJOR_MODEL_IMPACT_TERMS)
+    headline_release = _contains_any(title_text, [*MODEL_TOOL_RELEASE_TERMS, *TITLE_AVAILABILITY_TERMS])
+    if not headline_impact and not headline_release:
+        return "", 0
+    if not impact_hits and not broad_reach_hits:
+        return "", 0
+
+    score = 60 + min(25, impact_hits * 10) + min(15, broad_reach_hits * 3)
+    if _contains_any(title_text, ["flagship", "frontier"]):
+        score += 10
+    if _contains_any(title_text, ["preview", "previewing"]):
+        score -= 15
+    return family, min(100, score)
+
+
 def _org_from_source(source: str, text: str) -> str:
     known_sources = {
         "OpenAI",
@@ -566,7 +655,7 @@ def _clean_name(title: str) -> str:
         title.strip(),
         flags=re.IGNORECASE,
     )
-    name = re.split(r"\s+[-:|]\s+", name, maxsplit=1)[0].strip()
+    name = re.split(r"\s*(?::|\|)\s+|\s+-\s+", name, maxsplit=1)[0].strip()
     return name or title.strip()
 
 
@@ -647,6 +736,9 @@ def _classify_entry(
     title_tool_score = _term_count(title_text, tool_terms)
     title_has_release_signal = _contains_any(title_text, MODEL_TOOL_RELEASE_TERMS)
     title_has_availability_signal = _contains_any(title_text, TITLE_AVAILABILITY_TERMS)
+    org = _org_from_source(entry["source"], text)
+    major_model_family, impact_score = _major_model_impact(entry, org)
+    major_release = bool(major_model_family)
     if _contains_any(title_text, CONSUMER_HEADLINE_TERMS):
         return None
     if entry.get("source_page") and not _source_page_title_has_product_signal(
@@ -660,7 +752,7 @@ def _classify_entry(
         if not entry.get("source_page") or not title_has_release_signal or not content_has_focus:
             return None
 
-    has_release_signal = title_has_release_signal or title_has_availability_signal
+    has_release_signal = title_has_release_signal or title_has_availability_signal or major_release
     looks_like_non_release_article = any(term in title_text for term in NON_RELEASE_HEADLINE_TERMS)
     if looks_like_non_release_article and not title_has_release_signal:
         return None
@@ -676,17 +768,24 @@ def _classify_entry(
         return None
 
     kind: ReleaseKind = "model" if model_score >= tool_score else "tool_service"
+    if major_release:
+        kind = "model"
     if kind == "model" and _has_hosting_release_signal(title_text):
         kind = "tool_service"
-    org = _org_from_source(entry["source"], text)
+        major_release = False
+        major_model_family = ""
+        impact_score = 0
     return {
         **entry,
         "kind": kind,
-        "name": _clean_name(title),
+        "name": _major_model_name(title) if major_release else _clean_name(title),
         "org": org,
         "note": _note(title, content),
         "tag": _model_tag(text) if kind == "model" else _tool_tag(text),
         "release_score": max(model_score, tool_score),
+        "major_release": major_release,
+        "major_model_family": major_model_family,
+        "impact_score": impact_score,
         "classifier": "deterministic",
     }
 
@@ -810,14 +909,14 @@ def _openai_classify_entry(
 
 
 def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
-    cutoff = window_start()
+    cutoff = _major_model_cutoff(window_start())
     entries: list[dict[str, Any]] = []
     for feed_url in state.get("feeds", MODEL_TOOL_CORE_FEEDS):
         LOGGER.info("Fetching model/tool feed %s", feed_url)
         feed = feedparser.parse(feed_url)
         feed_title = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
         source = _source_name(feed_url) or feed_title
-        for entry in feed.entries[:MODEL_TOOL_MAX_ITEMS * 3]:
+        for entry in feed.entries[:MODEL_TOOL_FEED_SCAN_LIMIT]:
             published_dt = _entry_datetime(entry)
             if published_dt and published_dt < cutoff:
                 continue
@@ -858,12 +957,14 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
         "rejected_missing_or_stale_date": 0,
         "rejected_non_release": 0,
         "rejected_by_llm": 0,
+        "major_model_carried_forward": 0,
     }
     model_terms = MODEL_TOOL_CORE_MODEL_TERMS + state.get("model_terms", [])
     tool_terms = MODEL_TOOL_CORE_TOOL_SERVICE_TERMS + state.get("tool_terms", [])
     llm_error_code = (state.get("dynamic_config") or {}).get("llm_error_code")
     llm_available = llm_error_code not in {"insufficient_quota", "invalid_api_key", "missing_api_key"}
-    cutoff = window_start()
+    standard_cutoff = window_start()
+    oldest_cutoff = _major_model_cutoff(standard_cutoff)
     for entry in state.get("entries", []):
         diagnostics["entries_considered"] += 1
         url = entry["url"]
@@ -871,7 +972,7 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
             diagnostics["rejected_duplicate_url"] += 1
             continue
         seen.add(url)
-        entry = _resolve_entry_date(entry, cutoff)
+        entry = _resolve_entry_date(entry, oldest_cutoff)
         if not entry:
             diagnostics["rejected_missing_or_stale_date"] += 1
             continue
@@ -889,6 +990,12 @@ def _classify_entries(state: ModelToolsState) -> ModelToolsState:
         if not release:
             diagnostics["rejected_non_release"] += 1
             continue
+        published = _parse_datetime_value(release.get("published_date", ""))
+        if published and published < standard_cutoff:
+            if not release.get("major_release"):
+                diagnostics["rejected_missing_or_stale_date"] += 1
+                continue
+            diagnostics["major_model_carried_forward"] += 1
         if release:
             release = _openai_classify_entry(entry, release, llm_available=llm_available)
         if not release:
@@ -928,19 +1035,30 @@ def _is_near_duplicate_release(entry: dict[str, Any], existing: dict[str, Any]) 
 
 def _select_entries(state: ModelToolsState) -> ModelToolsState:
     selected: list[dict[str, Any]] = []
-    diagnostics = {"rejected_near_duplicate": 0}
+    diagnostics = {
+        "rejected_near_duplicate": 0,
+        "rejected_superseded_major_model": 0,
+        "major_models_selected": 0,
+    }
     for kind in ("model", "tool_service"):
         entries = [entry for entry in state.get("classified", []) if entry.get("kind") == kind]
         entries.sort(
             key=lambda entry: (
+                bool(entry.get("major_release")),
+                entry.get("impact_score", 0),
                 _parse_datetime_value(entry.get("published_date", "")) or datetime.min.replace(tzinfo=timezone.utc),
                 entry.get("release_score", 0),
             ),
             reverse=True,
         )
         seen_names: set[str] = set()
+        seen_major_families: set[str] = set()
         for entry in entries:
             key = _normalized_release_name(entry.get("name", ""))
+            major_family = entry.get("major_model_family", "") if kind == "model" else ""
+            if major_family and major_family in seen_major_families:
+                diagnostics["rejected_superseded_major_model"] += 1
+                continue
             if key and key in seen_names:
                 diagnostics["rejected_near_duplicate"] += 1
                 continue
@@ -949,6 +1067,9 @@ def _select_entries(state: ModelToolsState) -> ModelToolsState:
                 continue
             if key:
                 seen_names.add(key)
+            if major_family:
+                seen_major_families.add(major_family)
+                diagnostics["major_models_selected"] += 1
             selected.append(entry)
             if len([item for item in selected if item.get("kind") == kind]) >= MODEL_TOOL_MAX_ITEMS:
                 break
@@ -984,6 +1105,9 @@ def _entry_to_item(entry: dict[str, Any]) -> Item:
             "release_score": entry.get("release_score", 0),
             "classifier": entry.get("classifier", "deterministic"),
             "llm_confidence": entry.get("llm_confidence"),
+            "major_release": bool(entry.get("major_release")),
+            "major_model_family": entry.get("major_model_family", ""),
+            "impact_score": entry.get("impact_score", 0),
         },
     )
 
