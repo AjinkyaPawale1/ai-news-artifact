@@ -88,7 +88,7 @@ def _strip_html(value: str) -> str:
 def _entry_date(entry) -> str:
     parsed = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
     if parsed:
-        return datetime(*parsed[:6], tzinfo=timezone.utc).isoformat()
+        return datetime(*parsed[:6], tzinfo=window_start().tzinfo or timezone.utc).isoformat()
     return getattr(entry, "published", "") or getattr(entry, "updated", "") or ""
 
 

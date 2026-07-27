@@ -414,7 +414,7 @@ def _month_end_date(label: str) -> str:
     except ValueError:
         return ""
     last_day = monthrange(month.year, month.month)[1]
-    resolved = month.replace(day=last_day)
+    resolved = month.replace(day=last_day, tzinfo=timezone.utc)
     now = datetime.now(timezone.utc)
     if (month.year, month.month) >= (now.year, now.month):
         return ""
@@ -473,9 +473,9 @@ def _article_metadata(url: str, title: str) -> dict[str, str]:
         lower = paragraph.lower()
         if any(term in lower for term in generic_terms):
             continue
-        if (title_terms and any(term in lower for term in title_terms[:5])) or (
-            not title_terms and any(term in lower for term in signal_terms)
-        ):
+        matches_title_terms = bool(title_terms) and any(term in lower for term in title_terms[:5])
+        matches_signal_terms = (not title_terms) and any(term in lower for term in signal_terms)
+        if matches_title_terms or matches_signal_terms:
             focused.append(paragraph)
     parts = [*focused[:4], *parser.meta_descriptions[:1]]
     published_date = _published_date_from_html(response.text[:500000], response.headers) or _date_from_url(url)
