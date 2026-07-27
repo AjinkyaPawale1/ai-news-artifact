@@ -10,8 +10,8 @@ import re
 from calendar import monthrange
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
-from html.parser import HTMLParser
 from html import unescape
+from html.parser import HTMLParser
 from typing import Any, Literal, TypedDict
 from urllib.parse import urljoin
 
@@ -27,8 +27,8 @@ from ..model_tools_config import (
     MODEL_TOOL_HOSTING_RELEASE_TERMS,
     MODEL_TOOL_LLM_CLASSIFY,
     MODEL_TOOL_LLM_CLASSIFY_LIMIT,
-    MODEL_TOOL_MAX_ITEMS,
     MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS,
+    MODEL_TOOL_MAX_ITEMS,
     MODEL_TOOL_MODEL_UPDATE_ONLY_TERMS,
     MODEL_TOOL_RELEASE_TERMS,
     MODEL_TOOL_SOURCE_PAGES,
@@ -410,7 +410,7 @@ def _markdown_text(value: str) -> str:
 
 def _month_end_date(label: str) -> str:
     try:
-        month = datetime.strptime(label.strip(), "%B %Y")
+        month = datetime.strptime(label.strip(), "%B %Y").replace(tzinfo=timezone.utc)
     except ValueError:
         return ""
     last_day = monthrange(month.year, month.month)[1]
@@ -473,9 +473,9 @@ def _article_metadata(url: str, title: str) -> dict[str, str]:
         lower = paragraph.lower()
         if any(term in lower for term in generic_terms):
             continue
-        if title_terms and any(term in lower for term in title_terms[:5]):
-            focused.append(paragraph)
-        elif not title_terms and any(term in lower for term in signal_terms):
+        matches_title_terms = bool(title_terms) and any(term in lower for term in title_terms[:5])
+        matches_signal_terms = (not title_terms) and any(term in lower for term in signal_terms)
+        if matches_title_terms or matches_signal_terms:
             focused.append(paragraph)
     parts = [*focused[:4], *parser.meta_descriptions[:1]]
     published_date = _published_date_from_html(response.text[:500000], response.headers) or _date_from_url(url)
@@ -809,7 +809,7 @@ def _openai_classify_entry(
     *,
     llm_available: bool,
 ) -> dict[str, Any] | None:
-    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN  # noqa: PLW0603
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN
     api_key = os.getenv("OPENAI_API_KEY")
     if (
         not api_key
@@ -1148,7 +1148,7 @@ def get_last_diagnostics() -> dict[str, Any] | None:
 
 def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
     """Fetch and classify model releases plus AI tools/services from RSS-style feeds."""
-    global _LAST_DIAGNOSTICS  # noqa: PLW0603
+    global _LAST_DIAGNOSTICS
     resolved = (
         {
             "feeds": feeds,
@@ -1193,7 +1193,7 @@ def fetch_model_tools_with_graph(feeds: list[str] | None = None) -> list[Item]:
 
 def fetch_model_tools() -> list[Item]:
     """Fetch dashboard-ready model releases and AI tool/service announcements."""
-    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN  # noqa: PLW0603
+    global _OPENAI_CLASSIFY_ATTEMPTS, _OPENAI_CLASSIFY_FAILURES, _OPENAI_CLASSIFY_DISABLED_FOR_RUN
     _OPENAI_CLASSIFY_ATTEMPTS = 0
     _OPENAI_CLASSIFY_FAILURES = 0
     _OPENAI_CLASSIFY_DISABLED_FOR_RUN = False

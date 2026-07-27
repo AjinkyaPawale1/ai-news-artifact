@@ -5,17 +5,19 @@ from datetime import datetime, timedelta, timezone
 from unittest.mock import Mock, patch
 
 import requests
-
+from news_pipeline.agents import paper_graph
 from news_pipeline.agents.fetch_papers import fetch_papers, update_last_diagnostics
 from news_pipeline.agents.paper_graph import enrich_paper_item
-from news_pipeline.agents import paper_graph
 from news_pipeline.paper_summarize import (
     enrich_paper_action_items,
     enrich_paper_summaries,
     get_last_action_diagnostics,
     get_last_summary_diagnostics,
 )
-from news_pipeline.push_to_artifact import build_dashboard_payload, update_papers_in_payload
+from news_pipeline.push_to_artifact import (
+    build_dashboard_payload,
+    update_papers_in_payload,
+)
 from news_pipeline.schema import Item
 from news_pipeline.score import attach_action_scores
 

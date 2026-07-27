@@ -50,8 +50,7 @@ def canonicalize_url(value: str) -> str:
         return raw.lower()
 
     host = (parsed.hostname or "").lower()
-    if host.startswith("www."):
-        host = host[4:]
+    host = host.removeprefix("www.")
     try:
         port = parsed.port
     except ValueError:

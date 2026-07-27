@@ -5,7 +5,11 @@ from __future__ import annotations
 import unittest
 from unittest.mock import patch
 
-from news_pipeline.agents.github_graph import _best_for_label, _fallback_repo_actions, _repo_to_item
+from news_pipeline.agents.github_graph import (
+    _best_for_label,
+    _fallback_repo_actions,
+    _repo_to_item,
+)
 
 
 class GitHubClassificationTests(unittest.TestCase):

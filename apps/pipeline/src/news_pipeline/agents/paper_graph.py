@@ -21,8 +21,7 @@ from ..config import (
     window_start,
 )
 from ..retry import retry_with_exponential_backoff
-from ..schema import Item
-from ..schema import utc_now_iso
+from ..schema import Item, utc_now_iso
 
 LOGGER = logging.getLogger(__name__)
 ARXIV_API_URL = "https://export.arxiv.org/api/query"
@@ -427,7 +426,7 @@ def _has_code(text: str, item: Item) -> bool:
 
 
 def _paper_signal_id(item: Item, capability: str, domain: str) -> str:
-    seed = "|".join([item.id, item.title, capability, domain])
+    seed = f"{item.id}|{item.title}|{capability}|{domain}"
     return hashlib.sha1(seed.encode("utf-8")).hexdigest()[:12]
 
 

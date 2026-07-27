@@ -258,7 +258,7 @@ def _fallback_repo_actions(repo: dict[str, Any], best_for: str | None = None) ->
 
 
 def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
-    global _OPENAI_ATTEMPTS, _OPENAI_DISABLED_FOR_RUN  # noqa: PLW0603 - run-level API backoff state
+    global _OPENAI_ATTEMPTS, _OPENAI_DISABLED_FOR_RUN
 
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key or _OPENAI_DISABLED_FOR_RUN or _OPENAI_ATTEMPTS >= OPENAI_REPO_BRIEF_LIMIT:
