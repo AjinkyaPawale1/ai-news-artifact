@@ -473,7 +473,9 @@ def _article_metadata(url: str, title: str) -> dict[str, str]:
         lower = paragraph.lower()
         if any(term in lower for term in generic_terms):
             continue
-        if title_terms and any(term in lower for term in title_terms[:5]) or not title_terms and any(term in lower for term in signal_terms):
+        if (title_terms and any(term in lower for term in title_terms[:5])) or (
+            not title_terms and any(term in lower for term in signal_terms)
+        ):
             focused.append(paragraph)
     parts = [*focused[:4], *parser.meta_descriptions[:1]]
     published_date = _published_date_from_html(response.text[:500000], response.headers) or _date_from_url(url)
