@@ -446,6 +446,33 @@ Impact:
 - Publication now requires both model and tool/service sections independently, so a
   missing fallback blocks the new edition instead of publishing an empty release column.
 
+## 2026-07-18 - Track Kimi as a major model family and harden non-release filtering
+Status: accepted
+
+Reason:
+- Provider blog indexes can change independently of a release announcement page.
+- Moonshot AI's Kimi K-series was not recognized as a major model family, so K3 could not
+  qualify for the official-provider carry-forward path.
+- Leaderboard posts, bug bounties, playbooks, and consumer feature articles were entering
+  the Model Releases lane.
+
+Impact:
+- Kimi's official K3 announcement is tracked directly in addition to its blog index.
+- `Moonshot AI` joins `MAJOR_MODEL_ORGS` and `kimi` joins `MAJOR_MODEL_FAMILY_RE`, so
+  K-series launches use the existing 28-day major-model window rather than a second,
+  competing retention mechanism.
+- `NON_RELEASE_HEADLINE_TERMS` rejects playbooks, bounties, and retrospectives.
+- `LinkParser` prefers `aria-label`/`title` text and collapses duplicated link labels.
+- `_clean_name` strips trailing "is now available" and "tech blog" fragments.
+- Repo fallback actions now define concrete setup, evaluation, and ownership/rollback
+  checks instead of generic adoption steps.
+
+Superseded:
+- An earlier draft of this work used a flat 10-day `MODEL_TOOL_RELEASE_WINDOW_DAYS`
+  window for all model/tool items. It was dropped in favor of the 28-day impact-gated
+  major-model window already on `main`, which covers the same mid-week refresh case
+  without widening retention for ordinary items.
+
 ## 2026-07-20 - Use conservative shared deduplication and fail-closed normalization
 Status: accepted
 

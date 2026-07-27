@@ -55,8 +55,16 @@ PRODUCT_AVAILABILITY_RE = re.compile(
     r":\s*(?:now\s+)?(?:available|released|preview|beta)\b",
     flags=re.IGNORECASE,
 )
+# A recognized model-family version name is itself a release signal, so an official
+# announcement titled only "Kimi K3" is not rejected for lacking a launch verb.
+MODEL_VERSION_RE = re.compile(
+    r"\b(?:gpt|kimi[ -]?k|claude(?:[ -]?(?:sonnet|opus|haiku|fable))?"
+    r"|gemini(?:[ -]?(?:flash|pro|ultra|nano))?|llama|mistral|mixtral|command|grok"
+    r"|deepseek|qwen|phi|gemma|sora|voxtral|whisper|veo|imagen)[ -]?v?\d+(?:\.\d+)*\b",
+    flags=re.IGNORECASE,
+)
 MAJOR_MODEL_FAMILY_RE = re.compile(
-    r"\b(?:gpt|claude|gemini|llama|mistral|mixtral|command|grok|deepseek|qwen|phi|gemma|o[134])"
+    r"\b(?:gpt|claude|gemini|kimi|llama|mistral|mixtral|command|grok|deepseek|qwen|phi|gemma|o[134])"
     r"(?:[-\s]?[a-z]+){0,2}[-\s]?\d+(?:\.\d+)*\b",
     flags=re.IGNORECASE,
 )
@@ -102,6 +110,8 @@ ORG_HINTS = {
     "github": "GitHub",
     "perplexity": "Perplexity",
     "elevenlabs": "ElevenLabs",
+    "kimi": "Moonshot AI",
+    "moonshot": "Moonshot AI",
 }
 NON_RELEASE_HEADLINE_TERMS = [
     "how ",
@@ -110,6 +120,9 @@ NON_RELEASE_HEADLINE_TERMS = [
     "tutorial",
     "case study",
     "customer story",
+    "playbook",
+    "bounty",
+    "reflect on",
     "best practices",
     "accelerate ",
     "enable ",
@@ -163,6 +176,7 @@ MAJOR_MODEL_ORGS = {
     "Google",
     "Meta",
     "Mistral AI",
+    "Moonshot AI",
     "OpenAI",
 }
 MAJOR_MODEL_IMPACT_TERMS = [
@@ -200,6 +214,7 @@ class LinkParser(HTMLParser):
         self.title = ""
         self._href = ""
         self._text: list[str] = []
+        self._link_label = ""
         self._in_title = False
         self._in_paragraph = False
         self._paragraph_text: list[str] = []
@@ -219,6 +234,7 @@ class LinkParser(HTMLParser):
         if tag == "a":
             self._href = attrs_dict.get("href") or ""
             self._text = []
+            self._link_label = attrs_dict.get("aria-label") or attrs_dict.get("title") or ""
 
     def handle_data(self, data: str) -> None:
         if self._in_title:
@@ -239,10 +255,15 @@ class LinkParser(HTMLParser):
             self._paragraph_text = []
         if tag == "a" and self._href:
             text = " ".join(" ".join(self._text).split())
+            text = self._link_label or text
+            words = text.split()
+            if len(words) % 2 == 0 and words[: len(words) // 2] == words[len(words) // 2 :]:
+                text = " ".join(words[: len(words) // 2])
             if text:
                 self.links.append((self._href, text))
             self._href = ""
             self._text = []
+            self._link_label = ""
 
 
 def _stable_id(value: str) -> str:
@@ -299,6 +320,8 @@ def _source_name(url: str) -> str:
         return "Perplexity"
     if "elevenlabs" in host:
         return "ElevenLabs"
+    if "kimi" in host or "moonshot" in host:
+        return "Moonshot AI"
     if "google" in host:
         return "Google"
     return host or url
@@ -366,16 +389,31 @@ def _published_date_from_html(html: str, headers: Any) -> str:
         r'"dateModified"\s*:\s*"([^"]+)"',
         r'<time[^>]*datetime="([^"]+)"',
     ]
-    for pattern in candidates:
-        match = re.search(pattern, html, flags=re.IGNORECASE)
-        if match:
-            parsed = _parse_datetime_value(match.group(1))
-            if parsed:
-                return parsed.isoformat()
+    now = datetime.now(timezone.utc)
 
-    text_match = _date_from_text(_strip_html(html)[:6000])
-    if text_match:
-        return text_match
+    def recent_or_current(value: str) -> str:
+        parsed = _parse_datetime_value(value)
+        if parsed and parsed <= now:
+            return parsed.isoformat()
+        return ""
+
+    for pattern in candidates:
+        for match in re.finditer(pattern, html, flags=re.IGNORECASE):
+            resolved = recent_or_current(match.group(1))
+            if resolved:
+                return resolved
+
+    # Some official announcement pages omit publication metadata but place dated
+    # assets near the page header. Do not treat a future availability date in the
+    # article body as the page's publication date.
+    for match in ISO_DATE_RE.finditer(html[:10000]):
+        resolved = recent_or_current(match.group(0))
+        if resolved:
+            return resolved
+    for match in MONTH_DATE_RE.finditer(_strip_html(html)[:10000]):
+        resolved = recent_or_current(match.group(0))
+        if resolved:
+            return resolved
 
     last_modified = headers.get("Last-Modified") if headers else ""
     parsed = _parse_datetime_value(last_modified)
@@ -524,6 +562,20 @@ def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
         source = _source_name(page_url)
         page_title = " ".join((parser.title or page_url).split())
         page_content = _strip_html(response.text)[:4000]
+        is_article_page = bool(re.search(r"/(?:blog|news|engineering|research)/[^/]+/?$", page_url))
+        if is_article_page:
+            entries.append(
+                {
+                    "source": source,
+                    "title": page_title,
+                    "url": page_url,
+                    "published_date": "",
+                    "content": page_content,
+                    "source_page": True,
+                    "source_url": page_url,
+                    "source_label": "Source page",
+                }
+            )
         if "ai.google.dev" not in page_url and any(term in page_url.lower() for term in ("changelog", "release-notes", "releases")):
             entries.append(
                 {
@@ -656,6 +708,13 @@ def _clean_name(title: str) -> str:
         flags=re.IGNORECASE,
     )
     name = re.split(r"\s*(?::|\|)\s+|\s+-\s+", name, maxsplit=1)[0].strip()
+    name = re.split(
+        r"\s+is\s+(?:now\s+)?(?:the\s+)?(?:preferred|available|released)\b",
+        name,
+        maxsplit=1,
+        flags=re.IGNORECASE,
+    )[0].strip()
+    name = re.sub(r"\s+(?:tech\s+)?blog\b.*$", "", name, flags=re.IGNORECASE).strip()
     return name or title.strip()
 
 
@@ -739,6 +798,7 @@ def _classify_entry(
     org = _org_from_source(entry["source"], text)
     major_model_family, impact_score = _major_model_impact(entry, org)
     major_release = bool(major_model_family)
+    title_has_version_signal = bool(MODEL_VERSION_RE.search(title_text))
     if _contains_any(title_text, CONSUMER_HEADLINE_TERMS):
         return None
     if entry.get("source_page") and not _source_page_title_has_product_signal(
@@ -752,9 +812,14 @@ def _classify_entry(
         if not entry.get("source_page") or not title_has_release_signal or not content_has_focus:
             return None
 
-    has_release_signal = title_has_release_signal or title_has_availability_signal or major_release
+    has_release_signal = (
+        title_has_release_signal
+        or title_has_availability_signal
+        or major_release
+        or (title_has_version_signal and title_model_score > 0)
+    )
     looks_like_non_release_article = any(term in title_text for term in NON_RELEASE_HEADLINE_TERMS)
-    if looks_like_non_release_article and not title_has_release_signal:
+    if looks_like_non_release_article:
         return None
     if not has_release_signal:
         return None
@@ -942,7 +1007,7 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
                 published_dt = datetime.fromisoformat(entry["published_date"])
             except ValueError:
                 published_dt = None
-        if published_dt and published_dt.replace(tzinfo=window_start().tzinfo) < cutoff:
+        if published_dt and published_dt.replace(tzinfo=timezone.utc) < cutoff:
             continue
         entries.append(entry)
     return {**state, "entries": entries}

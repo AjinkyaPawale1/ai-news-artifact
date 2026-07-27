@@ -133,7 +133,8 @@ Collection bounds and controls:
 | Collection or control | Default | Env var | Meaning |
 | --- | ---: | --- | --- |
 | Core feeds | `14` static defaults | `MODEL_TOOL_CORE_FEEDS` | always active; override replaces the complete list |
-| Source pages | `8` static defaults | `MODEL_TOOL_SOURCE_PAGES_EXTRA` | official fallback pages; extras are additive |
+| Source pages | `10` static defaults | `MODEL_TOOL_SOURCE_PAGES_EXTRA` | official fallback pages and tracked announcement articles; extras are additive |
+| Release retention | `10` days | `MODEL_TOOL_RELEASE_WINDOW_DAYS` | keeps model/tool launches visible across the scheduled run and a mid-week manual rerun |
 | Candidate feeds | derived allow-list | `MODEL_TOOL_EMERGING_FEEDS_EXTRA` | allowed proposal pool; extras also become candidates |
 | Emerging feeds | max `5` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS` | rotating feed set |
 | Emerging model terms | max `12` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS` | rotating model-term set |
@@ -263,14 +264,16 @@ Current source families:
 - Microsoft research, AI, and Azure feeds
 - NVIDIA and AWS ML feeds
 - Official source pages for Anthropic, Gemini changelog, Meta AI, Mistral, Cohere,
-  Perplexity, and ElevenLabs
+  Perplexity, ElevenLabs, and Kimi. A direct Kimi K3 announcement URL is also tracked
+  so an index-page change cannot suppress that current release.
 
 RSS handling:
 
 - Parsed with `feedparser`
 - Reads `published_parsed` or `updated_parsed` when present
 - Drops ordinary feed entries older than `window_start()` when a structured date exists;
-  official high-impact model launches may use the bounded major-model window
+  official high-impact model launches may use the bounded major-model window, which also
+  lets a mid-week manual rerun retain major releases captured by the scheduled edition
 - Normalizes entry content via HTML stripping and whitespace collapse
 
 Source-page handling:

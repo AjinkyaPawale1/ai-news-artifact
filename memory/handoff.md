@@ -1,7 +1,17 @@
 # Handoff Notes
 
-Last updated: 2026-07-20
+Last updated: 2026-07-27
 Owner: AI agent (Codex)
+
+## 2026-07-27 Update
+- Resynced local work onto `origin/main` after `feature/public-quality-fallbacks` was
+  merged (PR #2). Created `feature/kimi-release-window` from `origin/main`.
+- Replayed only the code, test, docs, and memory changes. The six stale `data/` artifacts
+  from the 2026-07-18 local run were discarded so the 07-20 and 07-27 archive editions on
+  `main` stay intact. Dynamic config JSONs regenerate on the next pipeline run.
+- Reconciled two competing release-retention designs: kept `main`'s impact-gated 28-day
+  major-model window and dropped the local flat 10-day `MODEL_TOOL_RELEASE_WINDOW_DAYS`.
+  Kimi now reaches the same carry-forward path via `MAJOR_MODEL_ORGS` + `MAJOR_MODEL_FAMILY_RE`.
 
 ## 2026-07-20 Update
 - Fast-forwarded local `main` to `origin/main` and created
@@ -23,6 +33,17 @@ Owner: AI agent (Codex)
   28 days. Major launches rank ahead of ordinary model noise and supersede older previews.
 - Verified the complete configured source set deterministically: GPT-5.6 was selected as
   the July 9 OpenAI major model release, alongside current seven-day tool/service items.
+## 2026-07-18 Update
+- Added Kimi's official blog and direct K3 announcement as protected model/tool sources.
+  The direct source is dated safely even when the article includes a future availability
+  date in its body.
+- Tightened model-version and non-release checks so leaderboard posts, bug bounties, and
+  consumer feature announcements do not enter the Model Releases lane.
+- Replaced generic repository fallback actions with category-specific evaluation plans
+  covering setup, measurable tests, security or data controls, licensing, ownership, and
+  rollback criteria.
+- Note: the 10-day release-retention window from this session was later superseded by
+  `main`'s 28-day major-model window during the 2026-07-27 resync.
 
 ## 2026-07-17 Update
 - Implemented deterministic public-quality controls for RSS: editorial rejection,

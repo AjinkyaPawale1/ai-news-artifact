@@ -98,6 +98,16 @@ broader credibility, actionability, and personalization scoring is implemented.
   concrete launch. Ordinary models and tool/service updates retain the seven-day window.
 - Major model selection uses an internal impact signal and collapses older previews when a
   later launch for the same family is available; this internal logic is not exposed in UI copy.
+- Kimi's official blog index and the direct Kimi K3 announcement are protected source
+  pages. Direct announcement pages are collected as candidates so a provider index-page
+  change cannot suppress a verified current release. Moonshot AI is a recognized major
+  model org and `kimi` a recognized major model family, so K-series launches qualify for
+  the same 28-day carry-forward as other official provider launches.
+- Generic numeric headlines, bug bounties, playbooks, and consumer feature announcements
+  are excluded from the model lane.
+- Deterministic repository actions are category-specific evaluation plans: they require
+  an isolated setup, a measurable experiment or failure mode, and an ownership, rollback,
+  dependency, and licensing review before a pilot.
 - RSS selection rotates across configured official feeds before applying the global cap;
   RSS health diagnostics include per-feed fetched, eligible, and selected counts.
 - arXiv papers carry deterministic generic AI/ML research metadata in `Item.metadata`,
