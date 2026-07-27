@@ -171,7 +171,7 @@ def _call_llm_for_proposal(
     current_model_terms: list[str],
     current_tool_terms: list[str],
 ) -> dict[str, Any] | None:
-    global _LAST_LLM_ERROR  # noqa: PLW0603
+    global _LAST_LLM_ERROR
     _LAST_LLM_ERROR = None
     api_key = os.getenv("OPENAI_API_KEY")
     if not api_key:

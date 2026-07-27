@@ -4,13 +4,17 @@ from __future__ import annotations
 
 import logging
 import time
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from typing import Callable
 
 from .agents.fetch_github import fetch_github, get_last_diagnostics
 from .agents.fetch_papers import fetch_papers, update_last_diagnostics
-from .agents.fetch_rss import fetch_rss, get_last_diagnostics as get_rss_diagnostics
-from .agents.model_tools_graph import fetch_model_tools, get_last_diagnostics as get_model_tools_diagnostics
+from .agents.fetch_rss import fetch_rss
+from .agents.fetch_rss import get_last_diagnostics as get_rss_diagnostics
+from .agents.model_tools_graph import fetch_model_tools
+from .agents.model_tools_graph import (
+    get_last_diagnostics as get_model_tools_diagnostics,
+)
 from .dedup import deduplicate_items
 from .health_log import write_health_log
 from .normalize import normalize_items
@@ -22,9 +26,9 @@ from .paper_summarize import (
 )
 from .push_to_artifact import push_to_artifact
 from .quality_gate import apply_quality_gate
+from .schema import Item
 from .score import attach_action_scores, score_items
 from .summarize import summarize_items
-from .schema import Item
 
 LOGGER = logging.getLogger(__name__)
 FetchAgent = Callable[[], list[Item]]
@@ -49,7 +53,7 @@ def _run_agent(name: str, agent: FetchAgent) -> tuple[str, list[Item], dict]:
             "item_count": len(items),
             "duration_ms": duration_ms,
         }
-    except Exception as exc:  # noqa: BLE001 - failures are captured per source
+    except Exception as exc:
         LOGGER.exception("Agent %s failed", name)
         duration_ms = round((time.perf_counter() - started) * 1000)
         return name, [], {

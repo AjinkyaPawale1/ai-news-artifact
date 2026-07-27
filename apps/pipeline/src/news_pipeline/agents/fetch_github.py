@@ -20,7 +20,7 @@ def get_last_diagnostics() -> dict | None:
 
 def fetch_github() -> list[Item]:
     """Fetch high-traction GitHub repositories relevant to LLM/agent work."""
-    global _last_diagnostics  # noqa: PLW0603
+    global _last_diagnostics
     resolved = resolve_dynamic_github_inputs()
     items, diagnostics = fetch_github_with_graph(
         queries=resolved.get("queries"),

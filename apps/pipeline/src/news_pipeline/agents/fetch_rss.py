@@ -6,9 +6,9 @@ import hashlib
 import logging
 import re
 from collections import Counter
-from datetime import datetime
-from html.parser import HTMLParser
+from datetime import datetime, timezone
 from html import unescape
+from html.parser import HTMLParser
 
 import feedparser
 import requests
@@ -88,7 +88,7 @@ def _strip_html(value: str) -> str:
 def _entry_date(entry) -> str:
     parsed = getattr(entry, "published_parsed", None) or getattr(entry, "updated_parsed", None)
     if parsed:
-        return datetime(*parsed[:6]).isoformat()
+        return datetime(*parsed[:6], tzinfo=timezone.utc).isoformat()
     return getattr(entry, "published", "") or getattr(entry, "updated", "") or ""
 
 
@@ -174,7 +174,7 @@ def _editorial_rejection(title: str, summary: str) -> str:
 
 def fetch_rss() -> list[Item]:
     """Fetch recent entries from configured RSS and Atom feeds."""
-    global _LAST_DIAGNOSTICS  # noqa: PLW0603
+    global _LAST_DIAGNOSTICS
     cutoff = window_start()
     feed_buckets: list[list[Item]] = []
     feed_diagnostics: list[dict] = []
