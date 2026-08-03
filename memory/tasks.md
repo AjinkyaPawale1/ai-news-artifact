@@ -1,6 +1,6 @@
 # Task Board
 
-Last updated: 2026-07-20
+Last updated: 2026-07-27
 
 ## Done
 - [x] Make JSX dashboard runnable with React + Vite.
@@ -80,6 +80,8 @@ Last updated: 2026-07-20
 - [x] Strengthen shared item normalization and validation.
 - [x] Add CI validation for pull requests and feature branches.
 - [x] Add a 28-day high-impact model carry-forward policy with GPT-5.6 regression coverage.
+- [x] Track Kimi K3 as a major model family via Moonshot AI source pages and org/family recognition.
+- [x] Replace generic repository fallback actions with category-specific evaluation plans.
 
 ## Todo
 - [ ] Day 2: Improve scoring dimensions and weights.

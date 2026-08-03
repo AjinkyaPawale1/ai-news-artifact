@@ -249,11 +249,30 @@ def _fallback_repo_actions(repo: dict[str, Any], best_for: str | None = None) ->
     language = repo.get("language") or "the main runtime"
     release = repo.get("latest_release") or {}
     release_ref = release.get("tag_name") or "recent commit history"
-    focus = (best_for or _best_for_label(repo)).lower()
+    focus = best_for or _best_for_label(repo)
+    setup_action = f"Run {owner_repo} in an isolated {language} environment and use the README to trace its primary inputs, outputs, and external services."
+    category_actions = {
+        "Agent Security": "Exercise one representative agent workflow with least-privilege credentials, then test prompt-injection, tool-abuse, and audit-log failure paths.",
+        "MCP Tooling": "Connect a controlled MCP client, inventory tool schemas and permissions, then test one read-only and one denied operation before enabling production access.",
+        "Knowledge Management": "Ingest a bounded internal corpus, verify source provenance and permission boundaries, then measure answer freshness on a known set of documents.",
+        "RAG Infrastructure": "Index a representative document set and measure retrieval recall, grounded-answer quality, latency, and cost against the current retrieval baseline.",
+        "Coding Workflow": "Run the workflow on a non-critical repository and measure test-pass rate, review edits, and rollback effort before extending it to production code.",
+        "AI Agent Apps": "Define one bounded business task with a human approval step, then measure task success, tool failures, latency, and cost across a small evaluation set.",
+        "Model Serving": "Benchmark representative traffic for throughput, p95 latency, memory use, and fallback behavior before selecting a hosting or quantization configuration.",
+        "AI Research": "Reproduce one published task with pinned data and model versions, then compare the stated metric and compute cost against an internal baseline.",
+        "Data Extraction": "Run a redacted document sample, score field-level accuracy and exception handling, and confirm PII retention and export controls before integration.",
+        "Memory & Reasoning": "Create a long-horizon evaluation set, measure retention and correction behavior across sessions, and review data isolation before connecting business context.",
+    }
+    evaluation_action = category_actions.get(
+        focus,
+        "Define one bounded engineering use case, record a success metric, and compare the result with the current implementation before a wider pilot.",
+    )
+    license = (repo.get("license") or {}).get("spdx_id") or "license terms"
+    pilot_article = "an" if focus[:1].lower() in {"a", "e", "i", "o", "u"} else "a"
     return [
-        f"Clone {owner_repo} and run the README quickstart with a small {language} smoke test.",
-        f"Map one {focus} use case to the repo APIs, inputs, and required integrations.",
-        f"Review {release_ref}, open issues, and license before deciding on a deeper benchmark or pilot.",
+        setup_action,
+        evaluation_action,
+        f"Review {release_ref}, open issues, {license}, and the dependency surface; define ownership, rollback, and support criteria before {pilot_article} {focus.lower()} pilot.",
     ]
 
 
@@ -287,7 +306,7 @@ def _openai_repo_brief(repo: dict[str, Any]) -> dict[str, Any] | None:
                     "You summarize GitHub repositories for an AI/LLM intelligence brief. "
                     "Return compact JSON only with keys desc, bullets, whyTrending, actionItems. "
                     "bullets and actionItems must each be exactly three short strings. "
-                    "actionItems should be concrete repo experiments a developer or evaluator can run."
+                    "Each action item must state a concrete setup, an evaluation metric or failure mode, and a deployment, security, or ownership check."
                 ),
             },
             {"role": "user", "content": json.dumps(prompt, ensure_ascii=True)},

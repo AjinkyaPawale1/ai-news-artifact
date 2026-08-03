@@ -5,9 +5,9 @@ from __future__ import annotations
 import json
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from news_pipeline import push_to_artifact
 from news_pipeline.agents import model_tools_dynamic, model_tools_graph
@@ -18,6 +18,42 @@ class ModelToolsDynamicTests(unittest.TestCase):
     def test_permanent_source_pages_include_perplexity_and_elevenlabs(self) -> None:
         self.assertIn("https://docs.perplexity.ai/docs/resources/changelog.md", MODEL_TOOL_SOURCE_PAGES)
         self.assertIn("https://elevenlabs.io/blog/", MODEL_TOOL_SOURCE_PAGES)
+        self.assertIn("https://www.kimi.com/blog/", MODEL_TOOL_SOURCE_PAGES)
+        self.assertIn("https://www.kimi.com/blog/kimi-k3", MODEL_TOOL_SOURCE_PAGES)
+
+    def test_link_parser_uses_aria_label_for_link_only_source_cards(self) -> None:
+        parser = model_tools_graph.LinkParser()
+        parser.feed('<a href="/blog/kimi-k3" aria-label="Kimi K3">Kimi K3 Kimi K3</a>')
+
+        self.assertEqual(parser.links, [("/blog/kimi-k3", "Kimi K3")])
+
+    def test_article_date_ignores_future_availability_date(self) -> None:
+        # Both dates are derived from the current run so the assertion stays valid as
+        # time passes; a hardcoded "future" date silently becomes a past date later.
+        now = datetime.now(timezone.utc)
+        future = (now + timedelta(days=30)).strftime("%Y-%m-%d")
+        past = (now - timedelta(days=10)).strftime("%Y-%m-%d")
+
+        published = model_tools_graph._published_date_from_html(
+            f'<time datetime="{future}"></time><img src="/assets/{past}/hero.png">',
+            {},
+        )
+
+        self.assertEqual(published, f"{past}T00:00:00+00:00")
+
+    def test_direct_article_source_is_collected_as_a_release_candidate(self) -> None:
+        response = Mock(
+            text="<title>Kimi K3 Tech Blog: Open Frontier Intelligence</title><p>Kimi K3 is available today.</p>",
+            headers={},
+        )
+        response.raise_for_status.return_value = None
+        article_url = "https://www.kimi.com/blog/kimi-k3"
+
+        with patch.object(model_tools_graph.requests, "get", return_value=response):
+            entries = model_tools_graph._fetch_source_page_entries([article_url])
+
+        self.assertEqual(entries[0]["url"], article_url)
+        self.assertEqual(entries[0]["title"], "Kimi K3 Tech Blog: Open Frontier Intelligence")
 
     def test_bounded_rotation_replaces_only_the_allowed_number(self) -> None:
         rotated, metadata = model_tools_dynamic._bounded_rotation(
@@ -568,6 +604,68 @@ class ModelToolsClassificationTests(unittest.TestCase):
         )
 
         self.assertIsNone(release)
+
+    def test_classifier_accepts_versioned_gpt_release_without_launch_verb(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "OpenAI",
+                "title": "GPT-5.6: Frontier intelligence that scales with your ambition",
+                "content": "GPT-5.6 is available today across ChatGPT, Codex, and the OpenAI API.",
+                "url": "https://openai.com/index/gpt-5-6",
+            },
+            model_terms=["gpt", "model"],
+            tool_terms=["api"],
+        )
+
+        self.assertEqual(release["kind"], "model")
+        self.assertEqual(release["org"], "OpenAI")
+
+    def test_clean_name_keeps_version_for_hosted_availability_update(self) -> None:
+        self.assertEqual(
+            model_tools_graph._clean_name("GPT-5.6 is now the preferred model in Microsoft 365 Copilot"),
+            "GPT-5.6",
+        )
+
+    def test_classifier_rejects_versioned_non_release_articles(self) -> None:
+        cases = [
+            {
+                "title": "Lessons From the Leaderboard: What 5,000+ Kagglers Taught Us About Improving AI Reasoning",
+                "content": "The NVIDIA Nemotron Model Reasoning Challenge shared evaluation lessons.",
+            },
+            {
+                "title": "GPT-5.5 Bio Bug Bounty",
+                "content": "Details about the OpenAI Bio Bounty program.",
+            },
+            {
+                "title": "Introducing a way to reflect on how you use Claude",
+                "content": "A consumer feature for reflecting on Claude use.",
+            },
+        ]
+
+        for case in cases:
+            with self.subTest(title=case["title"]):
+                release = model_tools_graph._classify_entry(
+                    {"source": "Official", "url": "https://example.com/article", **case},
+                    model_terms=["gpt", "claude", "model", "reasoning"],
+                    tool_terms=["api"],
+                )
+                self.assertIsNone(release)
+
+    def test_classifier_accepts_kimi_versioned_model_release(self) -> None:
+        release = model_tools_graph._classify_entry(
+            {
+                "source": "Moonshot AI",
+                "title": "Kimi K3",
+                "content": "Kimi K3 is a new open frontier model for long-horizon coding and reasoning.",
+                "url": "https://www.kimi.com/blog/kimi-k3",
+                "source_page": True,
+            },
+            model_terms=["kimi", "model"],
+            tool_terms=["api"],
+        )
+
+        self.assertEqual(release["kind"], "model")
+        self.assertEqual(release["org"], "Moonshot AI")
 
     def test_classifier_moves_hosted_model_availability_to_tools(self) -> None:
         release = model_tools_graph._classify_entry(

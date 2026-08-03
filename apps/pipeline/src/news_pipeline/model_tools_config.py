@@ -50,6 +50,8 @@ MODEL_TOOL_SOURCE_PAGES = [
     "https://cohere.com/blog/",
     "https://docs.perplexity.ai/docs/resources/changelog.md",
     "https://elevenlabs.io/blog/",
+    "https://www.kimi.com/blog/",
+    "https://www.kimi.com/blog/kimi-k3",
 ]
 MODEL_TOOL_SOURCE_PAGES += _env_list("MODEL_TOOL_SOURCE_PAGES_EXTRA")
 
@@ -113,6 +115,7 @@ MODEL_TOOL_CORE_MODEL_TERMS = [
     "image model",
     "veo",
     "imagen",
+    "kimi",
     "sora",
     "whisper",
     "voxtral",

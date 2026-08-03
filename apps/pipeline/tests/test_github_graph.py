@@ -26,8 +26,26 @@ class GitHubClassificationTests(unittest.TestCase):
 
         self.assertEqual(len(actions), 3)
         self.assertIn("example/agent-lab", actions[0])
-        self.assertIn("AI agent apps".lower(), actions[1])
+        self.assertIn("task success", actions[1])
         self.assertIn("v1.2.0", actions[2])
+        self.assertIn("rollback", actions[2])
+        self.assertIn("an ai agent apps pilot", actions[2])
+
+    def test_rag_fallback_actions_require_retrieval_evaluation(self) -> None:
+        actions = _fallback_repo_actions(
+            {
+                "full_name": "example/rag-stack",
+                "language": "Python",
+                "description": "A retrieval pipeline for enterprise documents.",
+                "topics": ["rag", "retrieval", "vector"],
+                "license": {"spdx_id": "Apache-2.0"},
+            },
+            "RAG Infrastructure",
+        )
+
+        self.assertIn("retrieval recall", actions[1])
+        self.assertIn("grounded-answer quality", actions[1])
+        self.assertIn("Apache-2.0", actions[2])
 
     @patch("news_pipeline.agents.github_graph._openai_repo_brief")
     def test_repo_item_uses_llm_actions_when_available(self, mock_brief) -> None:
