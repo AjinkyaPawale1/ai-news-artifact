@@ -2,12 +2,12 @@
   {
     "source": "rss",
     "status": "ok",
-    "item_count": 5,
-    "duration_ms": 6909,
+    "item_count": 6,
+    "duration_ms": 6332,
     "fetch_diagnostics": {
       "strategy": "round_robin",
       "feeds_requested": 5,
-      "selected": 5,
+      "selected": 6,
       "feeds": [
         {
           "feed_url": "https://openai.com/news/rss.xml",
@@ -56,9 +56,9 @@
           "feed_url": "https://www.microsoft.com/en-us/research/feed/",
           "source": "Microsoft Research",
           "fetched": 10,
-          "eligible": 2,
-          "selected": 2,
-          "verified": 2,
+          "eligible": 3,
+          "selected": 3,
+          "verified": 3,
           "rejected": {}
         }
       ]
@@ -68,7 +68,7 @@
     "source": "papers",
     "status": "ok",
     "item_count": 65,
-    "duration_ms": 7967,
+    "duration_ms": 8628,
     "fetch_diagnostics": {
       "categories": [
         {
@@ -132,7 +132,7 @@
     "source": "github",
     "status": "ok",
     "item_count": 20,
-    "duration_ms": 75935,
+    "duration_ms": 74871,
     "query_mode": "core+emerging",
     "search_diagnostics": {
       "queries": [
@@ -179,25 +179,25 @@
           "failed": false
         },
         {
-          "query": "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25",
+          "query": "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
+          "query": "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
+          "query": "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
+          "query": "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
           "fetched": 0,
           "added": 0,
           "failed": false
@@ -254,17 +254,17 @@
           "kind": "evergreen"
         },
         {
-          "repo": "alfadur7/llm-wiki-newsroom",
-          "added": 1,
+          "repo": "MaxFreedomPollard/Compartment",
+          "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "StarTrail-org/PixelRAG",
+          "repo": "oliver-zehentleitner/keep-the-why",
           "added": 0,
           "failed": false,
-          "skipped_old": true,
+          "skipped_old": false,
           "kind": "emerging"
         },
         {
@@ -275,8 +275,8 @@
           "kind": "emerging"
         },
         {
-          "repo": "nossa-y/activity-frames",
-          "added": 1,
+          "repo": "bybit-exchange/kaas",
+          "added": 0,
           "failed": false,
           "skipped_old": false,
           "kind": "emerging"
@@ -295,10 +295,10 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
-            "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
-            "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
-            "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
-            "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25"
+            "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
+            "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
+            "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
+            "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15"
           ],
           "removed": [
             "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -310,10 +310,10 @@
         "watch_rotation": {
           "replacements": 4,
           "added": [
-            "nossa-y/activity-frames",
+            "bybit-exchange/kaas",
             "omnigent-ai/omnigent",
-            "StarTrail-org/PixelRAG",
-            "alfadur7/llm-wiki-newsroom"
+            "oliver-zehentleitner/keep-the-why",
+            "MaxFreedomPollard/Compartment"
           ],
           "removed": [
             "open-webui/open-webui",
@@ -323,7 +323,7 @@
           ]
         }
       },
-      "total_unique_candidates": 50,
+      "total_unique_candidates": 48,
       "dynamic_refresh": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
@@ -335,10 +335,10 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
-            "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
-            "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
-            "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
-            "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25"
+            "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
+            "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
+            "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
+            "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15"
           ],
           "removed": [
             "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -350,10 +350,10 @@
         "watch_rotation": {
           "replacements": 4,
           "added": [
-            "nossa-y/activity-frames",
+            "bybit-exchange/kaas",
             "omnigent-ai/omnigent",
-            "StarTrail-org/PixelRAG",
-            "alfadur7/llm-wiki-newsroom"
+            "oliver-zehentleitner/keep-the-why",
+            "MaxFreedomPollard/Compartment"
           ],
           "removed": [
             "open-webui/open-webui",
@@ -368,13 +368,13 @@
   {
     "source": "model_tools",
     "status": "ok",
-    "item_count": 8,
-    "duration_ms": 82056,
+    "item_count": 12,
+    "duration_ms": 115145,
     "dynamic_config": {
       "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
       "active_core_feeds": 14,
       "active_emerging_feeds": 4,
-      "active_source_pages": 8,
+      "active_source_pages": 10,
       "active_emerging_model_terms": 4,
       "active_emerging_tool_terms": 1,
       "auto_update_enabled": true,
@@ -425,32 +425,32 @@
     },
     "extraction_diagnostics": {
       "feeds_requested": 16,
-      "source_pages_requested": 8,
-      "entries_fetched": 322,
-      "classified": 9,
-      "selected": 8,
-      "llm_classification_attempts": 12,
+      "source_pages_requested": 10,
+      "entries_fetched": 344,
+      "classified": 14,
+      "selected": 12,
+      "llm_classification_attempts": 18,
       "llm_classification_failures": 0,
       "llm_classification_disabled": false,
       "llm_classification_skip_reason": "",
       "classification_diagnostics": {
-        "entries_considered": 322,
-        "rejected_duplicate_url": 7,
-        "rejected_missing_or_stale_date": 80,
-        "rejected_non_release": 223,
-        "rejected_by_llm": 3,
-        "major_model_carried_forward": 2
+        "entries_considered": 344,
+        "rejected_duplicate_url": 17,
+        "rejected_missing_or_stale_date": 90,
+        "rejected_non_release": 219,
+        "rejected_by_llm": 4,
+        "major_model_carried_forward": 3
       },
       "selection_diagnostics": {
-        "rejected_near_duplicate": 0,
+        "rejected_near_duplicate": 1,
         "rejected_superseded_major_model": 1,
-        "major_models_selected": 2
+        "major_models_selected": 3
       },
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
-        "active_source_pages": 8,
+        "active_source_pages": 10,
         "active_emerging_model_terms": 4,
         "active_emerging_tool_terms": 1,
         "auto_update_enabled": true,

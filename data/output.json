@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-03T15:08:46.586832+00:00",
+  "generatedAt": "2026-08-03T16:20:30.985810+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
@@ -13,8 +13,8 @@
     },
     {
       "label": "RELEASES TRACKED",
-      "value": "7",
-      "sub": "3 models \u00b7 4 tools"
+      "value": "8",
+      "sub": "6 models \u00b7 2 tools"
     },
     {
       "label": "HEALTHY SOURCES",
@@ -26,24 +26,24 @@
   "actionItems": [
     {
       "priority": "EXPERIMENT",
-      "title": "Review the AMTFV verification workflow design, focusing on how the interrupt-execute-resume Mathematical Tool Flow separates verification modeling from concrete execution.",
+      "title": "Review the AMTFV verification-agent and mathematical-toolbox-agent separation, with attention to how MTF requests encode mathematical objects and computational intent for exact computation.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
       "date": "Jul 31, 2026",
-      "why": "Proposes AMTFV, an agentic mathematical tool-flow verification framework that decouples verification modeling from low-level execution for LLM self-correction.",
+      "why": "Proposes AMTFV, a self-correction framework for LLM math reasoning that decouples verification modeling from low-level execution via a Mathematical Tool Flow (MTF) interrupt--execute--resume interface.",
       "tags": [
         "cs.AI"
       ],
-      "score": 87,
+      "score": 84,
       "url": "https://arxiv.org/abs/2607.29549"
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Review the SESA training loop details to verify how the challenger, solver, and skill-memory writeback interact, and map those components to the parts of the paper most relevant for agentic search systems.",
+      "title": "Review the SESA training loop and implementation details to verify how challenger-generated tasks, solver-only skill retrieval, and failure-to-memory updates are separated and coordinated.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
       "date": "Jul 31, 2026",
-      "why": "SESA introduces a self-evolving search agent where a challenger poses problems, a separate solver retrieves skills, and informative failures are distilled into reusable skills that co-evolve task generation and memory.",
+      "why": "SESA introduces a self-evolving skill-augmented self-play agent where a challenger generates problems, a separate solver retrieves skills, and informative failures are distilled back into an evolving external memory.",
       "tags": [
         "cs.AI"
       ],
@@ -52,7 +52,7 @@
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Review ExtractBench\u2019s schema-guided extraction setup, metric definitions, and curation pipeline to understand how value accuracy, record completeness, grounding, and cost are jointly measured.",
+      "title": "Review ExtractBench\u2019s schema-guided extraction setup and the three evaluation dimensions it adds\u2014value accuracy, grounding, and measured cost\u2014to assess fit for enterprise document workflows.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
       "date": "Jul 31, 2026",
@@ -65,37 +65,37 @@
     },
     {
       "priority": "EXPERIMENT",
-      "title": "Review the MOT-SR paper for the specific external analysis tools used to extract structural priors and how the dynamic Pareto front is maintained in the closed-loop LLM workflow.",
+      "title": "Review whether Zero-Mem\u2019s zero-token memory operation design and deterministic calibration match your dashboard\u2019s needs for agent memory systems that avoid intermediate LLM-generated memory records.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
       "date": "Jul 31, 2026",
-      "why": "MOT-SR proposes a tool-augmented symbolic regression framework that uses external analysis to extract structural priors and jointly optimize accuracy, complexity, and generalization with a dynamic Pareto front.",
-      "tags": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "score": 60,
-      "url": "https://arxiv.org/abs/2607.29561"
-    },
-    {
-      "priority": "EXPERIMENT",
-      "title": "Review the Zero-Mem design for the two-view memory organization: verify how the entity-context graph and temporal hierarchy are built from original interaction traces and how query-dependent weighting is applied before final QA.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Jul 31, 2026",
-      "why": "Introduces Zero-Mem, a memory system for LLM agents that performs zero-token memory operations by avoiding any LLM calls or token use outside final question answering while keeping original interaction traces as the source of record.",
+      "why": "Introduces Zero-Mem, a memory system for LLM agents that performs zero-token memory operations: only the final QA step uses an LLM, while memory access itself avoids LLM calls and token consumption.",
       "tags": [
         "cs.CL"
       ],
       "score": 78,
       "url": "https://arxiv.org/abs/2607.29377"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Review the MOT-SR closed-loop design, focusing on how the Meta Strategy Generator uses external analytical tools and Pareto-optimal equations to guide equation generation.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Jul 31, 2026",
+      "why": "Introduces MOT-SR, a multi-objective, tool-augmented symbolic regression framework that uses LLMs to discover analytical equations from data while balancing accuracy, complexity, and generalization.",
+      "tags": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "score": 57,
+      "url": "https://arxiv.org/abs/2607.29561"
     }
   ],
   "repos": [
     {
       "name": "oliver-zehentleitner/keep-the-why",
-      "stars": "138",
-      "desc": "Repo-native convention and agent skill for capturing codebase reasoning, decisions, and rejected alternatives so AI agents and humans can avoid repeated mistakes and onboard faster.",
+      "stars": "139",
+      "desc": "Repo-native Python skill for capturing architectural reasoning, rejected alternatives, and operational constraints so agents and humans stop repeating past mistakes and can work legacy codebases faster.",
       "url": "https://github.com/oliver-zehentleitner/keep-the-why",
       "language": "Python",
       "topics": [
@@ -113,24 +113,25 @@
       "fetchedAt": "Aug 3, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Captures the \u201cwhy\u201d behind code, not just change logs.",
-        "Designed to work continuously with AI agents or retroactively on legacy repos.",
-        "Targets architecture decisions, workarounds, incidents, and constraints."
+        "Preserves decision rationale as codebase context.",
+        "Targets AI agents, onboarding, and legacy rehab.",
+        "Uses docs/skills workflows, badges, and releases."
       ],
       "actionItems": [
-        "Run it on a legacy repo and measure how many repeated questions the agent stops asking.",
-        "Compare agent outputs before/after adding recorded decision context for a known refactor.",
-        "Test a workflow that auto-generates why-notes from PRs, incidents, and architecture changes."
+        "Set up on one active repo with the validate-skill workflow; watch for duplicate-suggestion rate and missed-why gaps; confirm repo owners approve any stored rationale and access scope.",
+        "Pilot on a legacy module; measure onboarding time or rework reduction, and flag failure modes like stale or conflicting decisions; verify deployment does not expose sensitive incident or workaround details.",
+        "Integrate into CI and agent prompts; track ADR/why coverage and retrieval success, and check security review plus codeownership for who can add, edit, or delete decision records."
       ],
       "latestRelease": "v0.6.4",
       "latestReleaseUrl": "https://github.com/oliver-zehentleitner/keep-the-why/releases/tag/v0.6.4",
       "homepage": "https://keepthewhy.com",
-      "license": "MIT"
+      "license": "MIT",
+      "enterpriseScore": 0
     },
     {
       "name": "MaxFreedomPollard/Compartment",
       "stars": "122",
-      "desc": "Offline, encrypted agentic memory vault for AI agents, with MCP integration, GUI memory map, semantic search, and cross-agent shared long-term memory.",
+      "desc": "Encrypted, fully offline agentic memory vault and MCP server for Claude/Hermes/OpenClaw, with GUI memory map, shared local store, seeded facts, and hash-chained AEAD-protected records.",
       "url": "https://github.com/MaxFreedomPollard/Compartment",
       "language": "Python",
       "topics": [
@@ -160,24 +161,25 @@
       "fetchedAt": "Aug 3, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "AEAD-encrypted at rest, including vectors",
-        "Works fully offline with network-attempt guard",
-        "One shared memory store for Claude/Hermes/OpenClaw"
+        "Offline-first Python MCP memory for AI agents; shared local vault, GUI, semantic search, and one-command install.",
+        "AEAD-encrypted at rest including vectors; passphrase unlock, cryptographic deletion, tamper detection, hash-chained history.",
+        "Latest release v4.5.0; Apache-2.0; active repo with low issue count and recent push."
       ],
       "actionItems": [
-        "Run retrieval latency and recall tests on seeded facts vs custom notes",
-        "Verify offline enforcement by simulating blocked outbound network calls",
-        "Compare memory quality across Claude Desktop, Hermes, and MCP clients"
+        "Set up one-command install on macOS/Linux/Windows with the bundled embedding model; track search latency and recall failures; confirm no network egress and documented vault ownership.",
+        "Initialize with seeded facts and a small custom memory corpus; measure retrieval accuracy and false-positive/semantic drift cases; verify key management and passphrase custody.",
+        "Connect Claude/Hermes/OpenClaw via MCP in a test agent workflow; monitor tamper-detection and restart-lock behavior; review deployment permissions and local-data security boundaries."
       ],
       "latestRelease": "v4.5.0",
       "latestReleaseUrl": "https://github.com/MaxFreedomPollard/Compartment/releases/tag/v4.5.0",
       "homepage": "https://maxfreedompollard.github.io/Compartment/",
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "enterpriseScore": 8
     },
     {
       "name": "ZJU-REAL/HugAgentOS",
-      "stars": "77",
-      "desc": "Self-hosted enterprise AgentOS for ontology-grounded reasoning, combining agent chat, RAG, sub-agents, MCP tools, memory, sandboxed code execution, and automation.",
+      "stars": "78",
+      "desc": "Self-hosted enterprise AgentOS for ontology-grounded reasoning, combining chat, RAG, sub-agents, MCP tools, sandboxed execution, memory, and automation.",
       "url": "https://github.com/ZJU-REAL/HugAgentOS",
       "language": "Python",
       "topics": [],
@@ -186,24 +188,25 @@
       "fetchedAt": "Aug 3, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
-        "Ontology as a control plane for reasoning and actions",
-        "All-in-one workspace: chat, KB RAG, tools, skills, memory",
-        "Self-hosted Community Edition with one-command install and Docker"
+        "Python-based AgentOS with ontology as a control plane for trustable reasoning and actions.",
+        "Community edition bundles chat, private KB RAG, sub-agents, MCP tools, skills, and sandboxed code.",
+        "One-command local install and Docker path, with recent desktop release activity and low open issues."
       ],
       "actionItems": [
-        "Run a local install and verify end-to-end: ingest docs, ask a grounded question, inspect citations.",
-        "Test an MCP tool workflow by connecting one external tool and measuring task completion/error rate.",
-        "Compare sub-agent or memory enabled vs disabled on a repeat task to assess reasoning consistency and latency."
+        "Set up the one-command local install or Docker stack; measure task completion rate and hallucinated-action failures; verify owner access, sandbox isolation, and outbound tool permissions.",
+        "Connect a small ontology plus private KB and a few MCP tools; track retrieval precision and reasoning drift; check data-handling policy, secret scope, and audit logging ownership.",
+        "Deploy the desktop or web release in a pilot workspace; monitor latency and tool-call error rate; confirm release pinning, license/terms review, and incident owner coverage."
       ],
       "latestRelease": "desktop-v0.2.10",
       "latestReleaseUrl": "https://github.com/ZJU-REAL/HugAgentOS/releases/tag/desktop-v0.2.10",
       "homepage": "",
-      "license": "NOASSERTION"
+      "license": "NOASSERTION",
+      "enterpriseScore": 20
     },
     {
       "name": "omnigent-ai/omnigent",
       "stars": "8.1k",
-      "desc": "Open-source meta-harness for orchestrating multiple coding agents with policy enforcement, sandboxing, and cross-device session sync.",
+      "desc": "Open-source Python meta-harness for orchestrating and governing multiple AI coding agents across devices and sandboxes.",
       "url": "https://github.com/omnigent-ai/omnigent",
       "language": "Python",
       "topics": [
@@ -229,24 +232,25 @@
       "fetchedAt": "Aug 3, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Orchestrates Claude Code, Codex, Cursor, and custom YAML agents",
-        "Supports policy controls, sandboxes, and shared live sessions",
-        "Alpha-stage but already shows strong demand and broad agent interoperability"
+        "Unifies Claude Code, Codex, Cursor, OpenCode, Hermes, Pi, and custom agents behind one orchestration layer.",
+        "Supports policy enforcement, sandboxing, shared sessions, and live collaboration from terminal, browser, phone, and desktop.",
+        "Alpha-stage repo with strong traction: 8k+ stars, high issue volume, and active 2026 release cadence."
       ],
       "actionItems": [
-        "Run one task through two agents and compare output, latency, and failure modes",
-        "Test session continuity by starting in terminal and resuming in browser/mobile",
-        "Create a custom YAML agent with a restrictive policy and verify sandbox enforcement"
+        "Set up a 2-agent workflow in a disposable sandbox; measure task completion and cross-agent disagreement rate; verify sandbox isolation and session-owner access controls.",
+        "Deploy a custom YAML agent plus a commercial agent in one session; track latency and handoff failure modes; confirm API-key handling and policy enforcement ownership.",
+        "Run shared-session collaboration on a real project; measure live sync lag and fork success rate; check audit logging and teammate permission boundaries before rollout."
       ],
       "latestRelease": "v0.7.0",
       "latestReleaseUrl": "https://github.com/omnigent-ai/omnigent/releases/tag/v0.7.0",
       "homepage": "https://omnigent.ai",
-      "license": "Apache-2.0"
+      "license": "Apache-2.0",
+      "enterpriseScore": 18
     },
     {
       "name": "CyberSunil/LLMVault",
       "stars": "263",
-      "desc": "Deliberately vulnerable OWASP LLM Top 10 training range for AI security, prompt injection, RAG/agent abuse, and GenAI pentesting; Dockerized Python lab platform with 25 staged exercises.",
+      "desc": "Intentional vulnerable OWASP LLM Top 10 training range for AI security, prompt injection, RAG, agent security, and GenAI red-teaming; Docker-ready Python CTF with 25 labs and defense guidance.",
       "url": "https://github.com/CyberSunil/LLMVault",
       "language": "Python",
       "topics": [
@@ -277,23 +281,24 @@
       "bestFor": "RAG Infrastructure",
       "bullets": [
         "25 labs across core, advanced, and expert tiers",
-        "Covers prompt injection, RAG, agent, and model extraction attacks",
-        "Attack-and-defense training with private solution guidance"
+        "Covers prompt injection, RAG, agent, poisoning, extraction",
+        "Private solutions pair each exploit with a defense"
       ],
       "actionItems": [
-        "Run one prompt-injection lab end-to-end and document the exploit chain",
-        "Test a RAG poisoning scenario and measure retrieval contamination",
-        "Spin up the Docker stack and verify hash-based flag validation"
+        "Run the Docker stack locally and score lab completion rate vs. false positives; confirm the container never exposes internet-facing ports or production secrets.",
+        "Exercise multi-turn prompt-injection and agent-abuse labs, track bypass success and recovery failures; verify logging, auth boundaries, and owner approval for any shared instance.",
+        "Compare RAG and model-extraction labs against your own LLM app, measuring leakage rate and defense lift; ensure data handling, security review, and maintenance ownership are assigned."
       ],
       "latestRelease": "v1.1.0",
       "latestReleaseUrl": "https://github.com/CyberSunil/LLMVault/releases/tag/v1.1.0",
       "homepage": "",
-      "license": "MIT"
+      "license": "MIT",
+      "enterpriseScore": 8
     },
     {
       "name": "drpwchen/textbook-to-note",
       "stars": "91",
-      "desc": "Turn your own PDF textbooks into an AI-searchable knowledge base and structured, fully-cited notes \u2014 figures included. Local-first, token-frugal.",
+      "desc": "Local-first Python pipeline that converts PDF/EPUB textbooks into OCR-aware markdown, semantic search, and fully cited notes with figure extraction, optimized to minimize LLM token use.",
       "url": "https://github.com/drpwchen/textbook-to-note",
       "language": "Python",
       "topics": [
@@ -309,19 +314,20 @@
       "fetchedAt": "Aug 3, 2026",
       "bestFor": "RAG Infrastructure",
       "bullets": [
-        "Turn your own PDF textbooks into an AI-searchable knowledge base and structured, fully-cited notes \u2014 figures included. Local-first, token-frugal.",
-        "Primarily Python, with topics such as claude-code, note-taking, obsidian.",
-        "Latest release v0.3.1 signals active maintenance."
+        "Converter-only path for clean greppable markdown with page/figure markers; no GPU or index required.",
+        "Note-writing workflow uses skills/templates plus a frontier model only for synthesis, keeping claims traceable to sources.",
+        "Adds semantic retrieval across books for concept-level lookup beyond keyword search, aimed at large personal textbook libraries."
       ],
       "actionItems": [
-        "Clone drpwchen/textbook-to-note and run the README quickstart with a small Python smoke test.",
-        "Map one rag infrastructure use case to the repo APIs, inputs, and required integrations.",
-        "Review v0.3.1, open issues, and license before deciding on a deeper benchmark or pilot."
+        "Set up converter.py on a sample PDF; measure OCR/markdown fidelity and page-marker loss; verify local-only storage and repo ownership of generated notes.",
+        "Install skills and note-writing workflow on 1\u20132 chapters; track citation coverage and hallucinated-claim rate; confirm release tag v0.3.1 and MIT license fit deployment policy.",
+        "Enable semantic search index on a small corpus; evaluate recall@k and cross-book failure modes; check security around OCR inputs and any external model/API access."
       ],
       "latestRelease": "v0.3.1",
       "latestReleaseUrl": "https://github.com/drpwchen/textbook-to-note/releases/tag/v0.3.1",
       "homepage": "",
-      "license": "MIT"
+      "license": "MIT",
+      "enterpriseScore": 0
     },
     {
       "name": "bybit-exchange/kaas",
@@ -360,69 +366,87 @@
         "Latest release v0.1.0-rc.1 signals active maintenance."
       ],
       "actionItems": [
-        "Clone bybit-exchange/kaas and run the README quickstart with a small Python smoke test.",
-        "Map one knowledge management use case to the repo APIs, inputs, and required integrations.",
-        "Review v0.1.0-rc.1, open issues, and license before deciding on a deeper benchmark or pilot."
+        "Run bybit-exchange/kaas in an isolated Python environment and use the README to trace its primary inputs, outputs, and external services.",
+        "Ingest a bounded internal corpus, verify source provenance and permission boundaries, then measure answer freshness on a known set of documents.",
+        "Review v0.1.0-rc.1, open issues, MIT, and the dependency surface; define ownership, rollback, and support criteria before a knowledge management pilot."
       ],
       "latestRelease": "v0.1.0-rc.1",
       "latestReleaseUrl": "https://github.com/bybit-exchange/kaas/releases/tag/v0.1.0-rc.1",
       "homepage": "https://bybit-exchange.github.io/kaas-doc/",
-      "license": "MIT"
+      "license": "MIT",
+      "enterpriseScore": 10
     },
     {
-      "name": "alfadur7/llm-wiki-newsroom",
-      "stars": "70",
-      "desc": "Harness engineering applied to knowledge production: a self-evolving multi-agent newsroom that turns your documents into a cross-linked markdown wiki. A \"reground\" loop pulls published pages back in before they go stale \u2014 writer \u2260 reviewer, local-first, a structured alternative to RAG.",
-      "url": "https://github.com/alfadur7/llm-wiki-newsroom",
+      "name": "Blackwellboy/model-serving-minefield",
+      "stars": "64",
+      "desc": "Community registry of LLM serving-path traps that produce confidently wrong measurements: templates, tool parsers, reasoning fields, quant kernel paths, CUDA toolchains, KV allocation, eval harnesses, versioning. Symptom-first, with the check that catches each.",
+      "url": "https://github.com/Blackwellboy/model-serving-minefield",
       "language": "Python",
       "topics": [
-        "agentic-ai",
-        "ai-agents",
-        "claude",
-        "claude-code",
-        "claude-skills",
-        "digital-garden",
-        "harness-engineering",
-        "knowledge-base",
-        "knowledge-graph",
-        "llm",
-        "llm-wiki",
-        "local-first",
-        "memex",
-        "multi-agent",
-        "obsidian",
-        "personal-knowledge-management",
-        "pkm",
-        "rag",
-        "second-brain",
-        "wiki"
+        "benchmarking",
+        "chat-template",
+        "cuda",
+        "debugging",
+        "llama-cpp",
+        "llm-serving",
+        "lm-eval",
+        "local-llm",
+        "model-evaluation",
+        "quantization",
+        "reasoning-models",
+        "speculative-decoding",
+        "troubleshooting",
+        "vllm"
       ],
-      "createdAt": "Jun 26, 2026",
-      "lastUpdated": "Aug 2, 2026",
+      "createdAt": "Jul 27, 2026",
+      "lastUpdated": "Aug 3, 2026",
       "fetchedAt": "Aug 3, 2026",
-      "bestFor": "Knowledge Management",
+      "bestFor": "Memory & Reasoning",
       "bullets": [
-        "Harness engineering applied to knowledge production: a self-evolving multi-agent newsroom that turns your documents into a cross-linked markdown wiki. A \"reground\" loop pulls published pages back in before they go stale \u2014 writer \u2260 reviewer, local-first, a structured alternative to RAG.",
-        "Primarily Python, with topics such as agentic-ai, ai-agents, claude.",
-        "Latest release v0.3.5 signals active maintenance."
+        "Community registry of LLM serving-path traps that produce confidently wrong measurements: templates, tool parsers, reasoning fields, quant kernel paths, CUDA toolchains, KV allocation, eval harnesses, versioning. Symptom-first, with the check that catches each.",
+        "Primarily Python, with topics such as benchmarking, chat-template, cuda.",
+        "Recent activity tracked from 2026-08-03."
       ],
       "actionItems": [
-        "Clone alfadur7/llm-wiki-newsroom and run the README quickstart with a small Python smoke test.",
-        "Map one knowledge management use case to the repo APIs, inputs, and required integrations.",
-        "Review v0.3.5, open issues, and license before deciding on a deeper benchmark or pilot."
+        "Run Blackwellboy/model-serving-minefield in an isolated Python environment and use the README to trace its primary inputs, outputs, and external services.",
+        "Create a long-horizon evaluation set, measure retention and correction behavior across sessions, and review data isolation before connecting business context.",
+        "Review recent commit history, open issues, NOASSERTION, and the dependency surface; define ownership, rollback, and support criteria before a memory & reasoning pilot."
       ],
-      "latestRelease": "v0.3.5",
-      "latestReleaseUrl": "https://github.com/alfadur7/llm-wiki-newsroom/releases/tag/v0.3.5",
-      "homepage": "https://alfadur7.github.io/llm-wiki-newsroom/",
-      "license": "MIT"
+      "latestRelease": "",
+      "latestReleaseUrl": "",
+      "homepage": "",
+      "license": "NOASSERTION",
+      "enterpriseScore": 28
     }
   ],
   "models": [
     {
+      "name": "Kimi K3",
+      "org": "Moonshot AI",
+      "date": "Jul 17, 2026",
+      "note": "Moonshot AI launched Kimi K3, a 2.8T-parameter open frontier model with native vision and a 1M-token context window, available today on Kimi.com, Kimi Work, Kimi Code, and the Kimi API.",
+      "tag": "OPEN",
+      "url": "https://kimi.com/blog/kimi-k3",
+      "sourceUrl": "https://www.kimi.com/blog/",
+      "sourceLabel": "Source page",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://kimi.com/blog/kimi-k3"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 0
+    },
+    {
       "name": "GPT-5.6",
       "org": "OpenAI",
       "date": "Jul 30, 2026",
-      "note": "OpenAI announced GPT-5.6 with lower pricing and improved price-performance, which matters for enterprises deploying AI workflows at scale.",
+      "note": "OpenAI announced lower GPT-5.6 pricing for Luna and Terra, improving price-performance for enterprise AI workflows at scale.",
       "tag": "MODEL",
       "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6",
       "sourceUrl": "https://openai.com/news/rss.xml",
@@ -437,13 +461,14 @@
           "label": "Model directory",
           "url": "https://artificialanalysis.ai/models"
         }
-      ]
+      ],
+      "enterpriseScore": 28
     },
     {
       "name": "Claude Opus 5",
       "org": "Anthropic",
       "date": "Jul 24, 2026",
-      "note": "Anthropic released Claude Opus 5, a new Opus-tier model that is now the default on Claude Max and strongest on Claude Pro, with major gains for coding and long-running agent work.",
+      "note": "Anthropic released Claude Opus 5, a new model that improves coding and professional-work performance while powering long-running agents at lower cost than the previous Opus tier.",
       "tag": "API",
       "url": "https://anthropic.com/news/claude-opus-5",
       "sourceUrl": "https://www.anthropic.com/news",
@@ -458,13 +483,58 @@
           "label": "Model directory",
           "url": "https://artificialanalysis.ai/models"
         }
-      ]
+      ],
+      "enterpriseScore": 0
+    },
+    {
+      "name": "Gemini Drop (July 2026)",
+      "org": "Google",
+      "date": "Jul 31, 2026",
+      "note": "Google shipped a July 2026 Gemini app update bundle, bringing new features and improvements to the Gemini app.",
+      "tag": "MODEL",
+      "url": "https://blog.google/products-and-platforms/products/gemini/gemini-drop-july-2026",
+      "sourceUrl": "https://blog.google/rss/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://blog.google/products-and-platforms/products/gemini/gemini-drop-july-2026"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 0
+    },
+    {
+      "name": "GPT 5.6 price cuts and Sol Fast mode",
+      "org": "Perplexity",
+      "date": "Jul 31, 2026",
+      "note": "GPT 5.6 Luna and Terra received new lower pricing, and GPT 5.6 Sol added Fast mode at 2\u00d7 standard token pricing, which changes cost and latency options for production use.",
+      "tag": "MODEL",
+      "url": "https://docs.perplexity.ai/docs/resources/changelog",
+      "sourceUrl": "https://docs.perplexity.ai/docs/resources/changelog.md",
+      "sourceLabel": "Source page",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://docs.perplexity.ai/docs/resources/changelog"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 27
     },
     {
       "name": "Gemini Robotics ER 2",
       "org": "Google",
       "date": "Jul 30, 2026",
-      "note": "Google shipped Gemini Robotics ER 2, a robotics model that improves video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "note": "Gemini Robotics ER 2 ships a new robotics-focused model with stronger video understanding, tool orchestration, and multi-robot collaboration capabilities.",
       "tag": "MODEL",
       "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-robotics-er-2",
       "sourceUrl": "https://blog.google/technology/developers/rss/",
@@ -479,7 +549,8 @@
           "label": "Model directory",
           "url": "https://artificialanalysis.ai/models"
         }
-      ]
+      ],
+      "enterpriseScore": 10
     }
   ],
   "toolsServices": [
@@ -487,7 +558,7 @@
       "name": "Agentic Catalog Experience in Amazon Quick",
       "org": "AWS",
       "date": "Jul 31, 2026",
-      "note": "AWS announced the Agentic Catalog Experience in Amazon Quick, bringing catalog-aware metadata and relationships into Quick so text-to-SQL and analytics can use upstream governance context more reliably.",
+      "note": "AWS announced the Agentic Catalog Experience in Amazon Quick, which connects Quick more natively with upstream data-catalog metadata and governance context so Text2SQL and analytics answers can use richer business semantics.",
       "tag": "CLOUD",
       "url": "https://aws.amazon.com/blogs/machine-learning/announcing-the-agentic-catalog-experience-in-amazon-quick",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
@@ -498,47 +569,14 @@
           "label": "Read release",
           "url": "https://aws.amazon.com/blogs/machine-learning/announcing-the-agentic-catalog-experience-in-amazon-quick"
         }
-      ]
-    },
-    {
-      "name": "Gateway API",
-      "org": "Perplexity",
-      "date": "Jul 31, 2026",
-      "note": "Perplexity launched Gateway API, giving developers unified access to frontier models from Anthropic, OpenAI, Google, xAI, and Perplexity through a single endpoint using an existing Perplexity API key.",
-      "tag": "API",
-      "url": "https://docs.perplexity.ai/docs/resources/changelog",
-      "sourceUrl": "https://docs.perplexity.ai/docs/resources/changelog.md",
-      "sourceLabel": "Source page",
-      "benchmarkUrl": "",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://docs.perplexity.ai/docs/resources/changelog"
-        }
-      ]
-    },
-    {
-      "name": "explicit prompt caching for OpenAI GPT-5.6 models on Amazon Bedrock",
-      "org": "AWS",
-      "date": "Jul 30, 2026",
-      "note": "AWS added explicit prompt caching for OpenAI GPT-5.6 on Amazon Bedrock, letting teams cache chosen prompt segments for reused agentic workflows with lower latency and 90% cheaper cached input.",
-      "tag": "PLATFORM",
-      "url": "https://aws.amazon.com/blogs/machine-learning/introducing-explicit-prompt-caching-for-openai-gpt-5-6-models-on-amazon-bedrock",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/introducing-explicit-prompt-caching-for-openai-gpt-5-6-models-on-amazon-bedrock"
-        }
-      ]
+      ],
+      "enterpriseScore": 8
     },
     {
       "name": "Advanced Prompt Optimization",
       "org": "Amazon Bedrock",
       "date": "Jul 30, 2026",
-      "note": "Amazon Bedrock introduced Advanced Prompt Optimization, a tool that optimizes prompts for up to 5 models and compares original versus optimized performance, reducing manual migration and tuning work.",
+      "note": "Amazon Bedrock introduced Advanced Prompt Optimization, which can optimize prompts for up to five models and compare original versus optimized performance in one job, reducing manual prompt-migration work.",
       "tag": "PLATFORM",
       "url": "https://aws.amazon.com/blogs/machine-learning/migrate-your-prompts-to-new-models-and-optimize-them-on-amazon-bedrock",
       "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
@@ -549,7 +587,8 @@
           "label": "Read release",
           "url": "https://aws.amazon.com/blogs/machine-learning/migrate-your-prompts-to-new-models-and-optimize-them-on-amazon-bedrock"
         }
-      ]
+      ],
+      "enterpriseScore": 10
     }
   ],
   "papers": [
@@ -560,7 +599,7 @@
       "date": "Jul 31, 2026",
       "hasCode": true,
       "stars": 0,
-      "researchScore": 78,
+      "researchScore": 77,
       "priority": "EXPERIMENT",
       "tags": [
         "Agentic AI",
@@ -568,14 +607,14 @@
       ],
       "abstract": "Large language models have demonstrated strong mathematical problem-solving capabilities, yet reliably verifying their candidate answers remains challenging. Existing representative methods mainly revise outputs through natural-language reflection or assist verification by directly generating verification programs; the former may not reliably support exact computation, whereas the latter prematurely couples mathematical modeling with low-level implementation. We propose AMTFV (Agentic Mathematical Tool-Flow Verification). By introducing Mathematical Tool Flow (MTF) as an interrupt--execute--resume interface, AMTFV decouples verification modeling from concrete execution and supports exact computation through a mathematical toolbox. Specifically, the verification agent first constructs a verification workflow, encodes the mathematical objects and computational intent requiring reliable execution in an MTF request, and sends it to the mathematical toolbox agent. The latter parses the request, generates executable calls, and dispatches them to the backend for exact computation. Tool outputs then support candidate-answer adjudication, answer revision, and verification-workflow revision. We evaluate AMTFV on five challenging mathematical reasoning datasets with seven model configurations from DeepSeek, GPT, and Gemini. Experimental results show that AMTFV outperforms the representative baselines evaluated in this study overall; under an individual model configuration, it improves average accuracy over the strongest baseline by up to 8.3 percentage points, with larger gains on samples of medium and high verification complexity.",
       "takeaways": [
-        "Proposes AMTFV, an agentic mathematical tool-flow verification framework that decouples verification modeling from low-level execution for LLM self-correction.",
-        "Uses an interrupt-execute-resume Mathematical Tool Flow interface plus a mathematical toolbox agent to translate verification requests into executable calls for exact computation, and evaluates on five reasoning datasets across seven DeepSeek, GPT, and Gemini configurations.",
-        "Reports overall gains over representative baselines, with up to 8.3 percentage points average accuracy improvement for one model configuration and larger benefits on medium/high verification-complexity samples."
+        "Proposes AMTFV, a self-correction framework for LLM math reasoning that decouples verification modeling from low-level execution via a Mathematical Tool Flow (MTF) interrupt--execute--resume interface.",
+        "Uses a two-agent setup: a verification agent builds an MTF request, and a mathematical toolbox agent translates it into executable calls for exact computation and workflow revision.",
+        "Evaluated on five math reasoning datasets and seven DeepSeek/GPT/Gemini configurations, AMTFV outperformed baselines overall and improved average accuracy by up to 8.3 points, especially on medium/high verification-complexity cases."
       ],
       "actionItems": [
-        "Review the AMTFV verification workflow design, focusing on how the interrupt-execute-resume Mathematical Tool Flow separates verification modeling from concrete execution.",
-        "Run the reported five-dataset, seven-configuration evaluation setup to compare AMTFV against the representative baselines and check whether the gains hold across model families and verification complexity levels.",
-        "Assess whether the mathematical toolbox agent and exact-computation dependency make adoption risky in environments that need reproducible, low-latency, or easily auditable verification pipelines."
+        "Review the AMTFV verification-agent and mathematical-toolbox-agent separation, with attention to how MTF requests encode mathematical objects and computational intent for exact computation.",
+        "Run an ablation or benchmark comparison on the five math reasoning datasets to isolate the effect of the interrupt--execute--resume MTF interface versus the representative baselines, especially on medium- and high-verification-complexity samples.",
+        "Assess whether the two-agent tool-flow adds operational complexity or failure modes that could affect adoption when integrating self-correction into existing LLM math systems."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -585,6 +624,13 @@
       },
       "capability": "Agentic AI",
       "domain": "Other",
+      "enterpriseScore": 0,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 0
+      },
       "url": "https://arxiv.org/abs/2607.29549"
     },
     {
@@ -602,14 +648,14 @@
       ],
       "abstract": "Self-play agents can generate training problems without questions from target benchmarks, but their curricula lack persistent state: failures affect gradients yet do not explicitly shape future practice. External skill memories preserve procedural experience but are typically learned from fixed task distributions. We introduce \\textbf{SESA} (Self-Evolving Skill-Augmented Agent), which makes procedural memory an evolving state of tool-augmented search self-play. A challenger poses problems, while a separately parameterized solver alone retrieves skills. Informative failures are distilled into reusable skills and written back to memory. The updated memory changes solver behavior and success, which changes the challenger's reward and the distribution of future problems; the resulting frontier produces new failures that rewrite memory. This bidirectional loop makes task generation and skill memory co-evolve. Because retrieved skills shape on-policy training trajectories, their benefits can enter the model parameters as well as remain in the external bank, enabling memory-free deployment and optional inference-time retrieval. Across seven open-domain and multi-hop question-answering benchmarks, SESA improves average accuracy over SSP by 1.2--3.2 points across multiple backbones and surpasses the skill-augmented SkillRL baseline by 0.9 points under a unified evaluation protocol. On Qwen3 models, SESA-Off retains 1.8--2.2 points of improvement over SSP, while the final skill bank adds a further 0.5--1.0 points. These results show that evolving skill memory is not merely an inference-time plug-in: it changes policy learning and the future training distribution while retaining value as optional external memory. Our code is available at https://github.com/Zenghuang-Fu/SESA-Self-Evolving-Search-Agents.",
       "takeaways": [
-        "SESA introduces a self-evolving search agent where a challenger poses problems, a separate solver retrieves skills, and informative failures are distilled into reusable skills that co-evolve task generation and memory.",
-        "The method is evaluated on seven open-domain and multi-hop QA benchmarks, showing average accuracy gains of 1.2\u20133.2 points over SSP and +0.9 over SkillRL under a unified evaluation protocol.",
-        "Practically, the evolving skill memory can improve policy learning while still serving as optional external memory, enabling memory-free deployment with additional gains from inference-time retrieval."
+        "SESA introduces a self-evolving skill-augmented self-play agent where a challenger generates problems, a separate solver retrieves skills, and informative failures are distilled back into an evolving external memory.",
+        "The paper evaluates SESA on seven open-domain and multi-hop QA benchmarks, reporting average accuracy gains of 1.2--3.2 points over SSP and 0.9 points over SkillRL under a unified protocol.",
+        "Practically, the results suggest evolving skill memory can improve training and future task generation, while also supporting memory-free deployment or optional inference-time retrieval."
       ],
       "actionItems": [
-        "Review the SESA training loop details to verify how the challenger, solver, and skill-memory writeback interact, and map those components to the parts of the paper most relevant for agentic search systems.",
-        "Run a controlled evaluation against SSP and SkillRL on the cited QA benchmarks, using the same unified protocol, and check whether the reported 1.2--3.2 point gains and the Qwen3 SESA-Off results reproduce across backbones.",
-        "Assess whether the claim that evolving skill memory supports memory-free deployment and optional inference-time retrieval is acceptable for finance/economics use cases, given the added complexity of co-evolving task generation and memory updates."
+        "Review the SESA training loop and implementation details to verify how challenger-generated tasks, solver-only skill retrieval, and failure-to-memory updates are separated and coordinated.",
+        "Run the reported seven-benchmark evaluation under the unified protocol on comparable open-domain and multi-hop QA settings to check whether the 1.2--3.2 point gains over SSP and 0.9 point gain over SkillRL hold across backbones.",
+        "Assess the adoption risk of using an evolving external skill bank in finance/economics agentic workflows, especially whether memory updates could create unstable behavior or make memory-free deployment preferable."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -619,6 +665,13 @@
       },
       "capability": "Agentic AI",
       "domain": "Finance and Economics",
+      "enterpriseScore": 40,
+      "enterpriseSignals": {
+        "adoption": 20,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 20
+      },
       "url": "https://arxiv.org/abs/2607.29468"
     },
     {
@@ -637,13 +690,13 @@
       "abstract": "Enterprise workflows increasingly rely on agents for \\emph{schema-guided extraction}: given a document and a user-defined schema, the agent faithfully follows the schema to produce the correct output with source evidence as grounding metadata. We present ExtractBench, a benchmark for schema-guided extraction and, to our knowledge, the first to score value accuracy, record completeness at scale, grounding, and measured cost together. The evaluation system contains 4,869 pages across 370 enterprise documents, 8 business domains, and 67 document types, with clear tags differentiating their challenge scenarios. The scalable schema and ground-truth curation pipeline combines independent-system agreement for real documents, known values for synthetic lists, and human verification for forms. We report order-insensitive value F1 for value accuracy, plus two grounding metrics for source traceability: word- and page-level F1. Commercial VLMs perform well on short documents but often truncate record lists on long ones, while coding agents retain higher accuracy at much higher cost. LlamaExtract Agentic Plus ranks first on all three metrics, with accuracy comparable to coding agents at a fraction of the cost. Dataset and evaluation code are available on \\href{https://huggingface.co/datasets/llamaindex/ExtractBench}{HuggingFace} and \\href{https://github.com/run-llama/ExtractBench}{GitHub}.",
       "takeaways": [
         "Introduces ExtractBench, a benchmark for schema-guided enterprise document extraction that evaluates value accuracy, record completeness, grounding, and cost together.",
-        "Uses 4,869 pages across 370 documents in 8 business domains and 67 document types, with a curation pipeline combining independent-system agreement, synthetic known values, and human verification; reports order-insensitive value F1 plus word- and page-level grounding F1.",
-        "Practical takeaway: commercial VLMs work better on short documents but often truncate long record lists, while coding agents are more accurate but costly; LlamaExtract Agentic Plus is first across the three metrics with accuracy comparable to coding agents at lower cost."
+        "Uses 4,869 pages from 370 documents across 8 business domains and 67 document types, with curated ground truth from system agreement, synthetic known values, and human verification; reports value F1 plus word- and page-level grounding F1.",
+        "Shows commercial VLMs work well on short documents but truncate long record lists, while coding agents are more accurate but costly; LlamaExtract Agentic Plus leads on all three metrics with similar accuracy to coding agents at lower cost."
       ],
       "actionItems": [
-        "Review ExtractBench\u2019s schema-guided extraction setup, metric definitions, and curation pipeline to understand how value accuracy, record completeness, grounding, and cost are jointly measured.",
-        "Run a comparative evaluation on the benchmark using commercial VLMs, coding agents, and LlamaExtract Agentic Plus, with attention to short versus long documents and truncation on record lists.",
-        "Assess whether the grounding requirements and cost-performance tradeoff make this approach suitable for your enterprise document workflows, especially if source traceability is mandatory."
+        "Review ExtractBench\u2019s schema-guided extraction setup and the three evaluation dimensions it adds\u2014value accuracy, grounding, and measured cost\u2014to assess fit for enterprise document workflows.",
+        "Run a head-to-head evaluation on your own long-document extraction tasks using the benchmark\u2019s value F1 and word/page grounding F1, especially to compare VLMs against coding agents on record completeness.",
+        "Ask whether the lower-cost, higher-accuracy balance reported for LlamaExtract Agentic Plus generalizes to your document mix and whether grounding evidence requirements change adoption in production."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -653,41 +706,14 @@
       },
       "capability": "Agentic AI",
       "domain": "Other",
-      "url": "https://arxiv.org/abs/2607.29677"
-    },
-    {
-      "title": "MOT-SR: Multi-Objective Tool-Augmented Scientific Equation Discovery with Large Language Models",
-      "authors": "Boxiao Wang, Runxiang Wang, Kai Li, Chongming Li, Zhiwei Chen, Yifan Zhang, Jian Cheng",
-      "org": "arXiv",
-      "date": "Jul 31, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 62,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Foundation Models and Generative AI",
-        "Science and Research"
-      ],
-      "abstract": "Symbolic Regression (SR) aims to discover analytical equations from observational data and plays a central role in scientific modeling. While recent Large Language Model (LLM) based approaches show promise, they face two limitations. First, they lack data analysis mechanisms for uncovering variable dependencies, which reduces the efficiency of equation discovery. Second, most methods rely on single-objective evaluation focused solely on fitting error. This neglect of structural complexity and generalization often causes models to converge prematurely to local optima, limiting their ability to explore the broader equation space. We propose Multi-Objective Tool-augmented Symbolic Regression (MOT-SR), a unified framework that integrates external analytical tools to extract structural priors and guide equation generation, while jointly optimizing for accuracy, complexity, and generalization via a multi-objective evaluation module that maintains a dynamic Pareto front. MOT-SR employs two collaborative LLM modules: a Meta Strategy Generator, which selects tools and synthesizes structural optimization strategies based on Pareto-optimal equations, and an Equation Generator, which produces new candidate equations accordingly. The system operates in a closed-loop manner, continuously refining both strategies and equation structures. Across 40 standard tasks, MOT-SR outperforms existing SR methods in accuracy, generalization, and efficiency. We further validate MOT-SR on extreme mass-ratio inspiral (EMRI) orbital modeling, an important problem in space-based gravitational-wave astronomy where small local errors can accumulate substantially over long-term evolution. The discovered interpretable correction achieves the lowest trajectory-level integration error on held-out configurations. These results demonstrate the potential of MOT-SR to enable reliable modeling of long-horizon scientific dynamics.",
-      "takeaways": [
-        "MOT-SR proposes a tool-augmented symbolic regression framework that uses external analysis to extract structural priors and jointly optimize accuracy, complexity, and generalization with a dynamic Pareto front.",
-        "The method uses two collaborative LLM modules\u2014a Meta Strategy Generator and an Equation Generator\u2014in a closed-loop system, and is evaluated on 40 standard tasks plus EMRI orbital modeling.",
-        "Practically, it improves equation discovery efficiency and yields an interpretable correction with the lowest held-out trajectory-level integration error in EMRI, suggesting value for long-horizon scientific modeling."
-      ],
-      "actionItems": [
-        "Review the MOT-SR paper for the specific external analysis tools used to extract structural priors and how the dynamic Pareto front is maintained in the closed-loop LLM workflow.",
-        "Reproduce or benchmark MOT-SR on a subset of the 40 standard symbolic regression tasks and the EMRI orbital modeling case, comparing accuracy, complexity, generalization, and held-out trajectory-level integration error against a single-objective SR baseline.",
-        "Assess adoption risk by checking whether the tool-augmented multi-objective setup and two-LLM-module loop are practical to reproduce and stable enough for other scientific modeling problems with similar long-horizon error accumulation."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "Medium",
-        "reproducibility": "Low",
-        "novelty": "High"
+      "enterpriseScore": 50,
+      "enterpriseSignals": {
+        "adoption": 30,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 20
       },
-      "capability": "Foundation Models and Generative AI",
-      "domain": "Science and Research",
-      "url": "https://arxiv.org/abs/2607.29561"
+      "url": "https://arxiv.org/abs/2607.29677"
     },
     {
       "title": "Zero-Mem: Zero-Token Memory Operations for LLM Agents",
@@ -704,14 +730,14 @@
       ],
       "abstract": "LLM agents need memory to act consistently over long interactions, yet many systems use additional LLM calls to operate that memory. Generating intermediate records and mediating their retrieval adds recurring token and time costs, while omitted or merged details can obscure the original evidence. We ask whether structured memory access requires generation at all. Zero-Mem introduces \\emph{zero-token memory operations}: no step outside final question answering invokes an LLM or consumes LLM input or output tokens; encoder computation is accounted for separately. Zero-Mem preserves original interaction traces as its source of record. It organizes the traces in two complementary ways. An entity--context graph exposes connections across interactions, while a temporal hierarchy preserves conversational locality and session state. For each query, Zero-Mem weighs the two views, retrieves from both, and follows their structure to recover supporting relations or surrounding context. Deterministic calibration first discards conflicting evidence and then keeps the reader's answer grounded in the retrieved traces. Only the final-QA reader invokes an LLM. Across long-memory and long-context question-answering benchmarks, Zero-Mem achieves competitive performance while eliminating LLM calls and LLM-token consumption from memory operations. With the same final-QA reader and context budget, it reduces memory-operation time cost by 57.6\\% relative to the fastest compared baseline. Ablations support the contribution of the two views and their query-dependent coordination. Overall, the results show that structured agent memory need not generate an intermediate representation of the past. After peer review, the code and implementation details will be available at \\textcolor{blue}{https://github.com/TheMoon0815/Zero-mem}.",
       "takeaways": [
-        "Introduces Zero-Mem, a memory system for LLM agents that performs zero-token memory operations by avoiding any LLM calls or token use outside final question answering while keeping original interaction traces as the source of record.",
-        "Method: organizes traces with an entity-context graph and a temporal hierarchy, retrieves from both with query-dependent weighting, and uses deterministic calibration to drop conflicting evidence before the final LLM reader answers.",
-        "Evidence and implication: on long-memory and long-context QA benchmarks it is competitive, and with the same reader/context budget cuts memory-operation time by 57.6% vs. the fastest baseline, suggesting structured agent memory can avoid intermediate generation."
+        "Introduces Zero-Mem, a memory system for LLM agents that performs zero-token memory operations: only the final QA step uses an LLM, while memory access itself avoids LLM calls and token consumption.",
+        "Method preserves original interaction traces and organizes them with an entity-context graph plus a temporal hierarchy; query-time retrieval combines both views with deterministic calibration to discard conflicts and ground answers in supporting traces.",
+        "On long-memory and long-context QA benchmarks, it matches competitive performance while cutting memory-operation time cost by 57.6% versus the fastest baseline, suggesting structured agent memory can be accessed without intermediate generation."
       ],
       "actionItems": [
-        "Review the Zero-Mem design for the two-view memory organization: verify how the entity-context graph and temporal hierarchy are built from original interaction traces and how query-dependent weighting is applied before final QA.",
-        "Reproduce the long-memory and long-context QA benchmark comparisons with the same final-QA reader and context budget, checking both competitive performance and the reported 57.6% memory-operation time reduction versus the fastest baseline.",
-        "Assess adoption risks by asking whether deterministic calibration that discards conflicting evidence could remove useful information in edge cases and whether eliminating LLM calls from memory operations affects robustness across different agent tasks."
+        "Review whether Zero-Mem\u2019s zero-token memory operation design and deterministic calibration match your dashboard\u2019s needs for agent memory systems that avoid intermediate LLM-generated memory records.",
+        "Evaluate Zero-Mem against your current memory baseline on long-memory and long-context QA, checking both answer quality and memory-operation time cost under the same final-QA reader and context budget.",
+        "Assess whether your adoption risk is acceptable if the system relies on preserving original interaction traces and the reported implementation is only promised after peer review, limiting near-term reproducibility of deployment details."
       ],
       "researchSignals": {
         "evidence": "Medium",
@@ -721,7 +747,55 @@
       },
       "capability": "Agentic AI",
       "domain": "Other",
+      "enterpriseScore": 10,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 10
+      },
       "url": "https://arxiv.org/abs/2607.29377"
+    },
+    {
+      "title": "MOT-SR: Multi-Objective Tool-Augmented Scientific Equation Discovery with Large Language Models",
+      "authors": "Boxiao Wang, Runxiang Wang, Kai Li, Chongming Li, Zhiwei Chen, Yifan Zhang, Jian Cheng",
+      "org": "arXiv",
+      "date": "Jul 31, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 61,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Foundation Models and Generative AI",
+        "Science and Research"
+      ],
+      "abstract": "Symbolic Regression (SR) aims to discover analytical equations from observational data and plays a central role in scientific modeling. While recent Large Language Model (LLM) based approaches show promise, they face two limitations. First, they lack data analysis mechanisms for uncovering variable dependencies, which reduces the efficiency of equation discovery. Second, most methods rely on single-objective evaluation focused solely on fitting error. This neglect of structural complexity and generalization often causes models to converge prematurely to local optima, limiting their ability to explore the broader equation space. We propose Multi-Objective Tool-augmented Symbolic Regression (MOT-SR), a unified framework that integrates external analytical tools to extract structural priors and guide equation generation, while jointly optimizing for accuracy, complexity, and generalization via a multi-objective evaluation module that maintains a dynamic Pareto front. MOT-SR employs two collaborative LLM modules: a Meta Strategy Generator, which selects tools and synthesizes structural optimization strategies based on Pareto-optimal equations, and an Equation Generator, which produces new candidate equations accordingly. The system operates in a closed-loop manner, continuously refining both strategies and equation structures. Across 40 standard tasks, MOT-SR outperforms existing SR methods in accuracy, generalization, and efficiency. We further validate MOT-SR on extreme mass-ratio inspiral (EMRI) orbital modeling, an important problem in space-based gravitational-wave astronomy where small local errors can accumulate substantially over long-term evolution. The discovered interpretable correction achieves the lowest trajectory-level integration error on held-out configurations. These results demonstrate the potential of MOT-SR to enable reliable modeling of long-horizon scientific dynamics.",
+      "takeaways": [
+        "Introduces MOT-SR, a multi-objective, tool-augmented symbolic regression framework that uses LLMs to discover analytical equations from data while balancing accuracy, complexity, and generalization.",
+        "Method uses external analytical tools to extract structural priors plus a dynamic Pareto-front evaluation, with a Meta Strategy Generator and Equation Generator in a closed loop to refine candidate equations.",
+        "In 40 standard tasks and an EMRI orbital modeling case, MOT-SR outperforms existing SR methods and yields an interpretable correction with the lowest held-out trajectory integration error, suggesting better long-horizon scientific modeling."
+      ],
+      "actionItems": [
+        "Review the MOT-SR closed-loop design, focusing on how the Meta Strategy Generator uses external analytical tools and Pareto-optimal equations to guide equation generation.",
+        "Evaluate MOT-SR on a held-out symbolic regression benchmark with ablations for tool use, dynamic Pareto-front objectives, and the two LLM modules to isolate contributions to accuracy, complexity, and generalization.",
+        "Assess whether the low-reproducibility setting and reliance on external tools/Pareto selection create adoption risks for scientific users who need stable, interpretable equation discovery workflows."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Medium",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Foundation Models and Generative AI",
+      "domain": "Science and Research",
+      "enterpriseScore": 28,
+      "enterpriseSignals": {
+        "adoption": 10,
+        "efficiency": 8,
+        "governance": 0,
+        "evidence": 10
+      },
+      "url": "https://arxiv.org/abs/2607.29561"
     },
     {
       "title": "AgentHPOBench: A Benchmark For Evaluating LLM Agents as Sequential Hyperparameter Optimizers",
@@ -738,14 +812,14 @@
       ],
       "abstract": "As LLMs evolve from code completion systems into autonomous scientific agents, evaluating their ability to conduct experiments has become increasingly important. Existing benchmarks typically focus on static code generation, paper replication, or final answer correctness, but do not directly assess whether agents can interpret experimental evidence and use it to guide subsequent hyperparameter decisions. To address this gap, we introduce AgentHPOBench, a sequential benchmark comprising 30 executable machine learning tasks across seven research categories. Each task begins with a validated baseline run, after which an agent performs several sequential interventions. At each step, the agent observes the accumulated configurations, metrics, and logs before proposing the next valid configuration. We evaluate 12 widely used agents and conventional HPO baselines under a unified protocol. The results show that current agents exhibit measurable experimental optimization ability across domains, but still face clear limitations in sustained iterative refinement, complex log diagnosis, and consistent progress toward reported reference performance.",
       "takeaways": [
-        "Introduces AgentHPOBench, a sequential benchmark for evaluating whether LLM agents can act as hyperparameter optimizers by interpreting experimental evidence and choosing the next valid configuration.",
-        "Uses 30 executable machine learning tasks across seven research categories, with stepwise interventions from a validated baseline and evaluation of 12 agents plus conventional HPO baselines under a unified protocol.",
-        "Suggests practical limits for autonomous ML experimentation: current agents show optimization ability, but struggle with sustained iterative refinement, complex log diagnosis, and reaching reported reference performance."
+        "Introduces AgentHPOBench, a sequential benchmark for evaluating LLM agents as hyperparameter optimizers on 30 executable machine learning tasks across seven research categories.",
+        "Uses a validated baseline run and stepwise interventions with accumulated configurations, metrics, and logs, then compares 12 widely used agents and conventional HPO baselines under a unified protocol.",
+        "Suggests current agents can optimize experimentally to some extent, but still struggle with iterative refinement, log diagnosis, and reliably reaching reported reference performance."
       ],
       "actionItems": [
-        "Review the AgentHPOBench protocol and task setup to understand how sequential hyperparameter decisions are evaluated from a validated baseline across 30 executable ML tasks.",
-        "Run a side-by-side evaluation of your target LLM agents against the benchmark\u2019s unified protocol and conventional HPO baselines, focusing on stepwise improvement, log interpretation, and progress toward reference performance.",
-        "Assess whether your deployment plan can tolerate current limitations in sustained iterative refinement and complex log diagnosis before relying on autonomous agents for experimental optimization."
+        "Review the AgentHPOBench task design and scoring protocol to understand how sequential hyperparameter decisions are evaluated across the 30 executable ML tasks.",
+        "Run a side-by-side evaluation of your target LLM agent against the 12-agent and conventional HPO baseline setup using the same baseline-run, stepwise-intervention workflow and logged evidence.",
+        "Ask whether the benchmark\u2019s low reported reproducibility and low applicability to your setting still make it a reliable adoption signal for agentic HPO workflows."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -755,6 +829,13 @@
       },
       "capability": "Agentic AI",
       "domain": "AI Engineering and Developer Tools",
+      "enterpriseScore": 10,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 10
+      },
       "url": "https://arxiv.org/abs/2607.29626"
     },
     {
@@ -772,14 +853,14 @@
       ],
       "abstract": "Automated vulnerability repair aims to reduce the time and effort required to patch security flaws from a vulnerability triage report. Recent agentic AI approaches have shown promising results in automated program repair. However, vulnerability repair demands richer program context than general bug repair - context that security engineers routinely assemble in practice but that existing agentic approaches do not engineer. We identify three critical gaps: code-structure context capturing cross-file data flows and memory operation patterns, runtime-execution context revealing crash semantics and memory origins, and commit-history context recovering how fragile code patterns were introduced. We present AgenticRepair, an agentic vulnerability repair framework that addresses the gaps through multi-faceted program context engineering. AgenticRepair orchestrates three specialized LLM subagents to engineer the contexts, which are then embedded into the memory of a dedicated repair subagent for context-conditioned patch synthesis. Evaluated on SEC-Bench comprising 300 real-world instances with sanitizer-based patch verification, AgenticRepair achieves a 73% success rate, substantially outperforming the strongest baseline by 29%. Our ablation study confirms that the three context facets are mutually complementary, and that multi-agent scaffolding and base-model capacity each play an essential role. Collectively, these findings establish multi-faceted program context engineering as a promising design direction for agentic vulnerability repair.",
       "takeaways": [
-        "AgenticRepair introduces a multi-faceted framework for agentic vulnerability repair that engineers three context types: code-structure, runtime-execution, and commit-history context.",
-        "The method uses three specialized LLM subagents to build these contexts and a repair subagent to synthesize patches; on SEC-Bench\u2019s 300 real-world cases with sanitizer-based verification, it reached a 73% success rate, 29 points above the strongest baseline.",
-        "For practice, the paper suggests vulnerability repair benefits from richer program context than general bug repair, making multi-agent context engineering a promising design direction for automated security patching."
+        "AgenticRepair introduces multi-faceted program context engineering for vulnerability repair, targeting three gaps: code-structure, runtime-execution, and commit-history context.",
+        "The method uses three specialized LLM subagents to engineer these contexts and a repair subagent to synthesize patches; on SEC-Bench 300 real-world cases with sanitizer-based verification, it reached 73% success and beat the strongest baseline by 29%.",
+        "Practically, the work suggests that richer context assembly and multi-agent scaffolding can materially improve agentic security patching for real vulnerability triage reports."
       ],
       "actionItems": [
-        "Review whether the current agentic repair pipeline can be extended to engineer the three context types identified here: code-structure, runtime-execution, and commit-history context.",
-        "Evaluate the framework on your own vulnerability-repair benchmark or internal triage set with sanitizer-based patch verification, comparing success rate against the strongest existing baseline.",
-        "Assess the adoption risk of relying on multi-agent context engineering in security patching, especially given the paper\u2019s low reproducibility and low applicability signals."
+        "Review how the three context facets\u2014code-structure, runtime-execution, and commit-history\u2014are assembled by the specialized subagents and fed into the repair subagent.",
+        "Evaluate AgenticRepair on a separate vulnerability repair benchmark or held-out SEC-Bench split, using sanitizer-based patch verification and comparing against the strongest baseline.",
+        "Assess whether the multi-agent, context-heavy setup is practical to adopt in real triage workflows given the reported low applicability and low reproducibility signals."
       ],
       "researchSignals": {
         "evidence": "High",
@@ -789,6 +870,13 @@
       },
       "capability": "Agentic AI",
       "domain": "Security and Privacy",
+      "enterpriseScore": 18,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 8,
+        "evidence": 10
+      },
       "url": "https://arxiv.org/abs/2607.29422"
     },
     {
@@ -807,13 +895,13 @@
       "abstract": "Fault detection and diagnosis (FDD) technology is essential for improving HVAC system reliability, energy efficiency, and maintenance effectiveness. However, effective deployment of FDD solutions in buildings requires structured domain knowledge that can bridge heterogeneous data sources, diverse equipment types, and varied diagnostic outputs. Limited data interpretability and interoperability within the FDD domain have led to fragmented information silos, hindering the implementation of FDD and related applications, such as the digital twin-enabled FDD frameworks and artificial intelligence (AI)-driven maintenance decision-making systems. This paper presents an FDD Ontology (FDD-ON), a modular and extensible ontology to formally represent variable air volume (VAV) HVAC system components, fault types, symptom statuses, fault impacts and associated attributes. FDD-ON integrates HVAC system FDD semantics to provide comprehensive representations of fault and symptom attributes, supported by the well-defined controlled vocabulary. Additionally, FDD-ON offers comprehensive fault, symptom, and impact libraries to capture a broad spectrum of operational abnormalities and their consequences in VAV HVAC systems. Through explicit contributing cause-fault-symptom-impact relations, FDD-ON serves as a machine-interpretable basis for querying diagnostic knowledge, mapping heterogeneous FDD outputs, and developing interoperable FDD-related applications. FDD-ON is evaluated using publicly available VAV HVAC system datasets and demonstrated through FDD development applications. Results indicate that FDD-ON provides a foundational semantic framework for advancing scalable, transparent, and interoperable FDD solutions across various applications.",
       "takeaways": [
         "Introduces FDD-ON, a modular ontology for formally representing VAV HVAC components, fault types, symptom statuses, fault impacts, and related attributes.",
-        "Evaluated with publicly available VAV HVAC datasets and demonstrated in FDD development applications; the paper uses controlled vocabulary and explicit cause-fault-symptom-impact relations to support machine-interpretable diagnostics.",
-        "Practical implication: FDD-ON aims to bridge heterogeneous FDD data and outputs, enabling more interoperable, transparent fault detection and diagnosis for digital-twin and AI-driven maintenance workflows."
+        "Built with controlled vocabulary and explicit cause-fault-symptom-impact relations, and evaluated on public VAV HVAC datasets with FDD development applications.",
+        "Provides a machine-interpretable semantic layer for querying diagnostic knowledge, mapping heterogeneous FDD outputs, and supporting interoperable AI/digital-twin maintenance applications."
       ],
       "actionItems": [
-        "Review the FDD-ON ontology schema and controlled vocabulary to verify coverage of VAV components, fault types, symptom statuses, and fault impacts against the paper\u2019s described scope.",
-        "Run a targeted evaluation on the publicly available VAV HVAC datasets to assess how well FDD-ON maps heterogeneous FDD outputs into machine-interpretable cause-fault-symptom-impact relations.",
-        "Confirm whether the ontology\u2019s VAV-specific design is sufficient for your intended HVAC/FDD workflow, or whether additional equipment types and diagnostic semantics would be needed for adoption in digital twin or AI-driven maintenance systems."
+        "Review the FDD-ON ontology schema, especially its controlled vocabulary and cause-fault-symptom-impact relations, to verify coverage of VAV HVAC components and fault attributes.",
+        "Evaluate FDD-ON on the cited public VAV HVAC datasets by measuring how well it supports querying diagnostic knowledge and mapping heterogeneous FDD outputs across applications.",
+        "Assess whether the ontology\u2019s semantic layer can be adopted without introducing interoperability or maintenance overhead when integrating AI-driven or digital-twin FDD workflows."
       ],
       "researchSignals": {
         "evidence": "Low",
@@ -823,6 +911,13 @@
       },
       "capability": "LLMOps and Production AI",
       "domain": "Other",
+      "enterpriseScore": 48,
+      "enterpriseSignals": {
+        "adoption": 30,
+        "efficiency": 8,
+        "governance": 0,
+        "evidence": 0
+      },
       "url": "https://arxiv.org/abs/2607.29657"
     }
   ],
@@ -836,18 +931,20 @@
         "How two API settings improved GPT-5.6 performance on ARC-AGI-3, boosting scores and efficiency by retaining reasoning and enabling compaction."
       ],
       "url": "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores",
-      "linkVerified": true
+      "linkVerified": true,
+      "enterpriseScore": 18
     },
     {
       "source": "Microsoft Research",
-      "title": "Echoverse: Deep, evolving environments for computer-use agents",
+      "title": "Orchard: An open framework for scalable agentic AI",
       "tag": "RESEARCH BLOG",
-      "date": "Jul 30, 2026",
+      "date": "Aug 3, 2026",
       "takeaways": [
-        "Scaling fidelity over sheer count, targeting the capabilities agents actually lack, and evolving with the models they train. At a glance We built twelve training worlds for computer-use agents: ten deep domain worlds and two capability worlds, each drilling a single control rendered in many forms (date pickers and nested filters)."
+        "At a glance Orchard is an open-source framework for scalable and cost-effective agentic AI research, built around Orchard Env, a reusable environment service for training and evaluating agents across task domains."
       ],
-      "url": "https://microsoft.com/en-us/research/blog/echoverse-deep-evolving-environments-for-computer-use-agents",
-      "linkVerified": true
+      "url": "https://microsoft.com/en-us/research/blog/orchard-an-open-framework-for-scalable-agentic-ai",
+      "linkVerified": true,
+      "enterpriseScore": 58
     },
     {
       "source": "OpenAI News",
@@ -858,18 +955,20 @@
         "OpenAI is giving 100,000 academic researchers free access to ChatGPT's most advanced AI models to accelerate scientific research, collaboration, and discovery."
       ],
       "url": "https://openai.com/index/chatgpt-for-academic-researchers",
-      "linkVerified": true
+      "linkVerified": true,
+      "enterpriseScore": 0
     },
     {
       "source": "Microsoft Research",
-      "title": "EvoLib: Turning experience into evolving knowledge",
+      "title": "Echoverse: Deep, evolving environments for computer-use agents",
       "tag": "RESEARCH BLOG",
       "date": "Jul 30, 2026",
       "takeaways": [
-        "At a glance Self-supervised. EvoLib enables large language models to learn from their own experience during inference, without requiring ground-truth labels or external feedback. From experience to knowledge. EvoLib transforms past attempts into reusable skills and reflective insights that can be applied to future tasks. Knowledge that evolves."
+        "Scaling fidelity over sheer count, targeting the capabilities agents actually lack, and evolving with the models they train. At a glance We built twelve training worlds for computer-use agents: ten deep domain worlds and two capability worlds, each drilling a single control rendered in many forms (date pickers and nested filters)."
       ],
-      "url": "https://microsoft.com/en-us/research/blog/evolib-turning-experience-into-evolving-knowledge",
-      "linkVerified": true
+      "url": "https://microsoft.com/en-us/research/blog/echoverse-deep-evolving-environments-for-computer-use-agents",
+      "linkVerified": true,
+      "enterpriseScore": 0
     },
     {
       "source": "OpenAI News",
@@ -880,7 +979,20 @@
         "GPT-5.6 improves AI efficiency across models, inference, and agentic workflows, helping deliver more useful intelligence per dollar."
       ],
       "url": "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency",
-      "linkVerified": true
+      "linkVerified": true,
+      "enterpriseScore": 8
+    },
+    {
+      "source": "Microsoft Research",
+      "title": "EvoLib: Turning experience into evolving knowledge",
+      "tag": "RESEARCH BLOG",
+      "date": "Jul 30, 2026",
+      "takeaways": [
+        "At a glance Self-supervised. EvoLib enables large language models to learn from their own experience during inference, without requiring ground-truth labels or external feedback. From experience to knowledge. EvoLib transforms past attempts into reusable skills and reflective insights that can be applied to future tasks. Knowledge that evolves."
+      ],
+      "url": "https://microsoft.com/en-us/research/blog/evolib-turning-experience-into-evolving-knowledge",
+      "linkVerified": true,
+      "enterpriseScore": 10
     }
   ],
   "fallbackSections": {},
@@ -890,12 +1002,12 @@
     {
       "source": "rss",
       "status": "ok",
-      "item_count": 5,
-      "duration_ms": 6909,
+      "item_count": 6,
+      "duration_ms": 6332,
       "fetch_diagnostics": {
         "strategy": "round_robin",
         "feeds_requested": 5,
-        "selected": 5,
+        "selected": 6,
         "feeds": [
           {
             "feed_url": "https://openai.com/news/rss.xml",
@@ -944,9 +1056,9 @@
             "feed_url": "https://www.microsoft.com/en-us/research/feed/",
             "source": "Microsoft Research",
             "fetched": 10,
-            "eligible": 2,
-            "selected": 2,
-            "verified": 2,
+            "eligible": 3,
+            "selected": 3,
+            "verified": 3,
             "rejected": {}
           }
         ]
@@ -956,7 +1068,7 @@
       "source": "papers",
       "status": "ok",
       "item_count": 65,
-      "duration_ms": 7967,
+      "duration_ms": 8628,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -1020,7 +1132,7 @@
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 75935,
+      "duration_ms": 74871,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1067,25 +1179,25 @@
             "failed": false
           },
           {
-            "query": "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25",
+            "query": "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
+            "query": "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
+            "query": "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
+            "query": "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
@@ -1142,17 +1254,17 @@
             "kind": "evergreen"
           },
           {
-            "repo": "alfadur7/llm-wiki-newsroom",
-            "added": 1,
+            "repo": "MaxFreedomPollard/Compartment",
+            "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "StarTrail-org/PixelRAG",
+            "repo": "oliver-zehentleitner/keep-the-why",
             "added": 0,
             "failed": false,
-            "skipped_old": true,
+            "skipped_old": false,
             "kind": "emerging"
           },
           {
@@ -1163,8 +1275,8 @@
             "kind": "emerging"
           },
           {
-            "repo": "nossa-y/activity-frames",
-            "added": 1,
+            "repo": "bybit-exchange/kaas",
+            "added": 0,
             "failed": false,
             "skipped_old": false,
             "kind": "emerging"
@@ -1183,10 +1295,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
-              "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
-              "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
-              "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25"
+              "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
+              "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
+              "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
+              "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1198,10 +1310,10 @@
           "watch_rotation": {
             "replacements": 4,
             "added": [
-              "nossa-y/activity-frames",
+              "bybit-exchange/kaas",
               "omnigent-ai/omnigent",
-              "StarTrail-org/PixelRAG",
-              "alfadur7/llm-wiki-newsroom"
+              "oliver-zehentleitner/keep-the-why",
+              "MaxFreedomPollard/Compartment"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1211,7 +1323,7 @@
             ]
           }
         },
-        "total_unique_candidates": 50,
+        "total_unique_candidates": 48,
         "dynamic_refresh": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1223,10 +1335,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR episodic) (llm OR agent) language:python stars:>20",
-              "(\"local-first\" OR memex OR pkm) (llm OR agent) language:python stars:>15",
-              "(\"knowledge graph\" OR graph) (agent OR llm) language:python stars:>20",
-              "(\"context engineering\" OR \"context window\") (llm OR agent) language:python stars:>25"
+              "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (llm OR agents) language:python stars:>20",
+              "(\"memory system\" OR \"memory architecture\") (agent OR llm) language:python stars:>15",
+              "(\"context engineering\" OR \"context management\") (mcp OR \"model context protocol\") language:python stars:>15",
+              "(\"knowledge graph\" OR graph) (mcp OR \"model context protocol\") language:python stars:>15"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1238,10 +1350,10 @@
           "watch_rotation": {
             "replacements": 4,
             "added": [
-              "nossa-y/activity-frames",
+              "bybit-exchange/kaas",
               "omnigent-ai/omnigent",
-              "StarTrail-org/PixelRAG",
-              "alfadur7/llm-wiki-newsroom"
+              "oliver-zehentleitner/keep-the-why",
+              "MaxFreedomPollard/Compartment"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1256,13 +1368,13 @@
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 8,
-      "duration_ms": 82056,
+      "item_count": 12,
+      "duration_ms": 115145,
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
         "active_emerging_feeds": 4,
-        "active_source_pages": 8,
+        "active_source_pages": 10,
         "active_emerging_model_terms": 4,
         "active_emerging_tool_terms": 1,
         "auto_update_enabled": true,
@@ -1313,32 +1425,32 @@
       },
       "extraction_diagnostics": {
         "feeds_requested": 16,
-        "source_pages_requested": 8,
-        "entries_fetched": 322,
-        "classified": 9,
-        "selected": 8,
-        "llm_classification_attempts": 12,
+        "source_pages_requested": 10,
+        "entries_fetched": 344,
+        "classified": 14,
+        "selected": 12,
+        "llm_classification_attempts": 18,
         "llm_classification_failures": 0,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
         "classification_diagnostics": {
-          "entries_considered": 322,
-          "rejected_duplicate_url": 7,
-          "rejected_missing_or_stale_date": 80,
-          "rejected_non_release": 223,
-          "rejected_by_llm": 3,
-          "major_model_carried_forward": 2
+          "entries_considered": 344,
+          "rejected_duplicate_url": 17,
+          "rejected_missing_or_stale_date": 90,
+          "rejected_non_release": 219,
+          "rejected_by_llm": 4,
+          "major_model_carried_forward": 3
         },
         "selection_diagnostics": {
-          "rejected_near_duplicate": 0,
+          "rejected_near_duplicate": 1,
           "rejected_superseded_major_model": 1,
-          "major_models_selected": 2
+          "major_models_selected": 3
         },
         "dynamic_config": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
           "active_core_feeds": 14,
           "active_emerging_feeds": 4,
-          "active_source_pages": 8,
+          "active_source_pages": 10,
           "active_emerging_model_terms": 4,
           "active_emerging_tool_terms": 1,
           "auto_update_enabled": true,
