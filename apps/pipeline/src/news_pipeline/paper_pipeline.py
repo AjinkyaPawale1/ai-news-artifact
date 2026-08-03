@@ -17,7 +17,7 @@ from .paper_summarize import (
     get_last_summary_diagnostics,
 )
 from .push_to_artifact import push_papers_to_existing_artifact
-from .score import attach_action_scores
+from .score import attach_action_scores, attach_enterprise_scores
 from .summarize import summarize_items
 
 LOGGER = logging.getLogger(__name__)
@@ -41,6 +41,7 @@ def run_paper_pipeline() -> dict:
     enrich_paper_summaries(summarized)
     enrich_paper_action_items(summarized)
     attach_action_scores(summarized)
+    attach_enterprise_scores(summarized)
 
     diagnostics = update_last_diagnostics(
         deduplicated_count=len(deduped),

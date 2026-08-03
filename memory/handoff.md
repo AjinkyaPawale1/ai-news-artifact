@@ -1,7 +1,26 @@
 # Handoff Notes
 
-Last updated: 2026-07-27
-Owner: AI agent (Codex)
+Last updated: 2026-08-02
+Owner: AI agent (Claude Code)
+
+## 2026-08-02 Update
+- Implemented step 1 of Broader Enterprise Scoring: a deterministic 0-100
+  `enterprise_score` (adoption/efficiency/governance/evidence keyword components plus a
+  taxonomy bonus for "Enterprise and Knowledge Work" / "LLMOps and Production AI") in
+  `score.py`, attached in `supervisor.py` and `paper_pipeline.py`.
+- The score is a parallel field and does not feed the quality gate. The inert
+  financial-services `DOMAIN_KEYWORDS` list in `config.py` was replaced by an alias of
+  the new enterprise term lists; gate pass/fail is invariant because the non-RSS score
+  floors at the gate threshold (40) and RSS ignores it.
+- Exposed `enterpriseScore` on paper, repo, release, and blog cards (papers also get an
+  `enterpriseSignals` breakdown) in `push_to_artifact.py`.
+- Frontend: ENTERPRISE badge (threshold 40) on paper/repo/release cards and a new
+  Enterprise Focus panel in the Signals tab showing the top five items ranked by
+  enterprise score, with a graceful note when the field is absent (archived editions and
+  pre-change artifacts).
+- Verified: 86 unit tests (5 new in `apps/pipeline/tests/test_score.py`), Ruff, Vite production build,
+  and a keyless local pipeline smoke run whose regenerated `data/` churn was discarded —
+  the Monday cron publishes the first real edition carrying the field.
 
 ## 2026-07-27 Update
 - Resynced local work onto `origin/main` after `feature/public-quality-fallbacks` was

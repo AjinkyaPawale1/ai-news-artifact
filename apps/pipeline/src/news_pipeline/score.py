@@ -4,7 +4,14 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from .config import AI_KEYWORDS, DOMAIN_KEYWORDS
+from .config import (
+    AI_KEYWORDS,
+    DOMAIN_KEYWORDS,
+    ENTERPRISE_ADOPTION_TERMS,
+    ENTERPRISE_EFFICIENCY_TERMS,
+    ENTERPRISE_EVIDENCE_TERMS,
+    ENTERPRISE_GOVERNANCE_TERMS,
+)
 from .schema import Item
 
 
@@ -89,4 +96,43 @@ def attach_action_scores(items: list[dict]) -> list[dict]:
     """Attach a generic actionability score while preserving the existing ordering."""
     for item in items:
         item["action_score"] = action_score_item(item)
+    return items
+
+
+ENTERPRISE_TAXONOMY_DOMAIN = "Enterprise and Knowledge Work"
+ENTERPRISE_TAXONOMY_CAPABILITY = "LLMOps and Production AI"
+ENTERPRISE_TAXONOMY_BONUS = 10
+
+
+def enterprise_score_item(item: dict) -> int:
+    """Return a 0-100 enterprise/ROI relevance signal (does not affect the quality gate)."""
+    metadata = item.get("metadata") or {}
+    text = " ".join(
+        [
+            item.get("title", ""),
+            item.get("raw_content", ""),
+            " ".join(item.get("tags") or []),
+        ]
+    )
+    components = {
+        "adoption": _action_component(text, ENTERPRISE_ADOPTION_TERMS, 30, 3),
+        "efficiency": _action_component(text, ENTERPRISE_EFFICIENCY_TERMS, 25, 3),
+        "governance": _action_component(text, ENTERPRISE_GOVERNANCE_TERMS, 25, 3),
+        "evidence": _action_component(text, ENTERPRISE_EVIDENCE_TERMS, 20, 2),
+    }
+    bonus = (
+        ENTERPRISE_TAXONOMY_BONUS
+        if metadata.get("domain") == ENTERPRISE_TAXONOMY_DOMAIN
+        or metadata.get("capability") == ENTERPRISE_TAXONOMY_CAPABILITY
+        else 0
+    )
+    metadata["enterprise_signal_components"] = components
+    item["metadata"] = metadata
+    return min(100, sum(components.values()) + bonus)
+
+
+def attach_enterprise_scores(items: list[dict]) -> list[dict]:
+    """Attach an enterprise relevance score while preserving the existing ordering."""
+    for item in items:
+        item["enterprise_score"] = enterprise_score_item(item)
     return items

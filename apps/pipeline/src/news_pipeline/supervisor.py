@@ -27,7 +27,7 @@ from .paper_summarize import (
 from .push_to_artifact import push_to_artifact
 from .quality_gate import apply_quality_gate
 from .schema import Item
-from .score import attach_action_scores, score_items
+from .score import attach_action_scores, attach_enterprise_scores, score_items
 from .summarize import summarize_items
 
 LOGGER = logging.getLogger(__name__)
@@ -104,6 +104,7 @@ def run_pipeline() -> dict:
     enrich_paper_summaries(summarized)
     enrich_paper_action_items(summarized)
     attach_action_scores(summarized)
+    attach_enterprise_scores(summarized)
 
     paper_diagnostics = update_last_diagnostics(
         deduplicated_count=sum(item.source_type == "paper" for item in deduped),

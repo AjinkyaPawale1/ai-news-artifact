@@ -103,19 +103,75 @@ RSS_FEEDS = [
     "https://www.microsoft.com/en-us/research/feed/",
 ]
 
-DOMAIN_KEYWORDS = [
-    "financial services",
-    "banking",
-    "insurance",
-    "capital markets",
-    "wealth management",
-    "asset management",
-    "risk",
-    "compliance",
-    "fraud",
-    "portfolio",
-    "trading",
+ENTERPRISE_ADOPTION_TERMS = [
+    "production",
+    "deployment",
+    "deploy",
+    "enterprise",
+    "on-prem",
+    "on-premise",
+    "self-hosted",
+    "integration",
+    "migration",
+    "rollout",
+    "generally available",
+    "general availability",
+    "at scale",
+    "scalable",
+    "orchestration",
 ]
+
+ENTERPRISE_EFFICIENCY_TERMS = [
+    "cost reduction",
+    "cost savings",
+    "cost-effective",
+    "low-cost",
+    "cheaper",
+    "latency",
+    "throughput",
+    "efficiency",
+    "efficient",
+    "inference cost",
+    "token cost",
+    "quantization",
+    "distillation",
+    "pricing",
+    "return on investment",
+]
+
+ENTERPRISE_GOVERNANCE_TERMS = [
+    "compliance",
+    "governance",
+    "security",
+    "privacy",
+    "audit",
+    "guardrail",
+    "safety",
+    "access control",
+    "gdpr",
+    "hipaa",
+    "soc 2",
+    "regulatory",
+    "regulation",
+    "risk management",
+    "observability",
+    "monitoring",
+]
+
+ENTERPRISE_EVIDENCE_TERMS = [
+    "case study",
+    "benchmark",
+    "evaluation",
+    "real-world",
+    "production workload",
+    "a/b test",
+    "pilot",
+    "customer",
+    "user study",
+    "adoption",
+]
+
+DOMAIN_KEYWORDS = ENTERPRISE_ADOPTION_TERMS + ENTERPRISE_GOVERNANCE_TERMS
 
 AI_KEYWORDS = [
     "llm",
