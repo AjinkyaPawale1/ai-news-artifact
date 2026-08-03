@@ -267,6 +267,8 @@ def _to_paper(item: dict) -> dict:
         or {"evidence": "Low", "applicability": "Low", "reproducibility": "Low", "novelty": "Low"},
         "capability": metadata.get("capability", "Other AI/ML"),
         "domain": metadata.get("domain", "Other"),
+        "enterpriseScore": item.get("enterprise_score", 0),
+        "enterpriseSignals": metadata.get("enterprise_signal_components") or {},
         "url": item.get("url", ""),
     }
 
@@ -281,6 +283,7 @@ def _to_blog(item: dict) -> dict:
         "takeaways": [item.get("summary") or item.get("raw_content") or "Review this update."],
         "url": item.get("url", ""),
         "linkVerified": bool(metadata.get("link_verified")),
+        "enterpriseScore": item.get("enterprise_score", 0),
     }
 
 
@@ -303,6 +306,7 @@ def _to_repo(item: dict) -> dict:
         "latestReleaseUrl": metadata.get("latest_release_url", ""),
         "homepage": metadata.get("homepage", ""),
         "license": metadata.get("license", ""),
+        "enterpriseScore": item.get("enterprise_score", 0),
     }
 
 
@@ -331,6 +335,7 @@ def _to_release(item: dict) -> dict:
         "sourceLabel": metadata.get("source_label", "Source"),
         "benchmarkUrl": benchmark_url,
         "links": links,
+        "enterpriseScore": item.get("enterprise_score", 0),
     }
 
 
