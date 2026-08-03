@@ -134,7 +134,8 @@ Collection bounds and controls:
 | --- | ---: | --- | --- |
 | Core feeds | `14` static defaults | `MODEL_TOOL_CORE_FEEDS` | always active; override replaces the complete list |
 | Source pages | `10` static defaults | `MODEL_TOOL_SOURCE_PAGES_EXTRA` | official fallback pages and tracked announcement articles; extras are additive |
-| Release retention | `10` days | `MODEL_TOOL_RELEASE_WINDOW_DAYS` | keeps model/tool launches visible across the scheduled run and a mid-week manual rerun |
+| Standard date window | `7` days | `DATE_WINDOW_DAYS` | pipeline-wide date cutoff applied to all items |
+| Major-model carry-forward | `28` days | `MODEL_TOOL_MAJOR_MODEL_WINDOW_DAYS` | extends retention for recognized major-model family launches beyond the standard window |
 | Candidate feeds | derived allow-list | `MODEL_TOOL_EMERGING_FEEDS_EXTRA` | allowed proposal pool; extras also become candidates |
 | Emerging feeds | max `5` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_FEEDS` | rotating feed set |
 | Emerging model terms | max `12` active | `MODEL_TOOL_DYNAMIC_MAX_EMERGING_TERMS` | rotating model-term set |

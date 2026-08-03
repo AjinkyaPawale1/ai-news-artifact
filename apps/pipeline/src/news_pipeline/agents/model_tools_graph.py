@@ -569,7 +569,7 @@ def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
                     "source": source,
                     "title": page_title,
                     "url": page_url,
-                    "published_date": "",
+                    "published_date": _published_date_from_html(response.text[:500000], response.headers) or _date_from_url(page_url),
                     "content": page_content,
                     "source_page": True,
                     "source_url": page_url,
