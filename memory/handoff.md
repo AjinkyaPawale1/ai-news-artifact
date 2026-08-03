@@ -14,11 +14,11 @@ Owner: AI agent (Claude Code)
   floors at the gate threshold (40) and RSS ignores it.
 - Exposed `enterpriseScore` on paper, repo, release, and blog cards (papers also get an
   `enterpriseSignals` breakdown) in `push_to_artifact.py`.
-- Frontend: ENTERPRISE badge (threshold 50) on paper/repo/release cards and a new
+- Frontend: ENTERPRISE badge (threshold 40) on paper/repo/release cards and a new
   Enterprise Focus panel in the Signals tab showing the top five items ranked by
   enterprise score, with a graceful note when the field is absent (archived editions and
   pre-change artifacts).
-- Verified: 86 unit tests (5 new in `tests/test_score.py`), Ruff, Vite production build,
+- Verified: 86 unit tests (5 new in `apps/pipeline/tests/test_score.py`), Ruff, Vite production build,
   and a keyless local pipeline smoke run whose regenerated `data/` churn was discarded —
   the Monday cron publishes the first real edition carrying the field.
 
