@@ -41,7 +41,7 @@ parallel fetch agents
 | GitHub repos | Done | LangGraph discovery with dynamic queries, repo summaries/actions, and deterministic `bestFor` labels |
 | Model/tool releases | Done | Official feeds/source pages, headline release checks, bounded LLM classification, and release/model-directory CTAs |
 | RSS articles | Done | Official feed collection with editorial relevance, canonical-summary recovery, verified links, and feed diagnostics |
-| Placeholder streams | Done | AI Pulse, Social Pulse, and Enterprise Focus render as coming-soon placeholders |
+| Placeholder streams | Done | AI Pulse and Social Pulse render as coming-soon placeholders; Enterprise Focus now ranks real items by enterprise score |
 | Artifact generation | Done | Stable contract, four-week section fallbacks with provenance, source health, and weekly archives |
 | GitHub Pages | Done | Static dashboard deploys from `main` to `https://ajinkyapawale1.github.io/ai-news-artifact/` |
 | Scheduled refresh automation | Done | Monday 10:00 AM America/New_York refresh, validation, archive commit, and Pages deployment |
@@ -69,6 +69,9 @@ Snapshot stats describe the generated artifact directly:
 
 ### 1. Broader Enterprise Scoring
 
+- Step 1 shipped (2026-08-02): deterministic `enterprise_score` with
+  adoption/efficiency/governance/evidence components, exposed as `enterpriseScore` on
+  cards and surfaced via card badges and the Enterprise Focus panel.
 - Preserve the current enterprise-oriented baseline: decision-relevant, verified RSS
   cards and concrete enterprise release/availability headlines.
 - Design organization-specific credibility, actionability, and personalization scoring
@@ -195,7 +198,7 @@ llm-news-artifact/
 | API service | Not part of the current plan |
 | Dashboard shell | Neutral `AI Intelligence Brief` |
 | Public Pages URL | `https://ajinkyapawale1.github.io/ai-news-artifact/` |
-| Placeholder streams | AI Pulse, Social Pulse, Enterprise Focus stay explicit coming-soon areas |
+| Placeholder streams | AI Pulse and Social Pulse stay explicit coming-soon areas; Enterprise Focus is live |
 | Paper selection | Seven-day-first, bounded 14-day backfill |
 | Repo labels | Deterministic taxonomy; no broad `context` -> RAG fallback |
 | Release selection | Concrete release headlines; reject tutorials/guides/case studies unless clearly announcing a release |

@@ -126,6 +126,13 @@ function Tag({ children, color = THEME.muted, backgroundColor = "transparent" })
   );
 }
 
+const ENTERPRISE_BADGE_MIN = 40;
+
+function EnterpriseTag({ score }) {
+  if ((score ?? 0) < ENTERPRISE_BADGE_MIN) return null;
+  return <Tag color={THEME.teal} backgroundColor="#f0fdfa">ENTERPRISE {score}</Tag>;
+}
+
 function FallbackEditionLabel({ fallback }) {
   if (!fallback?.editionDate) return null;
   return (
@@ -390,6 +397,7 @@ function PaperCard({ paper }) {
             <div className="flex items-center gap-2 flex-wrap mt-3">
               {paper.priority && <Tag color={priorityColor} backgroundColor={priorityColor === THEME.accent ? THEME.accentSoft : "#f8fafc"}>{paper.priority}</Tag>}
               {paper.hasCode && <Tag><Code2 size={10} className="mr-1" />CODE</Tag>}
+              <EnterpriseTag score={paper.enterpriseScore} />
               {(paper.tags ?? []).map((tag) => <Tag key={tag}>{tag.toUpperCase()}</Tag>)}
             </div>
           </div>
@@ -480,6 +488,7 @@ function RepoList({ items }) {
                     {repo.language && <Tag>{repo.language.toUpperCase()}</Tag>}
                     {repo.lastUpdated && <Tag>UPDATED {repo.lastUpdated.toUpperCase()}</Tag>}
                     {repo.license && <Tag>{repo.license.toUpperCase()}</Tag>}
+                    <EnterpriseTag score={repo.enterpriseScore} />
                   </div>
                   <div className="flex flex-wrap gap-2 shrink-0">
                     <CtaLink href={repo.latestReleaseUrl} color={THEME.blue}>RELEASE</CtaLink>
@@ -541,7 +550,7 @@ function ReleaseList({ items, kind, emptyLabel }) {
           </button>
           {openItem === item.name && (
             <div className="mt-3 pt-3 border-t" style={{ borderColor: "#e7ebf2" }}>
-              <div className="flex gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag></div>
+              <div className="flex gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag><EnterpriseTag score={item.enterpriseScore} /></div>
               <div style={TYPE.body}>{item.note}</div>
               <div className="flex flex-wrap gap-3 mt-3">
                 {releaseLinksForItem(item, kind).map((link) => (
@@ -581,10 +590,56 @@ function ComingSoonPanel({ title, icon: Icon, copy }) {
   );
 }
 
+function EnterpriseFocusPanel() {
+  const pipelineData = useBriefData();
+  const entries = [
+    ...(pipelineData.papers ?? []).map((item) => ({ title: item.title, kind: "PAPER", score: item.enterpriseScore, url: item.url })),
+    ...(pipelineData.repos ?? []).map((item) => ({ title: item.name, kind: "REPO", score: item.enterpriseScore, url: item.url })),
+    ...(pipelineData.models ?? []).map((item) => ({ title: item.name, kind: "MODEL", score: item.enterpriseScore, url: item.url })),
+    ...(pipelineData.toolsServices ?? []).map((item) => ({ title: item.name, kind: "TOOL", score: item.enterpriseScore, url: item.url })),
+    ...(pipelineData.blogs ?? []).map((item) => ({ title: item.title, kind: "BLOG", score: item.enterpriseScore, url: item.url })),
+  ]
+    .filter((entry) => typeof entry.score === "number" && entry.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 5);
+  return (
+    <div className="border p-6 mb-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
+      <div className="flex items-center justify-between gap-3 mb-2">
+        <div className="ai-mono flex items-center gap-2 min-w-0" style={{ ...TYPE.nav, color: THEME.text }}>
+          <Layers size={14} style={{ color: "#2563eb" }} />
+          <span className="truncate">ENTERPRISE FOCUS</span>
+        </div>
+        <div className="ai-mono shrink-0" style={{ ...TYPE.label, fontSize: 9 }}>ADOPTION · EFFICIENCY · GOVERNANCE · EVIDENCE</div>
+      </div>
+      <div style={{ ...TYPE.body, fontSize: 12 }}>The week's signals ranked by production relevance, not hype.</div>
+      {entries.length === 0 ? (
+        <div className="ai-mono mt-5" style={{ ...TYPE.label, color: ACCENT_GOLD }}>ENTERPRISE SCORING AVAILABLE FROM THE NEXT PIPELINE RUN</div>
+      ) : (
+        <div className="space-y-2.5 mt-4">
+          {entries.map((entry) => (
+            <div key={`${entry.kind}-${entry.title}`} className="border-t pt-2.5 flex items-center justify-between gap-3" style={{ borderColor: "#e7ebf2" }}>
+              <div className="flex items-center gap-2 min-w-0">
+                <Tag>{entry.kind}</Tag>
+                {entry.url ? (
+                  <a href={entry.url} target="_blank" rel="noreferrer" className="truncate" style={TYPE.compactTitle}>{entry.title}</a>
+                ) : (
+                  <span className="truncate" style={TYPE.compactTitle}>{entry.title}</span>
+                )}
+              </div>
+              <div className="ai-mono shrink-0" style={{ ...TYPE.meta, fontSize: 10, color: ACCENT_GOLD }}>{entry.score}</div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function SignalsTab() {
   return (
     <div>
-      <SectionHeader title="SIGNALS" sub="PLACEHOLDERS FOR FUTURE CURATED SIGNAL STREAMS" />
+      <SectionHeader title="SIGNALS" sub="ENTERPRISE RELEVANCE FIRST · MORE CURATED STREAMS COMING" />
+      <EnterpriseFocusPanel />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ComingSoonPanel title="AI PULSE" icon={Radio} copy="A curated enterprise AI news stream will surface credible engineering, product, and applied-AI updates after source quality and ranking are tuned." />
         <ComingSoonPanel title="SOCIAL PULSE" icon={Activity} copy="A verified-source social signal stream will highlight high-value conversations after the collection and credibility workflow is ready." />
