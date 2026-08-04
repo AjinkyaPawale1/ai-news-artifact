@@ -2,6 +2,8 @@
   "name": "ai-news-artifact",
   "private": true,
   "version": "0.0.1",
+  "license": "MIT",
+  "author": "Ajinkya Pawale",
   "type": "module",
   "scripts": {
     "dev": "vite --config apps/web/vite.config.js",
