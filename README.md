@@ -128,6 +128,13 @@ section.
 The archive manifest is bundled, while individual historical outputs are deployed as
 static JSON and downloaded only when a reader selects that edition.
 
+## License
+
+Copyright (c) 2026 Ajinkya Pawale. Released under the [MIT License](LICENSE).
+
+You may use, modify, and redistribute this code, including commercially, as long as the
+copyright notice and license text are retained in any copy or substantial portion.
+
 ## More Context
 
 - Architecture: `docs/architecture.md`
