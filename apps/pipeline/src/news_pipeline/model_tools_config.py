@@ -7,6 +7,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from .user_sources import merged as _merge_user_sources
+
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 load_dotenv(PROJECT_ROOT / ".env")
 
@@ -54,6 +56,8 @@ MODEL_TOOL_SOURCE_PAGES = [
     "https://www.kimi.com/blog/kimi-k3",
 ]
 MODEL_TOOL_SOURCE_PAGES += _env_list("MODEL_TOOL_SOURCE_PAGES_EXTRA")
+# Maintainer-approved pages suggested via the dashboard's "Suggest a source" flow.
+MODEL_TOOL_SOURCE_PAGES = _merge_user_sources(MODEL_TOOL_SOURCE_PAGES, "model_tool_pages")
 
 # Emerging feeds rotate within the candidate allow-list. They supplement core
 # feeds and never replace them.

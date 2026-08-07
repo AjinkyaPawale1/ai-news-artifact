@@ -84,6 +84,18 @@ class EnterpriseScoreTests(unittest.TestCase):
 
         self.assertEqual(payload["repos"][0]["enterpriseScore"], 0)
 
+    def test_dashboard_payload_exposes_configured_sources(self) -> None:
+        payload = push_to_artifact.build_dashboard_payload([])
+
+        self.assertEqual(
+            set(payload["sources"]),
+            {"papers", "github", "rss", "modelTools"},
+        )
+        for lane in payload["sources"].values():
+            self.assertIn("label", lane)
+            self.assertIsInstance(lane["items"], list)
+            self.assertGreater(len(lane["items"]), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

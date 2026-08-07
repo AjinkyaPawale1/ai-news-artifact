@@ -110,6 +110,16 @@ GITHUB_MAX_REPO_AGE_DAYS=90  # only show repos created in this recent horizon
 
 Keep secrets in `.env` or your shell environment. Do not commit them.
 
+## Suggesting A Source
+
+The dashboard's Pipeline tab lists every source the pipeline currently tracks and links to
+a **Suggest a source** issue form (RSS/blog feed, GitHub repository, or model/tool official
+page). A maintainer reviews each suggestion and applies the `source-approved` label to
+approve it — nothing reaches the pipeline automatically. That label triggers
+`.github/workflows/approve-source.yml`, which validates the suggestion and commits it to
+`data/user_sources.json`; `apps/pipeline/src/news_pipeline/config.py` and
+`model_tools_config.py` merge that file into the pipeline's source lists on the next run.
+
 ## Generated Data
 
 The pipeline writes:

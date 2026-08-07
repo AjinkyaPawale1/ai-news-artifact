@@ -1,0 +1,35 @@
+name: Suggest a source
+description: Suggest an RSS feed, GitHub repository, or model/tool page for the weekly pipeline to track.
+title: "[Source suggestion] "
+labels: ["source-suggestion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a source! A maintainer reviews every suggestion and applies the
+        `source-approved` label to add it to the pipeline — nothing is added automatically.
+  - type: dropdown
+    id: source_type
+    attributes:
+      label: Source type
+      options:
+        - RSS / blog feed
+        - GitHub repository
+        - Model or tool official page
+    validations:
+      required: true
+  - type: input
+    id: source_value
+    attributes:
+      label: URL or owner/repo
+      description: For an RSS feed or official page, paste the full URL. For a GitHub repository, use `owner/repo`.
+      placeholder: "https://example.com/feed.xml  or  owner/repo"
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why is this relevant?
+      description: A sentence or two on why this source belongs in the weekly AI intelligence brief.
+    validations:
+      required: true

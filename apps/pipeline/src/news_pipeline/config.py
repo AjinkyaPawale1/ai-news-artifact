@@ -8,6 +8,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from .user_sources import merged as _merge_user_sources
+
 PROJECT_ROOT = Path(__file__).resolve().parents[4]
 load_dotenv(PROJECT_ROOT / ".env")
 
@@ -80,6 +82,8 @@ GITHUB_REPOS_EVERGREEN += [
     for repo in os.getenv("GITHUB_REPOS_EVERGREEN_EXTRA", "").split(",")
     if repo.strip()
 ]
+# Maintainer-approved repos suggested via the dashboard's "Suggest a source" flow.
+GITHUB_REPOS_EVERGREEN = _merge_user_sources(GITHUB_REPOS_EVERGREEN, "github_repos")
 
 # Emerging repos: newly relevant projects — subject to the normal age filter.
 GITHUB_REPOS_EMERGING_WATCH = [
@@ -102,6 +106,8 @@ RSS_FEEDS = [
     "https://research.google/blog/rss/",
     "https://www.microsoft.com/en-us/research/feed/",
 ]
+# Maintainer-approved feeds suggested via the dashboard's "Suggest a source" flow.
+RSS_FEEDS = _merge_user_sources(RSS_FEEDS, "rss_feeds")
 
 ENTERPRISE_ADOPTION_TERMS = [
     "production",

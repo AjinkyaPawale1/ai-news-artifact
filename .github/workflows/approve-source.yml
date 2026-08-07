@@ -1,0 +1,66 @@
+name: Approve suggested source
+
+# Only collaborators with triage/write access can attach labels to an issue on
+# a public repo, so applying `source-approved` is the maintainer approval
+# gate — this workflow trusts the label, not the issue text itself.
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: approve-source-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: github.event.label.name == 'source-approved'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Write issue body to file
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: printf '%s' "$ISSUE_BODY" > /tmp/issue_body.txt
+
+      - name: Validate and apply suggestion
+        id: apply
+        run: python apps/pipeline/scripts/apply_user_source.py /tmp/issue_body.txt data/user_sources.json
+
+      - name: Commit approved source
+        if: steps.apply.outputs.status == 'approved'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- data/user_sources.json; then
+            git add data/user_sources.json
+            git commit -m "Add source suggested in #${{ github.event.issue.number }}"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Comment on issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: ${{ steps.apply.outputs.message }}
+          STATUS: ${{ steps.apply.outputs.status }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          if [[ "$STATUS" == "approved" ]]; then
+            gh issue comment "$ISSUE_NUMBER" --body "✅ $MESSAGE"
+            gh issue close "$ISSUE_NUMBER"
+          else
+            body=$(printf '❌ %s\n\nEdit the issue and re-apply the `source-approved` label to try again.' "$MESSAGE")
+            gh issue comment "$ISSUE_NUMBER" --body "$body"
+            gh issue edit "$ISSUE_NUMBER" --remove-label source-approved
+          fi
