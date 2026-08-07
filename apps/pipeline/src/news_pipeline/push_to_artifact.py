@@ -9,7 +9,11 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from .config import ARXIV_CATEGORIES, GITHUB_REPOS_EVERGREEN, RSS_FEEDS
-from .model_tools_config import MODEL_TOOL_KNOWN_BENCHMARK_URLS, MODEL_TOOL_MAX_ITEMS, MODEL_TOOL_SOURCE_PAGES
+from .model_tools_config import (
+    MODEL_TOOL_KNOWN_BENCHMARK_URLS,
+    MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_SOURCE_PAGES,
+)
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
