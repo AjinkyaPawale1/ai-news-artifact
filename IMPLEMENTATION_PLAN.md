@@ -90,6 +90,15 @@ Snapshot stats describe the generated artifact directly:
 
 ### 3. Source Coverage And Quality
 
+- Community source suggestions (2026-08-07): the dashboard's Pipeline tab lists every
+  currently configured source per lane (`sources` in the artifact contract) and links to a
+  "Suggest a source" GitHub issue form. A maintainer applies the `source-approved` label to
+  trigger `.github/workflows/approve-source.yml`, which validates the suggestion
+  (`apps/pipeline/scripts/apply_user_source.py`) and commits it to `data/user_sources.json`.
+  `config.py`/`model_tools_config.py` merge that file into `RSS_FEEDS`,
+  `GITHUB_REPOS_EVERGREEN`, and `MODEL_TOOL_SOURCE_PAGES` at import time. Unlike the
+  self-tuning dynamic config JSONs, this file is committed by its own workflow, not the
+  weekly cron, so approved suggestions persist.
 - Major versioned model launches from official providers use a conservative 28-day
   carry-forward window when their headlines signal flagship/frontier importance or broad
   availability. Ordinary model and tool/service updates remain on the seven-day window.

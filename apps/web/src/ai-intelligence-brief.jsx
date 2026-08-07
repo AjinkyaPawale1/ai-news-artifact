@@ -550,7 +550,7 @@ function ReleaseList({ items, kind, emptyLabel }) {
           </button>
           {openItem === item.name && (
             <div className="mt-3 pt-3 border-t" style={{ borderColor: "#e7ebf2" }}>
-              <div className="flex gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag><EnterpriseTag score={item.enterpriseScore} /></div>
+              <div className="flex flex-wrap gap-2 mb-3"><Tag>{item.org.toUpperCase()}</Tag><Tag>{item.tag}</Tag><EnterpriseTag score={item.enterpriseScore} /></div>
               <div style={TYPE.body}>{item.note}</div>
               <div className="flex flex-wrap gap-3 mt-3">
                 {releaseLinksForItem(item, kind).map((link) => (
@@ -604,12 +604,12 @@ function EnterpriseFocusPanel() {
     .slice(0, 5);
   return (
     <div className="border p-6 mb-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
-      <div className="flex items-center justify-between gap-3 mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 mb-2">
         <div className="ai-mono flex items-center gap-2 min-w-0" style={{ ...TYPE.nav, color: THEME.text }}>
           <Layers size={14} style={{ color: "#2563eb" }} />
           <span className="truncate">ENTERPRISE FOCUS</span>
         </div>
-        <div className="ai-mono shrink-0" style={{ ...TYPE.label, fontSize: 9 }}>ADOPTION · EFFICIENCY · GOVERNANCE · EVIDENCE</div>
+        <div className="ai-mono" style={{ ...TYPE.label, fontSize: 9 }}>ADOPTION · EFFICIENCY · GOVERNANCE · EVIDENCE</div>
       </div>
       <div style={{ ...TYPE.body, fontSize: 12 }}>The week's signals ranked by production relevance, not hype.</div>
       {entries.length === 0 ? (
@@ -619,7 +619,7 @@ function EnterpriseFocusPanel() {
           {entries.map((entry) => (
             <div key={`${entry.kind}-${entry.title}`} className="border-t pt-2.5 flex items-center justify-between gap-3" style={{ borderColor: "#e7ebf2" }}>
               <div className="flex items-center gap-2 min-w-0">
-                <Tag>{entry.kind}</Tag>
+                <span className="shrink-0"><Tag>{entry.kind}</Tag></span>
                 {entry.url ? (
                   <a href={entry.url} target="_blank" rel="noreferrer" className="truncate" style={TYPE.compactTitle}>{entry.title}</a>
                 ) : (
@@ -654,6 +654,39 @@ function healthDetail(entry) {
   if (entry.source === "github") return `${entry.search_diagnostics?.total_unique_candidates ?? 0} candidates reviewed`;
   if (entry.source === "model_tools") return `${entry.extraction_diagnostics?.classified ?? 0} classified · ${entry.extraction_diagnostics?.selection_diagnostics?.rejected_near_duplicate ?? 0} collapsed`;
   return "latest run";
+}
+
+const SOURCE_SUGGESTION_URL = "https://github.com/AjinkyaPawale1/ai-news-artifact/issues/new?template=source-suggestion.yml";
+
+function ConfiguredSourcesPanel() {
+  const sources = useBriefData().sources ?? null;
+  const lanes = sources ? Object.entries(sources) : [];
+  return (
+    <div>
+      <SectionHeader
+        title="CONFIGURED SOURCES"
+        sub="WHAT THE PIPELINE TRACKS TODAY"
+        action={<CtaLink href={SOURCE_SUGGESTION_URL} color={THEME.teal}>SUGGEST A SOURCE</CtaLink>}
+      />
+      {lanes.length === 0 ? (
+        <div className="border p-4" style={{ borderColor: "#d8dee8", color: "#667085" }}>Source list unavailable for this edition.</div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {lanes.map(([key, lane]) => (
+            <div key={key} className="border p-4 min-w-0" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}>
+              <div className="ai-mono" style={{ ...TYPE.nav, color: THEME.text }}>{lane.label.toUpperCase()}</div>
+              <div className="ai-mono mt-1 mb-3" style={{ ...TYPE.label, fontSize: 9 }}>{lane.items.length} TRACKED</div>
+              <div className="space-y-1.5">
+                {lane.items.map((item) => (
+                  <div key={item} className="truncate" style={{ ...TYPE.meta, fontSize: 10 }} title={item}>{item}</div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 function PipelineTab() {
@@ -691,6 +724,7 @@ function PipelineTab() {
           {health.map((entry) => <div key={entry.source} className="border p-4" style={{ backgroundColor: "#ffffff", borderColor: "#d8dee8" }}><div className="flex items-center justify-between"><div className="ai-mono" style={{ ...TYPE.nav, color: THEME.text }}>{entry.source.toUpperCase()}</div><CheckCircle size={13} style={{ color: entry.status === "ok" ? "#15803d" : "#b42318" }} /></div><div className="mt-4" style={{ fontSize: 26, lineHeight: 1, color: THEME.heading, fontWeight: 650, letterSpacing: "-0.03em" }}>{entry.item_count}</div><div className="ai-mono mt-1" style={{ ...TYPE.meta, fontSize: 10 }}>{healthDetail(entry)}</div><div className="ai-mono mt-3" style={{ ...TYPE.label, fontSize: 9 }}>{entry.duration_ms} MS</div></div>)}
         </div>
       </div>
+      <ConfiguredSourcesPanel />
       <div className="border p-4 flex items-start gap-3 min-w-0" style={{ borderColor: "#d8dee8", backgroundColor: "#ffffff" }}><FileJson size={16} className="shrink-0 mt-0.5" style={{ color: ACCENT_GOLD }} /><div className="min-w-0"><div style={TYPE.compactTitle}>Stable frontend contract</div><div className="ai-mono mt-1 break-words" style={{ ...TYPE.label, fontSize: 9 }}>DATA/OUTPUT.JSON · PAPERS · REPOS · MODELS · TOOLSERVICES · BLOGS · SOCIALPOSTS</div></div></div>
     </div>
   );

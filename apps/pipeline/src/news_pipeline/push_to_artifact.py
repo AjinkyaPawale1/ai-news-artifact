@@ -8,7 +8,12 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-from .model_tools_config import MODEL_TOOL_KNOWN_BENCHMARK_URLS, MODEL_TOOL_MAX_ITEMS
+from .config import ARXIV_CATEGORIES, GITHUB_REPOS_EVERGREEN, RSS_FEEDS
+from .model_tools_config import (
+    MODEL_TOOL_KNOWN_BENCHMARK_URLS,
+    MODEL_TOOL_MAX_ITEMS,
+    MODEL_TOOL_SOURCE_PAGES,
+)
 
 DATA_DIR = Path(__file__).resolve().parents[4] / "data"
 OUTPUT_PATH = DATA_DIR / "output.json"
@@ -367,6 +372,15 @@ def _select_diverse_repos(items: list[dict], limit: int = 8) -> list[dict]:
     return selected
 
 
+def _current_sources() -> dict:
+    return {
+        "papers": {"label": "arXiv categories", "items": list(ARXIV_CATEGORIES)},
+        "github": {"label": "Watched repositories", "items": list(GITHUB_REPOS_EVERGREEN)},
+        "rss": {"label": "Official blogs", "items": list(RSS_FEEDS)},
+        "modelTools": {"label": "Official release pages", "items": list(MODEL_TOOL_SOURCE_PAGES)},
+    }
+
+
 def build_dashboard_payload(items: list[dict], health: list[dict] | None = None) -> dict:
     """Build the JSON shape consumed by the React dashboard."""
     papers = [item for item in items if item.get("source_type") == "paper"]
@@ -423,6 +437,7 @@ def build_dashboard_payload(items: list[dict], health: list[dict] | None = None)
         "socialPosts": [],
         "trending": [],
         "health": health_entries,
+        "sources": _current_sources(),
     }
 
 
