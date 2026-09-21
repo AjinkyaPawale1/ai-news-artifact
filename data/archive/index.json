@@ -1,6 +1,12 @@
 {
   "editions": [
     {
+      "date": "2026-09-21",
+      "generatedAt": "2026-09-21T14:22:27.981500+00:00",
+      "outputPath": "archive/2026-09-21/output.json",
+      "healthPath": "archive/2026-09-21/health.json"
+    },
+    {
       "date": "2026-09-14",
       "generatedAt": "2026-09-14T19:14:28.900988+00:00",
       "outputPath": "archive/2026-09-14/output.json",
