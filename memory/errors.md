@@ -136,3 +136,19 @@ Notes for next time:
 - Replace or remove the rejected local `GITHUB_TOKEN` before live refreshes.
 - Make all-search/all-watch failure produce an unhealthy top-level GitHub entry, then add
   publication-gate regression coverage before relying on fallback content.
+
+### 2026-09-28 - Anthropic model releases missed (Opus 5.5, Sonnet 5.5)
+Status: resolved (pending next pipeline run)
+
+What failed:
+- `_link_is_relevant` required `/news`, `/blog`, etc. in the URL; Anthropic's new root slugs
+  were rejected with no counter, so the run looked healthy. The Anthropic RSS feed also
+  returned 0 entries with no warning.
+
+What worked:
+- Content-based link acceptance, wider link scan, and per-source fetch diagnostics.
+
+Notes for next time:
+- When a known release is missing, check `fetch_diagnostics.source_pages` and
+  `zero_yield_warnings` in `data/output.json` health before touching classifiers.
+- `anthropic.com/news/rss.xml` returns no entries; the page scrape is the only Anthropic source.

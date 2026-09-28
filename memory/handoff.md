@@ -3,6 +3,14 @@
 Last updated: 2026-08-02
 Owner: AI agent (Claude Code)
 
+## 2026-09-28 Update
+- Fixed missed Anthropic releases (Opus 5.5, Sonnet 5.5): see decisions.md and errors.md entries
+  dated 2026-09-28. Change is in `agents/model_tools_graph.py`, uncommitted.
+- Verified against live pages; full `npm run pipeline` not run. This week's dashboard still lacks
+  Opus 5.5 until the next cron or a manual run.
+- Open items: Anthropic RSS feed is dead; Fable 5.1 (Sep 1) is outside the window and was not
+  re-checked; deterministic name for Sonnet 5.5 includes link-text noise if the LLM is unavailable.
+
 ## 2026-08-02 Update
 - Implemented step 1 of Broader Enterprise Scoring: a deterministic 0-100
   `enterprise_score` (adoption/efficiency/governance/evidence keyword components plus a
