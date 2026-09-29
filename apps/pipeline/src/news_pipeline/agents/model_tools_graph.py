@@ -43,6 +43,9 @@ MONTH_DATE_RE = re.compile(
     r"\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2},\s+20\d{2}\b",
     flags=re.IGNORECASE,
 )
+SOURCE_PAGE_LINK_SCAN_LIMIT = 300
+LINK_RELEASE_SIGNAL_RE = re.compile(r"introducing|launch|now available|\bv?\d+(?:[.-]\d+)+\b", re.IGNORECASE)
+ARCHIVE_LIST_PATH_RE = re.compile(r"/(?:tags?|categor(?:y|ies)|topics?)(?:/|$)", re.IGNORECASE)
 ISO_DATE_RE = re.compile(r"\b20\d{2}-\d{2}-\d{2}(?:[T ][0-2]\d:\d{2}:\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?\b")
 URL_DATE_RE = re.compile(r"/(20\d{2})/(\d{2})/(\d{2})(?:/|$)")
 MARKDOWN_UPDATE_RE = re.compile(
@@ -94,6 +97,7 @@ class ModelToolsState(TypedDict, total=False):
     items: list[Item]
     classification_diagnostics: dict[str, int]
     selection_diagnostics: dict[str, int]
+    fetch_diagnostics: dict[str, Any]
 
 
 ORG_HINTS = {
@@ -430,13 +434,21 @@ def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
     url_host = url.split("//", 1)[-1].split("/", 1)[0].replace("www.", "")
     if source_host and url_host and source_host not in url_host and url_host not in source_host:
         return False
+    # Tag/category/topic index pages are archive/list pages, not release articles. Reject
+    # them before any path-based acceptance check gets a chance to wave them through.
+    if ARCHIVE_LIST_PATH_RE.search(url):
+        return False
     if "ai.google.dev" in source_host and "/docs/" in url:
         return "whats-new" in url or "changelog" in url
     if "cohere.com" in source_host and url.rstrip("/") == "https://cohere.com/research":
         return False
     if "research lab" in title_lower and "model" not in title_lower:
         return False
-    return any(part in url for part in ("/news", "/engineering", "/blog", "/research", "/docs", "/gemini"))
+    if any(part in url for part in ("/news", "/engineering", "/blog", "/research", "/docs", "/gemini")):
+        return True
+    # Providers change URL schemes (e.g. anthropic.com/claude-opus-5-5); judge the link by
+    # what it says instead. Dated link text is checked before the release-signal regex.
+    return bool(_date_from_text(title)) or bool(LINK_RELEASE_SIGNAL_RE.search(f"{title} {url}"))
 
 
 def _markdown_text(value: str) -> str:
@@ -543,18 +555,26 @@ def _resolve_entry_date(entry: dict[str, Any], cutoff: datetime) -> dict[str, An
     }
 
 
-def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
+def _fetch_source_page_entries(
+    source_pages: list[str], diagnostics: dict[str, Any] | None = None
+) -> list[dict[str, Any]]:
     entries: list[dict[str, Any]] = []
     for page_url in source_pages:
+        page_diag = {"links_seen": 0, "links_rejected_by_filter": 0, "entries": 0, "fetch_failed": False}
+        if diagnostics is not None:
+            diagnostics[page_url] = page_diag
+        entries_before = len(entries)
         try:
             response = requests.get(page_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=30)
             response.raise_for_status()
         except requests.RequestException as exc:
             LOGGER.warning("Source page fetch failed for %s: %s", page_url, exc)
+            page_diag["fetch_failed"] = True
             continue
 
         if page_url.endswith(".md") or "markdown" in response.headers.get("Content-Type", ""):
             entries.extend(_fetch_markdown_changelog_entries(page_url, response.text))
+            page_diag["entries"] = len(entries) - entries_before
             continue
 
         parser = LinkParser()
@@ -591,9 +611,13 @@ def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
             )
 
         seen: set[str] = {page_url}
-        for href, title in parser.links[:80]:
+        for href, title in parser.links[:SOURCE_PAGE_LINK_SCAN_LIMIT]:
             url = urljoin(page_url, href)
-            if url in seen or not _link_is_relevant(page_url, url, title):
+            if url in seen:
+                continue
+            page_diag["links_seen"] += 1
+            if not _link_is_relevant(page_url, url, title):
+                page_diag["links_rejected_by_filter"] += 1
                 continue
             seen.add(url)
             entries.append(
@@ -608,6 +632,7 @@ def _fetch_source_page_entries(source_pages: list[str]) -> list[dict[str, Any]]:
                     "source_label": "Source page",
                 }
             )
+        page_diag["entries"] = len(entries) - entries_before
     return entries
 
 
@@ -976,9 +1001,12 @@ def _openai_classify_entry(
 def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
     cutoff = _major_model_cutoff(window_start())
     entries: list[dict[str, Any]] = []
+    feed_diag: dict[str, int] = {}
+    page_diag: dict[str, Any] = {}
     for feed_url in state.get("feeds", MODEL_TOOL_CORE_FEEDS):
         LOGGER.info("Fetching model/tool feed %s", feed_url)
         feed = feedparser.parse(feed_url)
+        feed_diag[feed_url] = len(feed.entries)
         feed_title = feed.feed.get("title", feed_url) if getattr(feed, "feed", None) else feed_url
         source = _source_name(feed_url) or feed_title
         for entry in feed.entries[:MODEL_TOOL_FEED_SCAN_LIMIT]:
@@ -1000,7 +1028,7 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
                     "source_label": "RSS feed",
                 }
             )
-    for entry in _fetch_source_page_entries(state.get("source_pages", MODEL_TOOL_SOURCE_PAGES)):
+    for entry in _fetch_source_page_entries(state.get("source_pages", MODEL_TOOL_SOURCE_PAGES), page_diag):
         published_dt = None
         if entry.get("published_date"):
             try:
@@ -1010,7 +1038,19 @@ def _fetch_feed_entries(state: ModelToolsState) -> ModelToolsState:
         if published_dt and published_dt.replace(tzinfo=timezone.utc) < cutoff:
             continue
         entries.append(entry)
-    return {**state, "entries": entries}
+    fetch_diagnostics = {
+        "feed_entries_fetched": feed_diag,
+        "source_pages": page_diag,
+        "zero_yield_warnings": [
+            *(f"feed returned no entries: {url}" for url, count in feed_diag.items() if count == 0),
+            *(
+                f"source page yielded no entries: {url}"
+                for url, diag in page_diag.items()
+                if diag["entries"] == 0
+            ),
+        ],
+    }
+    return {**state, "entries": entries, "fetch_diagnostics": fetch_diagnostics}
 
 
 def _classify_entries(state: ModelToolsState) -> ModelToolsState:
@@ -1200,6 +1240,7 @@ def _diagnostics_from_state(state: ModelToolsState) -> dict[str, Any]:
         "llm_classification_failures": _OPENAI_CLASSIFY_FAILURES,
         "llm_classification_disabled": _OPENAI_CLASSIFY_DISABLED_FOR_RUN or disabled_by_dynamic_error,
         "llm_classification_skip_reason": llm_error_code if disabled_by_dynamic_error else "",
+        "fetch_diagnostics": state.get("fetch_diagnostics", {}),
         "classification_diagnostics": state.get("classification_diagnostics", {}),
         "selection_diagnostics": state.get("selection_diagnostics", {}),
         "dynamic_config": state.get("dynamic_config", {}),

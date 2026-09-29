@@ -507,3 +507,20 @@ Impact:
 - Major models rank ahead of ordinary model noise, and a later family launch supersedes
   an older preview. Diagnostics record carried and selected major models.
 - The complete deterministic source check selects GPT-5.6 from OpenAI's July 9 RSS entry.
+
+## 2026-09-28 - Judge source-page links by content, not URL path
+Decision:
+- `_link_is_relevant` keeps the old path allowlist but also accepts links whose text has a
+  date or whose title/URL has a release signal (`introducing`, `launch`, `now available`,
+  version number). Tag/category/topic paths stay excluded.
+- Source-page link scan raised from 80 to 300 links (`SOURCE_PAGE_LINK_SCAN_LIMIT`).
+- Fetch step now records per-page link/reject/entry counts and zero-yield warnings
+  (`extraction_diagnostics.fetch_diagnostics`).
+
+Reason:
+- Anthropic moved announcements to root slugs (`/claude-opus-5-5`); the path allowlist
+  dropped Opus 5.5 and Sonnet 5.5 silently, and health still reported `ok`.
+
+Impact:
+- Live check recovers Opus 5.5 and Sonnet 5.5 with no other new candidates.
+- A feed or page that yields nothing now shows up in `zero_yield_warnings`.
