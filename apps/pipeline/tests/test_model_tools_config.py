@@ -7,6 +7,7 @@ import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from typing import Any
 from unittest.mock import Mock, patch
 
 from news_pipeline import push_to_artifact
@@ -54,6 +55,103 @@ class ModelToolsDynamicTests(unittest.TestCase):
 
         self.assertEqual(entries[0]["url"], article_url)
         self.assertEqual(entries[0]["title"], "Kimi K3 Tech Blog: Open Frontier Intelligence")
+
+    def test_link_is_relevant_accepts_root_slug_with_version_signal(self) -> None:
+        # Providers such as Anthropic publish releases at root-level slugs
+        # (no /blog//news/ segment), so the filter must fall back to the
+        # release-signal regex instead of rejecting the link outright.
+        self.assertTrue(
+            model_tools_graph._link_is_relevant(
+                "https://www.anthropic.com",
+                "https://www.anthropic.com/claude-opus-5-5",
+                "Claude Opus 5.5",
+            )
+        )
+
+    def test_link_is_relevant_accepts_root_slug_with_dated_title(self) -> None:
+        self.assertTrue(
+            model_tools_graph._link_is_relevant(
+                "https://www.anthropic.com",
+                "https://www.anthropic.com/claude-update",
+                "Claude Update March 12, 2026",
+            )
+        )
+
+    def test_link_is_relevant_rejects_taxonomy_paths_even_under_allowlisted_prefixes(self) -> None:
+        # Tag/category/topic index pages must be rejected even when they live
+        # under an otherwise allowlisted path prefix (e.g. /docs/, /news/, /blog/).
+        for source_page, url in (
+            ("https://ai.google.dev", "https://ai.google.dev/docs/whats-new/topics/foo"),
+            ("https://example.com", "https://example.com/news/tag/models"),
+            ("https://example.com", "https://example.com/blog/category/releases"),
+        ):
+            with self.subTest(url=url):
+                self.assertFalse(
+                    model_tools_graph._link_is_relevant(source_page, url, "A Sufficiently Long Title")
+                )
+
+    def test_source_page_link_scan_respects_scan_limit(self) -> None:
+        links = "".join(
+            f'<a href="/blog/release-{i}">Release {i} Launch Announcement</a>'
+            for i in range(model_tools_graph.SOURCE_PAGE_LINK_SCAN_LIMIT + 50)
+        )
+        response = Mock(text=f"<title>Blog</title>{links}", headers={})
+        response.raise_for_status.return_value = None
+        page_url = "https://example.com/blog/"
+
+        with patch.object(model_tools_graph.requests, "get", return_value=response):
+            entries = model_tools_graph._fetch_source_page_entries([page_url])
+
+        link_entries = [entry for entry in entries if entry["url"] != page_url]
+        self.assertEqual(len(link_entries), model_tools_graph.SOURCE_PAGE_LINK_SCAN_LIMIT)
+
+    def test_fetch_source_page_entries_reports_diagnostics_for_zero_yield_and_failures(self) -> None:
+        ok_response = Mock(
+            text='<title>Blog</title><a href="/tag/models">Models Tag Index Page</a>',
+            headers={},
+        )
+        ok_response.raise_for_status.return_value = None
+
+        def fake_get(url, headers=None, timeout=None):
+            if url == "https://failing.example.com/blog/":
+                raise model_tools_graph.requests.RequestException("boom")
+            return ok_response
+
+        diagnostics: dict[str, Any] = {}
+        with patch.object(model_tools_graph.requests, "get", side_effect=fake_get):
+            model_tools_graph._fetch_source_page_entries(
+                ["https://example.com/blog/", "https://failing.example.com/blog/"],
+                diagnostics,
+            )
+
+        self.assertEqual(diagnostics["https://example.com/blog/"]["entries"], 0)
+        self.assertEqual(diagnostics["https://example.com/blog/"]["links_seen"], 1)
+        self.assertEqual(diagnostics["https://example.com/blog/"]["links_rejected_by_filter"], 1)
+        self.assertFalse(diagnostics["https://example.com/blog/"]["fetch_failed"])
+        self.assertTrue(diagnostics["https://failing.example.com/blog/"]["fetch_failed"])
+
+    def test_fetch_feed_entries_diagnostics_flag_zero_yield_feeds_and_pages(self) -> None:
+        empty_feed = Mock()
+        empty_feed.entries = []
+        empty_feed.feed = {"title": "Empty Feed"}
+
+        page_response = Mock(text='<title>Blog</title><a href="/tag/models">Models Tag Index</a>', headers={})
+        page_response.raise_for_status.return_value = None
+
+        state: model_tools_graph.ModelToolsState = {
+            "feeds": ["https://example.com/empty.xml"],
+            "source_pages": ["https://example.com/blog/"],
+        }
+
+        with (
+            patch.object(model_tools_graph.feedparser, "parse", return_value=empty_feed),
+            patch.object(model_tools_graph.requests, "get", return_value=page_response),
+        ):
+            result = model_tools_graph._fetch_feed_entries(state)
+
+        warnings = result["fetch_diagnostics"]["zero_yield_warnings"]
+        self.assertIn("feed returned no entries: https://example.com/empty.xml", warnings)
+        self.assertIn("source page yielded no entries: https://example.com/blog/", warnings)
 
     def test_bounded_rotation_replaces_only_the_allowed_number(self) -> None:
         rotated, metadata = model_tools_dynamic._bounded_rotation(
