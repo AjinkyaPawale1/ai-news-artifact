@@ -45,6 +45,7 @@ MONTH_DATE_RE = re.compile(
 )
 SOURCE_PAGE_LINK_SCAN_LIMIT = 300
 LINK_RELEASE_SIGNAL_RE = re.compile(r"introducing|launch|now available|\bv?\d+(?:[.-]\d+)+\b", re.IGNORECASE)
+ARCHIVE_LIST_PATH_RE = re.compile(r"/(?:tags?|categor(?:y|ies)|topics?)(?:/|$)", re.IGNORECASE)
 ISO_DATE_RE = re.compile(r"\b20\d{2}-\d{2}-\d{2}(?:[T ][0-2]\d:\d{2}:\d{2}(?:\.\d+)?)?(?:Z|[+-]\d{2}:?\d{2})?\b")
 URL_DATE_RE = re.compile(r"/(20\d{2})/(\d{2})/(\d{2})(?:/|$)")
 MARKDOWN_UPDATE_RE = re.compile(
@@ -433,6 +434,10 @@ def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
     url_host = url.split("//", 1)[-1].split("/", 1)[0].replace("www.", "")
     if source_host and url_host and source_host not in url_host and url_host not in source_host:
         return False
+    # Tag/category/topic index pages are archive/list pages, not release articles. Reject
+    # them before any path-based acceptance check gets a chance to wave them through.
+    if ARCHIVE_LIST_PATH_RE.search(url):
+        return False
     if "ai.google.dev" in source_host and "/docs/" in url:
         return "whats-new" in url or "changelog" in url
     if "cohere.com" in source_host and url.rstrip("/") == "https://cohere.com/research":
@@ -443,8 +448,6 @@ def _link_is_relevant(source_page: str, url: str, title: str) -> bool:
         return True
     # Providers change URL schemes (e.g. anthropic.com/claude-opus-5-5); judge the link by
     # what it says instead. Dated link text is checked before the release-signal regex.
-    if any(part in url for part in ("/tag/", "/category/", "/topics/")):
-        return False
     return bool(_date_from_text(title)) or bool(LINK_RELEASE_SIGNAL_RE.search(f"{title} {url}"))
 
 
