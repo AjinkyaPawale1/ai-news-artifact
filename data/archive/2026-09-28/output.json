@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-09-28T14:23:57.597815+00:00",
+  "generatedAt": "2026-09-30T00:01:47.893218+00:00",
   "stats": [
     {
       "label": "PAPERS REVIEWED",
-      "value": "63",
+      "value": "56",
       "sub": "8 selected"
     },
     {
@@ -13,8 +13,8 @@
     },
     {
       "label": "RELEASES TRACKED",
-      "value": "8",
-      "sub": "6 models \u00b7 2 tools"
+      "value": "9",
+      "sub": "8 models \u00b7 1 tools"
     },
     {
       "label": "HEALTHY SOURCES",
@@ -25,78 +25,81 @@
   ],
   "actionItems": [
     {
-      "priority": "EXPERIMENT",
-      "title": "Review the SCALE long-context inference design and the self-improving playbook mechanism to verify how they address Vietnamese curriculum grounding and data-sovereignty constraints.",
+      "priority": "SHARE",
+      "title": "Review SEABench\u2019s 48 longitudinal task sequences and the adaptive trajectory discovery pipeline to understand how endogenous misalignment is measured across evolution surfaces, task domains, and harm types.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Sep 25, 2026",
-      "why": "DeepEdu-v1 is an AI tutoring system for Vietnamese education built on SCALE, combining a long-context inference engine with a self-improving agentic layer to better handle local curriculum content and reduce hallucinations.",
+      "date": "Sep 28, 2026",
+      "why": "SEABench is a benchmark for endogenous misalignment in self-evolving LLM agents, using 48 longitudinal task sequences across multiple evolution surfaces, task domains, and harm types in a personal-assistant setting.",
       "tags": [
-        "cs.AI"
-      ],
-      "score": 79,
-      "url": "https://arxiv.org/abs/2609.31568"
-    },
-    {
-      "priority": "EXPERIMENT",
-      "title": "Review the grounding and retrieval design across the six MCP servers to verify that sourced Islamic answers are consistently tied to the retrieved references in the deployed voice flow.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Sep 25, 2026",
-      "why": "Deployed Arabic voice AI platform, Muslim, delivering grounded, sourced Islamic knowledge through a real-time voice system and production product stack.",
-      "tags": [
+        "cs.CR",
+        "cs.AI",
         "cs.CL"
       ],
-      "score": 62,
-      "url": "https://arxiv.org/abs/2609.31511"
+      "score": 78,
+      "url": "https://arxiv.org/abs/2609.35596"
     },
     {
-      "priority": "EXPERIMENT",
-      "title": "Review the H2S training setup and H2S-Bench evaluation protocol, with attention to how source-grounded evidence selection and summary construction are defined and rewarded.",
+      "priority": "READ",
+      "title": "Review TokenCast\u2019s composable cost representation and online forecast update mechanism to confirm how segment cost and context growth are encoded for each agent execution step.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Sep 25, 2026",
-      "why": "Introduces Highlight-Then-Summarize (H2S), a compress-then-reason method that first selects source-grounded, question-relevant evidence and then builds a compact, question-conditioned summary before answering.",
+      "date": "Sep 28, 2026",
+      "why": "TokenCast learns a composable cost representation for LLM agent execution segments to forecast token consumption, including both segment cost and the context growth each segment introduces.",
       "tags": [
-        "cs.CL",
-        "cs.AI"
+        "cs.LG",
+        "cs.AI",
+        "cs.SE"
       ],
-      "score": 74,
-      "url": "https://arxiv.org/abs/2609.31382"
+      "score": 61,
+      "url": "https://arxiv.org/abs/2609.35760"
     },
     {
-      "priority": "EXPERIMENT",
-      "title": "Review the checkability criterion and the Touchstone pipeline for your network-automation workflows to identify tasks with cheap, deterministic intrinsic checks versus tasks that should be escalated.",
+      "priority": "READ",
+      "title": "Review the LFRM training/inference recipe details, especially compact prompt conditioning, asynchronous denoising, and the staged prompt-encoder curriculum, to map the method to your current reasoning pipeline.",
       "source": "arXiv",
       "sourceMeta": "PAPER",
-      "date": "Sep 25, 2026",
-      "why": "Introduces \"checkability\" as a criterion for deciding when network-automation tasks can be handled locally: a task is checkable if it has a cheap, deterministic intrinsic test that can reject outputs violating a necessary correctness condition.",
-      "tags": [
-        "cs.NI",
-        "cs.AI"
-      ],
-      "score": 73,
-      "url": "https://arxiv.org/abs/2609.31540"
-    },
-    {
-      "priority": "EXPERIMENT",
-      "title": "Review the three proposed prompt-minimization frameworks and map how each defines and selects a minimal prompt while preserving output fidelity.",
-      "source": "arXiv",
-      "sourceMeta": "PAPER",
-      "date": "Sep 25, 2026",
-      "why": "Introduces prompt minimization: reducing prompts to the smallest information-dense form while preserving output fidelity, challenging heuristic prompt design.",
+      "date": "Sep 28, 2026",
+      "why": "Introduces Latent Flow Reasoning Models (LFRMs), an ELF-based continuous diffusion recipe for generating complete reasoning solutions in latent space, with compact prompt conditioning replacing the teacher Transformer at inference.",
       "tags": [
         "cs.AI"
       ],
-      "score": 74,
-      "url": "https://arxiv.org/abs/2609.31505"
+      "score": 72,
+      "url": "https://arxiv.org/abs/2609.35694"
+    },
+    {
+      "priority": "EXPERIMENT",
+      "title": "Review the two simultaneous sign-to-sign approaches described here\u2014test-time wait-k on a full-sentence model versus a trained wait-k model with stochastic multi-path supervision\u2014and compare how each affects streaming output quality and latency.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Sep 28, 2026",
+      "why": "Introduces the first simultaneous sign-to-sign translation system, enabling real-time output while the source signer is still signing.",
+      "tags": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "score": 51,
+      "url": "https://arxiv.org/abs/2609.35608"
+    },
+    {
+      "priority": "READ",
+      "title": "Review ScAn-Bench-LLM and ScAn-Bench-VLM as benchmark datasets for assessing scaling-analysis methodology across language and vision-language model pipelines.",
+      "source": "arXiv",
+      "sourceMeta": "PAPER",
+      "date": "Sep 28, 2026",
+      "why": "Introduces ScAn-Bench-LLM and ScAn-Bench-VLM to study scaling-analysis methodology for language and vision-language foundation models.",
+      "tags": [
+        "cs.LG"
+      ],
+      "score": 56,
+      "url": "https://arxiv.org/abs/2609.35707"
     }
   ],
   "repos": [
     {
       "name": "tigerless-labs/agent-memory",
-      "stars": "1.5k",
-      "desc": "Local-first long-term memory runtime for AI agents using Markdown as source of truth, a SQLite cache/index, ranked on-disk retrieval, and sleep-time consolidation; shared by Claude Code and Codex with no API key.",
+      "stars": "1.7k",
+      "desc": "Local-first long-term memory runtime for AI agents: markdown is source of truth, SQLite is disposable index, retrieval is ranked and path-based, and Claude Code/Codex share one store without API keys.",
       "url": "https://github.com/tigerless-labs/agent-memory",
       "language": "Python",
       "topics": [
@@ -115,17 +118,17 @@
       ],
       "createdAt": "Sep 1, 2026",
       "lastUpdated": "Sep 28, 2026",
-      "fetchedAt": "Sep 28, 2026",
+      "fetchedAt": "Sep 30, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
-        "Markdown-first store with SQLite sidecar index and delete-safe cache",
-        "Local ranked retrieval returns paths/anchors instead of pasted chunks",
-        "Sleep-time manage layer consolidates, links, and forgets by value"
+        "Markdown-first shared store; SQLite index is cacheable and deletable.",
+        "Local ranked retrieval returns file paths and anchors, not pasted chunks.",
+        "Sleep-time manage layer consolidates, links, and forgets by value."
       ],
       "actionItems": [
-        "Set up the Markdown store + SQLite index on Python 3.12; measure recall@k or path-hit accuracy, and check who owns the shared directory and backups",
-        "Run a small Claude Code/Codex session through boundary writes; watch for stale-index or missed-write failures, and verify deployment can operate without API keys or external network",
-        "Enable sleep-time consolidation on a test corpus; track memory dedupe/forgetting regressions, and confirm security boundaries for symlink/path access and file permissions"
+        "Set up a Python 3.12+ sandbox with a sample markdown vault and SQLite index; measure recall precision@k and a failure mode of stale/duplicate hits; verify the store owner/permissions allow safe multi-agent writes.",
+        "Run an end-to-end Claude Code/Codex session against one shared memory directory; track write-latency and retrieval miss rate; check deployment isolation so one agent cannot corrupt another agent\u2019s state.",
+        "Enable the sleep-time consolidation pass on a test corpus; evaluate compression ratio and information-loss regressions; confirm security/ownership rules for symlinked files and any writable paths."
       ],
       "latestRelease": "",
       "latestReleaseUrl": "",
@@ -134,93 +137,55 @@
       "enterpriseScore": 0
     },
     {
-      "name": "zj-unicom-ai/UniEmployee",
-      "stars": "283",
-      "desc": "Enterprise digital-employee platform that turns SOPs, skills, tools, knowledge, and approvals into configurable AI workers with observability and HITL controls.",
-      "url": "https://github.com/zj-unicom-ai/UniEmployee",
+      "name": "friday-memory/friday",
+      "stars": "65",
+      "desc": "Self-hosted persistent cognitive memory layer for AI coding agents via MCP, storing architecture decisions, schemas, and constraints across sessions.",
+      "url": "https://github.com/friday-memory/friday",
       "language": "Python",
       "topics": [
-        "agent-orchestration",
-        "ai-agent",
-        "ai-employee",
-        "ai-platform",
-        "business-process",
-        "digital-employee",
-        "digital-workforce",
-        "enterprise-agents",
-        "enterprise-ai",
-        "human-in-the-loop",
+        "ai-agents",
+        "ai-memory",
+        "antigravity",
+        "antigravity-cli",
+        "antigravity-ide",
+        "claude-code",
+        "claudecode",
+        "codex",
+        "cognitive-ai",
+        "cursor",
+        "developer-tools",
+        "fastapi",
         "knowledge-graph",
         "llm",
-        "rag",
-        "workflow-automation"
-      ],
-      "createdAt": "Aug 14, 2026",
-      "lastUpdated": "Sep 28, 2026",
-      "fetchedAt": "Sep 28, 2026",
-      "bestFor": "AI Agent Apps",
-      "bullets": [
-        "5-layer model: Employee\u2192Workflow/SOP\u2192Skill\u2192Connector\u2192Tool",
-        "Built-in human approval, audit traces, and run-level observability",
-        "Enterprise RAG, knowledge graph, MCP connectors, and long-term memory"
-      ],
-      "actionItems": [
-        "Set up one employee + one SOP workflow in catalog; track task completion rate and approval latency; confirm deployment roles and audit-log ownership.",
-        "Enable one connector and one SQL-backed analyst flow; measure query success and hallucination/failure cases; verify sandboxing and read-only access controls.",
-        "Run a long-dialog test with summarization/memory enabled; measure context loss and token savings; check data retention policy and repository access ownership."
-      ],
-      "latestRelease": "v0.21.0",
-      "latestReleaseUrl": "https://github.com/zj-unicom-ai/UniEmployee/releases/tag/v0.21.0",
-      "homepage": "",
-      "license": "MIT",
-      "enterpriseScore": 28
-    },
-    {
-      "name": "FuRongJun-1999/dsh-memory",
-      "stars": "277",
-      "desc": "Python-based MCP memory/guardrails framework for AI agents, centered on persistent long-term memory, auditability, and multi-agent compatibility. It pitches a zero-hallucination, inspectable \u201cAGI architecture\u201d with structured memory cards, rule-based retrieval, self-reflection, and explicit forget/write controls.",
-      "url": "https://github.com/FuRongJun-1999/dsh-memory",
-      "language": "Python",
-      "topics": [
-        "agent-safety",
-        "agentic-ai",
-        "agi",
-        "ai-agent-framework",
-        "deepseek",
-        "dsh-plugin",
-        "explainable-ai",
-        "guardrails",
-        "knowledge-graph",
         "mcp",
-        "multi-agent",
-        "persistent-memory",
-        "rag",
-        "spatiotemporal-graph-neural-network"
+        "model-context-protocol",
+        "neo4j",
+        "persistent-memory"
       ],
-      "createdAt": "Aug 14, 2026",
-      "lastUpdated": "Sep 28, 2026",
-      "fetchedAt": "Sep 28, 2026",
-      "bestFor": "MCP Tooling",
+      "createdAt": "Sep 16, 2026",
+      "lastUpdated": "Sep 29, 2026",
+      "fetchedAt": "Sep 30, 2026",
+      "bestFor": "Coding Workflow",
       "bullets": [
-        "277\u2605 MIT; v0.6.0, 3 open issues, active as of 2026-09-28",
-        "MCP stdio server with DSH/Claude Code/Codex CLI setup flow",
-        "Targets persistent memory, explainable retrieval, guardrails, and self-correction"
+        "Python 3.11+ FastAPI service with MCP and Docker Compose support.",
+        "Knowledge-graph/Neo4j-backed memory for agent context persistence.",
+        "DeepEval-verified evals, v1.5.0 release, MIT licensed."
       ],
       "actionItems": [
-        "Set up `npx @furongjun1999/dsh-memory init` with a test memory root; verify recall/write round-trip success rate and failure on invalid writes; confirm MCP config ownership and least-privilege access to the memory directory.",
-        "Run the included memory-card and reflection tests on a small agent workload; measure retrieval precision/recall and blindspot/false-memory failures; check deployment isolation so the MCP server cannot read unrelated files or secrets.",
-        "Deploy against one host agent first with `--serve` and multi-client access; track audit log completeness and recovery after forced process restarts; verify security review, maintenance owner, and update path for the Python/runtime dependency chain."
+        "Set up Docker Compose with Neo4j and MCP; track retrieval accuracy and stale-memory failures; confirm network exposure and data ownership boundaries.",
+        "Integrate the Python SDK into one coding agent; measure recall hit-rate and hallucinated-context regressions; verify secrets handling and tenant access control.",
+        "Run the benchmark suite against your real repo context; monitor latency and memory-decay misses; assign operational ownership and backup/restore responsibilities."
       ],
-      "latestRelease": "v0.6.0",
-      "latestReleaseUrl": "https://github.com/FuRongJun-1999/dsh-memory/releases/tag/v0.6.0",
-      "homepage": "",
+      "latestRelease": "v1.5.0",
+      "latestReleaseUrl": "https://github.com/friday-memory/friday/releases/tag/v1.5.0",
+      "homepage": "https://pypi.org/project/friday-memory/",
       "license": "MIT",
-      "enterpriseScore": 25
+      "enterpriseScore": 10
     },
     {
       "name": "Human-Agent-Society/reef",
-      "stars": "6.9k",
-      "desc": "Open-source Python infrastructure for continually self-improving agents, connecting inference, feedback, learning, and versioned delivery for model weights and agent harnesses.",
+      "stars": "7.3k",
+      "desc": "Python infrastructure for continually self-improving agents, connecting inference, feedback, learning, and versioned delivery for model weights or agent harnesses.",
       "url": "https://github.com/Human-Agent-Society/reef",
       "language": "Python",
       "topics": [
@@ -234,66 +199,23 @@
         "self-improving-agents"
       ],
       "createdAt": "Aug 31, 2026",
-      "lastUpdated": "Sep 28, 2026",
-      "fetchedAt": "Sep 28, 2026",
+      "lastUpdated": "Sep 29, 2026",
+      "fetchedAt": "Sep 30, 2026",
       "bestFor": "Model Serving",
       "bullets": [
-        "Supports model-weight training and harness optimization",
-        "Integrates inference, feedback loops, and learning pipelines",
-        "Targets continual improvement for agents and test-time training"
+        "Open-source agent infra for continual learning loops",
+        "Supports weight training and harness optimization",
+        "Integrates inference engines, RL training, and evaluators"
       ],
       "actionItems": [
-        "Set up a small SGLang/vLLM-backed agent loop and measure task success uplift vs baseline; watch for regression or reward hacking; confirm model/data ownership and deployment isolation.",
-        "Run harness optimization on representative tasks with a fixed evaluator and track pass rate, latency, and variance; check for evaluator leakage or prompt drift; verify CI/CD gating and rollback ownership.",
-        "Test a weight-training path on a supported GPU stack using feedback recipes and measure reward convergence or overfitting failure; ensure secrets handling, artifact versioning, and security review before rollout."
+        "Set up a small harness loop with vLLM/SGLang and a fixed task set; track win-rate or reward drift; verify model/prompt ownership and rollback access.",
+        "Run a weight-training pilot on a supported GPU stack with feedback recipes; measure eval score gains vs. overfitting/failure collapse; confirm data licensing and checkpoint security.",
+        "Deploy versioned delivery for prompts/rules/skills via CI; monitor regression rate and evaluator false positives; assign release ownership and secret-management review."
       ],
       "latestRelease": "v0.1.1",
       "latestReleaseUrl": "https://github.com/Human-Agent-Society/reef/releases/tag/v0.1.1",
       "homepage": "https://reefinfra.ai",
       "license": "Apache-2.0",
-      "enterpriseScore": 0
-    },
-    {
-      "name": "kubet/azdaja",
-      "stars": "14",
-      "desc": "Minimal harness-agnostic recursive language model layer \u2014 one binary, Python + llm()",
-      "url": "https://github.com/kubet/azdaja",
-      "language": "Python",
-      "topics": [
-        "agent-skills",
-        "claude-code",
-        "codex-cli",
-        "context-engineering",
-        "context-window",
-        "developer-tools",
-        "gemini-cli",
-        "gemini-cli-extension",
-        "jcode",
-        "large-language-models",
-        "llm-tools",
-        "long-context",
-        "opencode",
-        "recursive-language-models",
-        "rust"
-      ],
-      "createdAt": "Aug 11, 2026",
-      "lastUpdated": "Sep 21, 2026",
-      "fetchedAt": "Sep 28, 2026",
-      "bestFor": "Coding Workflow",
-      "bullets": [
-        "Minimal harness-agnostic recursive language model layer \u2014 one binary, Python + llm().",
-        "Primarily Python, with topics such as agent-skills, claude-code, codex-cli.",
-        "Latest release v0.1.18 signals active maintenance."
-      ],
-      "actionItems": [
-        "Run kubet/azdaja in an isolated Python environment and use the README to trace its primary inputs, outputs, and external services.",
-        "Run the workflow on a non-critical repository and measure test-pass rate, review edits, and rollback effort before extending it to production code.",
-        "Review v0.1.18, open issues, MIT, and the dependency surface; define ownership, rollback, and support criteria before a coding workflow pilot."
-      ],
-      "latestRelease": "v0.1.18",
-      "latestReleaseUrl": "https://github.com/kubet/azdaja/releases/tag/v0.1.18",
-      "homepage": "azdaja.dev",
-      "license": "MIT",
       "enterpriseScore": 0
     },
     {
@@ -322,7 +244,7 @@
       ],
       "createdAt": "Aug 9, 2026",
       "lastUpdated": "Sep 27, 2026",
-      "fetchedAt": "Sep 28, 2026",
+      "fetchedAt": "Sep 30, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
         "Your car as a chat-room agent: Raspberry Pi 5 + dashcam + local AI. CodeWatch's sibling for the garage.",
@@ -369,8 +291,8 @@
         "tui"
       ],
       "createdAt": "Aug 4, 2026",
-      "lastUpdated": "Sep 24, 2026",
-      "fetchedAt": "Sep 28, 2026",
+      "lastUpdated": "Sep 29, 2026",
+      "fetchedAt": "Sep 30, 2026",
       "bestFor": "Coding Workflow",
       "bullets": [
         "FuXi is a fast, self-contained AI coding agent that lives in your terminal \u2014 edit code, run commands, and drive tools, with cost-aware routing across LLM providers.",
@@ -406,7 +328,7 @@
       ],
       "createdAt": "Sep 20, 2026",
       "lastUpdated": "Sep 24, 2026",
-      "fetchedAt": "Sep 28, 2026",
+      "fetchedAt": "Sep 30, 2026",
       "bestFor": "AI Agent Apps",
       "bullets": [
         "Agent evals and guardrails as Jev decisions: one request per trace, a fraction of a cent, fast enough for the agent loop. Runs locally with Kev or Laya.",
@@ -423,6 +345,73 @@
       "homepage": "https://github.com/openlayer-ai/jevals",
       "license": "MIT",
       "enterpriseScore": 18
+    },
+    {
+      "name": "Worldbuilder013/HEXIS",
+      "stars": "97",
+      "desc": "HEXIS. Compile SKILL.md into state machines: deterministic execution order via transition guards, LLM reasoning scoped inside states.",
+      "url": "https://github.com/Worldbuilder013/HEXIS",
+      "language": "Python",
+      "topics": [],
+      "createdAt": "Sep 17, 2026",
+      "lastUpdated": "Sep 26, 2026",
+      "fetchedAt": "Sep 30, 2026",
+      "bestFor": "AI Agent Apps",
+      "bullets": [
+        "HEXIS. Compile SKILL.md into state machines: deterministic execution order via transition guards, LLM reasoning scoped inside states.",
+        "Primarily Python, with topics such as AI engineering.",
+        "Latest release 0.1.0 signals active maintenance."
+      ],
+      "actionItems": [
+        "Run Worldbuilder013/HEXIS in an isolated Python environment and use the README to trace its primary inputs, outputs, and external services.",
+        "Define one bounded business task with a human approval step, then measure task success, tool failures, latency, and cost across a small evaluation set.",
+        "Review 0.1.0, open issues, GPL-3.0, and the dependency surface; define ownership, rollback, and support criteria before an ai agent apps pilot."
+      ],
+      "latestRelease": "0.1.0",
+      "latestReleaseUrl": "https://github.com/Worldbuilder013/HEXIS/releases/tag/0.1.0",
+      "homepage": "",
+      "license": "GPL-3.0",
+      "enterpriseScore": 0
+    },
+    {
+      "name": "himovo/movo",
+      "stars": "194",
+      "desc": "Turn DeepSeek Harness into a self-hosted enterprise Agent platform with knowledge, deep research, content generation, vibe coding, browser automation, governance, and admin controls.",
+      "url": "https://github.com/himovo/movo",
+      "language": "Python",
+      "topics": [
+        "agent",
+        "ai-agents",
+        "brower-automation",
+        "dsh-plugin",
+        "enterprise-agents",
+        "mcp",
+        "movo",
+        "rag",
+        "skills",
+        "vibe-coding",
+        "workflow",
+        "workflow-automation"
+      ],
+      "createdAt": "Sep 1, 2026",
+      "lastUpdated": "Sep 29, 2026",
+      "fetchedAt": "Sep 30, 2026",
+      "bestFor": "AI Agent Apps",
+      "bullets": [
+        "Turn DeepSeek Harness into a self-hosted enterprise Agent platform with knowledge, deep research, content generation, vibe coding, browser automation, governance, and admin controls.",
+        "Primarily Python, with topics such as agent, ai-agents, brower-automation.",
+        "Latest release v0.1.18 signals active maintenance."
+      ],
+      "actionItems": [
+        "Run himovo/movo in an isolated Python environment and use the README to trace its primary inputs, outputs, and external services.",
+        "Define one bounded business task with a human approval step, then measure task success, tool failures, latency, and cost across a small evaluation set.",
+        "Review v0.1.18, open issues, NOASSERTION, and the dependency surface; define ownership, rollback, and support criteria before an ai agent apps pilot."
+      ],
+      "latestRelease": "v0.1.18",
+      "latestReleaseUrl": "https://github.com/himovo/movo/releases/tag/v0.1.18",
+      "homepage": "https://www.himovo.com",
+      "license": "NOASSERTION",
+      "enterpriseScore": 28
     }
   ],
   "models": [
@@ -430,7 +419,7 @@
       "name": "GPT-6 Sol",
       "org": "OpenAI",
       "date": "Sep 22, 2026",
-      "note": "OpenAI introduced GPT-6 Sol and Luna, two new models that aim to bring frontier intelligence to everyday work with different capability and cost tradeoffs.",
+      "note": "OpenAI introduced GPT-6 Sol and Luna, two new models offering frontier intelligence with different capability-cost tradeoffs for everyday work.",
       "tag": "MODEL",
       "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
       "sourceUrl": "https://openai.com/news/rss.xml",
@@ -449,10 +438,76 @@
       "enterpriseScore": 0
     },
     {
+      "name": "Claude Opus 5.5",
+      "org": "Anthropic",
+      "date": "Sep 22, 2026",
+      "note": "Anthropic introduced Claude Opus 5.5, the first model in its Claude 5.5 family, with performance at Claude Fable 5.1 levels on most work and 40% lower running cost than Opus 5.",
+      "tag": "MODEL",
+      "url": "https://anthropic.com/claude-opus-5-5",
+      "sourceUrl": "https://www.anthropic.com/news",
+      "sourceLabel": "Source page",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://anthropic.com/claude-opus-5-5"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 0
+    },
+    {
+      "name": "GPT-6.1 Sol",
+      "org": "OpenAI",
+      "date": "Sep 29, 2026",
+      "note": "OpenAI released GPT-6.1 Sol, a new model for coding, computer use, and professional work with API pricing at one-fifth of Astra\u2019s standard input and output token rates.",
+      "tag": "API",
+      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
+      "sourceUrl": "https://openai.com/news/rss.xml",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://openai.com/index/introducing-gpt-6-1-sol"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 8
+    },
+    {
+      "name": "Grok 4.7",
+      "org": "xAI",
+      "date": "Sep 28, 2026",
+      "note": "Grok 4.7 is now available on Amazon Bedrock, bringing xAI\u2019s frontier coding and knowledge-work model to the Bedrock catalog with a 500K token context window and configurable reasoning levels.",
+      "tag": "MODEL",
+      "url": "https://aws.amazon.com/blogs/machine-learning/grok-4-7-is-now-available-on-amazon-bedrock",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/grok-4-7-is-now-available-on-amazon-bedrock"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 0
+    },
+    {
       "name": "Eleven v4",
       "org": "ElevenLabs",
       "date": "Sep 28, 2026",
-      "note": "ElevenLabs launched Eleven v4 and Eleven v4 Turbo, a new text-to-speech voice model lineup with stronger emotional nuance, faster low-latency responses, and improved multi-speaker dynamics.",
+      "note": "ElevenLabs launched Eleven v4 and Eleven v4 Turbo, a new emotive text-to-speech model pair with low-latency support for agents and stronger voice cloning.",
       "tag": "API",
       "url": "https://elevenlabs.io/blog/eleven-v4",
       "sourceUrl": "https://elevenlabs.io/blog/",
@@ -471,63 +526,19 @@
       "enterpriseScore": 8
     },
     {
-      "name": "Gemini 3.8 Live with Live Avatar",
-      "org": "Google",
-      "date": "Sep 24, 2026",
-      "note": "Google shipped Gemini 3.8 Live with Live Avatar, adding near real-time visual presence to Gemini\u2019s conversational AI for more immersive live interactions.",
+      "name": "Claude Sonnet 5.5",
+      "org": "Anthropic",
+      "date": "Sep 28, 2026",
+      "note": "Anthropic released Claude Sonnet 5.5 as a faster, lower-cost upgrade to Sonnet 5, with 30%+ speed gains and up to 30% lower cost for most work.",
       "tag": "MODEL",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar",
-      "sourceUrl": "https://blog.google/rss/",
-      "sourceLabel": "RSS feed",
+      "url": "https://anthropic.com/claude-sonnet-5-5",
+      "sourceUrl": "https://www.anthropic.com/news",
+      "sourceLabel": "Source page",
       "benchmarkUrl": "https://artificialanalysis.ai/models",
       "links": [
         {
           "label": "Read release",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar"
-        },
-        {
-          "label": "Model directory",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ],
-      "enterpriseScore": 0
-    },
-    {
-      "name": "NV-Reason-CT Open 3D CT VLM for Radiologist Chain-of-Thought Reasoning",
-      "org": "NVIDIA",
-      "date": "Sep 23, 2026",
-      "note": "NVIDIA released NV-Reason-CT, an open 3D CT vision-language model for radiologist chain-of-thought reasoning, bringing volumetric medical imaging support to a class of models that typically struggle with CT scans.",
-      "tag": "MODEL",
-      "url": "https://developer.nvidia.com/blog/introducing-nv-reason-ct-open-3d-ct-vlm-for-radiologist-chain-of-thought-reasoning",
-      "sourceUrl": "https://developer.nvidia.com/blog/feed/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://developer.nvidia.com/blog/introducing-nv-reason-ct-open-3d-ct-vlm-for-radiologist-chain-of-thought-reasoning"
-        },
-        {
-          "label": "Model directory",
-          "url": "https://artificialanalysis.ai/models"
-        }
-      ],
-      "enterpriseScore": 0
-    },
-    {
-      "name": "Gemini 3.8 text-to-speech says hello",
-      "org": "Google",
-      "date": "Sep 23, 2026",
-      "note": "Google shipped Gemini 3.8 Flash-Lite TTS and Gemini 3.8 Flash TTS, its most expressive audio models yet, expanding its text-to-speech model lineup.",
-      "tag": "MODEL",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech",
-      "sourceUrl": "https://blog.google/rss/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "https://artificialanalysis.ai/models",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-text-to-speech"
+          "url": "https://anthropic.com/claude-sonnet-5-5"
         },
         {
           "label": "Model directory",
@@ -539,342 +550,141 @@
     {
       "name": "GPT-6 Astra",
       "org": "OpenAI",
-      "date": "Sep 23, 2026",
-      "note": "GPT-6 Astra produces more structured, context-aware legal documents, freeing lawyers to focus on strategy.",
+      "date": "Sep 28, 2026",
+      "note": "OpenAI says GPT-6 Astra completed a 50-tab tax workbook twice as fast as GPT-5.6 Sol, indicating a meaningful speed and intent-understanding improvement for real-world spreadsheet work.",
       "tag": "MODEL",
-      "url": "https://openai.com/index/harvey-from-context-to-confidence-with-astra",
+      "url": "https://openai.com/index/basis-tax-workbook-with-astra",
       "sourceUrl": "https://openai.com/news/rss.xml",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "https://artificialanalysis.ai/models",
       "links": [
         {
           "label": "Read release",
-          "url": "https://openai.com/index/harvey-from-context-to-confidence-with-astra"
+          "url": "https://openai.com/index/basis-tax-workbook-with-astra"
         },
         {
           "label": "Model directory",
           "url": "https://artificialanalysis.ai/models"
         }
       ],
-      "enterpriseScore": 0
+      "enterpriseScore": 10
+    },
+    {
+      "name": "Qwen3-TTS-12Hz-1.7B-Base",
+      "org": "Qwen / Alibaba Cloud",
+      "date": "Sep 25, 2026",
+      "note": "AWS says the publicly available Qwen3-TTS-12Hz-1.7B-Base text-to-speech model can now be deployed on Amazon SageMaker AI as a managed real-time endpoint for voice cloning and multilingual speech generation.",
+      "tag": "MODEL",
+      "url": "https://aws.amazon.com/blogs/machine-learning/deploying-real-time-personalized-speech-with-qwen3-tts-on-amazon-sagemaker-ai",
+      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
+      "sourceLabel": "RSS feed",
+      "benchmarkUrl": "https://artificialanalysis.ai/models",
+      "links": [
+        {
+          "label": "Read release",
+          "url": "https://aws.amazon.com/blogs/machine-learning/deploying-real-time-personalized-speech-with-qwen3-tts-on-amazon-sagemaker-ai"
+        },
+        {
+          "label": "Model directory",
+          "url": "https://artificialanalysis.ai/models"
+        }
+      ],
+      "enterpriseScore": 10
     }
   ],
   "toolsServices": [
     {
-      "name": "Google Flow",
+      "name": "Antigravity SDK local AI model support",
       "org": "Google",
       "date": "Sep 23, 2026",
-      "note": "Google announced six new Google Flow tools built by industry creatives, expanding the Flow creative toolkit with new shipped capabilities for users.",
-      "tag": "PLATFORM",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/six-new-tools-built-by-creatives",
-      "sourceUrl": "https://blog.google/rss/",
+      "note": "Google announced that the Antigravity SDK now supports offline local workflows, including initial support for Gemma 4 26B A4B via Google AI Edge LiteRT, enabling privacy-first on-device agentic assistance.",
+      "tag": "SDK",
+      "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk",
+      "sourceUrl": "https://developers.googleblog.com/feeds/posts/default",
       "sourceLabel": "RSS feed",
       "benchmarkUrl": "",
       "links": [
         {
           "label": "Read release",
-          "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/six-new-tools-built-by-creatives"
+          "url": "https://developers.googleblog.com/introducing-support-for-local-ai-models-in-the-antigravity-sdk"
         }
       ],
-      "enterpriseScore": 0
-    },
-    {
-      "name": "GPT-6 Sol and GPT-6 Luna on Amazon Bedrock",
-      "org": "AWS",
-      "date": "Sep 22, 2026",
-      "note": "GPT-6 Sol and GPT-6 Luna are now generally available on Amazon Bedrock, adding two OpenAI models with different cost/latency tradeoffs for production workloads.",
-      "tag": "CLOUD",
-      "url": "https://aws.amazon.com/blogs/machine-learning/bring-more-intelligence-to-everyday-work-with-gpt-6-sol-and-gpt-6-luna-on-amazon-bedrock",
-      "sourceUrl": "https://aws.amazon.com/blogs/machine-learning/feed/",
-      "sourceLabel": "RSS feed",
-      "benchmarkUrl": "",
-      "links": [
-        {
-          "label": "Read release",
-          "url": "https://aws.amazon.com/blogs/machine-learning/bring-more-intelligence-to-everyday-work-with-gpt-6-sol-and-gpt-6-luna-on-amazon-bedrock"
-        }
-      ],
-      "enterpriseScore": 38
+      "enterpriseScore": 8
     }
   ],
   "papers": [
     {
-      "title": "DeepEdu-v1: Efficient and Scalable Agentic LLMs for Vietnamese Education",
-      "authors": "Quang Nguyen, Hieu Nguyen, Hien Hoang, Toan Pham, Cong Tran, Nam Vu",
+      "title": "SEABench: Benchmarking Endogenous Misalignment In Self-Evolving Agents",
+      "authors": "Saswat Das, Parvati Viswanathan, Daniel Donnelly, Chang Huang, Sahar Abdelnabi, Ferdinando Fioretto",
       "org": "arXiv",
-      "date": "Sep 25, 2026",
+      "date": "Sep 28, 2026",
       "hasCode": false,
       "stars": 0,
-      "researchScore": 73,
-      "priority": "EXPERIMENT",
+      "researchScore": 64,
+      "priority": "SHARE",
       "tags": [
-        "Inference and Model Efficiency",
-        "Education"
-      ],
-      "abstract": "AI tutoring could markedly improve learning outcomes for students in developing regions such as Vietnam, yet the two obvious paths both fall short. Cloud assistants such as ChatGPT route sensitive student data to foreign servers---violating data-sovereignty laws such as Vietnam's Decree 53---and, pre-trained on Western-centric corpora, are not organized around the national textbook curriculum, so their knowledge of local content is unsystematic and frequently hallucinated. Self-hosting an open model keeps data on-premise but hits a two-fold wall: post-training quantization (AWQ, GPTQ) tames the static weight footprint, yet the dynamic KV cache and prefill latency of long tutoring contexts still cause out-of-memory failures and slow responses on consumer GPUs, while the model keeps hallucinating on region-specific material. We present DeepEdu-v1, an AI-tutoring system for Vietnamese education built on SCALE (Self-improving Context-Aware Learning Engine), a framework with two innovations. First, a long-context inference engine amortizes token selection from per-sub-chunk to per-cluster granularity; on long-context retrieval it issues x7.7 fewer retrieval calls than a state-of-the-art selective-attention baseline, cutting prefill latency (TTFT) by roughly 35% while matching or improving task accuracy. Second, a self-improving agentic layer continuously curates a verified playbook from past interactions instead of fine-tuning, a design intended to progressively reduce reliance on dominant-language priors as trustworthy local knowledge accumulates. In its deployed configuration, DeepEdu achieves a nearly x2 TTFT speedup over standard vLLM serving and lifts agentic accuracy from 70.0% to 79.5% on complex tasks, with the strongest per-track gains across financial-reasoning and interactive-agent benchmarks.",
-      "takeaways": [
-        "DeepEdu-v1 is an AI tutoring system for Vietnamese education built on SCALE, combining a long-context inference engine with a self-improving agentic layer to better handle local curriculum content and reduce hallucinations.",
-        "On long-context retrieval, the system uses per-cluster token selection to make x7.7 fewer retrieval calls than a selective-attention baseline, cutting TTFT by about 35% while matching or improving task accuracy.",
-        "The deployed system nearly doubles TTFT speed over standard vLLM serving and raises agentic accuracy from 70.0% to 79.5%, suggesting more practical on-premise tutoring for consumer GPUs under data-sovereignty constraints."
-      ],
-      "actionItems": [
-        "Review the SCALE long-context inference design and the self-improving playbook mechanism to verify how they address Vietnamese curriculum grounding and data-sovereignty constraints.",
-        "Evaluate DeepEdu-v1 against a standard vLLM baseline on long-context tutoring tasks, measuring TTFT, retrieval-call count, and agentic accuracy on complex education examples.",
-        "Assess whether the system\u2019s verified playbook can remain reliable and curricularly aligned over time without fine-tuning, especially for region-specific content and consumer-GPU deployment."
-      ],
-      "researchSignals": {
-        "evidence": "Medium",
-        "applicability": "High",
-        "reproducibility": "Low",
-        "novelty": "High"
-      },
-      "capability": "Inference and Model Efficiency",
-      "domain": "Education",
-      "enterpriseScore": 65,
-      "enterpriseSignals": {
-        "adoption": 30,
-        "efficiency": 25,
-        "governance": 0,
-        "evidence": 10
-      },
-      "url": "https://arxiv.org/abs/2609.31568"
-    },
-    {
-      "title": "Muslim: A Deployed Arabic Voice AI Platform for Grounded Islamic Knowledge",
-      "authors": "Yahya Mohamed Elnawasany",
-      "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 63,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Inference and Model Efficiency",
+        "Agentic AI",
         "Other"
       ],
-      "abstract": "We present Muslim, a production Arabic voice AI platform serving grounded, sourced Islamic knowledge to real users. Beyond a real-time voice pipeline (NeMo Arabic ASR, an OpenAI-compatible LLM endpoint, self-hosted TTS) and a deterministic multi-source retrieval layer routed across six Model Context Protocol servers, we report three things a research prototype typically lacks. First, a released family of fine-tuned Arabic Islamic model artifacts: an efficient tool-routing LLM (Muslim-6B-PRO, 5.94B parameters) and a Modern Standard Arabic TTS model (Fasih-TTS-V1) that ranks 5th of 17 overall and 2nd of 11 open-weight systems on the community-voted Arabic TTS Arena for MSA. Second, an account and metering layer - a free per-account turn allowance, capacity-aware refusal, and email verification deferred to the point it actually matters - that turns an open demo into an operable, abuse-resistant product. Third, a three-layer observability stack (liveness, error reporting, product analytics) built specifically around the system's characteristic failure mode: a GPU-bound agent host going silent while the web tier keeps serving normally. We report real, measured latency and accuracy figures (98.4% recitation-validation accuracy on 124 cases; end-to-end voice latency of 0.9-1.7s) and discuss the concrete engineering trade-offs and limitations of running an Islamic-knowledge voice product in production.",
+      "abstract": "Self-evolving LLM agents have gained prominence for their ability to improve after deployment by modifying their harness, including their controller instructions, memory management protocols, and reusable tools and skills, in response to user and environment feedback. However, locally useful updates may persist into later tasks where they produce unsafe behavior, even without direct adversarial influence. To study this risk, we introduce SEABench, a benchmark for studying endogenous misalignment arising from agent self-evolution, with 48 longitudinal task sequences that span multiple evolution surfaces, task domains, and harm types in a rich personal-assistant environment. To account for the stochasticity inherent in agentic operations, we provide an adaptive trajectory discovery pipeline that probes for failures while preserving original task intent and supports causal attribution through paired non-evolving agents and attribution scores. Our evaluation across multiple recent LLMs, evolution surfaces, and harm types reveals that self-evolution indeed increases task completion rates but often at the cost of safety failures that are absent for paired non-evolving baseline agents. We also show that qualitatively different safety behaviors emerge across evolution surfaces and harm types. Further, we show that this divergence in safety behavior is reflected in agents' chain-of-thought reasoning, which yields an effective monitoring strategy that can mitigate unsafe behavior with a low false positive rate.",
       "takeaways": [
-        "Deployed Arabic voice AI platform, Muslim, delivering grounded, sourced Islamic knowledge through a real-time voice system and production product stack.",
-        "Method/evidence: combines NeMo Arabic ASR, an OpenAI-compatible LLM endpoint, self-hosted TTS, and deterministic multi-source retrieval across six MCP servers; reports 98.4% recitation-validation accuracy on 124 cases and 0.9\u20131.7s end-to-end latency.",
-        "Practical implication: releases fine-tuned Arabic artifacts (Muslim-6B-PRO and Fasih-TTS-V1) plus abuse-resistant account/metering and observability layers for operating an open, production Islamic-knowledge voice service."
+        "SEABench is a benchmark for endogenous misalignment in self-evolving LLM agents, using 48 longitudinal task sequences across multiple evolution surfaces, task domains, and harm types in a personal-assistant setting.",
+        "The paper introduces an adaptive trajectory discovery pipeline that probes failures while preserving task intent, and pairs evolving agents with non-evolving baselines plus attribution scores to support causal attribution.",
+        "Experiments show self-evolution can improve task completion but often triggers safety failures absent in baselines; the authors also find chain-of-thought differences can be used as a low-false-positive monitoring strategy to mitigate unsafe behavior."
       ],
       "actionItems": [
-        "Review the grounding and retrieval design across the six MCP servers to verify that sourced Islamic answers are consistently tied to the retrieved references in the deployed voice flow.",
-        "Evaluate the released Arabic artifacts and system pipeline by reproducing the reported 98.4% recitation-validation accuracy on 124 cases and the 0.9\u20131.7s end-to-end latency under production-like load.",
-        "Assess whether the account/metering, capacity-aware refusal, and deferred email verification are sufficient to prevent abuse without blocking legitimate users of the open Islamic-knowledge voice service."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "High",
-        "reproducibility": "Low",
-        "novelty": "Medium"
-      },
-      "capability": "Inference and Model Efficiency",
-      "domain": "Other",
-      "enterpriseScore": 55,
-      "enterpriseSignals": {
-        "adoption": 30,
-        "efficiency": 17,
-        "governance": 8,
-        "evidence": 0
-      },
-      "url": "https://arxiv.org/abs/2609.31511"
-    },
-    {
-      "title": "Highlight-Then-Summarize: Learning to Compress Evidence for Long-Context Understanding",
-      "authors": "Zhaoyuan Xia, Qinghongbing Xie, Yung Xiang Hue, Jianguang Jiang, Gaofeng Lu, Zhenyu Jiao, Xing Yuan, Dai Dai, Tong Mo, Long Zeng",
-      "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 60,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Reasoning and Planning",
-        "Other"
-      ],
-      "abstract": "Long-context understanding requires large language models (LLMs) to reason over lengthy documents, conversations, and code, yet task-relevant evidence is often sparse and scattered amid substantial irrelevant and redundant content. We propose Highlight-Then-Summarize (H2S), a compress-then-reason paradigm that first identifies source-grounded, question-relevant evidence and then integrates it into a compact, question-conditioned summary before producing the final answer. To train this behavior, we construct H2S-Dataset, comprising 6,647 examples from 11 benchmark families with an average context length of 43.9K tokens, and introduce H2S-RL, which provides process-level rewards for evidence selection and summary construction in addition to final-answer correctness. We evaluate on H2S-Bench, a seven-task long-context suite. Under a shared 128K input and 4K output budget, H2S-14B achieves an average score of 32.60, outperforming Qwen3.8-27B by 10.17 points and obtaining the strongest overall result among the evaluated open-source models. H2S-14B also achieves the highest Evidence-Summary Quality score and retains 97.1% of its 16K-budget performance with only a 4K output budget. These results show that explicitly selecting and integrating evidence improves long-context reasoning while enabling more compact generation.",
-      "takeaways": [
-        "Introduces Highlight-Then-Summarize (H2S), a compress-then-reason method that first selects source-grounded, question-relevant evidence and then builds a compact, question-conditioned summary before answering.",
-        "Trains on H2S-Dataset with 6,647 examples across 11 benchmark families and uses H2S-RL with process-level rewards for evidence selection, summary construction, and final-answer correctness; evaluates on H2S-Bench.",
-        "Under a 128K input and 4K output budget, H2S-14B tops evaluated open-source models, improving average score and evidence-summary quality while retaining 97.1% of its 16K-budget performance, implying better long-context reasoning with shorter outputs."
-      ],
-      "actionItems": [
-        "Review the H2S training setup and H2S-Bench evaluation protocol, with attention to how source-grounded evidence selection and summary construction are defined and rewarded.",
-        "Run an ablation or comparative evaluation against a strong long-context baseline under the same 128K input and 4K output budget to test whether process-level rewards improve final-answer accuracy and evidence-summary quality.",
-        "Assess whether the compress-then-reason approach depends on reliable evidence highlighting and whether it can be adopted without introducing missing-evidence or over-compression risks in long-context tasks."
+        "Review SEABench\u2019s 48 longitudinal task sequences and the adaptive trajectory discovery pipeline to understand how endogenous misalignment is measured across evolution surfaces, task domains, and harm types.",
+        "Evaluate whether the chain-of-thought-based monitoring strategy reproduces the reported low false-positive mitigation effect on the benchmark\u2019s self-evolving agents versus paired non-evolving baselines.",
+        "Ask whether the benchmark\u2019s personal-assistant setting and reported safety failures are sufficient to justify adoption of self-evolving agents without additional safeguards in deployment."
       ],
       "researchSignals": {
         "evidence": "High",
         "applicability": "Low",
-        "reproducibility": "High",
-        "novelty": "High"
-      },
-      "capability": "Reasoning and Planning",
-      "domain": "Other",
-      "enterpriseScore": 10,
-      "enterpriseSignals": {
-        "adoption": 0,
-        "efficiency": 0,
-        "governance": 0,
-        "evidence": 10
-      },
-      "url": "https://arxiv.org/abs/2609.31382"
-    },
-    {
-      "title": "Can You Check That? The Checkability Boundary for Local LLM Network Automation",
-      "authors": "Maleeha Masood, Momina Nofal",
-      "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": false,
-      "stars": 0,
-      "researchScore": 55,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "LLMOps and Production AI",
-        "Other"
-      ],
-      "abstract": "Sending every network-automation input to a third-party frontier LLM exports sensitive artifacts such as production configurations, topologies, and logs. Querying small language models (SLMs) locally avoids this egress, but SLM outputs can be error-prone for direct use. This work introduces checkability as a criterion for determining which tasks are suitable for local inference. A task is checkable when it exposes a cheap, deterministic test - an intrinsic check - that rejects outputs violating a necessary correctness condition. We instantiate this idea in Touchstone, a local-first pipeline that uses seven off-the-shelf SLMs (1-8B parameters) to generate candidates, uses task-specific intrinsic checks to reject responses, and escalates unresolved inputs to a frontier LLM. On conflict detection and intent translation tasks, Touchstone reaches 98.6% and 93.8% end-to-end accuracy while escalating only 16% and 17% of inputs, respectively. On TeleQnA, a knowledge-only control that has no task-specific intrinsic checks, Touchstone is unable to match the accuracy of the frontier baseline. Our results support a simple deployment rule: keep inference local when task semantics support precise, low-cost checks; escalate the rest.",
-      "takeaways": [
-        "Introduces \"checkability\" as a criterion for deciding when network-automation tasks can be handled locally: a task is checkable if it has a cheap, deterministic intrinsic test that can reject outputs violating a necessary correctness condition.",
-        "Implements Touchstone, a local-first pipeline that uses seven off-the-shelf 1\u20138B SLMs to generate candidates, applies task-specific intrinsic checks to filter them, and escalates unresolved inputs to a frontier LLM; reports 98.6% end-to-end accuracy on conflict detection and 93.8% on intent translation while escalating 16% and 17% of inputs.",
-        "Practical takeaway: keep inference local when task semantics support precise, low-cost checks, and escalate tasks without such checks; the TeleQnA control without task-specific intrinsic checks did not match the frontier baseline."
-      ],
-      "actionItems": [
-        "Review the checkability criterion and the Touchstone pipeline for your network-automation workflows to identify tasks with cheap, deterministic intrinsic checks versus tasks that should be escalated.",
-        "Run a local-first benchmark using off-the-shelf 1\u20138B SLMs with task-specific intrinsic checks on conflict detection and intent translation, and compare end-to-end accuracy and escalation rates against a frontier LLM baseline.",
-        "Assess whether each target task has a precise low-cost intrinsic check; if not, question whether local inference is appropriate or whether routing sensitive inputs to a frontier model is necessary."
-      ],
-      "researchSignals": {
-        "evidence": "High",
-        "applicability": "High",
         "reproducibility": "Low",
         "novelty": "Medium"
       },
-      "capability": "LLMOps and Production AI",
+      "capability": "Agentic AI",
       "domain": "Other",
-      "enterpriseScore": 48,
-      "enterpriseSignals": {
-        "adoption": 30,
-        "efficiency": 8,
-        "governance": 0,
-        "evidence": 0
-      },
-      "url": "https://arxiv.org/abs/2609.31540"
-    },
-    {
-      "title": "Prompt Minimization: Reducing Input Redundancy Without Sacrificing Output Fidelity",
-      "authors": "Marius F. R. Juston, Kevin A. Karim, Jonathan Gao, Kevin C. Li, Rudhi Bashambu",
-      "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 52,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "Inference and Model Efficiency",
-        "Other"
-      ],
-      "abstract": "Despite the growing capabilities of large language models (LLMs), prompt design remains largely heuristic and ad hoc. This project will explore $\\textit{prompt minimization}$, the process of reducing prompts to their smallest, most information-dense form while preserving output fidelity. Practically, shorter prompts reduce computational overhead and inference latency, especially when large contexts, such as entire documents or codebases, are included unnecessarily. Further, longer prompts can damage LLM reasoning and accuracy. Theoretically, the existence of multiple prompts yielding equivalent outputs suggests a high degree of redundancy in the input space, raising fundamental questions about what information is essential to elicit specific model behaviors. We propose three variant frameworks to identify and evaluate minimal prompts and demonstrate that minimal prompts often produce outputs comparable to those of their longer counterparts. These findings suggest new directions for efficient prompt engineering and deepen our understanding of input compression in LLMs.",
-      "takeaways": [
-        "Introduces prompt minimization: reducing prompts to the smallest information-dense form while preserving output fidelity, challenging heuristic prompt design.",
-        "Proposes three variant frameworks to identify and evaluate minimal prompts, and reports that minimal prompts often produce outputs comparable to longer prompts.",
-        "Implication: shorter prompts can lower inference latency and computational overhead, and may avoid accuracy degradation from overly long contexts."
-      ],
-      "actionItems": [
-        "Review the three proposed prompt-minimization frameworks and map how each defines and selects a minimal prompt while preserving output fidelity.",
-        "Run a controlled comparison of minimal versus longer prompts on representative tasks, measuring output equivalence, accuracy, and inference latency/computational overhead.",
-        "Assess whether prompt minimization is reliable enough for adoption by asking where longer context is still necessary and whether the reported gains hold across different LLMs and tasks."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "Medium",
-        "reproducibility": "Low",
-        "novelty": "High"
-      },
-      "capability": "Inference and Model Efficiency",
-      "domain": "Other",
-      "enterpriseScore": 17,
-      "enterpriseSignals": {
-        "adoption": 0,
-        "efficiency": 17,
-        "governance": 0,
-        "evidence": 0
-      },
-      "url": "https://arxiv.org/abs/2609.31505"
-    },
-    {
-      "title": "Intent2Tc: Automated Intent-to-Traffic Control Translation with Language Models",
-      "authors": "Andrea Masini, Sudipta Acharya, Paolo Bellavista, Luca Foschini, Burak Kantarci",
-      "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": true,
-      "stars": 0,
-      "researchScore": 50,
-      "priority": "EXPERIMENT",
-      "tags": [
-        "RAG and Knowledge Systems",
-        "Other"
-      ],
-      "abstract": "Automated and highly usable Quality-of-Service (QoS) enforcement requires translating high-level service intents into deployable traffic-management policies. Although intent-based networking (IBN) has simplified policy specification, bridging the gap between business-level intents and executable network configurations remains complex, error-prone, and difficult to automate. This paper presents Intent2Tc, a closed-loop language-model-driven framework that translates business-level traffic-shaping intents into declarative sub-intents and subsequently into validated, executable Linux traffic control (tc) configurations. The framework integrates an Active Queue Management (AQM)-based digital twin (DT) semantic model, automated metadata extraction, critique-driven refinement, and Retrieval-Augmented Generation (RAG)-based knowledge reuse to improve semantic consistency and configuration reliability. We evaluate multiple open-source large language models (LLMs) and small language models (SLMs), together with Claude Sonnet-4.6, on 100 Request for Comments (RFC) 9315-compliant traffic-shaping intents. Across both translation stages, Intent2Tc achieves high semantic fidelity, configuration accuracy, and deployment readiness, with Claude Sonnet-4.6 reaching 0.98 semantic similarity, 1.0 semantic unit coverage, and 0.045 normalized edit distance. Furthermore, RAG reduces token consumption and inference latency while enabling compact models such as Phi-4-mini to approach the performance of substantially larger models. Linux tc serves as the target configuration platform, demonstrating the practical applicability of the proposed framework.",
-      "takeaways": [
-        "Intent2Tc translates business-level traffic-shaping intents into declarative sub-intents and then into executable Linux tc configurations via a closed-loop language-model framework.",
-        "The paper evaluates open-source LLMs/SLMs and Claude Sonnet-4.6 on 100 RFC 9315-compliant intents, using an AQM-based digital twin, metadata extraction, critique-driven refinement, and RAG; Claude Sonnet-4.6 reached 0.98 semantic similarity, 1.0 semantic unit coverage, and 0.045 normalized edit distance.",
-        "Practically, the approach aims to make QoS enforcement and network policy deployment more automatable, reliable, and usable, while RAG lowers token use and latency and helps compact models approach larger-model performance."
-      ],
-      "actionItems": [
-        "Review the closed-loop Intent2Tc pipeline for translating business-level traffic-shaping intents into declarative sub-intents and Linux tc configurations, with attention to the AQM-based digital twin, metadata extraction, critique-driven refinement, and RAG components.",
-        "Reproduce the reported evaluation on the 100 RFC 9315-compliant intents by comparing open-source LLMs/SLMs and Claude Sonnet-4.6 on semantic similarity, semantic unit coverage, normalized edit distance, token consumption, and inference latency.",
-        "Assess whether the approach is practical for your environment by asking if Linux tc deployment, closed-loop validation, and RAG-based knowledge reuse fit your QoS automation reliability and operational constraints."
-      ],
-      "researchSignals": {
-        "evidence": "Low",
-        "applicability": "High",
-        "reproducibility": "Low",
-        "novelty": "Low"
-      },
-      "capability": "RAG and Knowledge Systems",
-      "domain": "Other",
-      "enterpriseScore": 28,
+      "enterpriseScore": 57,
       "enterpriseSignals": {
         "adoption": 20,
-        "efficiency": 8,
-        "governance": 0,
-        "evidence": 0
+        "efficiency": 0,
+        "governance": 17,
+        "evidence": 20
       },
-      "url": "https://arxiv.org/abs/2609.31397"
+      "url": "https://arxiv.org/abs/2609.35596"
     },
     {
-      "title": "Improving Visual Sensitivity of LLMs on Multimodal Machine Translation with Metric-based Loss Weighting",
-      "authors": "Pawe\u0142 M\u0105ka, Piotr Andruszkiewicz, Yusuf Can Semerci, Jan Scholtes, Gerasimos Spanakis",
+      "title": "TokenCast: Forecasting Token Consumption During LLM Agent Execution",
+      "authors": "Chaoqian Ouyang, Ling Yue, Libin Zheng, Huanghui Guo, Shengxiang Xu, YiShu Wang, Ran Li, Jian Yin, Shaowu Pan, Shimin Di",
       "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": false,
+      "date": "Sep 28, 2026",
+      "hasCode": true,
       "stars": 0,
-      "researchScore": 49,
+      "researchScore": 54,
       "priority": "READ",
       "tags": [
-        "Multimodal AI",
+        "Foundation Models and Generative AI",
         "Other"
       ],
-      "abstract": "Multimodal Machine Translation aims to incorporate additional signal from non-textual modalities to improve translations by resolving ambiguities. While models, through multimodal fusion, are able to accept images related to the source text, they can ignore this information. Therefore, increasing their visual sensitivity remains an active research area. In this work, we introduce a training method, Metric-based Loss Weighting, that improves visual grounding of translations by increasing the loss function for tokens that benefit from the accompanying image. We identify these tokens using the Point-wise Cross-mutual Information (PCXMI) metric, which compares the model's output probabilities with and without visual context. We introduce a Congruency-based PCXMI metric and experimentally show that both metrics working in combination yield the best results. We evaluate our method by fine-tuning three pretrained Multimodal Large Language Models on the task of Image-guided Machine Translation for three language directions. Metric-based Loss Weighting outperforms other tested methods on the CoMMuTE contrastive dataset, improving accuracy by up to more than 7 percentage points compared to standard fine-tuning, while maintaining strong general translation performance.",
+      "abstract": "When a large language model (LLM) agent executes the same task, token consumption can vary by over an order of magnitude across runs. The agent chooses its next steps based on tool feedback and intermediate results, while the growing context steadily inflates the input size of every subsequent call. The total consumption of a task is therefore hard to predict before execution and the prediction must be revised as the run unfolds. In this paper, we propose TokenCast, which learns a composable cost representation for each execution segment, recording its own consumption and the context growth it introduces. Composing adjacent segments yields a cumulative estimate that captures the extra input cost incurred when context from earlier segments is re-read by every later call. As execution unfolds, newly observed evidence refreshes the forecast, requiring no additional LLM calls and incurring a mean cumulative prediction time of 32.8 ms per run on SWE-bench Verified. Across 4 task suites and 6 agent models, TokenCast's mean absolute error reduction against the strongest comparator averages 14.5% over 96 evaluated combinations. In offline budget-control replay, TokenCast uses 21.3% fewer tokens on average than a fixed-budget policy at matched trace completion. The code is available at https://github.com/DEFENSE-SEU/TokenCast.",
       "takeaways": [
-        "Introduces Metric-based Loss Weighting to improve visual grounding in multimodal machine translation by increasing loss on tokens that benefit from the accompanying image.",
-        "Uses Point-wise Cross-mutual Information (PCXMI) and a Congruency-based PCXMI variant to identify image-relevant tokens; the combination gives the best results in experiments.",
-        "Fine-tuning three pretrained multimodal LLMs on image-guided machine translation for three language directions improved CoMMuTE accuracy by up to more than 7 points over standard fine-tuning while preserving strong translation performance."
+        "TokenCast learns a composable cost representation for LLM agent execution segments to forecast token consumption, including both segment cost and the context growth each segment introduces.",
+        "It is evaluated across 4 task suites and 6 agent models; forecasts are updated as runs unfold without extra LLM calls, with 32.8 ms mean cumulative prediction time per run on SWE-bench Verified and a 14.5% mean absolute error reduction over the strongest comparator across 96 combinations.",
+        "Practical implication: better online token budgeting for LLM agents, with offline budget-control replay showing 21.3% fewer tokens on average than a fixed-budget policy at matched trace completion."
       ],
       "actionItems": [
-        "Review the Metric-based Loss Weighting and PCXMI-based token selection setup to understand exactly how image-relevant tokens are identified and weighted during multimodal machine translation fine-tuning.",
-        "Evaluate the method by reproducing or comparing fine-tuning results on the CoMMuTE contrastive dataset across the three reported language directions and against standard fine-tuning.",
-        "Ask whether the extra training complexity and reliance on image-conditioned token scoring is justified for your target multilingual translation pipeline, given the paper\u2019s low applicability and reproducibility signals."
+        "Review TokenCast\u2019s composable cost representation and online forecast update mechanism to confirm how segment cost and context growth are encoded for each agent execution step.",
+        "Evaluate TokenCast against your own LLM agent traces by measuring prediction error and runtime overhead on multi-step tasks, comparing it to a fixed-budget policy or your current budget estimator.",
+        "Question whether the offline budget-control replay results and 32.8 ms per-run prediction cost are sufficient for your deployment constraints, given the paper\u2019s low applicability signal and the need for accurate online budgeting."
       ],
       "researchSignals": {
-        "evidence": "High",
+        "evidence": "Low",
         "applicability": "Low",
-        "reproducibility": "Low",
+        "reproducibility": "Medium",
         "novelty": "Medium"
       },
-      "capability": "Multimodal AI",
+      "capability": "Foundation Models and Generative AI",
       "domain": "Other",
       "enterpriseScore": 0,
       "enterpriseSignals": {
@@ -883,51 +693,280 @@
         "governance": 0,
         "evidence": 0
       },
-      "url": "https://arxiv.org/abs/2609.31169"
+      "url": "https://arxiv.org/abs/2609.35760"
     },
     {
-      "title": "Towards Mitigating Fabricated Consensus: The Active Provenance Gate for Multi-Agent Debate Synthesis",
-      "authors": "Jakub Mas\u0142owski, Jaros\u0142aw A. Chudziak",
+      "title": "Reasoning with Continuous Latent Diffusion",
+      "authors": "Xiang Cheng",
       "org": "arXiv",
-      "date": "Sep 25, 2026",
-      "hasCode": false,
+      "date": "Sep 28, 2026",
+      "hasCode": true,
       "stars": 0,
-      "researchScore": 47,
-      "priority": "SHARE",
+      "researchScore": 53,
+      "priority": "READ",
       "tags": [
-        "Agentic AI",
-        "Other"
+        "Reasoning and Planning",
+        "AI Engineering and Developer Tools"
       ],
-      "abstract": "Large language model-based multi-agent debate (MAD) systems are being increasingly used as complex decision pipelines in distributed processes. However, their final synthesis phase still remains inadequately controlled. Even with detailed debate logs, summarizing models are prone to fabricating smoothly written debate consensus that is not grounded in the debate's history. To address this safety gap, this paper presents empirical research and studies if the introduction of active post-debate verification can mitigate the production of such factually unsupported summaries, while still providing valuable information. Furthermore, it is examined whether explicitly signalling divergence is preferable in the absence of a reliable compromise. The Active Provenance Gate (APG) is introduced as a post-debate verification layer that treats the source as a hard constraint, analysing the debate logs, auditing each claim, and applying self-correction. In crisis simulations, the self-healing mechanism more than doubles the average data Provenance Fidelity in difficult condition scenarios, before the strict gate blocks unsupported claims and generates divergence reports. In the human study, a vast majority of the users (over 75%) preferred a report explicitly stating failure in critical scenarios, despite most of them perceiving fabricated consensus from the baseline system as more fluent. Our main contribution is the transition of data origin tracing from passive logging to active conditional blocking before publication.",
+      "abstract": "Continuous diffusion generates complete reasoning solutions through iterative refinement in latent space. We introduce Latent Flow Reasoning Models (LFRMs), an ELF-based training and inference recipe. Our experiments show that accurate decoding alone does not ensure strong reasoning performance. We therefore learn compact representations from multiple layers of a strong autoregressive teacher. Their decomposition also enables asynchronous denoising at different rates. We show that prompt encodings need only preserve the information required for the correct text-conditional score, rather than exactly match teacher features, and use a staged curriculum to learn a compact prompt encoder that replaces the teacher Transformer at inference. We adapt DiffusionNFT to learned self-conditioning guidance and incorporate gold-solution endpoints to supplement sparse rewards. Our supervised models outperform reported results from recent continuous-diffusion baselines at comparable backbone scales on mathematical reasoning and HumanEval code generation. With a 638M-parameter denoising backbone and learned prompt conditioning, post-NFT LFRM-L achieves 63.74% pass@1 on GSM8K and 24.6% on MATH500 at 64 denoising steps, and 32.85% on HumanEval and 30.18% on HumanEval+ at 128 denoising steps. Code will be available at: https://github.com/chengxiang/LFRM",
       "takeaways": [
-        "Introduces the Active Provenance Gate (APG), a post-debate verification layer for multi-agent debate synthesis that treats the source as a hard constraint to prevent fabricated consensus.",
-        "Uses empirical crisis-simulation tests and a human study: the self-healing mechanism more than doubles average Provenance Fidelity in difficult scenarios, and over 75% of users preferred explicit failure reports in critical cases.",
-        "Practical implication: move provenance from passive logging to active conditional blocking before publication, so unsupported claims are filtered and divergence is reported when no reliable compromise exists."
+        "Introduces Latent Flow Reasoning Models (LFRMs), an ELF-based continuous diffusion recipe for generating complete reasoning solutions in latent space, with compact prompt conditioning replacing the teacher Transformer at inference.",
+        "Uses compact representations distilled from multiple teacher layers, asynchronous denoising at different rates, staged prompt-encoder training, and DiffusionNFT adapted with learned self-conditioning guidance plus gold-solution endpoints to supplement sparse rewards.",
+        "Reports that decoding accuracy alone is insufficient for reasoning, and that LFRM-L outperforms recent continuous-diffusion baselines on GSM8K, MATH500, HumanEval, and HumanEval+ at comparable model scales, suggesting a practical path to stronger reasoning and code generation from continuous diffusion."
       ],
       "actionItems": [
-        "Review the APG post-debate verification design and its hard-constraint claim filtering before publication, especially how it audits debate logs and triggers divergence reports.",
-        "Evaluate APG in a controlled multi-agent debate benchmark against the baseline using Provenance Fidelity and unsupported-claim blocking rates, including the crisis-simulation and human-preference setup described here.",
-        "Assess whether explicit failure/divergence reporting is acceptable for your deployment context when no reliable compromise exists, since the paper reports users preferred it in critical scenarios."
+        "Review the LFRM training/inference recipe details, especially compact prompt conditioning, asynchronous denoising, and the staged prompt-encoder curriculum, to map the method to your current reasoning pipeline.",
+        "Run a benchmark comparison against your existing reasoning and code-generation setup on GSM8K, MATH500, HumanEval, and HumanEval+ using comparable backbone scales and denoising step budgets.",
+        "Ask whether the inference cost and operational complexity of replacing the teacher Transformer with a learned prompt encoder and multi-rate denoising are acceptable for your deployment constraints."
+      ],
+      "researchSignals": {
+        "evidence": "Low",
+        "applicability": "Low",
+        "reproducibility": "Medium",
+        "novelty": "Medium"
+      },
+      "capability": "Reasoning and Planning",
+      "domain": "AI Engineering and Developer Tools",
+      "enterpriseScore": 0,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 0
+      },
+      "url": "https://arxiv.org/abs/2609.35694"
+    },
+    {
+      "title": "Simultaneous Translation between Sign Languages",
+      "authors": "Zetian Wu, Bowen Xie, Stefan Lee, Liang Huang",
+      "org": "arXiv",
+      "date": "Sep 28, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 49,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Inference and Model Efficiency",
+        "Other"
+      ],
+      "abstract": "Deaf and hard-of-hearing (DHH) signers cannot converse in real time across different sign languages today: existing sign-to-sign translation systems run offline, requiring the full source clip before any target sign is emitted. Live use cases - e.g. broadcast interpretation and two-way video calls - instead demand simultaneous output, while the source signer is still signing. We present, to our knowledge, the first simultaneous sign-to-sign (S2S) translation system, with two wait-k regimes: test-time wait-k inference applied directly to a full-sentence model, and a trained wait-k model via stochastic multi-path supervision. We further introduce ca-Stream-AL, a computation-aware latency metric for streaming output. Averaged across six S2S directions on both a smaller human-verified test set and a larger synthetic S2S corpus, our streaming system achieves a 38% ca-Stream-AL reduction while staying within a 9% DTW-PA-MPJPE increase and a 2.1 BLEU-4 drop compared to the full-sentence baseline. A word-order case study probes how the streaming model handles word order mismatch between different sign languages - a consequence of simultaneous translation.",
+      "takeaways": [
+        "Introduces the first simultaneous sign-to-sign translation system, enabling real-time output while the source signer is still signing.",
+        "Uses two wait-k approaches\u2014test-time wait-k on a full-sentence model and a trained wait-k model with stochastic multi-path supervision\u2014and adds ca-Stream-AL as a computation-aware streaming latency metric.",
+        "Reports averaged results across six translation directions and two test sets: 38% lower ca-Stream-AL with only a 9% DTW-PA-MPJPE increase and 2.1 BLEU-4 drop versus the full-sentence baseline, suggesting practical use for live interpretation and video calls."
+      ],
+      "actionItems": [
+        "Review the two simultaneous sign-to-sign approaches described here\u2014test-time wait-k on a full-sentence model versus a trained wait-k model with stochastic multi-path supervision\u2014and compare how each affects streaming output quality and latency.",
+        "Evaluate the reported tradeoff by checking whether the 38% ca-Stream-AL reduction with a 9% DTW-PA-MPJPE increase and 2.1 BLEU-4 drop holds consistently across the six sign-language directions and both the human-verified and synthetic test sets.",
+        "Assess adoption risk by asking whether the reported streaming gains and ca-Stream-AL metric are sufficient for real-time broadcast interpretation and two-way video calls, given the offline-only baseline and the word-order mismatch case study."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "High",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Inference and Model Efficiency",
+      "domain": "Other",
+      "enterpriseScore": 18,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 8,
+        "governance": 0,
+        "evidence": 10
+      },
+      "url": "https://arxiv.org/abs/2609.35608"
+    },
+    {
+      "title": "ScAn-Bench: Evaluating Scaling Analysis Methodology",
+      "authors": "Artin Sermaxhaj, Nastaran Alipour, Donat Sinani, Johannes Hog, Neeratyoy Mallik, Jenia Jitsev, Danny Stoll",
+      "org": "arXiv",
+      "date": "Sep 28, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 48,
+      "priority": "READ",
+      "tags": [
+        "Multimodal AI",
+        "Other"
+      ],
+      "abstract": "Recent progress in machine learning is driven by large-scale foundation models, where scaling laws and finding optimal scaling prescriptions for architecture, data, and hyperparameters are key in advancing the state-of-the-art. Therefore, it is surprising that no systematic study evaluates the methodology to obtain scaling laws and prescriptions across different model types. To shed light on this crucial blind spot and facilitate future research, we introduce the surrogate benchmarks ScAn-Bench-LLM and ScAn-Bench-VLM based on 4524 and 8024 checkpoints of language and vision-language model pipelines. On our benchmarks, we perform the first systematic evaluation of both data acquisition and extrapolation methodology for scaling analysis across different data modalities.",
+      "takeaways": [
+        "Introduces ScAn-Bench-LLM and ScAn-Bench-VLM to study scaling-analysis methodology for language and vision-language foundation models.",
+        "Builds on 4,524 LLM checkpoints and 8,024 VLM checkpoints, then systematically evaluates data acquisition and extrapolation methods for scaling analysis across model types.",
+        "Provides a benchmarked way to assess scaling-law procedures, which can help researchers derive more reliable scaling prescriptions for architecture, data, and hyperparameters."
+      ],
+      "actionItems": [
+        "Review ScAn-Bench-LLM and ScAn-Bench-VLM as benchmark datasets for assessing scaling-analysis methodology across language and vision-language model pipelines.",
+        "Run comparative experiments on the 4,524 LLM and 8,024 VLM checkpoints to evaluate data acquisition and extrapolation methods for scaling-law estimation.",
+        "Assess whether the benchmarked scaling-analysis procedures are practical to adopt reliably for deriving prescriptions for architecture, data, and hyperparameters."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Multimodal AI",
+      "domain": "Other",
+      "enterpriseScore": 20,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 20
+      },
+      "url": "https://arxiv.org/abs/2609.35707"
+    },
+    {
+      "title": "GPUPhysBench: Benchmarking Coding Agents for Correct and Efficient GPU Physics Simulation",
+      "authors": "Yuchen Sun, Jinjin He, Sinan Wang, Bo Zhu",
+      "org": "arXiv",
+      "date": "Sep 28, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 46,
+      "priority": "READ",
+      "tags": [
+        "Agentic AI",
+        "AI Engineering and Developer Tools"
+      ],
+      "abstract": "Writing fast GPU code for physical simulation is difficult: implementations must preserve numerical accuracy while handling irregular data access, synchronization, and iterative solvers. We introduce GPUPhysBench, a benchmark of 50 tasks testing whether coding agents can meet these demands. Tasks cover fluids, deformable solids, and granular materials, from individual simulation operators to complete simulators. Agents write, compile, test, and optimize GPU code with access to a NVIDIA GPU under fixed time budgets. We report pass rates and runtime performance relative to expert-optimized reference implementations. In a single-attempt evaluation of six frontier model-harness pairs, the two strongest pass all 50 tasks, but even the fastest reaches at least 0.9 the reference speed on only 22% of them, and no submission is more than 5% faster than the reference. The largest gaps arise in collision detection, constraint solving, and iterative solvers. GPUPhysBench brings physical simulation workloads to coding-agent evaluation, testing both the ability to implement numerical methods correctly and the ability to make them run efficiently.",
+      "takeaways": [
+        "Introduces GPUPhysBench, a 50-task benchmark for coding agents on GPU physics simulation across fluids, deformable solids, and granular materials, spanning operators to full simulators.",
+        "Evaluates agents that write, compile, test, and optimize GPU code under fixed time budgets on an NVIDIA GPU; reports pass rates and runtime versus expert-optimized references, with the two strongest of six frontier model-harness pairs passing all 50 tasks in one-attempt evaluation.",
+        "Practical implication: the benchmark shows current agents can often be correct but still lag on efficiency, with the largest gaps in collision detection, constraint solving, and iterative solvers, motivating better methods for fast numerically accurate GPU simulation code."
+      ],
+      "actionItems": [
+        "Review GPUPhysBench as a 50-task benchmark for agentic GPU physics simulation, with attention to the task mix across fluids, deformable solids, and granular materials and the correct-vs-efficient code objective.",
+        "Run comparative evaluations on the benchmark using write-compile-test-optimize loops under fixed time budgets, measuring pass rates and runtime against expert-optimized references, especially on collision detection, constraint solving, and iterative solvers.",
+        "Assess whether your current coding-agent workflow can reliably produce numerically accurate GPU simulation code that is also close to reference speed, given the reported efficiency gaps even when tasks are solved correctly."
+      ],
+      "researchSignals": {
+        "evidence": "High",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "Medium"
+      },
+      "capability": "Agentic AI",
+      "domain": "AI Engineering and Developer Tools",
+      "enterpriseScore": 28,
+      "enterpriseSignals": {
+        "adoption": 0,
+        "efficiency": 8,
+        "governance": 0,
+        "evidence": 20
+      },
+      "url": "https://arxiv.org/abs/2609.35639"
+    },
+    {
+      "title": "Neural Harmonic Measure Operator",
+      "authors": "Jinjin He, Sinan Wang, Yuchen Sun, Bo Zhu",
+      "org": "arXiv",
+      "date": "Sep 28, 2026",
+      "hasCode": false,
+      "stars": 0,
+      "researchScore": 46,
+      "priority": "READ",
+      "tags": [
+        "Evaluation and Benchmarks",
+        "Other"
+      ],
+      "abstract": "We introduce Neural Harmonic Measure Operator (NHMO), a neural solver for elliptic PDE problems on variable-shape domains. The harmonic measure of a domain is the boundary probability distribution that, integrated against any boundary data, returns the Dirichlet Laplace solution. It depends only on the geometry, not on the boundary data. NHMO parameterizes the density of this measure as a transformer-based boundary kernel supervised by Walk-on-Spheres exit samples, so one trained kernel handles different boundary values on a shape with no retraining. We extend it to Poisson via a classical decomposition, with an auxiliary network amortizing the source-induced correction and avoiding the singular volume quadrature that breaks direct evaluation. At inference, new boundary values and new sources both yield PDE solutions by re-integration against the fitted kernel and lift, with no retraining. NHMO improves over four prior baselines on the MCB-B 3D variable-shape Poisson benchmark across all five categories, and is competitive with major neural-operator baselines on a controlled 2D testbed.",
+      "takeaways": [
+        "Introduces Neural Harmonic Measure Operator (NHMO), a neural solver for elliptic PDEs on variable-shape domains that learns a geometry-dependent harmonic-measure kernel so one trained model can handle different boundary values without retraining.",
+        "Method: parameterizes the boundary density with a transformer-based kernel supervised by Walk-on-Spheres exit samples, and extends to Poisson using a classical decomposition plus an auxiliary network for the source-induced correction.",
+        "Evidence and implication: NHMO improves over four prior baselines on the MCB-B 3D variable-shape Poisson benchmark across all five categories and is competitive on a controlled 2D testbed, enabling inference on new boundary values and sources by re-integration only."
+      ],
+      "actionItems": [
+        "Review the NHMO architecture and training setup, focusing on how the transformer-based boundary kernel is supervised by Walk-on-Spheres exit samples and how the geometry-dependent measure is reused across boundary conditions.",
+        "Run a head-to-head benchmark or ablation on the MCB-B 3D variable-shape Poisson task and the controlled 2D testbed to verify the reported gains versus the four prior baselines and competitive performance versus neural-operator baselines.",
+        "Assess deployment risk by checking whether the no-retraining inference path remains reliable for new boundary values and new sources, especially given the reported low reproducibility and the need to avoid direct singular volume quadrature."
+      ],
+      "researchSignals": {
+        "evidence": "Medium",
+        "applicability": "Low",
+        "reproducibility": "Low",
+        "novelty": "High"
+      },
+      "capability": "Evaluation and Benchmarks",
+      "domain": "Other",
+      "enterpriseScore": 30,
+      "enterpriseSignals": {
+        "adoption": 10,
+        "efficiency": 0,
+        "governance": 0,
+        "evidence": 20
+      },
+      "url": "https://arxiv.org/abs/2609.35752"
+    },
+    {
+      "title": "CoSE-E: A Benchmark for Code-switched Speech Evaluation in Enterprise Settings",
+      "authors": "Shama Gupta, Hoang H Nguyen, Chelsea Huang, Lindsay Devon Brin, Fanny Riols",
+      "org": "arXiv",
+      "date": "Sep 28, 2026",
+      "hasCode": true,
+      "stars": 0,
+      "researchScore": 45,
+      "priority": "EXPERIMENT",
+      "tags": [
+        "Agentic AI",
+        "Enterprise and Knowledge Work"
+      ],
+      "abstract": "Code-switching (CS), a seamless alternation between languages within a single utterance, remains a critical challenge in automatic speech recognition (ASR). While prior works focus on conversational CS-ASR, enterprise settings demand evaluation of operational impact beyond edit-distance errors: how code-switching transcription errors propagate to downstream voice agent task failures. In this work, we propose (1) a CS-ASR synthetic benchmark and multidimensional evaluation framework tailored to enterprise domains, (2) systematic evaluation of frontier ASR systems across 5 language pairs, (3) diagnostic analysis of the additional transcription errors that code-switching introduces across language pairs and models. We release COSE-E to support enterprise-focused CSASR evaluation for multilingual voice agents in enterprise deployment.",
+      "takeaways": [
+        "Introduces CoSE-E, a synthetic benchmark and multidimensional evaluation framework for code-switched speech in enterprise settings, focused on operational impact rather than only edit-distance errors.",
+        "Evaluates frontier ASR systems across 5 language pairs and performs diagnostic analysis of how code-switching adds transcription errors across language pairs and models.",
+        "Provides a release intended to support enterprise-focused CS-ASR evaluation for multilingual voice agents by linking transcription errors to downstream task failures."
+      ],
+      "actionItems": [
+        "Review CoSE-E\u2019s benchmark design and multidimensional enterprise evaluation framework to confirm it matches your voice-agent use case and target language pairs.",
+        "Run a baseline evaluation on your own ASR stack using CoSE-E\u2019s 5 language-pair setup, measuring both transcription errors and downstream task-failure impact.",
+        "Ask whether the synthetic enterprise benchmark and code-switching error patterns transfer to your production setting, especially for the specific language pairs and task flows you deploy."
       ],
       "researchSignals": {
         "evidence": "Medium",
         "applicability": "Medium",
         "reproducibility": "Low",
-        "novelty": "Low"
+        "novelty": "Medium"
       },
       "capability": "Agentic AI",
-      "domain": "Other",
-      "enterpriseScore": 27,
+      "domain": "Enterprise and Knowledge Work",
+      "enterpriseScore": 60,
       "enterpriseSignals": {
-        "adoption": 10,
+        "adoption": 30,
         "efficiency": 0,
-        "governance": 17,
-        "evidence": 0
+        "governance": 0,
+        "evidence": 20
       },
-      "url": "https://arxiv.org/abs/2609.31422"
+      "url": "https://arxiv.org/abs/2609.35645"
     }
   ],
   "blogs": [
+    {
+      "source": "OpenAI News",
+      "title": "DevDay 2026 Recap",
+      "tag": "COMPANY",
+      "date": "Sep 29, 2026",
+      "takeaways": [
+        "Explore more than 20 announcements from OpenAI DevDay 2026, including GPT-6 Astra, ChatGPT, Codex, APIs, security, and new tools for builders."
+      ],
+      "url": "https://openai.com/index/devday-2026-recap",
+      "linkVerified": true,
+      "enterpriseScore": 8
+    },
+    {
+      "source": "Microsoft Research",
+      "title": "Introducing Quine: An AI research system designed for the complexity of biology",
+      "tag": "RESEARCH BLOG",
+      "date": "Sep 29, 2026",
+      "takeaways": [
+        "At a glance Quine (opens in new tab) is a research effort to create a multimodal world model of biology and an interactive harness connecting models, scientific tools, literature, and researchers."
+      ],
+      "url": "https://microsoft.com/en-us/research/blog/introducing-quine-an-ai-research-system-designed-for-the-complexity-of-biology",
+      "linkVerified": true,
+      "enterpriseScore": 0
+    },
     {
       "source": "OpenAI News",
       "title": "Introducing MentalHealthBench",
@@ -942,15 +981,15 @@
     },
     {
       "source": "Microsoft Research",
-      "title": "Offloaded inference for real-world physical AI robotics",
+      "title": "One year in: How Microsoft Research Asia \u2013 Singapore is advancing research, partnership and talent for real-world impact",
       "tag": "RESEARCH BLOG",
-      "date": "Sep 23, 2026",
+      "date": "Sep 28, 2026",
       "takeaways": [
-        "At a glance Challenges a core assumption in robotics AI: Our research shows that running physical AI inference exclusively on onboard GPUs can limit robot performance, battery life, and scalability, and that offloading inference to edge or cloud GPUs can offer significant advantages."
+        "On July 24, 2025, Microsoft Research Asia \u2013 Singapore (MSRA \u2013 Singapore) opened its doors as Microsoft\u2019s first research lab in Southeast Asia. The launch built on more than two decades of collaboration between Microsoft Research Asia and Singapore\u2019s universities, research institutes, and government agencies."
       ],
-      "url": "https://microsoft.com/en-us/research/blog/offloaded-inference-for-real-world-physical-ai-robotics",
+      "url": "https://microsoft.com/en-us/research/blog/one-year-in-how-microsoft-research-asia-singapore-is-advancing-research-partnership-and-talent-for-real-world-impact",
       "linkVerified": true,
-      "enterpriseScore": 28
+      "enterpriseScore": 20
     },
     {
       "source": "OpenAI News",
@@ -966,27 +1005,15 @@
     },
     {
       "source": "Microsoft Research",
-      "title": "Improving synthesis prediction of small molecules at scale with RetroChimera",
+      "title": "Offloaded inference for real-world physical AI robotics",
       "tag": "RESEARCH BLOG",
-      "date": "Sep 21, 2026",
+      "date": "Sep 23, 2026",
       "takeaways": [
-        "At a glance We report on the recent publication of our retrosynthesis model RetroChimera in the journal Nature (opens in new tab) . The paper describes the model\u2019s architecture as well as extensive validation studies, including the model\u2019s ability to recall rare reaction types, and successful zero-shot transfer and fine-tuning on proprietary datasets."
+        "At a glance Challenges a core assumption in robotics AI: Our research shows that running physical AI inference exclusively on onboard GPUs can limit robot performance, battery life, and scalability, and that offloading inference to edge or cloud GPUs can offer significant advantages."
       ],
-      "url": "https://microsoft.com/en-us/research/blog/improving-synthesis-prediction-of-small-molecules-at-scale-with-retrochimera",
+      "url": "https://microsoft.com/en-us/research/blog/offloaded-inference-for-real-world-physical-ai-robotics",
       "linkVerified": true,
-      "enterpriseScore": 10
-    },
-    {
-      "source": "OpenAI News",
-      "title": "Parallel cut research time and cost in half with GPT\u20116 Astra",
-      "tag": "STARTUP",
-      "date": "Sep 22, 2026",
-      "takeaways": [
-        "GPT\u20116 Astra allowed Parallel\u2019s agents to research and synthesize labor-market data in half the time and at half the cost vs. prior models."
-      ],
-      "url": "https://openai.com/index/parallel-cuts-time-and-cost-with-astra",
-      "linkVerified": true,
-      "enterpriseScore": 0
+      "enterpriseScore": 28
     }
   ],
   "fallbackSections": {},
@@ -996,12 +1023,12 @@
     {
       "source": "rss",
       "status": "ok",
-      "item_count": 5,
-      "duration_ms": 3810,
+      "item_count": 6,
+      "duration_ms": 4511,
       "fetch_diagnostics": {
         "strategy": "round_robin",
         "feeds_requested": 5,
-        "selected": 5,
+        "selected": 6,
         "feeds": [
           {
             "feed_url": "https://openai.com/news/rss.xml",
@@ -1011,8 +1038,8 @@
             "selected": 3,
             "verified": 3,
             "rejected": {
-              "missing_ai_signal": 4,
-              "missing_decision_signal": 8
+              "missing_ai_signal": 6,
+              "missing_decision_signal": 10
             }
           },
           {
@@ -1032,10 +1059,8 @@
             "selected": 0,
             "verified": 0,
             "rejected": {
-              "canonical_summary_too_short": 1,
               "missing_ai_signal": 1,
-              "missing_decision_signal": 3,
-              "tutorial_or_onboarding": 1
+              "missing_decision_signal": 3
             }
           },
           {
@@ -1046,16 +1071,16 @@
             "selected": 0,
             "verified": 0,
             "rejected": {
-              "missing_decision_signal": 1
+              "missing_decision_signal": 2
             }
           },
           {
             "feed_url": "https://www.microsoft.com/en-us/research/feed/",
             "source": "Microsoft Research",
             "fetched": 10,
-            "eligible": 2,
-            "selected": 2,
-            "verified": 2,
+            "eligible": 3,
+            "selected": 3,
+            "verified": 3,
             "rejected": {}
           }
         ]
@@ -1064,8 +1089,8 @@
     {
       "source": "papers",
       "status": "ok",
-      "item_count": 63,
-      "duration_ms": 8076,
+      "item_count": 56,
+      "duration_ms": 7791,
       "fetch_diagnostics": {
         "categories": [
           {
@@ -1101,7 +1126,7 @@
         "fourteen_day_count": 75,
         "backfill_count": 0,
         "selected_window_days": 7,
-        "deduplicated_count": 63,
+        "deduplicated_count": 56,
         "displayed_count": 8,
         "request_attempts": 3,
         "retry_count": 0,
@@ -1129,7 +1154,7 @@
       "source": "github",
       "status": "ok",
       "item_count": 20,
-      "duration_ms": 61715,
+      "duration_ms": 62017,
       "query_mode": "core+emerging",
       "search_diagnostics": {
         "queries": [
@@ -1159,8 +1184,8 @@
           },
           {
             "query": "reasoning language:python stars:>30",
-            "fetched": 7,
-            "added": 7,
+            "fetched": 8,
+            "added": 8,
             "failed": false
           },
           {
@@ -1171,30 +1196,30 @@
           },
           {
             "query": "\"recursive language model\" OR rlm language:python stars:>10",
-            "fetched": 1,
-            "added": 1,
-            "failed": false
-          },
-          {
-            "query": "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
+            "query": "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
+            "query": "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
           },
           {
-            "query": "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
+            "query": "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+            "fetched": 0,
+            "added": 0,
+            "failed": false
+          },
+          {
+            "query": "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
             "fetched": 0,
             "added": 0,
             "failed": false
@@ -1251,36 +1276,36 @@
             "kind": "evergreen"
           },
           {
-            "repo": "microsoft/autogen",
+            "repo": "Human-Agent-Society/reef",
             "added": 0,
             "failed": false,
-            "skipped_old": true,
+            "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "bytedance/UI-TARS",
+            "repo": "fuxicodex/Fuxi",
             "added": 0,
             "failed": false,
-            "skipped_old": true,
+            "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "ag2ai/ag2",
-            "added": 0,
+            "repo": "kubet/azdaja",
+            "added": 1,
             "failed": false,
-            "skipped_old": true,
+            "skipped_old": false,
             "kind": "emerging"
           },
           {
-            "repo": "mem0ai/mem0",
+            "repo": "tigerless-labs/agent-memory",
             "added": 0,
             "failed": false,
-            "skipped_old": true,
+            "skipped_old": false,
             "kind": "emerging"
           }
         ],
-        "pushed_cutoff": "2026-09-21",
-        "created_cutoff": "2026-07-30",
+        "pushed_cutoff": "2026-09-22",
+        "created_cutoff": "2026-07-31",
         "dynamic_config": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1292,10 +1317,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
-              "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
-              "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
-              "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25"
+              "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
+              "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+              "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
+              "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1307,10 +1332,10 @@
           "watch_rotation": {
             "replacements": 4,
             "added": [
-              "mem0ai/mem0",
-              "ag2ai/ag2",
-              "bytedance/UI-TARS",
-              "microsoft/autogen"
+              "tigerless-labs/agent-memory",
+              "kubet/azdaja",
+              "fuxicodex/Fuxi",
+              "Human-Agent-Society/reef"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1320,7 +1345,7 @@
             ]
           }
         },
-        "total_unique_candidates": 51,
+        "total_unique_candidates": 52,
         "dynamic_refresh": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
           "active_emerging_queries": 7,
@@ -1332,10 +1357,10 @@
           "query_rotation": {
             "replacements": 4,
             "added": [
-              "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
-              "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
-              "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
-              "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25"
+              "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
+              "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+              "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
+              "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25"
             ],
             "removed": [
               "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -1347,10 +1372,10 @@
           "watch_rotation": {
             "replacements": 4,
             "added": [
-              "mem0ai/mem0",
-              "ag2ai/ag2",
-              "bytedance/UI-TARS",
-              "microsoft/autogen"
+              "tigerless-labs/agent-memory",
+              "kubet/azdaja",
+              "fuxicodex/Fuxi",
+              "Human-Agent-Society/reef"
             ],
             "removed": [
               "open-webui/open-webui",
@@ -1365,8 +1390,8 @@
     {
       "source": "model_tools",
       "status": "ok",
-      "item_count": 8,
-      "duration_ms": 99258,
+      "item_count": 9,
+      "duration_ms": 106627,
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
         "active_core_feeds": 14,
@@ -1392,9 +1417,9 @@
         "model_term_rotation": {
           "replacements": 4,
           "added": [
+            "gpt-6",
+            "gemini 3.8",
             "claude",
-            "gemini",
-            "gpt-5.6",
             "tabfm"
           ],
           "removed": [
@@ -1423,25 +1448,111 @@
       "extraction_diagnostics": {
         "feeds_requested": 16,
         "source_pages_requested": 10,
-        "entries_fetched": 357,
-        "classified": 9,
-        "selected": 8,
-        "llm_classification_attempts": 17,
+        "entries_fetched": 392,
+        "classified": 12,
+        "selected": 9,
+        "llm_classification_attempts": 18,
         "llm_classification_failures": 0,
         "llm_classification_disabled": false,
         "llm_classification_skip_reason": "",
+        "fetch_diagnostics": {
+          "feed_entries_fetched": {
+            "https://openai.com/news/rss.xml": 1238,
+            "https://developers.openai.com/rss.xml": 138,
+            "https://huggingface.co/blog/feed.xml": 869,
+            "https://research.google/blog/rss/": 100,
+            "https://developers.googleblog.com/feeds/posts/default": 20,
+            "https://blog.google/technology/ai/rss/": 20,
+            "https://blog.google/technology/developers/rss/": 20,
+            "https://www.microsoft.com/en-us/research/feed/": 10,
+            "https://blogs.microsoft.com/ai/feed/": 0,
+            "https://azure.microsoft.com/en-us/blog/feed/": 10,
+            "https://developer.nvidia.com/blog/feed/": 100,
+            "https://feeds.feedburner.com/nvidiablog": 18,
+            "https://aws.amazon.com/blogs/machine-learning/feed/": 20,
+            "https://github.blog/ai-and-ml/feed/": 10,
+            "https://cloud.google.com/blog/feed/": 0,
+            "https://blog.google/rss/": 20
+          },
+          "source_pages": {
+            "https://www.anthropic.com/news": {
+              "links_seen": 113,
+              "links_rejected_by_filter": 96,
+              "entries": 17,
+              "fetch_failed": false
+            },
+            "https://www.anthropic.com/engineering": {
+              "links_seen": 124,
+              "links_rejected_by_filter": 97,
+              "entries": 27,
+              "fetch_failed": false
+            },
+            "https://ai.google.dev/gemini-api/docs/changelog": {
+              "links_seen": 294,
+              "links_rejected_by_filter": 290,
+              "entries": 4,
+              "fetch_failed": false
+            },
+            "https://ai.meta.com/blog/": {
+              "links_seen": 56,
+              "links_rejected_by_filter": 49,
+              "entries": 7,
+              "fetch_failed": false
+            },
+            "https://mistral.ai/news/": {
+              "links_seen": 113,
+              "links_rejected_by_filter": 77,
+              "entries": 36,
+              "fetch_failed": false
+            },
+            "https://cohere.com/blog/": {
+              "links_seen": 250,
+              "links_rejected_by_filter": 214,
+              "entries": 36,
+              "fetch_failed": false
+            },
+            "https://docs.perplexity.ai/docs/resources/changelog.md": {
+              "links_seen": 0,
+              "links_rejected_by_filter": 0,
+              "entries": 83,
+              "fetch_failed": false
+            },
+            "https://elevenlabs.io/blog/": {
+              "links_seen": 144,
+              "links_rejected_by_filter": 93,
+              "entries": 51,
+              "fetch_failed": false
+            },
+            "https://www.kimi.com/blog/": {
+              "links_seen": 147,
+              "links_rejected_by_filter": 137,
+              "entries": 10,
+              "fetch_failed": false
+            },
+            "https://www.kimi.com/blog/kimi-k3": {
+              "links_seen": 163,
+              "links_rejected_by_filter": 153,
+              "entries": 11,
+              "fetch_failed": false
+            }
+          },
+          "zero_yield_warnings": [
+            "feed returned no entries: https://blogs.microsoft.com/ai/feed/",
+            "feed returned no entries: https://cloud.google.com/blog/feed/"
+          ]
+        },
         "classification_diagnostics": {
-          "entries_considered": 357,
+          "entries_considered": 392,
           "rejected_duplicate_url": 13,
-          "rejected_missing_or_stale_date": 98,
-          "rejected_non_release": 229,
-          "rejected_by_llm": 8,
-          "major_model_carried_forward": 0
+          "rejected_missing_or_stale_date": 124,
+          "rejected_non_release": 237,
+          "rejected_by_llm": 6,
+          "major_model_carried_forward": 2
         },
         "selection_diagnostics": {
-          "rejected_near_duplicate": 1,
+          "rejected_near_duplicate": 0,
           "rejected_superseded_major_model": 0,
-          "major_models_selected": 1
+          "major_models_selected": 3
         },
         "dynamic_config": {
           "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
@@ -1468,9 +1579,9 @@
           "model_term_rotation": {
             "replacements": 4,
             "added": [
+              "gpt-6",
+              "gemini 3.8",
               "claude",
-              "gemini",
-              "gpt-5.6",
               "tabfm"
             ],
             "removed": [

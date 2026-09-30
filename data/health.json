@@ -2,12 +2,12 @@
   {
     "source": "rss",
     "status": "ok",
-    "item_count": 5,
-    "duration_ms": 3810,
+    "item_count": 6,
+    "duration_ms": 4511,
     "fetch_diagnostics": {
       "strategy": "round_robin",
       "feeds_requested": 5,
-      "selected": 5,
+      "selected": 6,
       "feeds": [
         {
           "feed_url": "https://openai.com/news/rss.xml",
@@ -17,8 +17,8 @@
           "selected": 3,
           "verified": 3,
           "rejected": {
-            "missing_ai_signal": 4,
-            "missing_decision_signal": 8
+            "missing_ai_signal": 6,
+            "missing_decision_signal": 10
           }
         },
         {
@@ -38,10 +38,8 @@
           "selected": 0,
           "verified": 0,
           "rejected": {
-            "canonical_summary_too_short": 1,
             "missing_ai_signal": 1,
-            "missing_decision_signal": 3,
-            "tutorial_or_onboarding": 1
+            "missing_decision_signal": 3
           }
         },
         {
@@ -52,16 +50,16 @@
           "selected": 0,
           "verified": 0,
           "rejected": {
-            "missing_decision_signal": 1
+            "missing_decision_signal": 2
           }
         },
         {
           "feed_url": "https://www.microsoft.com/en-us/research/feed/",
           "source": "Microsoft Research",
           "fetched": 10,
-          "eligible": 2,
-          "selected": 2,
-          "verified": 2,
+          "eligible": 3,
+          "selected": 3,
+          "verified": 3,
           "rejected": {}
         }
       ]
@@ -70,8 +68,8 @@
   {
     "source": "papers",
     "status": "ok",
-    "item_count": 63,
-    "duration_ms": 8076,
+    "item_count": 56,
+    "duration_ms": 7791,
     "fetch_diagnostics": {
       "categories": [
         {
@@ -107,7 +105,7 @@
       "fourteen_day_count": 75,
       "backfill_count": 0,
       "selected_window_days": 7,
-      "deduplicated_count": 63,
+      "deduplicated_count": 56,
       "displayed_count": 8,
       "request_attempts": 3,
       "retry_count": 0,
@@ -135,7 +133,7 @@
     "source": "github",
     "status": "ok",
     "item_count": 20,
-    "duration_ms": 61715,
+    "duration_ms": 62017,
     "query_mode": "core+emerging",
     "search_diagnostics": {
       "queries": [
@@ -165,8 +163,8 @@
         },
         {
           "query": "reasoning language:python stars:>30",
-          "fetched": 7,
-          "added": 7,
+          "fetched": 8,
+          "added": 8,
           "failed": false
         },
         {
@@ -177,30 +175,30 @@
         },
         {
           "query": "\"recursive language model\" OR rlm language:python stars:>10",
-          "fetched": 1,
-          "added": 1,
-          "failed": false
-        },
-        {
-          "query": "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
+          "query": "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
+          "query": "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
           "fetched": 0,
           "added": 0,
           "failed": false
         },
         {
-          "query": "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
+          "query": "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+          "fetched": 0,
+          "added": 0,
+          "failed": false
+        },
+        {
+          "query": "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
           "fetched": 0,
           "added": 0,
           "failed": false
@@ -257,36 +255,36 @@
           "kind": "evergreen"
         },
         {
-          "repo": "microsoft/autogen",
+          "repo": "Human-Agent-Society/reef",
           "added": 0,
           "failed": false,
-          "skipped_old": true,
+          "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "bytedance/UI-TARS",
+          "repo": "fuxicodex/Fuxi",
           "added": 0,
           "failed": false,
-          "skipped_old": true,
+          "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "ag2ai/ag2",
-          "added": 0,
+          "repo": "kubet/azdaja",
+          "added": 1,
           "failed": false,
-          "skipped_old": true,
+          "skipped_old": false,
           "kind": "emerging"
         },
         {
-          "repo": "mem0ai/mem0",
+          "repo": "tigerless-labs/agent-memory",
           "added": 0,
           "failed": false,
-          "skipped_old": true,
+          "skipped_old": false,
           "kind": "emerging"
         }
       ],
-      "pushed_cutoff": "2026-09-21",
-      "created_cutoff": "2026-07-30",
+      "pushed_cutoff": "2026-09-22",
+      "created_cutoff": "2026-07-31",
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
@@ -298,10 +296,10 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
-            "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
-            "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
-            "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
-            "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25"
+            "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
+            "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+            "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
+            "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25"
           ],
           "removed": [
             "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -313,10 +311,10 @@
         "watch_rotation": {
           "replacements": 4,
           "added": [
-            "mem0ai/mem0",
-            "ag2ai/ag2",
-            "bytedance/UI-TARS",
-            "microsoft/autogen"
+            "tigerless-labs/agent-memory",
+            "kubet/azdaja",
+            "fuxicodex/Fuxi",
+            "Human-Agent-Society/reef"
           ],
           "removed": [
             "open-webui/open-webui",
@@ -326,7 +324,7 @@
           ]
         }
       },
-      "total_unique_candidates": 51,
+      "total_unique_candidates": 52,
       "dynamic_refresh": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/github_dynamic_config.json",
         "active_emerging_queries": 7,
@@ -338,10 +336,10 @@
         "query_rotation": {
           "replacements": 4,
           "added": [
-            "(\"agent memory\" OR \"long-term memory\" OR \"persistent memory\") (mcp OR \"model context protocol\") language:python stars:>20",
-            "(\"memory graph\" OR \"knowledge graph\") (agent OR llm OR mcp) language:python stars:>15",
-            "(\"self-improving\" OR \"continual learning\" OR \"lifelong learning\") (agent OR llm) language:python stars:>15",
-            "(\"reasoning model\" OR \"reasoning models\") (agent OR llm) language:python stars:>25"
+            "(\"self-improving agents\" OR \"continual learning\" OR \"recursive self-improvement\") language:python stars:>20",
+            "(\"agent memory\" OR \"persistent memory\" OR \"long-term memory\") (sqlite OR vector OR retrieval) language:python stars:>20",
+            "(\"context engineering\" OR \"long context\" OR \"context window\") (cli OR coding OR developer) language:python stars:>20",
+            "(\"knowledge graph\" AND (agent OR llm) AND (memory OR recall)) language:python stars:>25"
           ],
           "removed": [
             "(\"MCP\" OR \"model context protocol\") (knowledge graph OR graph) language:python stars:>15",
@@ -353,10 +351,10 @@
         "watch_rotation": {
           "replacements": 4,
           "added": [
-            "mem0ai/mem0",
-            "ag2ai/ag2",
-            "bytedance/UI-TARS",
-            "microsoft/autogen"
+            "tigerless-labs/agent-memory",
+            "kubet/azdaja",
+            "fuxicodex/Fuxi",
+            "Human-Agent-Society/reef"
           ],
           "removed": [
             "open-webui/open-webui",
@@ -371,8 +369,8 @@
   {
     "source": "model_tools",
     "status": "ok",
-    "item_count": 8,
-    "duration_ms": 99258,
+    "item_count": 9,
+    "duration_ms": 106627,
     "dynamic_config": {
       "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
       "active_core_feeds": 14,
@@ -398,9 +396,9 @@
       "model_term_rotation": {
         "replacements": 4,
         "added": [
+          "gpt-6",
+          "gemini 3.8",
           "claude",
-          "gemini",
-          "gpt-5.6",
           "tabfm"
         ],
         "removed": [
@@ -429,25 +427,111 @@
     "extraction_diagnostics": {
       "feeds_requested": 16,
       "source_pages_requested": 10,
-      "entries_fetched": 357,
-      "classified": 9,
-      "selected": 8,
-      "llm_classification_attempts": 17,
+      "entries_fetched": 392,
+      "classified": 12,
+      "selected": 9,
+      "llm_classification_attempts": 18,
       "llm_classification_failures": 0,
       "llm_classification_disabled": false,
       "llm_classification_skip_reason": "",
+      "fetch_diagnostics": {
+        "feed_entries_fetched": {
+          "https://openai.com/news/rss.xml": 1238,
+          "https://developers.openai.com/rss.xml": 138,
+          "https://huggingface.co/blog/feed.xml": 869,
+          "https://research.google/blog/rss/": 100,
+          "https://developers.googleblog.com/feeds/posts/default": 20,
+          "https://blog.google/technology/ai/rss/": 20,
+          "https://blog.google/technology/developers/rss/": 20,
+          "https://www.microsoft.com/en-us/research/feed/": 10,
+          "https://blogs.microsoft.com/ai/feed/": 0,
+          "https://azure.microsoft.com/en-us/blog/feed/": 10,
+          "https://developer.nvidia.com/blog/feed/": 100,
+          "https://feeds.feedburner.com/nvidiablog": 18,
+          "https://aws.amazon.com/blogs/machine-learning/feed/": 20,
+          "https://github.blog/ai-and-ml/feed/": 10,
+          "https://cloud.google.com/blog/feed/": 0,
+          "https://blog.google/rss/": 20
+        },
+        "source_pages": {
+          "https://www.anthropic.com/news": {
+            "links_seen": 113,
+            "links_rejected_by_filter": 96,
+            "entries": 17,
+            "fetch_failed": false
+          },
+          "https://www.anthropic.com/engineering": {
+            "links_seen": 124,
+            "links_rejected_by_filter": 97,
+            "entries": 27,
+            "fetch_failed": false
+          },
+          "https://ai.google.dev/gemini-api/docs/changelog": {
+            "links_seen": 294,
+            "links_rejected_by_filter": 290,
+            "entries": 4,
+            "fetch_failed": false
+          },
+          "https://ai.meta.com/blog/": {
+            "links_seen": 56,
+            "links_rejected_by_filter": 49,
+            "entries": 7,
+            "fetch_failed": false
+          },
+          "https://mistral.ai/news/": {
+            "links_seen": 113,
+            "links_rejected_by_filter": 77,
+            "entries": 36,
+            "fetch_failed": false
+          },
+          "https://cohere.com/blog/": {
+            "links_seen": 250,
+            "links_rejected_by_filter": 214,
+            "entries": 36,
+            "fetch_failed": false
+          },
+          "https://docs.perplexity.ai/docs/resources/changelog.md": {
+            "links_seen": 0,
+            "links_rejected_by_filter": 0,
+            "entries": 83,
+            "fetch_failed": false
+          },
+          "https://elevenlabs.io/blog/": {
+            "links_seen": 144,
+            "links_rejected_by_filter": 93,
+            "entries": 51,
+            "fetch_failed": false
+          },
+          "https://www.kimi.com/blog/": {
+            "links_seen": 147,
+            "links_rejected_by_filter": 137,
+            "entries": 10,
+            "fetch_failed": false
+          },
+          "https://www.kimi.com/blog/kimi-k3": {
+            "links_seen": 163,
+            "links_rejected_by_filter": 153,
+            "entries": 11,
+            "fetch_failed": false
+          }
+        },
+        "zero_yield_warnings": [
+          "feed returned no entries: https://blogs.microsoft.com/ai/feed/",
+          "feed returned no entries: https://cloud.google.com/blog/feed/"
+        ]
+      },
       "classification_diagnostics": {
-        "entries_considered": 357,
+        "entries_considered": 392,
         "rejected_duplicate_url": 13,
-        "rejected_missing_or_stale_date": 98,
-        "rejected_non_release": 229,
-        "rejected_by_llm": 8,
-        "major_model_carried_forward": 0
+        "rejected_missing_or_stale_date": 124,
+        "rejected_non_release": 237,
+        "rejected_by_llm": 6,
+        "major_model_carried_forward": 2
       },
       "selection_diagnostics": {
-        "rejected_near_duplicate": 1,
+        "rejected_near_duplicate": 0,
         "rejected_superseded_major_model": 0,
-        "major_models_selected": 1
+        "major_models_selected": 3
       },
       "dynamic_config": {
         "state_path": "/home/runner/work/ai-news-artifact/ai-news-artifact/data/model_tools_dynamic_config.json",
@@ -474,9 +558,9 @@
         "model_term_rotation": {
           "replacements": 4,
           "added": [
+            "gpt-6",
+            "gemini 3.8",
             "claude",
-            "gemini",
-            "gpt-5.6",
             "tabfm"
           ],
           "removed": [
